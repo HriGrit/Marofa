@@ -13,9 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import logo from "../assets/marofa-logo-dark.svg";
-
-const pages = ['Home', 'Pricing', 'How it Works'];
+const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -38,19 +36,27 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#14415a" }}>
+        <AppBar position="static" sx={{ backgroundcolor: "#14415a" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img
-                        src={logo}
-                        alt="Marofa Logo"
-                        style={{
+                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="a"
+                        href="#app-bar-with-responsive-menu"
+                        sx={{
+                            mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            marginRight: '2px',
-                            width: '70px',
-                            height: 'auto',
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            color: 'inherit',
+                            textDecoration: 'none',
                         }}
-                    />
+                    >
+                        LOGO
+                    </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
