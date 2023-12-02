@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 import logo from "../assets/marofa-logo-dark.svg"
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Home', 'Pricing', 'How it Works'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -38,7 +38,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: "#206091" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img
