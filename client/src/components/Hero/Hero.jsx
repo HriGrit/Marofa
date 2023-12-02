@@ -28,9 +28,9 @@ const Hero = () => {
   }));
 
   return (
-    <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
+    <Box ml="0" mr="0" sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
       <Container>
-        <CustomBox>
+        <CustomBox >
           <Box sx={{ flex: "1" }}>
             <Typography
               variant="body2"
@@ -40,6 +40,7 @@ const Hero = () => {
                 fontWeight: "500",
                 mt: 10,
                 mb: 4,
+
               }}
             >
               Welcome to Besnik Agency
