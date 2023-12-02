@@ -9,10 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import Grid from '@mui/material/Grid';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+
 
 const pages = ['Home', 'Pricing', 'How it Works'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const auth = ["Register", "Login"];
 
 import Logo from './Logo';
@@ -37,7 +39,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="fixed" sx={{ backgroundColor: "#14415a" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#14415a" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Logo sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -114,48 +116,25 @@ function Navbar() {
                     >
                         MAROFA
                     </Typography>
-                    <Box sx={{ display: "flex", justifyContent: 'space-between', width: '100%' }}>
-                        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                            {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        mx: 1, // Adjusted margin for closer button spacing
-                                        color: 'white',
-                                        display: 'block',
-                                        fontFamily: 'NeoSans',
-                                        fontWeight: 400,
-                                    }}
-                                >
-                                    {page}
-                                </Button>
-                            ))}
-                        </Box>
-
-                        <Box sx={{ display: "flex", width: 'fit' }}>
-                            {auth.map((authItem, index) => (
-                                <Button
-                                    key={authItem}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{
-                                        my: 2,
-                                        mx: 1, // Adjusted margin for closer button spacing
-                                        color: 'white',
-                                        display: 'block',
-                                        fontFamily: 'NeoSans',
-                                        fontWeight: 400,
-                                        ml: index === 0 ? 'auto' : 0, // Apply margin-left auto to the first button
-                                    }}
-                                >
-                                    {authItem}
-                                </Button>
-                            ))}
-                        </Box>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                onClick={handleCloseNavMenu}
+                                sx={{
+                                    my: 2,
+                                    mx: 7,
+                                    color: 'white',
+                                    display: 'block',
+                                    fontFamily: 'NeoSans',
+                                    fontWeight: 400,
+                                }}
+                            >
+                                {page}
+                            </Button>
+                        ))}
                     </Box>
-
-                    {/* <Box sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -183,7 +162,7 @@ function Navbar() {
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box> */}
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>
