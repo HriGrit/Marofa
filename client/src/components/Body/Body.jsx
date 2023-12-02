@@ -9,11 +9,13 @@ import lady from "../../assets/landingpagefemale.svg"
 
 const Body = () => {
     return (
-        <Container maxWidth="xl" sx={{ mt: 4, padding: 0, backgroundColor: "#F9F9F9" }}> {/* Remove container padding */}
-            <Box sx={{ flexGrow: 1, width: '100%' }}>
+        <Container maxWidth="xl" sx={{ mt: 4, padding: 0, backgroundColor: "#F9F9F9" }}>
+            <Box sx={{ flexGrow: 1, width: '100%', mx: 0 }}>
                 <Grid container spacing={0}>
-                    <Grid item xs={12} md={6} sx={{ px: 0, mx: 0 }}> {/* Remove grid item padding */}
-                        <h1>Body</h1>
+                    <Grid item xs={12} md={6} sx={{ px: 0, mx: 0 }}>
+                        <Item sx={{ mx: 0 }}>
+                            <h1>Body</h1>
+                        </Item>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: 'none', md: 'block' }, paddingLeft: 0, paddingRight: 0 }}> {/* Remove grid item padding */}
                         {/* Your Item component here */}
