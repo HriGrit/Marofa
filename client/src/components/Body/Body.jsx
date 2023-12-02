@@ -10,6 +10,7 @@ const Body = () => {
             <Typography>
                 <Box sx={{ fontFamily: "NeoSans", }}>
                     Welcome to Marofa!
+                    I am in here
                 </Box>
             </Typography>
         </Container >
