@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import logo from "../assets/marofa-logo-dark.svg"
+import logo from "../assets/marofa-logo-dark.svg";
 
 const pages = ['Home', 'Pricing', 'How it Works'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -38,7 +38,7 @@ function Navbar() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: "#206091" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#14415a" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img
