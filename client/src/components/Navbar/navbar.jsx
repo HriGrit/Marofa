@@ -106,7 +106,7 @@ function Navbar() {
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
+                            fontFamily: 'NeoSans',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
@@ -120,7 +120,15 @@ function Navbar() {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{
+                                    my: 2,
+                                    mx: 7,
+                                    color: 'white',
+                                    display: 'block',
+                                    fontFamily: 'NeoSans',
+                                    fontWeight: 400,
+
+                                }}
                             >
                                 {page}
                             </Button>
