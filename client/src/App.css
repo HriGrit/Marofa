@@ -4,11 +4,6 @@
 
 }
 
-.ladyImage {
-  top: 0%;
-  right: 0%;
-}
-
 @font-face {
   font-family: 'NeoSans';
   src: url('src/assets/fonts/NeoSansArabic.ttf') format('truetype');
