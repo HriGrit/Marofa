@@ -3,7 +3,7 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import CustomButton from "./CustomButton";
-
+import Lady from "../Body/Lady";
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -28,9 +28,9 @@ const Hero = () => {
   }));
 
   return (
-    <Box ml="0" mr="0" sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
-      <Container>
-        <CustomBox >
+    <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh", mr: 0 }}>
+      <Container maxWidth="100%">
+        <CustomBox>
           <Box sx={{ flex: "1" }}>
             <Typography
               variant="body2"
@@ -40,7 +40,6 @@ const Hero = () => {
                 fontWeight: "500",
                 mt: 10,
                 mb: 4,
-
               }}
             >
               Welcome to Besnik Agency
@@ -64,11 +63,7 @@ const Hero = () => {
           </Box>
 
           <Box sx={{ flex: "1.25" }}>
-            <img
-              src={ladyImg}
-              alt="heroImg"
-              style={{ maxWidth: "100%", marginBottom: "2rem" }}
-            />
+            <Lady sx={{ display: { xs: 'none', md: 'flex' }, mt: 16 }} />
           </Box>
         </CustomBox>
       </Container>
