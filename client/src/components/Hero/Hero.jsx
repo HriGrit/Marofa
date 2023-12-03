@@ -33,7 +33,7 @@ const Hero = () => {
   }));
 
   return (
-    <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "100vh" }}>
+    <Box sx={{ backgroundColor: "#E6F0FF", }}>
       <Container maxWidth="100%" disableGutters >
         <CustomBox>
           <Box sx={{ flex: "1" }}
@@ -108,4 +108,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;;
+export default Hero;
