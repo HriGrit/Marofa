@@ -33,11 +33,7 @@ const Hero = () => {
   }));
 
   return (
-<<<<<<< HEAD
-    <Box sx={{ backgroundColor: "#E6F0FF" }}>
-=======
     <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "100vh" }}>
->>>>>>> d20015180df0d9c28f86b76713457e4569cb014a
       <Container maxWidth="100%" disableGutters >
         <CustomBox>
           <Box sx={{ flex: "1" }}
@@ -45,11 +41,8 @@ const Hero = () => {
             <Typography
               variant="body2"
               sx={{
-<<<<<<< HEAD
-                fontSize: { xs: "16px", lg: "18px", xl: "32px" },
-=======
                 fontSize: "18px",
->>>>>>> d20015180df0d9c28f86b76713457e4569cb014a
+
                 color: "#687690",
                 fontWeight: "500",
                 mt: 10,
@@ -115,4 +108,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Hero;;
