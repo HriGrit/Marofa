@@ -5,6 +5,7 @@ import React from "react";
 import CustomButton from "./CustomButton";
 import Lady from "../Body/Lady";
 import { left } from "@popperjs/core";
+
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -12,6 +13,7 @@ const Hero = () => {
     gap: theme.spacing(5),
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(4),
+    marginRight: theme.spacing(4),
     marginBottom: theme.spacing(3),
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
@@ -31,14 +33,23 @@ const Hero = () => {
   }));
 
   return (
+<<<<<<< HEAD
     <Box sx={{ backgroundColor: "#E6F0FF" }}>
+=======
+    <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "100vh" }}>
+>>>>>>> d20015180df0d9c28f86b76713457e4569cb014a
       <Container maxWidth="100%" disableGutters >
         <CustomBox>
-          <Box sx={{ flex: "1" }}>
+          <Box sx={{ flex: "1" }}
+          >
             <Typography
               variant="body2"
               sx={{
+<<<<<<< HEAD
                 fontSize: { xs: "16px", lg: "18px", xl: "32px" },
+=======
+                fontSize: "18px",
+>>>>>>> d20015180df0d9c28f86b76713457e4569cb014a
                 color: "#687690",
                 fontWeight: "500",
                 mt: 10,
@@ -59,17 +70,43 @@ const Hero = () => {
             >
               Explore Profiles and contact helpers directly
             </Typography>
-            <CustomButton
-              backgroundColor="#0F1B4C"
-              color="#fff"
-              buttonText="More About Us"
-              heroBtn={true}
-            />
+            <Box sx={{
+              display: {
+                sm: 'block', md: 'flex', lg: 'flex',
+                justifyContent: 'flex-start',
+                marginTop: '50px',
+                marginBottom: '20px'
+              }
+            }}>
+              <CustomButton
+                backgroundColor="#0F1B4C"
+                color="#fff"
+                buttonText="For Employers"
+                heroBtn={true}
+              />
+              <CustomButton
+                className="right-button"
+                backgroundColor="#0F1B4C"
+                color="#fff"
+                buttonText="For Helpers"
+                heroBtn={true}
+                sx={{ marginLeft: '120px' }}
+              />
+            </Box>
           </Box>
 
 
-          <Box sx={{ flex: "1.25", display: 'flex', justifyContent: 'flex-end', alignItems: 'center', height: '100%' }}>
-            <Lady sx={{ height: '100%', maxWidth: 'auto' }} />
+          <Box sx={{
+            flex: "1.25",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'auto',
+            height: 'auto',
+
+
+          }}>
+            <Lady sx={{ height: 'auto', maxWidthWidth: 'auto' }} />
           </Box>
 
         </CustomBox>
