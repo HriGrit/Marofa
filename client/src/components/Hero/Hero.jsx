@@ -31,32 +31,33 @@ const Hero = () => {
   }));
 
   return (
-    <Box sx={{ backgroundColor: "#E6F0FF", minHeight: "80vh" }}>
+    <Box sx={{ backgroundColor: "#E6F0FF" }}>
       <Container maxWidth="100%" disableGutters >
         <CustomBox>
           <Box sx={{ flex: "1" }}>
             <Typography
               variant="body2"
               sx={{
-
-                fontSize: "18px",
+                fontSize: { xs: "16px", lg: "18px", xl: "32px" },
                 color: "#687690",
                 fontWeight: "500",
                 mt: 10,
-                mb: 4,
               }}
             >
-              Welcome to Besnik Agency
+              Looking for helper work
             </Typography>
-            <Title variant="h1">
-              Discover a place where you'll love to live.
+            <Title sx={{
+              fontSize: { xs: "36px", lg: "48px", xl: "96px" },
+              color: "#129874",
+              fontWeight: "500",
+            }}>
+              Find available helpers and maid in Saudi Arabia
             </Title>
             <Typography
               variant="body2"
-              sx={{ fontSize: "18px", color: "#5A6473", my: "4" }}
+              sx={{ fontSize: { xs: "16px", lg: "18px" }, color: "#5A6473", my: "4" }}
             >
-              Be the first to get the best real estate deals before they hit the
-              mass market! Hot foreclosure deals with one simple search!
+              Explore Profiles and contact helpers directly
             </Typography>
             <CustomButton
               backgroundColor="#0F1B4C"
