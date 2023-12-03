@@ -1,5 +1,12 @@
-*{
-  margin:0;
+* {
+  margin: 0;
+
+
+}
+
+.ladyImage {
+  top: 0%;
+  right: 0%;
 }
 
 @font-face {

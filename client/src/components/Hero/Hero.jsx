@@ -63,6 +63,7 @@ const Hero = () => {
             />
           </Box>
 
+
           <Box sx={{ flex: "1.25" }}>
             <img
               src={ladyImg}
@@ -70,6 +71,7 @@ const Hero = () => {
               style={{ maxWidth: "100%", marginBottom: "2rem" }}
             />
           </Box>
+
         </CustomBox>
       </Container>
     </Box>
