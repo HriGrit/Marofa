@@ -8,6 +8,7 @@ const CustomButton = ({
     heroBtn,
     guideBtn,
     getStartedBtn,
+    sx,
 }) => {
     const CustomButton = styled(Button)(({ theme }) => ({
         backgroundColor: backgroundColor,
@@ -21,14 +22,15 @@ const CustomButton = ({
         display: "block",
         marginTop: "20px",
         border: "2px solid transparent",
+        minWidth: "100px",
         "&:hover": {
             backgroundColor: color,
             color: backgroundColor,
             borderColor: backgroundColor,
         },
         [theme.breakpoints.down("md")]: {
-            margin: (heroBtn || getStartedBtn) && theme.spacing(0, "auto", 3, "auto"),
-            width: (heroBtn || getStartedBtn) && "90%",
+            margin: (heroBtn || getStartedBtn) && theme.spacing(0, "auto", 5, "auto"),
+            width: (heroBtn || getStartedBtn) && "50%"
         },
         [theme.breakpoints.down("sm")]: {
             marginTop: guideBtn && theme.spacing(3),
@@ -36,7 +38,7 @@ const CustomButton = ({
         },
     }));
 
-    return <CustomButton>{buttonText}</CustomButton>;
+    return <CustomButton sx={{ ...sx }}>{buttonText}</CustomButton>;
 };
 
 export default CustomButton;
