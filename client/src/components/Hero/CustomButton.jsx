@@ -22,7 +22,8 @@ const CustomButton = ({
         display: "block",
         marginTop: "20px",
         border: "2px solid transparent",
-        minWidth: "100px",
+
+
         "&:hover": {
             backgroundColor: color,
             color: backgroundColor,

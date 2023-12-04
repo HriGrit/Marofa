@@ -72,13 +72,14 @@ const Hero = () => {
               }
             }}>
               <CustomButton
+                className="button"
                 backgroundColor="#0F1B4C"
                 color="#fff"
                 buttonText="For Employers"
                 heroBtn={true}
               />
               <CustomButton
-                className="right-button"
+                className="button"
                 backgroundColor="#0F1B4C"
                 color="#fff"
                 buttonText="For Helpers"
@@ -96,6 +97,7 @@ const Hero = () => {
             alignItems: 'center',
             width: 'auto',
             height: 'auto',
+
 
 
           }}>
