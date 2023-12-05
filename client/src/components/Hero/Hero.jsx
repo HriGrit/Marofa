@@ -8,6 +8,7 @@ import { left } from "@popperjs/core";
 
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
+    fontFamily: 'NeoSans',
     display: "flex",
     justifyContent: "center",
     gap: theme.spacing(5),
@@ -23,6 +24,7 @@ const Hero = () => {
   }));
 
   const Title = styled(Typography)(({ theme }) => ({
+    fontFamily: "Neosans",
     fontSize: "64px",
     color: "#000336",
     fontWeight: "bold",
@@ -39,8 +41,10 @@ const Hero = () => {
           <Box sx={{ flex: "1" }}
           >
             <Typography
+
               variant="body2"
               sx={{
+                fontFamily: "Neosans",
                 fontSize: "18px",
 
                 color: "#687690",
@@ -48,18 +52,19 @@ const Hero = () => {
                 mt: 10,
               }}
             >
-              Looking for helper work
+              Looking for a house help?
             </Typography>
             <Title sx={{
+              fontFamily: "Neosans",
               fontSize: { xs: "36px", lg: "48px", xl: "96px" },
-              color: "#129874",
+              color: "#0F1B4C",
               fontWeight: "500",
             }}>
-              Find available helpers and maid in Saudi Arabia
+              Find available helpers and maids in Saudi Arabia
             </Title>
             <Typography
               variant="body2"
-              sx={{ fontSize: { xs: "16px", lg: "18px" }, color: "#5A6473", my: "4" }}
+              sx={{ fontFamily: "Neosans", fontSize: { xs: "16px", lg: "18px" }, color: "#5A6473", my: "4" }}
             >
               Explore Profiles and contact helpers directly
             </Typography>

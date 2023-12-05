@@ -1,14 +1,15 @@
 * {
+  font-family: 'Neosans';
   margin: 0;
 
-  .svg_icons {
+  .lady {
     margin-top: 30px;
     margin-bottom: 30px;
     transform: scale(0.9);
     box-shadow: 10px 10px 8px 10px #888888;
   }
 
-  .button {
+  .custom-button {
     white-space: nowrap;
   }
 }
