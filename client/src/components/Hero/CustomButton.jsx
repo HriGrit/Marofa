@@ -12,6 +12,7 @@ const CustomButton = ({
 }) => {
     const CustomButton = styled(Button)(({ theme }) => ({
         backgroundColor: backgroundColor,
+        fontFamily: "NeoSans",
         color: color,
         fontWeight: "700",
         fontSize: "14px",
@@ -39,7 +40,7 @@ const CustomButton = ({
         },
     }));
 
-    return <CustomButton sx={{ ...sx }}>{buttonText}</CustomButton>;
+    return <CustomButton className="custom-button" sx={{ ...sx }}>{buttonText}</CustomButton>;
 };
 
 export default CustomButton;
