@@ -4,14 +4,14 @@ import "./Pricing.css";
 
 const Pricing = () => {
     return (
-        <div class="dimmed-bg h-[100vh] flex flex-col gap-4" >
+        <div class="dimmed-bg h-[110vh] p-8 md:flex flex-col gap-4" >
             <div className='text-center pt-20 space-y-3'>
                 <h2 className=' text-md'>Pricing</h2>
                 <h4 className=' text-4xl'>Our Plans</h4>
                 <hr className='w-[40px] mx-auto h-1 bg-[#123750]' />
                 <h2 className=' text-black text-opacity-60'>One time fee - No automatic renewal & No additional agency fee</h2>
             </div>
-            <div className='flex flex-row gap-24 justify-center'>
+            <div id='basicPlan' className='flex flex-row gap-24 justify-center'>
                 <div className='flex flex-col bg-grey-200 text-center p-4 space-y-6 border-2 border-black bg-white rounded-2xl'>
                     <div className='flex flex-col mt-2 text-[#666666] '>
                         <p className='text-xl font-medium'>Standard</p>
@@ -28,7 +28,7 @@ const Pricing = () => {
                         <p>Directly contact helper</p>
                     </div>
                     <div>
-                        <button className='p-3 px-6 bg-[#123750] text-white rounded-[24px] text-sm'>Get Started</button>
+                        <button className='p-3 px-6 bg-[#fffff] text-black rounded-[24px] text-sm border-solid border-2 border-[#123750]'>Get Started</button>
                     </div>
                 </div>
                 <div className='flex flex-col bg-grey-200 text-center space-y-6 border-2 border-black bg-white rounded-2xl'>
@@ -38,7 +38,7 @@ const Pricing = () => {
                     </div>
 
                     <div className='space-y-6 px-4'>
-                        <div className='flex flex-row bg-red-200'>
+                        <div className='flex flex-row'>
                             <p className='text-[#123750] text-lg line-through mt-auto'>SAR 195</p>
                             <p className='text-[#123750] text-2xl my-auto'>SAR</p>
                             <p className='text-5xl'>100</p>
