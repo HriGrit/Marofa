@@ -11,7 +11,7 @@ const Pricing = () => {
                 <hr className='w-[40px] mx-auto h-1 bg-[#123750]' />
                 <h2 className=' text-black text-opacity-60'>One time fee - No automatic renewal & No additional agency fee</h2>
             </div>
-            <div id='basicPlan' className='flex flex-col md:flex-row gap-4 justify-center'>
+            <div id='basicPlan' className='flex flex-col md:flex-row gap-24 justify-center'>
                 <div className='flex flex-col bg-grey-200 text-center p-4 space-y-6 border-2 border-black bg-white rounded-2xl'>
                     <div className='flex flex-col mt-2 text-[#666666] '>
                         <p className='text-xl font-medium'>Standard</p>
