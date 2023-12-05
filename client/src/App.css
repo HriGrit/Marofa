@@ -2,13 +2,24 @@
   font-family: 'Neosans';
   margin: 0;
 
-  .blue {
-    margin-top: 70px;
+  .lady {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    transform: scale(0.9);
+    box-shadow: 10px 10px 8px 10px #888888;
+
+  }
+
+  .custom-button {
+    white-space: nowrap;
   }
 
 
-
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 @font-face {
