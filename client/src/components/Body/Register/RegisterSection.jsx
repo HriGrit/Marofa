@@ -1,15 +1,14 @@
 // RegisterSection.jsx
 import React from 'react';
-import { Box, Typography, Button, Stack } from '@mui/material';
-import SvgIcon1 from '../../assets/svg1.svg'; // Update with the correct path
-import SvgIcon2 from '../../assets/svg2.svg'; // Update with the correct path
-import SvgIcon3 from '../../assets/svg3.svg'; // Update with the correct path
+import { Box, Typography, Stack } from '@mui/material';
+import SvgIcon1 from '../../../assets/svg1.svg'; // Update with the correct path
+import SvgIcon2 from '../../../assets/svg2.svg'; // Update with the correct path
+import SvgIcon3 from '../../../assets/svg3.svg'; // Update with the correct path
 
 const RegisterSection = () => {
     return (
         <>
             <Box sx={{ textAlign: 'center', py: 8, backgroundColor: "#F5F7FA" }}>
-
                 <Typography variant="h4" component="div" sx={{ mb: 4 }}>
                     3 simple & easy steps to find your helper
                 </Typography>
