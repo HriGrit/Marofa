@@ -1,12 +1,11 @@
-* {
-  font-family: 'Neosans';
-  margin: 0;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: 'Neosans';
+  margin: 0;
+}
 
 @font-face {
   font-family: 'NeoSans';
