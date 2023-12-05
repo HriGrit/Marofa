@@ -6,6 +6,9 @@ export default {
 			fontFamily: {
 				neosans: ["NeoSans", "sans-serif"],
 			},
+			screens: {
+				app: "900px",
+			},
 		},
 	},
 	plugins: [],

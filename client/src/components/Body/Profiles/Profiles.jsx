@@ -5,10 +5,8 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Item from '@mui/material/Grid'
-import Cards from './Cards'
+import Cards from '../Cards/Cards'
 import Button from '@mui/material/Button'
-import RegisterSection from '../Body/RegisterSection'
-import Pricing from '../Body/Pricing'
 
 const Profiles = () => {
     return (
@@ -69,8 +67,6 @@ const Profiles = () => {
                     </Button>
                 </Box>
             </Box >
-            <RegisterSection />
-            <Pricing />
         </>
     );
 }
