@@ -1,10 +1,10 @@
 import { Box, styled } from '@mui/material';
 
 const StyledLogo = styled('img')({});
-import logo from "../../assets/landingpagefemale.svg";
+import lady from "../../assets/landingpagefemale.svg";
 
 const Logo = (props) => {
-    return <StyledLogo className="lady" src={logo} alt="Logo" width={"100%"}{...props} sx={{ position: "relative", mr: { sm: "16px", md: "18px" } }} />;
+    return <StyledLogo className="lady" src={lady} alt="lady" />;
 };
 
 
