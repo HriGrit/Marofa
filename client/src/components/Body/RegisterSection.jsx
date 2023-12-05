@@ -8,13 +8,13 @@ import SvgIcon3 from '../../assets/svg3.svg'; // Update with the correct path
 const RegisterSection = () => {
     return (
         <>
-            <Box sx={{ textAlign: 'center', py: 4, backgroundColor: "#F5F7FA" }}>
+            <Box sx={{ textAlign: 'center', py: 8, backgroundColor: "#F5F7FA" }}>
 
                 <Typography variant="h4" component="div" sx={{ mb: 4 }}>
                     3 simple & easy steps to find your helper
                 </Typography>
 
-                <Stack direction={{ sm: 'column', md: 'row' }} spacing={4} justifyContent="center" sx={{ mx: { xs: 2, md: 4, lg: 8 } }}>
+                <Stack direction={{ sm: 'column', md: 'row' }} spacing={{ xs: 6, sm: 8, md: 8 }} justifyContent="center" sx={{ mx: { sm: 4, xs: 4, md: 4, lg: 8 } }}>
                     <Box sx={{ textAlign: 'center', textOverflow: "none" }}>
                         <img src={SvgIcon1} alt="Explore" className='mx-auto' />
                         <Typography variant="h6">1. Explore</Typography>
