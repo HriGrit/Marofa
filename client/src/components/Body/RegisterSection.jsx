@@ -16,7 +16,7 @@ const RegisterSection = () => {
 
                 <Stack direction={{ sm: 'column', md: 'row' }} spacing={4} justifyContent="center" sx={{ mx: { xs: 2, md: 4, lg: 8 } }}>
                     <Box sx={{ textAlign: 'center', textOverflow: "none" }}>
-                        <img src={SvgIcon1} alt="Explore" />
+                        <img src={SvgIcon1} alt="Explore" className='mx-auto' />
                         <Typography variant="h6">1. Explore</Typography>
                         <Typography>
                             Explore hundreds of profiles ready to start in Saudi Arabia
@@ -24,18 +24,18 @@ const RegisterSection = () => {
                     </Box>
 
                     <Box sx={{ textAlign: 'center' }}>
-                        <img src={SvgIcon2} alt="Subscribe" />
+                        <img src={SvgIcon2} alt="Subscribe" className='mx-auto' />
                         <Typography variant="h6">2. Subscribe</Typography>
                         <Typography>
                             Subscribe from 100 SAR per week and get access to helpers contact details
                         </Typography>
                     </Box>
 
-                    <Box sx={{ textAlign: 'center' }}>
-                        <img src={SvgIcon3} alt="Contact" />
+                    <Box sx={{ textAlign: 'center' }} className="">
+                        <img src={SvgIcon3} alt="Contact" className='mx-auto' />
                         <Typography variant="h6">3. Contact</Typography>
                         <Typography>
-                            Contact helpers directly – saving thousands on agency fees
+                            Contact helpers directly - saving thousands on agency fees
                         </Typography>
                     </Box>
                 </Stack>
