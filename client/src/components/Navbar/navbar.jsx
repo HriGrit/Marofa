@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import logo from '../../assets/marofa-logo-dark.svg';
 
 
 const pages = ['Home', 'Pricing', 'How it Works'];
@@ -20,6 +21,9 @@ const auth = ["Register", "Login"];
 import Logo from './Logo';
 
 function Navbar() {
+
+
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -39,133 +43,45 @@ function Navbar() {
     };
 
     return (
-        <AppBar sx={{ backgroundColor: "#14415a" }}>
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <Logo sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'NeoSans',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        MAROFA
-                    </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                    <Logo sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'NeoSans',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        MAROFA
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{
-                                    my: 2,
-                                    mx: 7,
-                                    color: 'white',
-                                    display: 'block',
-                                    fontFamily: 'NeoSans',
-                                    fontWeight: 400,
-                                }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                </Toolbar>
-            </Container>
-        </AppBar>
+
+        <nav class="border-gray-200 bg-[#14415a]">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-2xl">
+                <a /*href="*https://flowbite.com/"</div>*/ class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src={logo} class="h-20" alt="MAROFA Logo" />
+                    <span class="self-center text-4xl font-semibold text-white  whitespace-nowrap">MAROFA</span>
+                </a>
+                <div class="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
+                    <button type="button" class="text-white bg-[#14415a] hover:bg-[#2E72D9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-2xl px-4 py-2 text-center whitespace-nowrap">Get started</button>
+                    <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg mdnav:hidden hover:bg-[#2E72D9] focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full mdnav:flex mdnav:w-auto mdnav:order-1 pl-10 pr-10 " id="navbar-cta">
+                    <ul class="flex flex-col font-medium p-4 mdnav:p-0 mt-4 border border-gray-100 rounded-lg bg-[#14415a] mdnav:space-x-8 rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
+                        <li>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-[#2E72D9] " aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-[#14415a] md:hover:bg-transparent md:hover:text-[#2E72D9]">Profiles</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-[#14415a] md:hover:bg-transparent md:hover:text-[#2E72D9]">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-[#14415a] md:hover:bg-transparent md:hover:text-[#2E72D9]">FAQs</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-[#14415a] md:hover:bg-transparent md:hover:text-[#2E72D9]">How it works</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     );
 }
 export default Navbar;
