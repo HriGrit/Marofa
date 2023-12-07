@@ -1,21 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Item from '@mui/material/Grid'
-import Cards from '../Cards/Cards'
-import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Item from '@mui/material/Grid';
+import Cards from '../Cards/Cards';
+import Button from '@mui/material/Button';
 
 const Profiles = () => {
     return (
         <>
             <Box>
                 <Container>
-                    <Typography variant="h5" sx={{
+                    <Typography variant="h4" sx={{
                         fontFamily: "NeoSans",
                         fontWeight: "semibold",
+                        color: "#14415A",
                         textAlign: "center",
                         mt: 10
                     }}>
@@ -69,6 +70,6 @@ const Profiles = () => {
             </Box >
         </>
     );
-}
+};
 
-export default Profiles
+export default Profiles;
