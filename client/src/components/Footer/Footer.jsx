@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../../../assets/marofa-logo-footer.png';
-import stripe from '../../../assets/stripeimg.png';
+import logo from '../../assets/marofa-logo-footer.png';
+import stripe from '../../assets/stripeimg.png';
 const Footer = () => {
     return (
         <footer class="bg-[#F3F3F3] shadow-inner shadow-black shadow-4xl h-auto">
