@@ -1,6 +1,6 @@
-import React from 'react'
-import "./FAQ.css"
-import dropdown from "../../../assets/dropdown.svg"
+import React from 'react';
+import "./FAQ.css";
+import dropdown from "../../../assets/dropdown.svg";
 const FAQ = () => {
     return (
         <div>
@@ -15,8 +15,8 @@ const FAQ = () => {
                     </div>
                 </div>
             </div>
-            <div className='dimmed-bg space-y-12'>
-                <div className='text-center pt-20 space-y-3'>
+            <div className='dimmed-bg space-y-12 pb-20'>
+                <div className='text-center pt-20 space-y-3 '>
                     <h2 className=' text-md'>Need Help?</h2>
                     <h4 className=' text-4xl'>FAQs</h4>
                     <hr className='w-[40px] mx-auto h-1 bg-[#123750]' />
@@ -61,7 +61,7 @@ const FAQ = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FAQ
+export default FAQ;
