@@ -8,7 +8,7 @@ export default {
 			},
 			screens: {
 				app: "900px",
-				mdnav: "900px"
+				mdnav: "914px"
 			},
 		},
 	},
