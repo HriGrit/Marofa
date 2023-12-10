@@ -3,16 +3,18 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Home from './pages/Home/Home';
-import RegisterHelper from './pages/Register/Helper/RegisterHelper';
-import RegisterEmployer from './pages/Register/Employer/RegisterEmployer';
+
+import AllEmployers from './pages/Employer/All/AllEmployers';
+import SingleEmployer from './pages/Employer/Single/SingleEmployer';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path="/registerHelper" element={RegisterHelper} />
-        <Route path="/registerEmployer" element={RegisterEmployer} />
+        <Route path="/employers" element={AllEmployers} />
+        <Route path="/employers/:employerId" element={<SingleEmployer />} />
+
       </Routes>
     </BrowserRouter>
   )

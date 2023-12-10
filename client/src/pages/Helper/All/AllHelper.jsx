@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../../components/NavBar/NavBar'
+import Navbar from '../../../components/Navbar/navbar'
 
 const AllHelper = () => {
     return (

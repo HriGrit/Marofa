@@ -1,6 +1,6 @@
 import React from 'react'
 
-import NavBar from '../../../components/NavBar/NavBar'
+import Navbar from '../../../components/Navbar/navbar'
 
 const AllEmployers = () => {
     return (
