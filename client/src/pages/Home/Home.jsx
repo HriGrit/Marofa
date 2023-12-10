@@ -7,6 +7,7 @@ import Pricing from '../../components/Body/Pricing/Pricing';
 import FAQ from '../../components/Body/FAQ/FAQ';
 import Footer from '../../components/Footer/Footer';
 
+
 const Home = () => {
     return (
         <>
