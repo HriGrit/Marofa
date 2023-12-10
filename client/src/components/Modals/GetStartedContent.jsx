@@ -21,7 +21,6 @@ function GetStartedContent() {
                     {/* <!-- Employer Card --> */}
                     <div class="bg-white shadow-2xl border-gray border-[1px] rounded-lg max-w-sm p-6">
                         <div class="flex items-center justify-center h-20 w-20 bg-gray-200 rounded-full mx-auto">
-                            {/* <!-- Replace with your icon --> */}
                             <img src={emplogo} alt="Employer" class="h-12 w-12" />
                         </div>
                         <div class="mt-4 text-center">
@@ -33,7 +32,6 @@ function GetStartedContent() {
                     {/* <!-- Helper Card --> */}
                     <div class="border-gray border-[1px] bg-white shadow-2xl rounded-lg max-w-sm p-6">
                         <div class="flex items-center justify-center h-20 w-20 bg-gray-200 rounded-full mx-auto">
-                            {/* <!-- Replace with your icon --> */}
                             <img src={helperlogo} alt="Helper" class="h-12 w-10" />
                         </div>
                         <div class="mt-4 text-center">
