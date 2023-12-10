@@ -18,6 +18,7 @@ export default function Modal({ open, onClose, children }) {
         `}
                 style={{ zIndex: 10000 }} // This z-index is higher than the backdrop to ensure modal is above the backdrop
             >
+
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-2 p-1 rounded-lg text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-600"
