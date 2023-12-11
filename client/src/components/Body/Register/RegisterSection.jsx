@@ -39,7 +39,7 @@ const RegisterSection = () => {
                     </Box>
                 </Stack>
             </Box>
-            <Typography variant="h5" sx={{ my: 4, textAlign: "center" }}>
+            <Typography variant="h4" color="#14415A" sx={{ my: 4, textAlign: "center" }}>
                 "Discover Your Ideal Helper in Saudi Arabia with Ease and Speed"
             </Typography>
         </>

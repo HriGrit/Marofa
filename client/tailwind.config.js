@@ -8,7 +8,10 @@ export default {
 			},
 			screens: {
 				app: "900px",
-				mdnav: "1057px"
+				mdnav: "914px",
+			},
+			fontWeight: {
+				hero: "500",
 			},
 		},
 	},
