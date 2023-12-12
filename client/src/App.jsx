@@ -8,6 +8,14 @@ import AllEmployers from './pages/Employer/AllEmployers';
 import SingleEmployer from './pages/Employer/SingleEmployer';
 import AllHelpers from './pages/Helper/AllHelpers';
 import SingleHelper from './pages/Helper/SingleHelper';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestorev } from 'firebase/firestore';
+const firebaseConfig = {
+  //...
+};
+
+const app = initializeApp(firebaseConfig);
 
 function App() {
   return (
@@ -20,7 +28,7 @@ function App() {
         <Route path="/helpers/:helperId" element={<SingleHelper />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

@@ -22,8 +22,8 @@ function Navbar() {
     return (
 
 
-        <nav class="border-gray-200 bg-[#14415a] p-2">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
+        <nav class="position-sticky border-gray-200 bg-[#14415a] p-2">
+            <div class=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
                 <a /*href="*https://flowbite.com/"</div>*/ class="flex items-center space-x-0 rtl:space-x-reverse">
                     <img src={logo} class="h-[40px]" alt="MAROFA Logo" />
                     <span class="self-center font-semibold text-white">MAROFA</span>
