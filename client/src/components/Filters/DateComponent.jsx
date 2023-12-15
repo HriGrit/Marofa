@@ -1,13 +1,16 @@
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import DatePicker from 'react-datepicker'
 import { getMonth, getYear } from 'date-fns'
 
-import './DateComponent.css'
+import './css/DateComponent.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const DateComponent = ({ onChangeDate, date, isreset, placeholderText }) => {
+import useDateHook from '../Helper/All/Main/hooks/useDateHook'
+
+const DateComponent = ({ placeholderText }) => {
+    const { startDate, setStartDate, resetStartDate } = useDateHook();
+
     const getYearRange = (start, end) => {
         const years = [];
         for (let year = start; year <= end; year++) {
@@ -18,6 +21,7 @@ const DateComponent = ({ onChangeDate, date, isreset, placeholderText }) => {
 
     const currentYear = new Date().getFullYear();
     const years = getYearRange(2020, currentYear + 5);
+
     const months = [
         "January",
         "February",
@@ -34,14 +38,14 @@ const DateComponent = ({ onChangeDate, date, isreset, placeholderText }) => {
     ];
 
     useEffect(() => {
-        if (isreset) {
-            onChangeDate(null);
+        if (resetStartDate) {
+            setStartDate(null);
         }
-    }, [isreset, onChangeDate]);
+    }, [setStartDate, resetStartDate]);
 
     return (
         <div className="relative inline-block w-full text-gray-700">
-            <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+            <label className="block text-sm font-medium text-gray-700" htmlFor={placeholderText}>
                 {placeholderText}
             </label>
             <DatePicker
@@ -95,8 +99,8 @@ const DateComponent = ({ onChangeDate, date, isreset, placeholderText }) => {
                         </button>
                     </div>
                 )}
-                selected={date}
-                onChange={(date) => onChangeDate(date)}
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
             />
         </div>
     )

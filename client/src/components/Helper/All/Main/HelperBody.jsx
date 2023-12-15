@@ -3,6 +3,8 @@ import OrderHelpers from './OrderHelpers';
 import HelperFilter from './HelperFilter';
 import HelperList from './HelperList';
 
+import { FiltersProvider } from './Context/FiltersContext';
+
 const HelperBody = () => {
     // receive full helpers array
     const [helpers, sethelpers] = useState([]);
@@ -15,7 +17,9 @@ const HelperBody = () => {
                 <OrderHelpers onSortChange={setsortBy} />
             </div>
             <div className='flex flex-row'>
-                <HelperFilter onFilterChange={setfilters} />
+                <FiltersProvider>
+                    <HelperFilter onFilterChange={setfilters} />
+                </FiltersProvider>
                 <HelperList />
             </div>
         </div>

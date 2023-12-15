@@ -1,33 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+
+import DateComponent from '../../../Filters/DateComponent';
+import { FiltersContext } from './Context/FiltersContext';
+
 import reload from '../../../../assets/reload.svg';
-import DateComponent from './DateComponent';
-import HrLine from './HrLine';
-import MultiSelectComponent from './MultiSelectComponent';
+import WorkType from './Filters/HelperWorkTypeFilter';
+
+import HelperLocationFilter from './Filters/HelperLocationFilter';
+import HelperLanguageFilter from './Filters/HelperLanguageFilter';
+import HelperNationalityFilter from './Filters/HelperNationalityFilter';
+import HelperSkillsFilter from './Filters/HelperSkillsFilter';
+import HelperExperienceFilter from './Filters/HelperExperienceFilter';
 
 const HelperFilter = () => {
-    const [startDate, setStartDate] = useState(null);
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    const [reset, setReset] = useState(false);
+    const { resetFilters } = useContext(FiltersContext);
 
     const handleOnReset = () => {
-        setReset(!reset);
+        resetFilters();
     }
-
-    const LocationOptions = [
-        { value: "select-all", label: "Select All", color: "#14415A" },
-        { value: "Saudi Arabia", label: "Saudi Arabia", color: "#14415A" },
-        { value: "Indonesia", label: "Indonesia", color: "#14415A" },
-        { value: "Malaysia", label: "Malaysia", color: "#14415A" },
-        { value: "Hong Kong", label: "Hong Kong", color: "#14415A" },
-        { value: "India", label: "India", color: "#14415A" },
-        { value: "Kenya", label: "Kenya", color: "#14415A" },
-        { value: "South Africa", label: "South Africa", color: "#14415A" },
-        { value: "Sri Lanka", label: "Sri Lanka", color: "#14415A" },
-        { value: "Thailand", label: "Thailand", color: "#14415A" },
-        { value: "United Arab Emirates", label: "United Arab Emirates", color: "#14415A" },
-        { value: "Qatar", label: "Qatar", color: "#14415A" },
-        { value: "Jordan", label: "Jordan", color: "#14415A" }
-    ];
 
     return (
         <div className='bg-red-200 w-1/5 p-4'>
@@ -41,13 +31,25 @@ const HelperFilter = () => {
                     </button>
                 </div>
                 <div>
-                    <DateComponent onChangeDate={setStartDate} date={startDate} isreset={reset} placeholderText={"Start Date"} />
+                    <WorkType placeholderText={"Job Type"} />
                 </div>
                 <div>
-                    <MultiSelectComponent onChangeLocation={setSelectedOptions} location={selectedOptions} isreset={reset} placeholdertext={"Select Location"} options={LocationOptions} />
+                    <DateComponent placeholderText={"Start Date"} />
                 </div>
                 <div>
-                    <HrLine />
+                    <HelperLocationFilter />
+                </div>
+                <div>
+                    <HelperLanguageFilter />
+                </div>
+                <div>
+                    <HelperNationalityFilter />
+                </div>
+                <div>
+                    <HelperSkillsFilter />
+                </div>
+                <div>
+                    <HelperExperienceFilter />
                 </div>
             </div>
         </div>
