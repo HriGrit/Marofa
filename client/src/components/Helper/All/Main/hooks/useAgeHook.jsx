@@ -2,12 +2,12 @@ import { useContext } from 'react'
 
 import { FiltersContext } from '../Context/FiltersContext'
 
-const useGenderHooks = () => {
+const useAgeHook = () => {
     const { filters, setFilter } = useContext(FiltersContext);
     return {
-        gender: filters.gender,
-        setgender: (value) => setFilter('gender', value),
+        age: filters.age,
+        setAge: (event) => setFilter('age', event),
     }
 }
 
-export default useGenderHooks
+export default useAgeHook

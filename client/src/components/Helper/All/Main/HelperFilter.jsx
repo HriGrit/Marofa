@@ -11,6 +11,8 @@ import HelperLanguageFilter from './Filters/HelperLanguageFilter';
 import HelperNationalityFilter from './Filters/HelperNationalityFilter';
 import HelperSkillsFilter from './Filters/HelperSkillsFilter';
 import HelperExperienceFilter from './Filters/HelperExperienceFilter';
+import HelperAgeFilter from './Filters/HelperAgeFilter';
+import HelperGenderFilter from './Filters/HelperGenderFilter';
 
 const HelperFilter = () => {
     const { resetFilters } = useContext(FiltersContext);
@@ -20,36 +22,44 @@ const HelperFilter = () => {
     }
 
     return (
-        <div className='bg-red-200 w-1/5 p-4'>
+        <div className=' w-1/5 p-4 ml-16 border border-theme shadow-lg bg-[#f6f6f6]'>
             <div className='space-y-2'>
-                <p>I am looking for</p>
+                <p className='text-2xl my-4'>I'm looking for</p>
                 <div className='flex flex-row justify-between'>
-                    <p>Filter</p>
+                    <p className='text-xl'>Filter</p>
                     <button className='flex flex-row items-center' onClick={handleOnReset}>
-                        <img src={reload} alt='reload' className='w-4 h-4 mr-1' />
-                        <p className=''>Reset</p>
+                        <img src={reload} alt='reload' className='w-5 h-5 mr-1' />
+                        <p className='my-auto'>Reset</p>
                     </button>
                 </div>
-                <div>
-                    <WorkType placeholderText={"Job Type"} />
-                </div>
-                <div>
-                    <DateComponent placeholderText={"Start Date"} />
-                </div>
-                <div>
-                    <HelperLocationFilter />
-                </div>
-                <div>
-                    <HelperLanguageFilter />
-                </div>
-                <div>
-                    <HelperNationalityFilter />
-                </div>
-                <div>
-                    <HelperSkillsFilter />
-                </div>
-                <div>
-                    <HelperExperienceFilter />
+                <div className='space-y-4'>
+                    <div>
+                        <WorkType placeholderText={"Job Type"} />
+                    </div>
+                    <div>
+                        <DateComponent placeholderText={"Start Date"} />
+                    </div>
+                    <div>
+                        <HelperGenderFilter />
+                    </div>
+                    <div>
+                        <HelperLocationFilter />
+                    </div>
+                    <div>
+                        <HelperSkillsFilter />
+                    </div>
+                    <div>
+                        <HelperAgeFilter />
+                    </div>
+                    <div>
+                        <HelperLanguageFilter />
+                    </div>
+                    <div>
+                        <HelperNationalityFilter />
+                    </div>
+                    <div>
+                        <HelperExperienceFilter />
+                    </div>
                 </div>
             </div>
         </div>

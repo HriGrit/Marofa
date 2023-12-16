@@ -61,7 +61,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -94,7 +94,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -125,7 +125,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -155,7 +155,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select

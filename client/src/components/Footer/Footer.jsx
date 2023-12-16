@@ -8,7 +8,7 @@ const Footer = () => {
                 <div class="flex justify-center items-center text-center">
                     <a href="https://flowbite.com/" class="flex items-center">
                         <img src={logo} class="h-[80px] me-3 md:h-[100px]" alt="Footer logo" />
-                        <span class="text-2xl text-[#14415A] font-semibold whitespace-nowrap md:text-4xl pt-0">MAROFA</span>
+                        <span class="text-2xl text-theme font-semibold whitespace-nowrap md:text-4xl pt-0">MAROFA</span>
                     </a>
                 </div>
                 <div class="flex justify-center items-center text-center">
@@ -49,7 +49,7 @@ const Footer = () => {
 
                 <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div class="flex justify-center items-center text-center">
-                    <span class="text-lg text-[#14415A] sm:text-center">© 2023 <a href="https://flowbite.com/" class="hover:underline">MAROFA</a>. All Rights Reserved.
+                    <span class="text-lg text-theme sm:text-center">© 2023 <a href="https://flowbite.com/" class="hover:underline">MAROFA</a>. All Rights Reserved.
                     </span>
                 </div>
             </div>
