@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { auth } from '../../../firebase';
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ const LoginPage = () => {
     };
 
     return (
+
         <div className="flex flex-col items-center justify-center h-screen">
             <div className="bg-white p-6 rounded shadow-lg">
                 <button
@@ -58,6 +60,13 @@ const LoginPage = () => {
                     >
                         Sign in with Email
                     </button>
+                </div>
+                <div>
+                    <p className='text-center'>Not have an account
+                        <b> <Link to="/SignUp">Sign Up</Link>
+                        </b>
+                    </p>
+
                 </div>
             </div>
         </div>

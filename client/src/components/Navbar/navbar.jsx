@@ -41,7 +41,7 @@ function Navbar() {
                     <span class="self-center font-semibold text-white">MAROFA</span>
                 </a>
                 <div class="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
-                    <Link to="/login"
+                    <Link to="/signIn"
                         type="button"
                         class="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none">
                         Get started

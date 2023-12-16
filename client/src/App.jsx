@@ -2,11 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import React, { Suspense, lazy } from 'react';
 const Home = lazy(() => import('./pages/Home/Home'));
-const LoginPage = lazy(() => import('./components/Body/Register/LoginPage'));
+const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 import AllEmployers from './pages/Employer/AllEmployers';
 import SingleEmployer from './pages/Employer/SingleEmployer';
 import AllHelpers from './pages/Helper/AllHelpers';
 import SingleHelper from './pages/Helper/SingleHelper';
+import SignUp from './pages/SignUp/SignUp';
+
+
 
 function App() {
   return (
@@ -14,7 +17,8 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signIn' element={<SignIn />} />
+          <Route exact={true} path="/signUp" element={<SignUp />} />
           <Route path="/employers" element={<AllEmployers />} />
           <Route path="/employers/:employerId" element={<SingleEmployer />} />
           <Route path="/helpers" element={<AllHelpers />} />
@@ -22,8 +26,11 @@ function App() {
           <Route path='*' element={<div>Not Found</div>} />
         </Routes>
       </Suspense>
+
     </BrowserRouter>
+
   );
 }
 
 export default App;
+
