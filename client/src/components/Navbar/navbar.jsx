@@ -1,33 +1,20 @@
 import React from 'react';
 import logo from '../../assets/marofa-logo-dark.svg';
 import { Link } from 'react-router-dom';
-import { useState } from "react";
-// navvvv
-
 
 function Navbar() {
-    const [isNavOpen, setIsNavOpen] = useState(false);
-
-    const toggleNav = () => {
-        setIsNavOpen(!isNavOpen);
-    };
-
     return (
-
-
-        <nav className="position-sticky border-gray-200 bg-[#14415a] p-2">
-            <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
-                <a /*href="*https://flowbite.com/"</div>*/ className="flex items-center space-x-0 rtl:space-x-reverse">
-                    <img src={logo} className="h-[40px]" alt="MAROFA Logo" />
-                    <span className="self-center font-semibold text-white">MAROFA</span>
+        <nav class="position-sticky border-gray-200 bg-theme p-2">
+            <div class=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
+                <a /*href="*https://flowbite.com/"</div>*/ class="flex items-center space-x-0 rtl:space-x-reverse">
+                    <img src={logo} class="h-[40px]" alt="MAROFA Logo" />
+                    <span class="self-center font-semibold text-white">MAROFA</span>
                 </a>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
                     <Link
                         to="/signIn"
                         type="button"
-                        className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
-                    >
-
+                        class="text-white bg-theme font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none">
                         Get started
                     </Link>
                     <button
@@ -41,22 +28,24 @@ function Navbar() {
                         </svg>
                     </button>
                 </div>
-                <div className={`items-center justify-between w-full mdnav:flex mdnav:w-auto mdnav:order-1 pl-10 pr-10 ${isNavOpen ? 'block' : 'hidden'}`} id="navbar-cta">
-                    <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
+                <div class="items-center justify-between hidden w-full mdnav:flex mdnav:w-auto mdnav:order-1 pl-10 pr-10 " id="navbar-cta">
+                    <ul class="flex flex-col font-medium p-4 mdnav:p-0 mt-4 border border-gray-100 rounded-lg bg-theme mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-theme">
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white bg-blue-700 rounded mdnav:bg-transparent mdnav:text-[#2E72D9]" aria-current="page">Home</a>
+                            <Link to="/">
+                                <a href="#" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-[#2E72D9] " aria-current="page">Home</a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">Profiles</a>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white font-thin rounded hover:bg-theme md:hover:bg-transparent md:hover:text-[#2E72D9]">Profiles</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">Pricing</a>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white font-thin rounded hover:bg-theme md:hover:bg-transparent md:hover:text-[#2E72D9]">Pricing</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">FAQs</a>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white font-thin rounded hover:bg-theme md:hover:bg-transparent md:hover:text-[#2E72D9]">FAQs</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">How it works</a>
+                            <a href="#" class="block py-2 px-3 md:p-0 text-white font-thin rounded hover:bg-theme md:hover:bg-transparent md:hover:text-[#2E72D9]">How it works</a>
                         </li>
                     </ul>
                 </div>

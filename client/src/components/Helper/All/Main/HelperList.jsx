@@ -3,7 +3,7 @@ import HelperCard from './HelperCard'
 
 const HelperList = () => {
     return (
-        <div>
+        <div className='w-full'>
             <HelperCard />
         </div>
     )

@@ -15,16 +15,26 @@ import HelperAgeFilter from './Filters/HelperAgeFilter';
 import HelperGenderFilter from './Filters/HelperGenderFilter';
 import HelperNameFilter from './Filters/HelperNameFilter';
 
-const HelperFilter = () => {
+import cancel from '../../../../assets/cancel.svg';
+import "../../../../css/HelperFilterMobile.css"
+
+const HelperFilterMobile = ({ setisPopUpOpen }) => {
     const { resetFilters } = useContext(FiltersContext);
 
     const handleOnReset = () => {
         resetFilters();
     }
 
+    const handleOnBackgroundClick = () => {
+        setisPopUpOpen(false);
+    }
+
     return (
-        <div className='hidden app:block w-[30%] p-4 ml-16 border border-theme shadow-lg bg-[#f6f6f6] rounded-md'>
-            <div className='space-y-2'>
+        <div className='fixed p-4 border border-theme shadow-lg rounded-md inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6' onClick={handleOnBackgroundClick}>
+            <div className='relative space-y-2 bg-white p-6 rounded-2xl shadow-lg w-3/4 max-h-[90vh] overflow-y-auto overflow-x-hidden border-4 border-theme hide-scrollbar' onClick={(e) => e.stopPropagation()}>
+                <div>
+                    <img src={cancel} alt='cancel' className='absolute right-4 w-7 h-7 cursor-pointer' onClick={handleOnBackgroundClick} />
+                </div>
                 <p className='text-2xl my-4'>I'm looking for</p>
                 <div className='flex flex-row justify-between'>
                     <p className='text-xl'>Filter</p>
@@ -71,4 +81,4 @@ const HelperFilter = () => {
     );
 };
 
-export default HelperFilter;
+export default HelperFilterMobile;
