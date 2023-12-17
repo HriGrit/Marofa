@@ -8,6 +8,8 @@ import SingleEmployer from './pages/Employer/SingleEmployer';
 import AllHelpers from './pages/Helper/AllHelpers';
 import SingleHelper from './pages/Helper/SingleHelper';
 import SignUp from './pages/SignUp/SignUp';
+import RegisterHelper1 from './pages/Register/Helper/RegisterHelper1';
+import RegisterEmployer from './pages/Register/Employer/RegisterEmployer';
 
 
 
@@ -23,6 +25,8 @@ function App() {
           <Route path="/employers/:employerId" element={<SingleEmployer />} />
           <Route path="/helpers" element={<AllHelpers />} />
           <Route path="/helpers/:helperId" element={<SingleHelper />} />
+          <Route path="/register/helper" element={<RegisterHelper1 />} />
+          <Route path="/register/employer" element={<RegisterEmployer />} />
           <Route path='*' element={<div>Not Found</div>} />
         </Routes>
       </Suspense>

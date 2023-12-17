@@ -5,15 +5,11 @@ import HelperList from './HelperList';
 
 import { FiltersProvider } from '../../../../Context/FiltersContext';
 import FilterHelpers from './FilterHelpers';
-import HelperFilterMobile from './HelperFilterMobile';
+const HelperFilterMobile = React.lazy(() => import('./HelperFilterMobile'));
 
 const HelperBody = () => {
     const [sortBy, setsortBy] = useState([]);
     const [ispopUpOpen, setisPopUpOpen] = useState(false);
-
-    const handleOnBackgroundClick = () => {
-        setisPopUpOpen(false);
-    }
 
     return (
         <div className='mt-4'>
@@ -23,7 +19,6 @@ const HelperBody = () => {
                 </div>
                 <OrderHelpers onSortChange={setsortBy} />
             </div>
-            {/* {ispopUpOpen && <div>hey</div>} */}
             <div className='flex flex-row gap-6'>
                 <FiltersProvider>
                     <HelperFilter />
