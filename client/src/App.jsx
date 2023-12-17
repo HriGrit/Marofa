@@ -11,12 +11,13 @@ import SignUp from './pages/SignUp/SignUp';
 import RegisterHelper1 from './pages/Register/Helper/RegisterHelper1';
 import RegisterEmployer from './pages/Register/Employer/RegisterEmployer';
 
+import Loader from './pages/Loader';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signIn' element={<SignIn />} />
