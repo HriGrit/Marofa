@@ -3,25 +3,37 @@ import OrderHelpers from './OrderHelpers';
 import HelperFilter from './HelperFilter';
 import HelperList from './HelperList';
 
-import { FiltersProvider } from './Context/FiltersContext';
+import { FiltersProvider } from '../../../../Context/FiltersContext';
+import FilterHelpers from './FilterHelpers';
+import HelperFilterMobile from './HelperFilterMobile';
 
 const HelperBody = () => {
-    // receive full helpers array
-    const [helpers, sethelpers] = useState([]);
-    const [filters, setfilters] = useState([]);
     const [sortBy, setsortBy] = useState([]);
+    const [ispopUpOpen, setisPopUpOpen] = useState(false);
+
+    const handleOnBackgroundClick = () => {
+        setisPopUpOpen(false);
+    }
 
     return (
         <div className='mt-4'>
-            <div className='flex justify-end'>
+            <div className='flex justify-between app:justify-end space-x-4 app:space-x-0'>
+                <div className='block app:hidden'>
+                    <FilterHelpers setisPopUpOpen={setisPopUpOpen} ispopUpOpen={ispopUpOpen} />
+                </div>
                 <OrderHelpers onSortChange={setsortBy} />
             </div>
-            <div className='flex flex-row'>
+            {/* {ispopUpOpen && <div>hey</div>} */}
+            <div className='flex flex-row gap-6'>
                 <FiltersProvider>
-                    <HelperFilter onFilterChange={setfilters} />
+                    <HelperFilter />
                 </FiltersProvider>
                 <HelperList />
             </div>
+            {ispopUpOpen &&
+                <FiltersProvider>
+                    <HelperFilterMobile setisPopUpOpen={setisPopUpOpen} />
+                </FiltersProvider>}
         </div>
     )
 }

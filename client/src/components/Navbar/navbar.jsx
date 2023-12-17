@@ -3,31 +3,7 @@ import logo from '../../assets/marofa-logo-dark.svg';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    //     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    //     // Event handler for opening the modal
-    //     const openModal = () => {
-    //         setIsModalOpen(true);
-    //     };
-
-    //     // Event handler for closing the modal
-    //     const closeModal = () => {
-    //         setIsModalOpen(false);
-    //     };
-    //     <div>
-    //     <Modal open={isModalOpen} onClose={closeModal}>
-    //         <GetStartedContent />
-    //     </Modal>
-    // </div>
-    //  <button
-    //  onClick={openModal}
-    //  type="button"
-    //  class="text-white bg-theme font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none">
-    //  Get started
-    // </button>
     return (
-
-
         <nav class="position-sticky border-gray-200 bg-theme p-2">
             <div class=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
                 <a /*href="*https://flowbite.com/"</div>*/ class="flex items-center space-x-0 rtl:space-x-reverse">

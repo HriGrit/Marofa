@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactSlider from 'react-slider';
 
-import useExperienceHooks from '../Helper/All/Main/hooks/useExperienceHook'
-import useAgeHook from '../Helper/All/Main/hooks/useAgeHook';
+import useExperienceHooks from '../../hooks/useExperienceHook'
+import useAgeHook from '../../hooks/useAgeHook';
 
-import "./css/SliderComponent.css"
+import "../../css/SliderComponent.css"
+
 import HrLine from './HrLine';
 
 const SliderComponent = ({ placeholderText, toggle }) => {

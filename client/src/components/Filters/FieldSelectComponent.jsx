@@ -1,7 +1,7 @@
 import React from 'react'
 
-import useWorkTypeHook from '../Helper/All/Main/hooks/useWorkTypeHook';
-import useGenderHook from '../Helper/All/Main/hooks/useGenderHook';
+import useWorkTypeHook from '../../hooks/useWorkTypeHook';
+import useGenderHook from '../../hooks/useGenderHook';
 
 import HrLine from './HrLine';
 
@@ -36,10 +36,10 @@ const FieldSelectComponent = ({ placeholderText, toggle }) => {
             </>
         );
     } else {
-        const { age, setAge } = useGenderHook();
+        const { gender, setgender } = useGenderHook();
 
         const handleGenderChange = (event) => {
-            setAge(event.target.value);
+            setgender(event.target.value);
         };
         const GenderOptions = ["Male", "Female"];
         return (
@@ -54,7 +54,7 @@ const FieldSelectComponent = ({ placeholderText, toggle }) => {
                             <input
                                 type="radio"
                                 value={option}
-                                checked={age === option}
+                                checked={gender === option}
                                 onChange={handleGenderChange}
                                 className="form-radio"
                             />

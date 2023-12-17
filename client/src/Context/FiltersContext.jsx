@@ -29,7 +29,6 @@ export const FiltersProvider = ({ children }) => {
     // Function to reset all filters
     const resetFilters = () => {
         setFilters({
-            jobPosition: '',
             startDate: null,
             locationOptions: [],
             contractStatus: '',
