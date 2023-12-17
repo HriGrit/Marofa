@@ -1,10 +1,10 @@
 import React from 'react';
 import Select from "react-select";
 
-import useLocationHook from '../Helper/All/Main/hooks/useLocationHook';
-import useLanguageHooks from '../Helper/All/Main/hooks/useLanguageHooks';
-import useNationalityHook from '../Helper/All/Main/hooks/useNationalityHook';
-import useSkillsHooks from '../Helper/All/Main/hooks/useSkillsHooks';
+import useLocationHook from '../../hooks/useLocationHook';
+import useLanguageHooks from '../../hooks/useLanguageHooks';
+import useNationalityHook from '../../hooks/useNationalityHook';
+import useSkillsHooks from '../../hooks/useSkillsHooks';
 
 const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
     const colorStyles = {
@@ -15,7 +15,15 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
             padding: '6px',
             fontSize: '18px',
         }),
-        control: (styles) => ({ ...styles, backgroundColor: "white", borderRadius: "10px" }),
+        // control: (styles) => ({ ...styles, backgroundColor: "white", borderRadius: "10px" }),
+        control: (styles) => ({
+            ...styles,
+            backgroundColor: "white",
+            borderRadius: "10px",
+            borderColor: '#14415A',
+            outline: 'none',  // Remove outline
+            boxShadow: 'none',  // Optionally remove box-shadow if present
+        }),
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
             return { ...styles, color: data.color, borderRadius: "10px" };
         },
@@ -61,7 +69,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -94,7 +102,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -125,7 +133,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select
@@ -155,7 +163,7 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         return (
             <div className="relative inline-block w-full text-gray-700">
-                <label className="block text-sm font-medium text-gray-700" htmlFor="candidate-location">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
                     {placeholdertext}
                 </label>
                 <Select

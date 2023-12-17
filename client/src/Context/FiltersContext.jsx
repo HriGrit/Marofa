@@ -12,12 +12,12 @@ export const FiltersProvider = ({ children }) => {
         startDate: null,
         locationOptions: [],
         contractStatus: '',
-        experience: '',
+        experience: [0, 40],
         languageOptions: [],
         skillOptions: [],
         nationalityOptions: [],
         gender: '',
-        age: '',
+        age: [18, 60],
         name: '',
     });
 
@@ -29,16 +29,15 @@ export const FiltersProvider = ({ children }) => {
     // Function to reset all filters
     const resetFilters = () => {
         setFilters({
-            jobPosition: '',
             startDate: null,
             locationOptions: [],
             contractStatus: '',
-            experience: '',
+            experience: [0, 40],
             languageOptions: [],
             skillOptions: [],
             nationalityOptions: [],
             gender: '',
-            age: '',
+            age: [18, 60],
             name: '',
             // reset other filters...
         });

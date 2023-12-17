@@ -13,6 +13,9 @@ export default {
 			fontWeight: {
 				hero: "500",
 			},
+			colors: {
+				theme: "#14415A",
+			},
 		},
 	},
 	plugins: [],

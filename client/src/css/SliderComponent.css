@@ -1,0 +1,50 @@
+.horizontal-slider{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    position: relative;
+}
+
+.example-thumb{
+    background-color: #fff;
+    border: 2px solid #14415A;
+    background: #14415A;
+    color: white;
+    padding: 4px;
+    border-radius: 55%;
+    cursor: pointer;
+    width: 38px;
+    text-align: center;
+}
+
+.example-track{
+    height: 5px;
+    background-color: #14415A;
+    cursor: pointer;
+}
+.example-thumb-label {
+    /* Style for the label on the thumb */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff; /* Background of the label */
+    position: absolute;
+    top: -30px; /* Adjust this value to position the label above the thumb */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #000;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  .bg-custom-blue {
+    background-color: #14415A; /* Your custom blue color */
+  }
+  
+  .bg-gray-300 {
+    background-color: #D1D5DB; /* Tailwind gray-300 */
+  }

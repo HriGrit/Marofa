@@ -3,10 +3,10 @@ import React, { useEffect } from 'react'
 import DatePicker from 'react-datepicker'
 import { getMonth, getYear } from 'date-fns'
 
-import './css/DateComponent.css'
+import '../../css/DateComponent.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import useDateHook from '../Helper/All/Main/hooks/useDateHook'
+import useDateHook from '../../hooks/useDateHook'
 
 const DateComponent = ({ placeholderText }) => {
     const { startDate, setStartDate, resetStartDate } = useDateHook();
