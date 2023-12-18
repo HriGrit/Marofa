@@ -35,7 +35,7 @@ const RegisterHelper1 = () => {
             firebaseFileUpload(uploadedImage, setImagelink);
         }
     };
-    console.log(imagelink);
+
     const renderStepsIndicator = (currentStep) => {
         return [...Array(9).keys()].map(step => (
             <div key={step} className={`h-2 w-2 rounded-full ${currentStep === step + 1 ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
@@ -44,6 +44,11 @@ const RegisterHelper1 = () => {
 
     const handleUploadClick = () => {
         document.getElementById('file-upload').click();
+    }
+
+    const handleCancel = () => {
+        setImageURL(null);
+        setUploadedImage(null);
     }
 
     return (
@@ -69,6 +74,11 @@ const RegisterHelper1 = () => {
                             <button onClick={handleSubmit}>Upload Photo</button>
                             <input id='file-upload' type='file' onChange={handleFileChange} className='hidden' />
                         </label>
+                        {imageURL && (
+                            <button onClick={handleCancel} className='ml-4 bg-theme text-white rounded-lg px-4 py-2'>
+                                Cancel
+                            </button>
+                        )}
                     </div>
                     <div className='flex flex-row justify-between'>
                         <button className='bg-theme text-white rounded-lg px-4 py-2'>Prev</button>

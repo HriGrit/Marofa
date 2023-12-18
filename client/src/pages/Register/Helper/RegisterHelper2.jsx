@@ -1,34 +1,30 @@
-import React from 'react'
+import React from 'react';
 
 const RegisterHelper2 = () => {
-    <div className='h-screen flex flex-col justify-center'>
-        <div className='mx-auto border-2 border-theme shadow-xl rounded-xl p-4 w-1/2 space-y-4'>
-            <div className='flex text-2xl items-center justify-center'>
-                <img src={logo} alt="logo" className='w-20' />
-                <p className=''>MAROFA</p>
-            </div>
-            <hr className='h-1 bg-theme' />
-            <div>
-                <img src={uploadpic} alt="uploadpic" className='mx-auto' />
-            </div>
-            <div className='flex justify-center'>
-                <button className='bg-theme text-white rounded-lg px-4 py-2 w-1/3'>Upload Photo</button>
-            </div>
-            <div className='flex flex-row justify-between'>
-                <div className='flex justify-center'>
-                    <button className='bg-theme text-white rounded-lg px-4 py-2'>Prev</button>
+    // Include state and handlers as necessary for form inputs
+
+    return (
+        <div className='h-screen flex flex-col justify-center items-center'>
+            <div className='border-2 border-gray-300 shadow-xl rounded-xl p-4 w-1/2 space-y-4'>
+                <h2 className="text-lg font-semibold text-theme mb-4">Personal Information</h2>
+                <p className="text-gray-600 mb-8">Please fill your information so the employers get in touch with you.</p>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <input type="text" placeholder="Your First Name" className="border rounded px-4 py-2" />
+                    <input type="text" placeholder="Your Last Name" className="border rounded px-4 py-2" />
+
+                    <input type="text" placeholder="Gender" className="border rounded px-4 py-2" />
+                    <input type="text" placeholder="Religion" className="border rounded px-4 py-2" />
+
+                    <input type="text" placeholder="Nationality" className="border rounded px-4 py-2" />
+                    <input type="text" placeholder="Ethnicity" className="border rounded px-4 py-2" />
+
+                    <input type="text" placeholder="dd - mm - yyyy" className="border rounded px-4 py-2" />
+                    <input type="text" placeholder="Your Education Level" className="border rounded px-4 py-2" />
                 </div>
-                <div className='flex justify-center'>
-                    <button className='bg-theme text-white rounded-lg px-4 py-2 '>Next</button>
-                </div>
-            </div>
-            <div className="flex justify-center space-x-2">
-                {[...Array(9).keys()].map(step => (
-                    <div key={step} className={`h-2 w-2 rounded-full ${currentStep === step + 1 ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
-                ))}
             </div>
         </div>
-    </div>
+    );
 }
 
-export default RegisterHelper2
+export default RegisterHelper2;

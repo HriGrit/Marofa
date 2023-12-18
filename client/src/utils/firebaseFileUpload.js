@@ -1,7 +1,7 @@
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "./firebase";
-import { v4 as uuidv4 } from "uuid";
-import toast from "react-hot-toast"; // Import toast here
+import { doc, setDoc } from "firebase/firestore";
+import { storage, firestore } from "./firebase";
+import toast from "react-hot-toast";
 
 const firebaseFileUpload = async (file, setImagelink) => {
 	if (!localStorage.getItem("uid")) {
@@ -12,20 +12,31 @@ const firebaseFileUpload = async (file, setImagelink) => {
 		toast.error("No file selected");
 		return null;
 	}
-	const storageRef = ref(
-		storage,
-		`Helper/${localStorage.getItem("uid")}/${uuidv4()}`
-	);
+
+	const uid = localStorage.getItem("uid");
+
+	const storageRef = ref(storage, `Helper/${uid}/profilePic`);
+
 	uploadBytes(storageRef, file)
 		.then((snapshot) => {
-			toast.success("Image uploaded successfully");
-			getDownloadURL(snapshot.ref).then((url) => {
-				setImagelink(url);
-			});
+			toast.success("Image Cashed");
+			return getDownloadURL(snapshot.ref);
+		})
+		.then((url) => {
+			setImagelink(url);
+			const userDocRef = doc(firestore, "users", uid);
+			return setDoc(
+				userDocRef,
+				{ profileImageUrl: url },
+				{ merge: true }
+			);
+		})
+		.then(() => {
+			toast.success("Image Uploaded to Database");
 		})
 		.catch((error) => {
 			console.log(error);
-			toast.error("Error uploading image"); // Use toast here
+			toast.error("Error uploading image or saving URL");
 		});
 };
 
