@@ -1,47 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
+
 import TextField from '@mui/material/TextField';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { Button } from '@mui/material';
-import { useState } from 'react';
-import GoogleImg from '../../assets/google.png';
-// import { initializeApp } from "firebase/app";
+
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from '../../firebase';
+import { app } from '../../utils/firebase';
 
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-
-
+import GoogleImg from '../../assets/google.png';
 import logo from "../../assets/marofa-whitebg.png";
-
-import { useNavigate } from 'react-router-dom';
-
-// import { useContext } from 'react';
-
-// import { MyContext } from '../../App';
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const SignIn = () => {
-
     const [showPassword, setShowPassword] = useState(false);
-
     const [showLoader, setShowLoader] = useState(false);
-
 
     const [formFields, setFormFields] = useState({
         email: '',
         password: '',
     });
-
-    // const context = useContext(MyContext);
-
 
     const history = useNavigate();
 
@@ -56,7 +40,6 @@ const SignIn = () => {
 
     };
 
-
     const signIn = () => {
         setShowLoader(true);
         signInWithEmailAndPassword(auth, formFields.email, formFields.password)
@@ -68,14 +51,8 @@ const SignIn = () => {
                     email: '',
                     password: '',
                 });
-
                 localStorage.setItem('isLogin', true);
-                // context.signIn();
-
                 history('/');
-
-
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -84,43 +61,30 @@ const SignIn = () => {
 
     };
 
-
-
     const signInWithGoogle = () => {
         setShowLoader(true);
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-
                 setShowLoader(false);
-
-
-                localStorage.setItem('isLogin', true);
+                localStorage.setItem('uid', user.uid);
                 // context.signIn();
-
                 history('/');
 
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // The email of the user's account used.
                 const email = error.customData.email;
-                // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
             });
     };
-
 
     return (
         <div class="bg-red">
             <section>
-
                 <div class="mt-[60px] mb-[60px] border-4 pb-6 max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                     <div class="flex items-center justify-center space-x-2 pb-0">
                         <img src={logo} class="h-10 sm:h-16" alt="MAROFA Logo" />
@@ -143,9 +107,6 @@ const SignIn = () => {
                         <div className='flex flex-col items-center mt-2 mb-4'>
                             <TextField id="email" type="email" name='email' label="Email" className='w-[300px] sm:w-[360px]'
                                 onChange={onChangeField} value={formFields.email}
-
-
-
                             />
                         </div>
                         <div className='flex flex-col items-center mt-2 mb-4'>
@@ -173,15 +134,11 @@ const SignIn = () => {
                             />
                         </div>
                         <div className='flex flex-col mt-5 mb-4 w-full items-center'>
-                            <Button class="relative inline-flex items-center justify-center bg-white border-2 border-[#14415A] p-2 px-[130px] mb-2 me-2 overflow-hidden text-l font-medium text-[#14415A] rounded-lg group bg-[#14415A] focus:ring-4 focus:outline-none focus:ring-bg-[#14415A] hover:bg-[#14415A] hover:text-white"
+                            <Button class="relative inline-flex items-center justify-center border-2 border-[#14415A] p-2 px-[130px] mb-2 me-2 overflow-hidden text-l font-medium text-[#14415A] rounded-lg group bg-[#14415A] focus:ring-4 focus:outline-none focus:ring-bg-[#14415A] hover:bg-[#14415A] hover:text-white"
                                 onClick={signIn}>
                                 Sign In
                             </Button>
                         </div>
-
-
-
-
 
                         <p className='text-center text-[#14415A] text-thin'>Don't have an account?
                             <b> <Link to="/signUp" class="no-underline hover:underline">Sign Up</Link>

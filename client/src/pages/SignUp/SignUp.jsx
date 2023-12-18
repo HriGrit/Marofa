@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 // import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from '../../firebase';
+import { app } from '../../utils/firebase';
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
