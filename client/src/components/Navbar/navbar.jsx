@@ -4,31 +4,43 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/marofa-logo-dark.svg';
 
 import { useAuth } from '../../Context/AuthContext';
+import GetStartedContent from '../Modals/GetStartedContent';
 
 function Navbar() {
     const { currentUser } = useAuth();
 
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
+    console.log(open);
+    const handlePopUp = () => {
+        setOpen(!open);
+    };
 
     return (
         <nav className="position-sticky border-gray-200 bg-[#14415a] p-2">
-            <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
+            <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
                 <a className="flex items-center space-x-0 rtl:space-x-reverse">
                     <img src={logo} className="h-[40px]" alt="MAROFA Logo" />
                     <span className="self-center font-semibold text-white">MAROFA</span>
                 </a>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
-                    {currentUser ? (<AuthenticatedUserView user={currentUser} />) : <div>
+                    {currentUser ? (
+                        <div onClick={handlePopUp} className=' cursor-pointer outline-none flex flex-row gap-4'><AuthenticatedUserView user={currentUser} /><div
+                            className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
+                            onClick={handlePopUp}
+                        >
+                            Get started
+                        </div></div>) : <div>
                         <Link
                             to="/signIn"
                             type="button"
                             className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
                         >
-                            Get started
+                            Sign In
                         </Link>
                     </div>}
 
@@ -65,6 +77,7 @@ function Navbar() {
                     </ul>
                 </div>
             </div>
+            {open && <GetStartedContent setOpen={setOpen} />}
         </nav >
 
 

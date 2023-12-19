@@ -2,12 +2,19 @@ import React from "react";
 import logo from "../../assets/marofa-whitebg.png";
 import emplogo from "../../assets/employerlogo.png";
 import helperlogo from "../../assets/helperlogo.png";
+import cancel from "../../assets/cancel.svg";
 
+function GetStartedContent({ setOpen }) {
+    const handleBackgroundClick = () => {
+        setOpen(false);
+    }
 
-function GetStartedContent() {
     return (
-        <>
-            <div class="max-w-2xl mx-auto">
+        <div className="fixed p-4 border border-theme shadow-lg rounded-md inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6 z-10000" onClick={handleBackgroundClick}>
+            <div>
+                <img src={cancel} alt="cancel" className="fixed right-4 w-7 h-7 cursor-pointer" onClick={handleBackgroundClick} />
+            </div>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl" onClick={(e) => e.stopPropagation()}>
                 <div class="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} class="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span class="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
@@ -42,7 +49,7 @@ function GetStartedContent() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
 
     );
 }
