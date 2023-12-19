@@ -4,20 +4,22 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/marofa-logo-dark.svg';
 
 import { useAuth } from '../../Context/AuthContext';
-import GetStartedContent from '../Modals/GetStartedContent';
+import GetStartedContent from '../Register/GetStartedContent';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+    const navigate = useNavigate();
     const { currentUser } = useAuth();
-
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [open, setOpen] = useState(false);
+    const [hasCompletedForm, setHasCompletedForm] = useState(false);
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
     console.log(open);
-    const handlePopUp = () => {
-        setOpen(!open);
+    const goToRegister = () => {
+        navigate('/register');
     };
 
     return (
@@ -29,9 +31,9 @@ function Navbar() {
                 </a>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
                     {currentUser ? (
-                        <div onClick={handlePopUp} className=' cursor-pointer outline-none flex flex-row gap-4'><AuthenticatedUserView user={currentUser} /><div
+                        <div onClick={goToRegister} className=' cursor-pointer outline-none flex flex-row gap-4'><AuthenticatedUserView user={currentUser} /><div
                             className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
-                            onClick={handlePopUp}
+                            onClick={goToRegister}
                         >
                             Get started
                         </div></div>) : <div>
