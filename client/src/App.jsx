@@ -9,6 +9,7 @@ import AllHelpers from './pages/Helper/AllHelpers';
 import SingleHelper from './pages/Helper/SingleHelper';
 import SignUp from './pages/SignUp/SignUp';
 import RegisterEmployer from './pages/Register/Employer/RegisterEmployer';
+import MultiStepForm from './pages/MultiForms/Helper/MultiStepForm.JSX';
 
 import Loader from './pages/Loader';
 
