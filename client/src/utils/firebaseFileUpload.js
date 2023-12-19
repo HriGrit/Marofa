@@ -19,7 +19,6 @@ const firebaseFileUpload = async (file, setImagelink) => {
 
 	uploadBytes(storageRef, file)
 		.then((snapshot) => {
-			toast.success("Image Cashed");
 			return getDownloadURL(snapshot.ref);
 		})
 		.then((url) => {
@@ -32,7 +31,7 @@ const firebaseFileUpload = async (file, setImagelink) => {
 			);
 		})
 		.then(() => {
-			toast.success("Image Uploaded to Database");
+			toast.success("Image Uploaded Successfully");
 		})
 		.catch((error) => {
 			console.log(error);

@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../assets/marofa-logo-dark.svg';
 
+import { useAuth } from '../../Context/AuthContext';
+
 function Navbar() {
+    const { currentUser } = useAuth();
+
     const [isNavOpen, setIsNavOpen] = useState(false);
 
     const toggleNav = () => {
@@ -18,13 +22,16 @@ function Navbar() {
                     <span className="self-center font-semibold text-white">MAROFA</span>
                 </a>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
-                    <Link
-                        to="/signIn"
-                        type="button"
-                        className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
-                    >
-                        Get started
-                    </Link>
+                    {currentUser ? (<AuthenticatedUserView user={currentUser} />) : <div>
+                        <Link
+                            to="/signIn"
+                            type="button"
+                            className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
+                        >
+                            Get started
+                        </Link>
+                    </div>}
+
                     <button
                         onClick={toggleNav}
                         type="button"
@@ -58,9 +65,21 @@ function Navbar() {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav >
 
 
     );
 }
+
+const AuthenticatedUserView = ({ user }) => {
+    // You might want to check if user has a photoURL
+    const userProfileImage = user.photoURL || "../../assets/uploadpic.svg";
+
+    return (
+        <div className="w-12 rounded-[50%]">
+            <img src={userProfileImage} alt="Profile" className='rounded-[50%]' />
+        </div>
+    );
+};
+
 export default Navbar;
