@@ -191,7 +191,7 @@ const SignUp = () => {
                     </div>
 
                     <p className='text-center text-[#14415A] text-thin'>Already have an account?
-                        <b> <Link to="/signIp" class="no-underline hover:underline">Sign In</Link>
+                        <b> <Link to="/signIn" class="no-underline hover:underline">Sign In</Link>
                         </b>
                     </p>
                 </form>
