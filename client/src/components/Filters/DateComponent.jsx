@@ -44,7 +44,7 @@ const DateComponent = ({ placeholderText }) => {
     }, [setStartDate, resetStartDate]);
 
     return (
-        <div className="relative inline-block w-full text-gray-700">
+        <div className="relative inline-block w-full text-gray-700 z-60">
             <label className="block text-sm font-medium text-gray-700" htmlFor={placeholderText}>
                 {placeholderText}
             </label>

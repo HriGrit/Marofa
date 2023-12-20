@@ -10,11 +10,11 @@ function GetStartedContent({ setOpen }) {
     }
 
     return (
-        <div className="fixed p-4 border border-theme shadow-lg rounded-md inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6 z-10000" onClick={handleBackgroundClick}>
-            <div>
-                <img src={cancel} alt="cancel" className="fixed right-4 w-7 h-7 cursor-pointer" onClick={handleBackgroundClick} />
-            </div>
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6 z-50" onClick={handleBackgroundClick}>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl relative" onClick={(e) => e.stopPropagation()}>
+                <div className="bg-red-200 w-fit">
+                    <img src={cancel} alt="cancel" className="absolute w-fit h-7 cursor-pointer right-6" onClick={handleBackgroundClick} />
+                </div>
                 <div class="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} class="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span class="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
