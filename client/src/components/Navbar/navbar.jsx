@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/marofa-logo-dark.svg';
 
 import { useAuth } from '../../Context/AuthContext';
 import GetStartedContent from '../Register/GetStartedContent';
-import { useNavigate } from 'react-router-dom';
+
+import { signOut as firebaseSignOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -13,13 +15,24 @@ function Navbar() {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [hasCompletedForm, setHasCompletedForm] = useState(false);
+    const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
-    console.log(open);
+
     const goToRegister = () => {
         navigate('/register');
+    };
+
+    const signOut = async () => {
+        try {
+            await firebaseSignOut(auth);
+            console.log('User signed out successfully');
+            navigate('/'); // Redirect to sign-in page after sign out
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
     };
 
     return (
@@ -31,12 +44,20 @@ function Navbar() {
                 </a>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
                     {currentUser ? (
-                        <div onClick={goToRegister} className=' cursor-pointer outline-none flex flex-row gap-4'><AuthenticatedUserView user={currentUser} /><div
-                            className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
-                            onClick={goToRegister}
-                        >
-                            Get started
-                        </div></div>) : <div>
+                        <div className=' cursor-pointer outline-none flex flex-row gap-4'>
+                            <div
+                                className="text-white bg-[#14415a] font-thin animate-pulse tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
+                                onClick={goToRegister}
+                            >
+                                Get started
+                            </div>
+                            <AuthenticatedUserView
+                                user={currentUser}
+                                profileDropdownOpen={profileDropdownOpen}
+                                setProfileDropdownOpen={setProfileDropdownOpen}
+                                signOut={signOut}
+                            />
+                        </div>) : <div>
                         <Link
                             to="/signIn"
                             type="button"
@@ -86,13 +107,38 @@ function Navbar() {
     );
 }
 
-const AuthenticatedUserView = ({ user }) => {
-    // You might want to check if user has a photoURL
+const AuthenticatedUserView = ({ user, profileDropdownOpen, setProfileDropdownOpen, signOut }) => {
     const userProfileImage = user.photoURL || "../../assets/uploadpic.svg";
 
     return (
-        <div className="w-12 rounded-[50%]">
-            <img src={userProfileImage} alt="Profile" className='rounded-[50%]' />
+        <div className="relative">
+            <div onClick={() => setProfileDropdownOpen(!profileDropdownOpen)} className="cursor-pointer w-12 h-12 rounded-full overflow-hidden">
+                <img src={userProfileImage} alt="Profile" />
+            </div>
+            {profileDropdownOpen && (
+                <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20  border-4 border-black">
+                    <a
+                        href="#"
+                        className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-t-2xl"
+                        onClick={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
+                        See profile
+                    </a>
+                    <a
+                        href="#"
+                        className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-b-2xl"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            signOut();
+                        }}
+                    >
+                        Sign out
+                    </a>
+
+                </div>
+            )}
         </div>
     );
 };
