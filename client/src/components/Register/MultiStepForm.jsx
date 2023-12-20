@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { firestore, auth } from '../../../utils/firebase';
+import { firestore, auth } from '../../utils/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import GetStartedContent from './GetStartedContent';
+import UploadImage from './UploadImage.jsx';
+
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
     const [currentUser, setCurrentUser] = useState(null);
     const [formData, setFormData] = useState({
+        role: '',
+        image: null,
         personalInfo: {
             name: '',
             email: '',
@@ -31,6 +36,21 @@ const MultiStepForm = () => {
 
         return () => unsubscribe();
     }, []);
+
+    const handleSetRole = (role) => {
+        setFormData({ ...formData, role });
+        nextStep();
+    };
+    const handleNextStep = async () => {
+        if (formData.image) {
+            // Implement Firebase Storage logic here to upload the image and update the formData
+            // For now, let's assume you have uploaded the image and updated the formData
+            // using setFormData({...formData, image: imageUrl});
+            nextStep();
+        } else {
+            console.error('Please upload an image');
+        }
+    };
 
     const handleChange = (section, field) => (e) => {
         const updatedSection = { ...formData[section], [field]: e.target.value };
@@ -59,13 +79,20 @@ const MultiStepForm = () => {
     switch (step) {
         case 1:
             return (
-                <PersonalInfo
-                    values={formData.personalInfo}
-                    handleChange={handleChange}
-                    nextStep={nextStep}
+                <GetStartedContent
+                    setRole={handleSetRole}
                 />
             );
         case 2:
+            return (
+                <UploadImage
+                    setFormData={setFormData}
+                    formData={formData}
+                    nextStep={handleNextStep} // Pass the handleNextStep function
+                    prevStep={prevStep}
+                />
+            );
+        case 3:
             return (
                 <Education
                     values={formData.education}
@@ -74,7 +101,7 @@ const MultiStepForm = () => {
                     prevStep={prevStep}
                 />
             );
-        case 3:
+        case 4:
             return (
                 <Review
                     formData={formData}
