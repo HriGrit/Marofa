@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { firestore, auth } from '../../utils/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+
+//components for user input
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
+import ContactDetailsH from './ContactDetailsH.jsx';
 
 
 const MultiStepForm = () => {
@@ -12,10 +15,11 @@ const MultiStepForm = () => {
     const [formData, setFormData] = useState({
         role: '',
         image: null,
-        personalInfo: {
-            name: '',
+        contactDetailsHelper: {
+            mobileNo: '',
             email: '',
-            // Add other personal fields
+            altMobileNo: '',
+            waMobileNo: '',
         },
         education: {
             school: '',
@@ -94,6 +98,15 @@ const MultiStepForm = () => {
             );
         case 3:
             return (
+                <ContactDetailsH
+                    values={formData.contactDetailsHelper}
+                    handleChange={handleChange}
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                />
+            );
+        case 4:
+            return (
                 <Education
                     values={formData.education}
                     handleChange={handleChange}
@@ -101,7 +114,7 @@ const MultiStepForm = () => {
                     prevStep={prevStep}
                 />
             );
-        case 4:
+        case 5:
             return (
                 <Review
                     formData={formData}

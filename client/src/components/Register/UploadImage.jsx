@@ -38,7 +38,7 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
 
     const handleNext = async () => {
         if (imageFile) {
-            const storageRef = ref(storage, `images/${formData.role}/${formData.personalInfo.name}`);
+            const storageRef = ref(storage, `images/${formData.role}`);
             try {
                 // Upload the image to Firebase Storage
                 await uploadBytes(storageRef, imageFile);

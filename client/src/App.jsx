@@ -11,7 +11,6 @@ import SignUp from './pages/SignUp/SignUp';
 import RegisterEmployer from './pages/Register/Employer/RegisterEmployer';
 import MultiStepForm from './components/Register/MultiStepForm.jsx';
 import Loader from './pages/Loader';
-import RegisterHelper2 from './pages/Register/Helper/RegisterHelper2';
 
 import { AuthProvider } from './Context/AuthContext';
 
@@ -28,7 +27,6 @@ function App() {
             <Route path="/employers/:employerId" element={<SingleEmployer />} />
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path="/helpers/:helperId" element={<SingleHelper />} />
-            <Route path="/register/helper/2" element={<RegisterHelper2 />} />
             <Route path="/register/employer" element={<RegisterEmployer />} />
             <Route path='/register' element={<MultiStepForm />} />
             <Route path='*' element={<div>Not Found</div>} />

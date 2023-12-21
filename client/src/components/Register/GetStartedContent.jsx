@@ -24,7 +24,7 @@ function GetStartedContent({ setRole }) {
                     <hr className="my-2 mx-auto w-[100px] border-theme border-[1px] rounded sm:w-[150px] lg:my-2" />
                 </div>
 
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 ">
                     {/* <!-- Employer Card --> */}
                     <div className="cursor-pointer bg-white shadow-2xl border-gray border-[1px] rounded-lg max-w-sm p-6
                     transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
@@ -57,4 +57,4 @@ function GetStartedContent({ setRole }) {
     );
 }
 
-export default GetStartedContent;;
+export default GetStartedContent;
