@@ -36,27 +36,32 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
         setFormData({ ...formData, image: null });
     };
 
-    const handleNext = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         if (imageFile) {
             const storageRef = ref(storage, `images/${formData.role}`);
             try {
-                // Upload the image to Firebase Storage
                 await uploadBytes(storageRef, imageFile);
 
-                // Get the download URL of the uploaded image
                 const imageUrl = await getDownloadURL(storageRef);
 
-                // Update the formData with the image URL
                 setFormData({ ...formData, image: imageUrl });
-
-                // Continue to the next step
-                nextStep();
+                toast.success('Image uploaded successfully');
             } catch (error) {
                 console.error('Error uploading image: ', error);
             }
         } else {
             toast.error('Please upload an image');
         }
+    }
+
+    const handleNext = async () => {
+        // if (imageURL) {
+        //     nextStep();
+        // } else {
+        //     toast.error('Please upload an image');
+        // }
+        nextStep();
     };
 
     return (
@@ -77,8 +82,8 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
                     )}
                 </div>
                 <div className='flex justify-center'>
-                    <label htmlFor='file-upload' className='bg-theme text-white rounded-lg px-4 py-2 w-1/3 text-center cursor-pointer'>
-                        Upload Photo
+                    <label className='bg-theme text-white rounded-lg px-4 py-2 w-1/3 text-center cursor-pointer'>
+                        <button onClick={handleSubmit}>Upload Photo</button>
                         <input id='file-upload' type='file' onChange={handleFileChange} className='hidden' />
                     </label>
                     {imageURL && (
