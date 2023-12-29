@@ -6,10 +6,11 @@ import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 
 
-const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
+const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const handleMobileNoChange = (phone) => {
-        handleChange('contactDetailsHelper', 'mobileNo', phone);
+        setFormData({ ...formData, contactDetailsHelper: { ...values, mobileNo: phone } });
     };
+
     return (
         <>
             <Navbar />
@@ -58,7 +59,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                             required
                             value={values.mobileNo}
                             onChange={handleMobileNoChange}
-                            defaultCountry="US"
+                            defaultCountry="SA"
                         />
                     </div>
 

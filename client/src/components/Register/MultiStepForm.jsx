@@ -8,7 +8,6 @@ import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
 
-
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
     const [currentUser, setCurrentUser] = useState(null);
@@ -45,6 +44,7 @@ const MultiStepForm = () => {
         setFormData({ ...formData, role });
         nextStep();
     };
+
     const handleNextStep = async () => {
         if (formData.image) {
             // Implement Firebase Storage logic here to upload the image and update the formData
@@ -92,13 +92,15 @@ const MultiStepForm = () => {
                 <UploadImage
                     setFormData={setFormData}
                     formData={formData}
-                    nextStep={handleNextStep} // Pass the handleNextStep function
+                    nextStep={handleNextStep}
                     prevStep={prevStep}
                 />
             );
         case 3:
             return (
                 <ContactDetailsH
+                    setFormData={setFormData}
+                    formData={formData}
                     values={formData.contactDetailsHelper}
                     handleChange={handleChange}
                     nextStep={nextStep}
