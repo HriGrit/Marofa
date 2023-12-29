@@ -3,11 +3,28 @@ import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../assets/marofa-whitebg.svg';
 import Navbar from '../Navbar/navbar';
 import 'react-phone-number-input/style.css';
+import './style.css';
 import PhoneInput from 'react-phone-number-input';
 
 
 const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
+    const [errors, setErrors] = useState({});
+
+    const validatePhoneNumber = (phone) => {
+        if (!phone) {
+            return 'Required';
+        } else if (phone.replace(/\ /g, "").length < 11) {
+            return 'Invalid phone number, must be 10 digits';
+        }
+    };
+
     const handleMobileNoChange = (phone) => {
+        const error = validatePhoneNumber(phone);
+        if (error) {
+            setErrors({ ...errors, mobileNo: error });
+        } else {
+            setErrors({ ...errors, mobileNo: null });
+        }
         handleChange('contactDetailsHelper', 'mobileNo', phone);
     };
     return (
@@ -50,12 +67,12 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                             class="block mb-2 text-m font-normal text-[#14415a]">
                             Phone number
                         </label>
-                        <PhoneInput type="tel"
-                            id="phone"
+                        <PhoneInput
+                            id="phone-number"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="123-456-7890"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             required
+                            limitMaxLength="10"
                             value={values.mobileNo}
                             onChange={handleMobileNoChange}
                             addInternationalOption={false}

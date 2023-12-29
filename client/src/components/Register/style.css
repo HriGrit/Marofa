@@ -1,0 +1,9 @@
+:root {
+    --PhoneInput-color--focus: transparent !important;
+
+}
+
+.PhoneInputInput {
+    outline: none;
+    color: black;
+}
