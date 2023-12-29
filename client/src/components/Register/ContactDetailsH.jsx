@@ -54,11 +54,13 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                             id="phone"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="123-456-7890"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             required
                             value={values.mobileNo}
                             onChange={handleMobileNoChange}
-                            defaultCountry="US"
+                            addInternationalOption={false}
+                            defaultCountry="SA"
+
                         />
                     </div>
 
