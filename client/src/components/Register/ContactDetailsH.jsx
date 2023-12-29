@@ -59,13 +59,9 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             required
                             value={values.mobileNo}
                             onChange={handleMobileNoChange}
-<<<<<<< HEAD
                             addInternationalOption={false}
                             defaultCountry="SA"
 
-=======
-                            defaultCountry="SA"
->>>>>>> efc3bb9cbe075c69ba2cda324cf2a54d29e7ec3d
                         />
                     </div>
 
