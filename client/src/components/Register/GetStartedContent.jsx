@@ -8,12 +8,10 @@ function GetStartedContent({ setRole }) {
     const handleRoleSelection = (role) => {
         setRole(role);
     };
-
-
     return (
         <>
             <Navbar />
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-fit mx-auto my-auto bg-white p-8 rounded-2xl border-4 mt-12">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>

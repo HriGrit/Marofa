@@ -13,6 +13,7 @@ import MultiStepForm from './components/Register/MultiStepForm.jsx';
 import Loader from './pages/Loader';
 
 import { AuthProvider } from './Context/AuthContext';
+import JobOffered from './components/Register/JobOffered.jsx';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/register/employer" element={<RegisterEmployer />} />
             <Route path='/register' element={<MultiStepForm />} />
             <Route path='*' element={<div>Not Found</div>} />
+            <Route path="/itsme" element={<JobOffered />} />
           </Routes>
         </AuthProvider>
       </Suspense>
