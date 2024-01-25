@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
+import JobOffered from './JobOffered.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -15,6 +16,12 @@ const MultiStepForm = () => {
         role: '',
         image: null,
         contactDetailsHelper: {
+            mobileNo: '',
+            email: '',
+            altMobileNo: '',
+            waMobileNo: '',
+        },
+        contactDetailsEmployer: {
             mobileNo: '',
             email: '',
             altMobileNo: '',
@@ -97,17 +104,35 @@ const MultiStepForm = () => {
                 />
             );
         case 3:
-            return (
-                <ContactDetailsH
-                    setFormData={setFormData}
-                    formData={formData}
-                    values={formData.contactDetailsHelper}
-                    handleChange={handleChange}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                />
-            );
+            if (formData.role === 'helper') {
+                return (
+                    <ContactDetailsH
+                        setFormData={setFormData}
+                        formData={formData}
+                        values={formData.contactDetailsHelper}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
+            }
+            else if (formData.role === 'employer') {
+                return (
+                    <ContactDetailsH
+                        setFormData={setFormData}
+                        formData={formData}
+                        values={formData.contactDetailsEmployer}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
+            }
+            return <div>Unknown role</div>;
         case 4:
+            if (formData.role === 'employer') {
+                return (<JobOffered nextStep={nextStep} prevStep={prevStep} />)
+            }
             return (
                 <Education
                     values={formData.education}
