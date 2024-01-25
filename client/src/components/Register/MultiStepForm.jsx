@@ -8,6 +8,7 @@ import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
 import JobOffered from './JobOffered.jsx';
+import PersonalInfoH from './PersonalInfoH.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -26,6 +27,14 @@ const MultiStepForm = () => {
             email: '',
             altMobileNo: '',
             waMobileNo: '',
+        },
+        personalInfoHelper: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            altMobileNo: '',
+            waMobileNo: '',
+
         },
         education: {
             school: '',
@@ -54,9 +63,6 @@ const MultiStepForm = () => {
 
     const handleNextStep = async () => {
         if (formData.image) {
-            // Implement Firebase Storage logic here to upload the image and update the formData
-            // For now, let's assume you have uploaded the image and updated the formData
-            // using setFormData({...formData, image: imageUrl});
             nextStep();
         } else {
             console.error('Please upload an image');
@@ -131,16 +137,30 @@ const MultiStepForm = () => {
             return <div>Unknown role</div>;
         case 4:
             if (formData.role === 'employer') {
-                return (<JobOffered nextStep={nextStep} prevStep={prevStep} />)
+                return (<JobOffered nextStep={nextStep} prevStep={prevStep} />);
+
+                return (
+                    <Education
+                        values={formData.education}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
             }
-            return (
-                <Education
-                    values={formData.education}
-                    handleChange={handleChange}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                />
-            );
+            else if (formData.role === 'helper') {
+                return (
+                    <PersonalInfoH
+                        setFormData={setFormData}
+                        formData={formData}
+                        values={formData.personalInfoHelper}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
+            }
+
         case 5:
             return (
                 <Review
