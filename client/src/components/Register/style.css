@@ -1,9 +1,28 @@
 :root {
     --PhoneInput-color--focus: transparent !important;
-
 }
+
+.custom-select {
+    -webkit-appearance: none;  /* Remove default style in WebKit browsers */
+    -moz-appearance: none;     /* Remove default style in Firefox */
+    appearance: none;          /* Remove default style for all browsers */
+    background-image: url('../../assets/darkdropdown.svg'); /* Path to your arrow image */
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0; /* Adjust as needed */
+    background-size: 12px; /* Size of your arrow image */
+  }
+  
+  /* You may want to add some padding to account for the image */
+  .custom-select {
+    padding-right: 2em; /* Add padding to ensure text doesn't overlap the image */
+  }
+  
 
 .PhoneInputInput {
     outline: none;
-    color: black;
+}
+
+input {
+    color: black; /* or #808080 for medium grey */
+    background-color: tomato;
 }

@@ -7,7 +7,7 @@ import './style.css';
 import PhoneInput from 'react-phone-number-input';
 
 
-const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
+const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const [errors, setErrors] = useState({});
 
     const validatePhoneNumber = (phone) => {
@@ -25,7 +25,12 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
         } else {
             setErrors({ ...errors, mobileNo: null });
         }
-        handleChange('contactDetailsHelper', 'mobileNo', phone);
+        setFormData({
+            ...formData, contactDetailsHelper: {
+                ...formData.contactDetailsHelper,
+                mobileNo: phone
+            }
+        });
     };
     return (
         <>
@@ -45,7 +50,6 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                 </div>
 
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
-
                     <div>
                         <label for="phone"
                             class="block mb-2 text-m font-normal text-[#14415a]">
@@ -61,7 +65,6 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                             onChange={handleChange('contactDetailsHelper', 'email')}
                         />
                     </div>
-
                     <div>
                         <label for="phone"
                             class="block mb-2 text-m font-normal text-[#14415a]">
@@ -69,18 +72,15 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                         </label>
                         <PhoneInput
                             id="phone-number"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 phone"
                             placeholder="123-456-7890"
                             required
                             limitMaxLength="10"
                             value={values.mobileNo}
                             onChange={handleMobileNoChange}
-                            addInternationalOption={false}
                             defaultCountry="SA"
-
                         />
                     </div>
-
                     <div>
                         <label for="phone"
                             class="block mb-2 text-m font-normal text-[#14415a]">
@@ -111,9 +111,10 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep }) => {
                         />
                     </div>
                 </form>
-                <button type="button" onClick={prevStep}>Back</button>
-                <button type="button" onClick={nextStep}>Next</button>
-
+                <div className='flex flex-row justify-between mt-6'>
+                    <button onClick={prevStep} className='bg-theme text-white rounded-full px-4 py-2'>Back</button>
+                    <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
+                </div>
             </div>
         </>
     );
