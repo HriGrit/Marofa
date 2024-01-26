@@ -7,7 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
-import JobOffered from './JobOffered.jsx';
+import JobOfferedE from './JobOfferedE.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -131,7 +131,7 @@ const MultiStepForm = () => {
             return <div>Unknown role</div>;
         case 4:
             if (formData.role === 'employer') {
-                return (<JobOffered nextStep={nextStep} prevStep={prevStep} />)
+                return (<JobOfferedE nextStep={nextStep} prevStep={prevStep} />)
             }
             return (
                 <Education

@@ -80,7 +80,7 @@ const JobOffered = ({ prevStep, nextStep }) => {
                 <hr className='h-1 bg-theme' />
                 <div className="mb-4">
                     <label className='pt-5 text-xl font-semibold text-[#14415a]'>
-                        Contact Details
+                        Job Offered
                     </label>
                     <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
                         <div>
