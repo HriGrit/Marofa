@@ -8,7 +8,6 @@ import './style.css';
 
 const PersonalInfoH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const [errors, setErrors] = useState({});
-
     return (
         <>
             <Navbar />
