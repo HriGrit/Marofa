@@ -27,6 +27,17 @@ const MultiStepForm = () => {
             altMobileNo: '',
             waMobileNo: '',
         },
+        personalInfoHelper: {
+            firstName: '',
+            lastName: '',
+            religion: '',
+            gender: '',
+            nationality: '',
+            email: '',
+            altMobileNo: '',
+            waMobileNo: '',
+
+        },
         education: {
             school: '',
             degree: '',
@@ -54,9 +65,6 @@ const MultiStepForm = () => {
 
     const handleNextStep = async () => {
         if (formData.image) {
-            // Implement Firebase Storage logic here to upload the image and update the formData
-            // For now, let's assume you have uploaded the image and updated the formData
-            // using setFormData({...formData, image: imageUrl});
             nextStep();
         } else {
             console.error('Please upload an image');
@@ -133,14 +141,19 @@ const MultiStepForm = () => {
             if (formData.role === 'employer') {
                 return (<JobOfferedE nextStep={nextStep} prevStep={prevStep} />)
             }
-            return (
-                <Education
-                    values={formData.education}
-                    handleChange={handleChange}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                />
-            );
+            else if (formData.role === 'helper') {
+                return (
+                    <PersonalInfoH
+                        setFormData={setFormData}
+                        formData={formData}
+                        values={formData.personalInfoHelper}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
+            }
+
         case 5:
             return (
                 <Review
