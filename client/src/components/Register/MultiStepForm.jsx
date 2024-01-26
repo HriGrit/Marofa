@@ -31,6 +31,9 @@ const MultiStepForm = () => {
         personalInfoHelper: {
             firstName: '',
             lastName: '',
+            religion: '',
+            gender: '',
+            nationality: '',
             email: '',
             altMobileNo: '',
             waMobileNo: '',
