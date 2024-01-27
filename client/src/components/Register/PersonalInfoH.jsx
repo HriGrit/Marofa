@@ -6,7 +6,7 @@ import './style.css';
 
 
 
-const PersonalInfoH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
+const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
     const [errors, setErrors] = useState({});
     return (
         <>

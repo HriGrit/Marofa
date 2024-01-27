@@ -8,6 +8,7 @@ import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
 import JobOfferedE from './JobOfferedE.jsx';
+import PersonalInfoH from './PersonalInfoH.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -27,6 +28,14 @@ const MultiStepForm = () => {
             altMobileNo: '',
             waMobileNo: '',
         },
+        jobOfferedEmployer: {
+            jobLocationCountry: '',
+            jobLocationCity: '',
+            jobStartDate: '',
+            jobFlexibility: '',
+            jobType: '',
+            jobPosition: '',
+        },
         personalInfoHelper: {
             firstName: '',
             lastName: '',
@@ -41,9 +50,7 @@ const MultiStepForm = () => {
         education: {
             school: '',
             degree: '',
-            // Add other education fields
         },
-        // Add other form sections as needed
     });
 
     useEffect(() => {
@@ -139,13 +146,16 @@ const MultiStepForm = () => {
             return <div>Unknown role</div>;
         case 4:
             if (formData.role === 'employer') {
-                return (<JobOfferedE nextStep={nextStep} prevStep={prevStep} />)
+                return (<JobOfferedE
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                    values={formData.jobOfferedEmployer}
+                    handleChange={handleChange}
+                />)
             }
             else if (formData.role === 'helper') {
                 return (
                     <PersonalInfoH
-                        setFormData={setFormData}
-                        formData={formData}
                         values={formData.personalInfoHelper}
                         handleChange={handleChange}
                         nextStep={nextStep}
