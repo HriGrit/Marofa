@@ -5,7 +5,7 @@ import { getMonth, getYear } from 'date-fns';
 import '../../css/DateComponent.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DateComponent = ({ startDate, setStartDate, placeholderText }) => {
+const DateComponent = ({ startDate, setStartDate, placeholderText, value, handleChange }) => {
 
     const getYearRange = (start, end) => {
         const years = [];
@@ -90,7 +90,8 @@ const DateComponent = ({ startDate, setStartDate, placeholderText }) => {
                     </div>
                 )}
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                value={value?.jobOfferedEmployer?.jobStartDate}
+                onChange={handleChange('jobOfferedEmployer', 'jobStartDate')}
             />
         </div>
     );
