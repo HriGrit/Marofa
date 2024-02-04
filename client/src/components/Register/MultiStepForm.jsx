@@ -9,6 +9,7 @@ import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
 import JobOfferedE from './JobOfferedE.jsx';
 import PersonalInfoH from './PersonalInfoH.jsx';
+import ContactDetailsE from './ContactDetailsE.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -133,7 +134,7 @@ const MultiStepForm = () => {
             }
             else if (formData.role === 'employer') {
                 return (
-                    <ContactDetailsH
+                    <ContactDetailsE
                         setFormData={setFormData}
                         formData={formData}
                         values={formData.contactDetailsEmployer}
