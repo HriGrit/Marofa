@@ -43,7 +43,7 @@ const MultiStepForm = () => {
             religion: '',
             gender: '',
             nationality: '',
-            email: '',
+            dob: '',
             altMobileNo: '',
             waMobileNo: '',
 
@@ -152,7 +152,7 @@ const MultiStepForm = () => {
                     prevStep={prevStep}
                     values={formData.jobOfferedEmployer}
                     handleChange={handleChange}
-                />)
+                />);
             }
             else if (formData.role === 'helper') {
                 return (

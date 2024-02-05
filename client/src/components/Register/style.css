@@ -1,28 +1,81 @@
 :root {
-    --PhoneInput-color--focus: transparent !important;
+  --PhoneInput-color--focus: transparent !important;
 }
 
 .custom-select {
-    -webkit-appearance: none;  /* Remove default style in WebKit browsers */
-    -moz-appearance: none;     /* Remove default style in Firefox */
-    appearance: none;          /* Remove default style for all browsers */
-    background-image: url('../../assets/darkdropdown.svg'); /* Path to your arrow image */
-    background-repeat: no-repeat;
-    background-position: right 0.7em top 50%, 0 0; /* Adjust as needed */
-    background-size: 12px; /* Size of your arrow image */
-  }
-  
-  /* You may want to add some padding to account for the image */
-  .custom-select {
-    padding-right: 2em; /* Add padding to ensure text doesn't overlap the image */
-  }
-  
+  -webkit-appearance: none;
+  /* Remove default style in WebKit browsers */
+  -moz-appearance: none;
+  /* Remove default style in Firefox */
+  appearance: none;
+  /* Remove default style for all browsers */
+  background-image: url('../../assets/darkdropdown.svg');
+  /* Path to your arrow image */
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  /* Adjust as needed */
+  background-size: 12px;
+  /* Size of your arrow image */
+}
+
+/* You may want to add some padding to account for the image */
+.custom-select {
+  padding-right: 2em;
+  /* Add padding to ensure text doesn't overlap the image */
+}
+
 
 .PhoneInputInput {
-    outline: none;
+  outline: none;
 }
 
 input {
-    color: black; /* or #808080 for medium grey */
-    background-color: tomato;
+  color: black;
+  /* or #808080 for medium grey */
+  background-color: tomato;
+}
+
+.react-datepicker {
+  --tw-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+  /* bg-gray-50 */
+  border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+  /* border-gray-300 */
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+  /* text-gray-900 */
+}
+
+.react-datepicker__header {
+  background-color: transparent;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  width: 2.5rem;
+  line-height: 2rem;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  outline: none;
+  background-color: #d1d5db;
+  /* bg-gray-50 */
+  border: none;
+  /* border border-gray-300 */
+  color: #111827;
+  /* text-gray-900 */
+  border-radius: 0.5rem;
+  /* rounded-lg */
+  padding: 0.625rem;
+  /* p-2.5 */
+  block: block;
+  /* Utility doesn't directly translate to CSS, assuming you want block-level display */
+}
+
+.react-datepicker__input-container input:focus {
+  border-color: none;
+  /* focus:border-blue-500 */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  /* focus:ring-blue-500 */
 }

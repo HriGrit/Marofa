@@ -124,6 +124,10 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             </select>
                         </div>
                         <div>
+                            <label htmlFor="state-select"
+                                className="block mb-2 text-m font-normal text-[#14415a]">
+                                Job Location State
+                            </label>
                             <DateComponent startDate={startDate} setStartDate={setStartDate} placeholderText="Start Date" value={value} handleChange={handleChange} />
                         </div>
                         <div>

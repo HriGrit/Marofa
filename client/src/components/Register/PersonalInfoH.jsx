@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../assets/marofa-whitebg.svg';
 import Navbar from '../Navbar/navbar';
 import './style.css';
-
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
-    const [errors, setErrors] = useState({});
+    const [countriesList, setCountriesList] = useState([]);
+    const [startDate, setStartDate] = useState(null);
+    useEffect(() => {
+        fetch('https://venkatmcajj.github.io/react-country-state-city/data/countriesminified.json')
+            .then((response) => response.json())
+            .then((data) => {
+                setCountriesList(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching countries:', error);
+            });
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -98,22 +110,41 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                             <option value="none">None</option>
                         </select>
                     </div>
-
-
                     <div>
-                        <label for="phone"
+                        <label htmlFor="nationality"
                             class="block mb-2 text-m font-normal text-[#14415a]">
-                            WhatsApp phone numberxsxsxs <span className='font-thin'>(optional)</span>
+                            Ntionality
                         </label>
-                        <input type="tel"
-                            id="phone"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="123-456-7890"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            value={values.waMobileNo}
-                            onChange={handleChange('contactDetailsHelper', 'waMobileNo')}
-                        />
+                        <select
+                            id="nationality"
+                            value={values.nationality}
+                            onChange={handleChange('personalInfoHelper', 'nationality')}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                        >
+                            <option value="" disabled>Select your Nationality</option>
+                            {countriesList.map((country) => (
+                                <option key={country.id} value={country.name}>
+                                    {country.name}
+                                </option>
+                            ))}
+                        </select>
+
                     </div>
+                    <div>
+                        <label htmlFor="dob"
+                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            Date of Birth
+                        </label>
+                        <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
+
+
+
+
+
+                    </div>
+
                 </form>
                 <div className='flex flex-row justify-between mt-6'>
                     <button onClick={prevStep} className='bg-theme text-white rounded-full px-4 py-2'>Back</button>
