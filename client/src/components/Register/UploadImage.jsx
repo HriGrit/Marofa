@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../assets/marofa-whitebg.svg';
-const uploadpic = React.lazy(() => import('../../assets/uploadpic.png'));
+const uploadpic = React.lazy(() => import('../../assets/Uploadpic.png'));
 import Navbar from '../Navbar/navbar';
 import { uploadBytes, getDownloadURL, ref } from 'firebase/storage'; // Import Firebase Storage methods
 import { storage } from '../../utils/firebase'; // Import your Firebase storage instance
