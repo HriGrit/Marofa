@@ -10,6 +10,8 @@ import ContactDetailsH from './ContactDetailsH.jsx';
 import JobOfferedE from './JobOfferedE.jsx';
 import PersonalInfoH from './PersonalInfoH.jsx';
 import ContactDetailsE from './ContactDetailsE.jsx';
+import RequiredSkillsE from './RequiredSkillsE.jsx';
+import CandidatePreferenceE from './CandidatePreferenceE.jsx';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -37,6 +39,12 @@ const MultiStepForm = () => {
             jobType: '',
             jobPosition: '',
         },
+        requiredSkillsEmloyer: {
+            language: [],
+            cookingSkills: '',
+            mainSkills: '',
+            otherSkills: '',
+        },
         personalInfoHelper: {
             firstName: '',
             lastName: '',
@@ -47,6 +55,25 @@ const MultiStepForm = () => {
             altMobileNo: '',
             waMobileNo: '',
 
+        },
+        candidatePreferenceEmployer: {
+            nationality: '',
+            gender: '',
+            age: '',
+            experience: '',
+            educationLevel: '',
+            religion: '',
+            currentContractStatus: '',
+            experience: '',
+        },
+        aboutEmployer: {
+            employerType: '',
+            nationality: '',
+            familySize: '',
+            monthlySalary: '',
+            daysOffOffered: '',
+            accomodation: '',
+            recieveEmails: '',
         },
         education: {
             school: '',
@@ -164,8 +191,29 @@ const MultiStepForm = () => {
                     />
                 );
             }
-
         case 5:
+            if (formData.role === 'employer') {
+                return (
+                    <RequiredSkillsE
+                        values={formData.requiredSkillsEmloyer}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        handleChange={handleChange}
+                    />
+                );
+            }
+        case 6:
+            if (formData.role === 'employer') {
+                return (
+                    <CandidatePreferenceE
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        values={formData.candidatePreferenceEmployer}
+                        handleChange={handleChange}
+                    />
+                )
+            }
+        default:
             return (
                 <Review
                     formData={formData}
@@ -173,49 +221,8 @@ const MultiStepForm = () => {
                     handleSubmit={handleSubmit}
                 />
             );
-        default:
-            return <div>Unknown step</div>;
     }
 };
-
-const PersonalInfo = ({ values, handleChange, nextStep }) => (
-    <form>
-        <input
-            type="text"
-            placeholder="Name"
-            value={values.name}
-            onChange={handleChange('personalInfo', 'name')}
-        />
-        <input
-            type="email"
-            placeholder="Email"
-            value={values.email}
-            onChange={handleChange('personalInfo', 'email')}
-        />
-        {/* Add other inputs as needed */}
-        <button type="button" onClick={nextStep}>Next</button>
-    </form>
-);
-
-const Education = ({ values, handleChange, nextStep, prevStep }) => (
-    <form>
-        <input
-            type="text"
-            placeholder="School"
-            value={values.school}
-            onChange={handleChange('education', 'school')}
-        />
-        <input
-            type="text"
-            placeholder="Degree"
-            value={values.degree}
-            onChange={handleChange('education', 'degree')}
-        />
-        {/* Add other inputs as needed */}
-        <button type="button" onClick={prevStep}>Back</button>
-        <button type="button" onClick={nextStep}>Next</button>
-    </form>
-);
 
 const Review = ({ formData, prevStep, handleSubmit }) => (
     <div>

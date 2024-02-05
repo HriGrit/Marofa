@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from "react-select";
 
 import useLocationHook from '../../hooks/useLocationHook';
@@ -147,17 +147,17 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
             </div>
         );
     } else if (toggle == 3) {
-        const { skillsOptions, setskillsOptions } = useSkillsHooks();
+        const { skillsOptions, setSelectedOptions } = useSkillsHooks();
 
         const handleSkillsChange = (selectedOptions, { action, option }) => {
             if (action === 'select-option' && option.value === 'select-all') {
-                setskillsOptions(options.slice(1)); // select all options except 'Select All'
+                setSelectedOptions(options.slice(1)); // select all options except 'Select All'
             } else if (action === 'deselect-option' && option.value === 'select-all') {
-                setskillsOptions([]); // deselect all options
+                setSelectedOptions([]); // deselect all options
             } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
-                setskillsOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
+                setSelectedOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
             } else {
-                setskillsOptions(selectedOptions); // any other selection
+                setSelectedOptions(selectedOptions); // any other selection
             }
         };
 
