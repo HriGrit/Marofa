@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import ladyImg from "../../assets/landingpagefemale.svg";
+const ladyImg = React.lazy(() => import("../../assets/landingpagefemale.svg"));
 
 import "./Hero.css";
 
