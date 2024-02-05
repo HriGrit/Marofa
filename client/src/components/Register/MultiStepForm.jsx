@@ -64,7 +64,6 @@ const MultiStepForm = () => {
             educationLevel: '',
             religion: '',
             currentContractStatus: '',
-            experience: '',
         },
         aboutEmployer: {
             employerType: '',
