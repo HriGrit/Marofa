@@ -32,7 +32,7 @@
 input {
   color: black;
   /* or #808080 for medium grey */
-  background-color: tomato;
+  background: #f8f9fa;
 }
 
 .react-datepicker {
@@ -52,25 +52,29 @@ input {
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  width: 2.5rem;
-  line-height: 2rem;
+  width: 1rem;
+  line-height: 1rem;
 }
 
 .react-datepicker__input-container input {
   width: 100%;
   outline: none;
-  background-color: #d1d5db;
+  background-color: #f8f9fa;
   /* bg-gray-50 */
   border: none;
   /* border border-gray-300 */
-  color: #111827;
+  color: #121822;
   /* text-gray-900 */
-  border-radius: 0.5rem;
+  border-radius: 50rem;
   /* rounded-lg */
-  padding: 0.625rem;
-  /* p-2.5 */
-  block: block;
-  /* Utility doesn't directly translate to CSS, assuming you want block-level display */
+  padding: 0rem;
+  font-family: "NeoSans", "sans-serif";
+  font-size: 0.875rem;
+  /* 14px */
+  line-height: 1.25rem;
+  /* 20px */
+  font-weight: 400;
+
 }
 
 .react-datepicker__input-container input:focus {
@@ -78,4 +82,22 @@ input {
   /* focus:border-blue-500 */
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
   /* focus:ring-blue-500 */
+}
+
+.react-datepicker__input-container input:focus {
+  border: none;
+  outline: none;
+}
+
+.react-datepicker__current-month {
+  color: #ffffff;
+  /* Change to your desired font color */
+}
+
+.react-datepicker__year-dropdown {
+  color: #ffffff;
+}
+
+.react-datepicker__year-dropdown--scrollable {
+  color: #121822;
 }

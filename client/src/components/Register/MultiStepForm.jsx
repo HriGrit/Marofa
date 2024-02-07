@@ -7,11 +7,12 @@ import { onAuthStateChanged } from 'firebase/auth';
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
-import JobOfferedE from './JobOfferedE.jsx';
 import PersonalInfoH from './PersonalInfoH.jsx';
+import ProfessionalInfoH from './ProfessionalInfoH.jsx';
+import JobPreferencesH from './JobPreferencesH.jsx';
 import ContactDetailsE from './ContactDetailsE.jsx';
-import RequiredSkillsE from './RequiredSkillsE.jsx';
-import CandidatePreferenceE from './CandidatePreferenceE.jsx';
+import JobOfferedE from './JobOfferedE.jsx';
+
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
@@ -39,12 +40,6 @@ const MultiStepForm = () => {
             jobType: '',
             jobPosition: '',
         },
-        requiredSkillsEmloyer: {
-            language: [],
-            cookingSkills: '',
-            mainSkills: '',
-            otherSkills: '',
-        },
         personalInfoHelper: {
             firstName: '',
             lastName: '',
@@ -52,31 +47,18 @@ const MultiStepForm = () => {
             gender: '',
             nationality: '',
             dob: '',
-            altMobileNo: '',
-            waMobileNo: '',
-
+            educationLvl: '',
         },
-        candidatePreferenceEmployer: {
-            nationality: '',
-            gender: '',
-            age: '',
-            experience: '',
-            educationLevel: '',
-            religion: '',
-            currentContractStatus: '',
+        professionalInfoHelper: {
+            yearsOfExperience: '',
+            jobType: '',
+            jobStartDate: '',
+            currentWorkStatus: '',
         },
-        aboutEmployer: {
-            employerType: '',
-            nationality: '',
-            familySize: '',
-            monthlySalary: '',
-            daysOffOffered: '',
-            accomodation: '',
-            recieveEmails: '',
-        },
-        education: {
-            school: '',
-            degree: '',
+        jobPreferenceHelper: {
+            accomodationPreference: '',
+            dayOffPreference: '',
+            expectedSalary: '',
         },
     });
 
@@ -170,7 +152,6 @@ const MultiStepForm = () => {
                     />
                 );
             }
-            return <div>Unknown role</div>;
         case 4:
             if (formData.role === 'employer') {
                 return (<JobOfferedE
@@ -190,29 +171,38 @@ const MultiStepForm = () => {
                     />
                 );
             }
+
         case 5:
             if (formData.role === 'employer') {
+                return (<div>to be made</div>);
+            }
+            else if (formData.role === 'helper') {
                 return (
-                    <RequiredSkillsE
-                        values={formData.requiredSkillsEmloyer}
+                    <ProfessionalInfoH
+                        values={formData.professionalInfoHelper}
+                        handleChange={handleChange}
                         nextStep={nextStep}
                         prevStep={prevStep}
-                        handleChange={handleChange}
                     />
                 );
             }
+
         case 6:
             if (formData.role === 'employer') {
+                return (<div>to be made</div>);
+            }
+            else if (formData.role === 'helper') {
                 return (
-                    <CandidatePreferenceE
+                    <JobPreferencesH
+                        values={formData.jobPreferenceHelper}
+                        handleChange={handleChange}
                         nextStep={nextStep}
                         prevStep={prevStep}
-                        values={formData.candidatePreferenceEmployer}
-                        handleChange={handleChange}
                     />
-                )
+                );
             }
-        default:
+
+        case 7:
             return (
                 <Review
                     formData={formData}
@@ -220,8 +210,11 @@ const MultiStepForm = () => {
                     handleSubmit={handleSubmit}
                 />
             );
+        default:
+            return <div>Unknown step</div>;
     }
 };
+
 
 const Review = ({ formData, prevStep, handleSubmit }) => (
     <div>
