@@ -9,6 +9,7 @@ import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './ContactDetailsH.jsx';
 import PersonalInfoH from './PersonalInfoH.jsx';
 import ProfessionalInfoH from './ProfessionalInfoH.jsx';
+import SkillsByH from './SkillsByH.jsx';
 import JobPreferencesH from './JobPreferencesH.jsx';
 import ContactDetailsE from './ContactDetailsE.jsx';
 import JobOfferedE from './JobOfferedE.jsx';
@@ -59,7 +60,12 @@ const MultiStepForm = () => {
             accomodationPreference: '',
             dayOffPreference: '',
             expectedSalary: '',
+            preferredJobLocation: '',
         },
+        skillsSelectedByHelper: {
+            languages: '',
+
+        }
     });
 
     useEffect(() => {
@@ -203,6 +209,22 @@ const MultiStepForm = () => {
             }
 
         case 7:
+            if (formData.role === 'employer') {
+                return (<div>to be made</div>);
+            }
+            else if (formData.role === 'helper') {
+                return (
+                    <SkillsByH
+                        values={formData.skillsSelectedByHelper}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                );
+            }
+
+
+        case 8:
             return (
                 <Review
                     formData={formData}

@@ -127,6 +127,8 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     </div>
 
+
+
                 </form>
 
                 <div className='flex flex-row justify-between mt-6'>
