@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/marofa-whitebg.svg';
-import Navbar from '../Navbar/navbar';
-import './style.css';
-import DateComponent from './DateComponent';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../Navbar/navbar';
+import '../../../css/style.css';
+import DateComponent from '../DateComponent';
 
 const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
     const [countriesList, setCountriesList] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/marofa-whitebg.svg';
-import Navbar from '../Navbar/navbar';
-import MultiSelectComponent from './MultiSelectComponent';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../../Navbar/navbar';
+import MultiSelectComponent from '../../MultiSelectComponent';
 
 const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
     const handleNextStep = () => {
