@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import logo from '../../assets/marofa-whitebg.svg';
-import Navbar from '../Navbar/navbar';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../Navbar/navbar';
 import 'react-phone-number-input/style.css';
-import './style.css';
+import '../../../css/style.css';
 import PhoneInput from 'react-phone-number-input';
 
 
-const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
+const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const [errors, setErrors] = useState({});
 
     const validatePhoneNumber = (phone) => {
@@ -26,8 +26,8 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
             setErrors({ ...errors, mobileNo: null });
         }
         setFormData({
-            ...formData, contactDetailsHelper: {
-                ...formData.contactDetailsHelper,
+            ...formData, contactDetailsEmployer: {
+                ...formData.contactDetailsEmployer,
                 mobileNo: phone
             }
         });
@@ -62,7 +62,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             pattern=".+@example\.com"
                             required
                             value={values.email}
-                            onChange={handleChange('contactDetailsHelper', 'email')}
+                            onChange={handleChange('contactDetailsEmployer', 'email')}
                         />
                     </div>
                     <div>
@@ -92,7 +92,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             placeholder="123-456-7890"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             value={values.altMobileNo}
-                            onChange={handleChange('contactDetailsHelper', 'altMobileNo')}
+                            onChange={handleChange('contactDetailsEmployer', 'altMobileNo')}
                         />
                     </div>
 
@@ -107,7 +107,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             placeholder="123-456-7890"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             value={values.waMobileNo}
-                            onChange={handleChange('contactDetailsHelper', 'waMobileNo')}
+                            onChange={handleChange('contactDetailsEmployer', 'waMobileNo')}
                         />
                     </div>
                 </form>
@@ -120,4 +120,4 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
     );
 };
 
-export default ContactDetailsH;
+export default ContactDetailsE;

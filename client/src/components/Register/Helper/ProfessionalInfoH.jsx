@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import logo from '../../assets/marofa-whitebg.svg';
-import Navbar from '../Navbar/navbar';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../Navbar/navbar';
 import "react-datepicker/dist/react-datepicker.css";
-import './style.css';
+import '../../../css/style.css';
 import DatePicker from "react-datepicker";
 
 const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {

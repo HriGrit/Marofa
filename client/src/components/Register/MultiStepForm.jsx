@@ -6,13 +6,13 @@ import { onAuthStateChanged } from 'firebase/auth';
 //components for user input
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
-import ContactDetailsH from './ContactDetailsH.jsx';
-import PersonalInfoH from './PersonalInfoH.jsx';
-import ProfessionalInfoH from './ProfessionalInfoH.jsx';
-import SkillsByH from './SkillsByH.jsx';
-import JobPreferencesH from './JobPreferencesH.jsx';
-import ContactDetailsE from './ContactDetailsE.jsx';
-import JobOfferedE from './JobOfferedE.jsx';
+import ContactDetailsH from './Helper/ContactDetailsH.jsx';
+import PersonalInfoH from './Helper/PersonalInfoH.jsx';
+import ProfessionalInfoH from './Helper/ProfessionalInfoH.jsx';
+import SkillsByH from './Helper/SkillsByH.jsx';
+import JobPreferencesH from './Helper/JobPreferencesH.jsx';
+import ContactDetailsE from './Employer/ContactDetailsE.jsx';
+import JobOfferedE from './Employer/JobOfferedE.jsx';
 
 
 const MultiStepForm = () => {
@@ -213,25 +213,22 @@ const MultiStepForm = () => {
                 return (<div>to be made</div>);
             }
             else if (formData.role === 'helper') {
+                // return (
+                //     <SkillsByH
+                //         values={formData.skillsSelectedByHelper}
+                //         handleChange={handleChange}
+                //         nextStep={nextStep}
+                //         prevStep={prevStep}
+                //     />
+                // );
                 return (
-                    <SkillsByH
-                        values={formData.skillsSelectedByHelper}
-                        handleChange={handleChange}
-                        nextStep={nextStep}
+                    <Review
+                        formData={formData}
                         prevStep={prevStep}
+                        handleSubmit={handleSubmit}
                     />
                 );
             }
-
-
-        case 8:
-            return (
-                <Review
-                    formData={formData}
-                    prevStep={prevStep}
-                    handleSubmit={handleSubmit}
-                />
-            );
         default:
             return <div>Unknown step</div>;
     }

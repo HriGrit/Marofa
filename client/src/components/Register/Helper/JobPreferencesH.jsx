@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import logo from '../../assets/marofa-whitebg.svg';
-import Navbar from '../Navbar/navbar';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../Navbar/navbar';
 import "react-datepicker/dist/react-datepicker.css";
-import './style.css';
+import '../../../css/style.css';
 import DatePicker from "react-datepicker";
 
 const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
@@ -38,7 +38,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label for="preferredaccomodationtype"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            class="flex-1 block mb-2 text-m font-normal text-[#14415a] align-bottom justify-center self-center">
                             Preferred accomodation type
                         </label>
 
