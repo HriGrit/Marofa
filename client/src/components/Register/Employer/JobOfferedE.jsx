@@ -4,7 +4,7 @@ import Navbar from '../../Navbar/navbar';
 import '../../../css/style.css';
 import DateComponent from '../DateComponent';
 
-const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
+const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     const [countriesList, setCountriesList] = useState([]);
     const [stateList, setStateList] = useState([]);
     const [startDate, setStartDate] = useState(null);
@@ -21,7 +21,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
     }, []);
 
     useEffect(() => {
-        const countryid = value?.jobOfferedEmployer?.jobLocationCountry;
+        const countryid = values?.jobLocationCountry;
         console.log(countryid);
         if (countryid) {
             fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
@@ -49,7 +49,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
         } else {
             setStateList([]);
         }
-    }, [value?.jobOfferedEmployer?.jobLocationCountry]);
+    }, [values?.jobLocationCountry]);
 
     const handleNextStep = () => {
         nextStep();
@@ -70,9 +70,9 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
     };
 
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
@@ -92,11 +92,11 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             </label>
                             <select
                                 id="country-select"
-                                value={value?.jobOfferedEmployer?.jobLocationCountry}
+                                value={values.jobLocationCountry}
                                 onChange={handleChange('jobOfferedEmployer', 'jobLocationCountry')}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
-                                <option value="">Select Country</option>
+                                <option value="select-country">Select Country</option>
                                 {countriesList.map((country) => (
                                     <option key={country.id} value={country.id}>
                                         {country.name}
@@ -112,10 +112,10 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             <select
                                 id="state-select"
                                 onChange={handleChange('jobOfferedEmployer', 'jobLocationCity')}
-                                value={value?.jobOfferedEmployer?.jobLocationCity}
+                                value={values?.jobOfferedEmployer?.jobLocationCity}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
-                                <option value="">Select State</option>
+                                <option value="select-state">Select State</option>
                                 {stateList.states && stateList.states.map((state) => (
                                     <option key={state.id} value={state.id}>
                                         {state.name}
@@ -124,11 +124,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="state-select"
-                                className="block mb-2 text-m font-normal text-[#14415a]">
-                                Job Location State
-                            </label>
-                            <DateComponent startDate={startDate} setStartDate={setStartDate} placeholderText="Start Date" value={value} handleChange={handleChange} />
+                            <DateComponent startDate={startDate} setStartDate={setStartDate} placeholderText="Start Date" value={values} handleChange={handleChange} />
                         </div>
                         <div>
                             <label htmlFor="weeks-select" className="block mb-2 text-m font-normal text-[#14415a]">
@@ -137,7 +133,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             <select
                                 id="weeks-select"
                                 onChange={handleChange('jobOfferedEmployer', 'jobFlexibility')}
-                                value={value?.jobOfferedEmployer?.jobFlexibility}
+                                value={values?.jobFlexibility}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
                                 <option value="">Select Duration</option>
@@ -159,7 +155,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             </label>
                             <select
                                 id="job-type-select"
-                                value={value?.jobOfferedEmployer?.jobType}
+                                value={values?.jobType}
                                 onChange={handleChange('jobOfferedEmployer', 'jobType')}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
@@ -176,11 +172,11 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                             </label>
                             <select
                                 id="position-type-select"
-                                value={value?.jobOfferedEmployer?.jobPosition}
+                                value={values?.jobPosition}
                                 onChange={handleChange('jobOfferedEmployer', 'jobPosition')}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
-                                <option value="">Select Position</option>
+                                <option value="select">Select Position</option>
                                 <option value="domestic-helper">Domestic Helper</option>
                                 <option value="cook">Cook</option>
                                 <option value="nanny">Nanny</option>
@@ -195,7 +191,7 @@ const JobOffered = ({ prevStep, nextStep, value, handleChange }) => {
                     <button onClick={handleNextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

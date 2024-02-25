@@ -13,6 +13,7 @@ import SkillsByH from './Helper/SkillsByH.jsx';
 import JobPreferencesH from './Helper/JobPreferencesH.jsx';
 import ContactDetailsE from './Employer/ContactDetailsE.jsx';
 import JobOfferedE from './Employer/JobOfferedE.jsx';
+import RequiredSkillsE from './Employer/RequiredSkillsE.jsx';
 
 
 const MultiStepForm = () => {
@@ -55,6 +56,12 @@ const MultiStepForm = () => {
             jobType: '',
             jobStartDate: '',
             currentWorkStatus: '',
+        },
+        skillsRequiredEmployer: {
+            languages: [],
+            cookingSkills: '',
+            mainSkills: '',
+            otherSkills: '',
         },
         jobPreferenceHelper: {
             accomodationPreference: '',
@@ -180,7 +187,14 @@ const MultiStepForm = () => {
 
         case 5:
             if (formData.role === 'employer') {
-                return (<div>to be made</div>);
+                return (
+                    <RequiredSkillsE
+                        values={formData.skillsRequiredEmployer}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                )
             }
             else if (formData.role === 'helper') {
                 return (
@@ -195,7 +209,13 @@ const MultiStepForm = () => {
 
         case 6:
             if (formData.role === 'employer') {
-                return (<div>to be made</div>);
+                return (
+                    <Review
+                        formData={formData}
+                        prevStep={prevStep}
+                        handleSubmit={handleSubmit}
+                    />
+                );
             }
             else if (formData.role === 'helper') {
                 return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../assets/marofa-whitebg.svg';
+import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import MultiSelectComponent from '../MultiSelectComponent';
 
@@ -42,7 +42,7 @@ const RequiredSkillsE = ({ prevStep, nextStep, value, handleChange }) => {
     const [selectedCookingSkills, setSelectedCookingSkills] = useState([]);
     const [selectedMainSkills, setSelectedMainSkills] = useState([]);
     const [selectedOtherSkills, setSelectedOtherSkills] = useState([]);
-
+    console.log(selectedLanguages);
     return (
         <>
             <Navbar />
