@@ -14,6 +14,8 @@ import JobPreferencesH from './Helper/JobPreferencesH.jsx';
 import ContactDetailsE from './Employer/ContactDetailsE.jsx';
 import JobOfferedE from './Employer/JobOfferedE.jsx';
 import RequiredSkillsE from './Employer/RequiredSkillsE.jsx';
+import CandidatePreferenceE from './Employer/CandidatePreferenceE.jsx';
+import AboutEmployer from './Employer/AboutEmployer.jsx';
 
 
 const MultiStepForm = () => {
@@ -59,9 +61,28 @@ const MultiStepForm = () => {
         },
         skillsRequiredEmployer: {
             languages: [],
-            cookingSkills: '',
-            mainSkills: '',
-            otherSkills: '',
+            cookingSkills: [],
+            mainSkills: [],
+            otherSkills: [],
+        },
+        candidatePreferenceEmployer: {
+            Location: [],
+            Religion: [],
+            Nationality: [],
+            Contract: [],
+            Gender: [],
+            Age: [],
+            Education: [],
+            Experience: []
+        },
+        aboutEmployer: {
+            EmployerType: "",
+            FamilySize: "",
+            Nationality: "",
+            AlertViaEmail: "",
+            Holidays: "",
+            Accomodation: "",
+            Salary: "",
         },
         jobPreferenceHelper: {
             accomodationPreference: '',
@@ -104,6 +125,25 @@ const MultiStepForm = () => {
         const updatedSection = { ...formData[section], [field]: e.target.value };
         setFormData({ ...formData, [section]: updatedSection });
     };
+
+    const handleChangeMultiSelect = (section, field) => (selectedOptions) => {
+        setFormData(prevFormData => {
+            const safeSelectedOptions = Array.isArray(selectedOptions) ? selectedOptions : [];
+
+            const values = safeSelectedOptions.map(option => option.value);
+
+            return {
+                ...prevFormData,
+                [section]: {
+                    ...prevFormData[section],
+                    [field]: values
+                }
+            };
+        });
+    };
+
+
+
 
     const handleSubmit = async () => {
         if (!currentUser) {
@@ -190,7 +230,7 @@ const MultiStepForm = () => {
                 return (
                     <RequiredSkillsE
                         values={formData.skillsRequiredEmployer}
-                        handleChange={handleChange}
+                        handleChange={handleChangeMultiSelect}
                         nextStep={nextStep}
                         prevStep={prevStep}
                     />
@@ -210,12 +250,13 @@ const MultiStepForm = () => {
         case 6:
             if (formData.role === 'employer') {
                 return (
-                    <Review
-                        formData={formData}
+                    <CandidatePreferenceE
+                        values={formData.candidatePreferenceEmployer}
+                        handleChange={handleChangeMultiSelect}
+                        nextStep={nextStep}
                         prevStep={prevStep}
-                        handleSubmit={handleSubmit}
                     />
-                );
+                )
             }
             else if (formData.role === 'helper') {
                 return (
@@ -230,7 +271,14 @@ const MultiStepForm = () => {
 
         case 7:
             if (formData.role === 'employer') {
-                return (<div>to be made</div>);
+                return (
+                    <AboutEmployer
+                        values={formData.aboutEmployer}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                    />
+                )
             }
             else if (formData.role === 'helper') {
                 // return (
@@ -241,6 +289,16 @@ const MultiStepForm = () => {
                 //         prevStep={prevStep}
                 //     />
                 // );
+                return (
+                    <Review
+                        formData={formData}
+                        prevStep={prevStep}
+                        handleSubmit={handleSubmit}
+                    />
+                );
+            }
+        case 8:
+            if (formData.role == "employer") {
                 return (
                     <Review
                         formData={formData}

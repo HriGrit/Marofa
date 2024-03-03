@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
-import MultiSelectComponent from '../MultiSelectComponent';
+import MultiSelectComponent from '../MultiSelectComponent1';
 
-const RequiredSkillsE = ({ prevStep, nextStep, value, handleChange }) => {
+const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
     const handleNextStep = () => {
         nextStep();
     };
@@ -12,37 +12,6 @@ const RequiredSkillsE = ({ prevStep, nextStep, value, handleChange }) => {
         prevStep();
     };
 
-    const LanguageOptions = [
-        { value: "English", label: "English", color: "#14415A" },
-        { value: "French", label: "French", color: "#14415A" },
-        { value: "Spanish", label: "Spanish", color: "#14415A" },
-    ];
-
-    const CookingSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" },
-    ];
-
-    const MainSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" }
-    ];
-
-    const OtherSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        {
-            value: "Cook", label: "Cook", color: "#14415A"
-        },
-        { value: "Nanny", label: "Nanny", color: "#14415A" }
-    ];
-
-    const [selectedLanguages, setSelectedLanguages] = useState([]);
-    const [selectedCookingSkills, setSelectedCookingSkills] = useState([]);
-    const [selectedMainSkills, setSelectedMainSkills] = useState([]);
-    const [selectedOtherSkills, setSelectedOtherSkills] = useState([]);
-    console.log(selectedLanguages);
     return (
         <>
             <Navbar />
@@ -53,7 +22,6 @@ const RequiredSkillsE = ({ prevStep, nextStep, value, handleChange }) => {
                 </div>
                 <hr className='h-1 bg-theme' />
 
-                {/*main component*/}
                 <div className="mb-4 mt-4">
                     <label className='text-xl font-semibold text-[#14415a]'>
                         Required Skils
@@ -62,30 +30,27 @@ const RequiredSkillsE = ({ prevStep, nextStep, value, handleChange }) => {
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Languages'}
-                                options={LanguageOptions}
-                                selectedOptions={selectedLanguages}
-                                setSelectedOptions={setSelectedLanguages} />
+                                handleChange={handleChange}
+                                toggle={0}
+                            />
                         </div>
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Cooking Skills'}
-                                options={CookingSkills}
-                                selectedOptions={selectedCookingSkills}
-                                setSelectedOptions={setSelectedCookingSkills} />
+                                handleChange={handleChange}
+                                toggle={1} />
                         </div>
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Main Skills'}
-                                options={MainSkills}
-                                selectedOptions={selectedMainSkills}
-                                setSelectedOptions={setSelectedMainSkills} />
+                                handleChange={handleChange}
+                                toggle={2} />
                         </div>
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Other Skills'}
-                                options={OtherSkills}
-                                selectedOptions={selectedOtherSkills}
-                                setSelectedOptions={setSelectedOtherSkills} />
+                                handleChange={handleChange}
+                                toggle={3} />
                         </div>
                     </div>
                 </div>
