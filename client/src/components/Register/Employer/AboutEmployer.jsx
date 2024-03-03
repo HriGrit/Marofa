@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../Navbar/navbar';
 import logo from '../../../assets/marofa-whitebg.svg';
 
-import "../../../css/SelectStyle.css"
+import "@/css/SelectStyle.CSS";
 
 const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
 
@@ -14,7 +14,6 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
         prevStep();
     };
 
-    // Handle change function specific for aboutEmployer
     const onChange = (field_name) => (event) => {
         handleChange("aboutEmployer", field_name)(event.target.value);
     };

@@ -1,0 +1,7 @@
+.custom-select {
+    background-image: url('../assets/SelectDrop.svg');
+    background-position: right 1rem center;
+    background-size: 16px;
+    background-repeat: no-repeat;
+  }
+  
