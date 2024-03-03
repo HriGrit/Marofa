@@ -59,16 +59,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
         prevStep();
     };
 
-    const handleCountryChange = (e) => {
-        setCountryid(e.target.value);
-        setStateid(''); // Reset state selection when country changes
-    };
-
-    const handleStateChange = (e) => {
-        handleChange("jobOfferedEmployer", "jobLocationCity");
-        setStateid(e.target.value);
-    };
-
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
@@ -79,7 +69,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                 </div>
                 <hr className='h-1 bg-theme' />
 
-                {/*main component*/}
                 <div className="mb-4 mt-4">
                     <label className='text-xl font-semibold text-[#14415a]'>
                         Job Offered
