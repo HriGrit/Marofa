@@ -33,7 +33,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                     <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Employer Type</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.EmployerType} onChange={handleChange("aboutEmployer", "EmployerType")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.EmployerType} onChange={handleChange("aboutEmployer", "EmployerType")} >
                                 <option value="select-Empolyer-Type">Select Employer Type</option>
                                 <option value="Family">Family</option>
                                 <option value="Single">Single</option>
@@ -42,7 +42,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Family Size</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.FamilySize} onChange={handleChange("aboutEmployer", "FamilySize")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.FamilySize} onChange={handleChange("aboutEmployer", "FamilySize")} >
                                 <option value="select-family-size">Select Family Size</option>
                                 <option value="1 Adult">1 Adult</option>
                                 <option value="2 Adults">2 Adults</option>
@@ -53,7 +53,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Nationality</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Nationality} onChange={handleChange("aboutEmployer", "Nationality")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Nationality} onChange={handleChange("aboutEmployer", "Nationality")} >
                                 <option value="select-nationality">Select Your Nationality</option>
                                 <option value="Saudi">Saudi</option>
                                 <option value="Egyptian">Egyptian</option>
@@ -63,7 +63,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Receive Notifications via Email</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.AlertViaEmail} onChange={handleChange("aboutEmployer", "AlertViaEmail")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.AlertViaEmail} onChange={handleChange("aboutEmployer", "AlertViaEmail")} >
                                 <option value="select-gender">Select Your Gender</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -71,7 +71,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Days Off Offered</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Holidays} onChange={handleChange("aboutEmployer", "Holidays")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Holidays} onChange={handleChange("aboutEmployer", "Holidays")} >
                                 <option value="Select-holidays">Select Holidays offerred</option>
                                 <option value="0 Days">0 Days</option>
                                 <option value="1 Day">1 Day</option>
@@ -81,7 +81,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Accommodation</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Accomodation} onChange={handleChange("aboutEmployer", "Accomodation")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Accomodation} onChange={handleChange("aboutEmployer", "Accomodation")} >
                                 <option value="select-accomodation">Select Accomodation Type</option>
                                 <option value="Live In">Live In</option>
                                 <option value="Live Out">Live Out</option>
@@ -89,7 +89,7 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Monthly Salary</label>
-                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Salary} onChange={handleChange("aboutEmployer", "Salary")} style={styles}>
+                            <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Salary} onChange={handleChange("aboutEmployer", "Salary")} >
                                 <option value="select-monthly-salary">Select Montly Salary</option>
                                 <option value="Negotiable">Negotiable</option>
                                 <option value="2000-3000">2000-3000</option>
