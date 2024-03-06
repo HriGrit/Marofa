@@ -147,17 +147,18 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
             </div>
         );
     } else if (toggle == 3) {
-        const { skillsOptions, setSelectedOptions } = useSkillsHooks();
+        const { skillsOptions, setskillsOptions } = useSkillsHooks();
 
         const handleSkillsChange = (selectedOptions, { action, option }) => {
+            console.log("yes");
             if (action === 'select-option' && option.value === 'select-all') {
-                setSelectedOptions(options.slice(1)); // select all options except 'Select All'
+                setskillsOptions(options.slice(1)); // select all options except 'Select All'
             } else if (action === 'deselect-option' && option.value === 'select-all') {
-                setSelectedOptions([]); // deselect all options
+                setskillsOptions([]); // deselect all options
             } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
-                setSelectedOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
+                setskillsOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
             } else {
-                setSelectedOptions(selectedOptions); // any other selection
+                setskillsOptions(selectedOptions); // any other selection
             }
         };
 
