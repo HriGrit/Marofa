@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { firestore, auth } from '../../utils/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-
+import toast, { Toaster } from 'react-hot-toast';
 //components for user input
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
@@ -142,24 +142,41 @@ const MultiStepForm = () => {
         });
     };
 
-
-
-
     const handleSubmit = async () => {
         if (!currentUser) {
-            console.error('No user is signed in.');
+            toast.error('No user is signed in.', {
+                duration: 4000,
+                position: 'top-right',
+            });
             return;
         }
 
+        const roleSpecificData = formData.role === 'Helper' ?
+            Object.keys(formData).reduce((acc, key) => {
+                if (key.endsWith('Helper') || key === 'role' || key === 'image') {
+                    acc[key] = formData[key];
+                }
+                return acc;
+            }, {}) :
+            Object.keys(formData).reduce((acc, key) => {
+                if (key.endsWith('Employer') || key === 'role' || key === 'image') {
+                    acc[key] = formData[key];
+                }
+                return acc;
+            }, {});
         try {
-            await addDoc(collection(firestore, 'users', currentUser.uid, 'formData'), {
-                ...formData,
-            });
+            // await addDoc(collection(firestore, 'users', formData.role, currentUser.uid, 'formData'), {
+            //     ...roleSpecificData,
+            // });
+            const docRef = doc(firestore, 'users', `${formData.role}/${currentUser.uid}/formData`);
+            await setDoc(docRef, { ...roleSpecificData });
+
             console.log('Data saved successfully!');
         } catch (error) {
             console.error('Error writing document: ', error);
         }
     };
+
 
     const nextStep = () => setStep((prev) => prev + 1);
     const prevStep = () => setStep((prev) => prev - 1);
@@ -315,6 +332,7 @@ const MultiStepForm = () => {
 
 const Review = ({ formData, prevStep, handleSubmit }) => (
     <div>
+        <Toaster />
         <h2>Review Your Information</h2>
         <pre>{JSON.stringify(formData, null, 2)}</pre>
         <button type="button" onClick={prevStep}>Back</button>
