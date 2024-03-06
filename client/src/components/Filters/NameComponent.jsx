@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useNameHook from '../../hooks/useNameHook';
+import { useNameHook } from '../../hooks/useHelperHook';
 
 const NameComponent = ({ placeholder, toggle }) => {
     if (!toggle) {

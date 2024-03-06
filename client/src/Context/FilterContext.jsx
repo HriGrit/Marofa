@@ -1,9 +1,45 @@
-import React from 'react'
+import React, { createContext, useState } from 'react';
 
-const FilterContext = () => {
+export const FilterContext = createContext();
+
+export const FilterProvider = ({ children }) => {
+    const [filter, setfilter] = useState({
+        location: '',
+        position: '',
+        startDate: null,
+        jobType: '',
+        contractStatus: '',
+        postedBy: '',
+        language: '',
+        mainSkill: '',
+    });
+
+    const setFilter = (filterName, value) => {
+        setfilter(prev => ({ ...prev, [filterName]: value }));
+    };
+
+    const resetFilter = () => {
+        setFilter({
+            location: '',
+            position: '',
+            startDate: null,
+            jobType: '',
+            contractStatus: '',
+            postedBy: '',
+            language: '',
+            mainSkill: '',
+        });
+    };
+
+    const contextValue = {
+        filter,
+        setFilter,
+        resetFilter
+    };
+
     return (
-        <div>FilterContext</div>
-    )
-}
-
-export default FilterContext
+        <FilterContext.Provider value={contextValue}>
+            {children}
+        </FilterContext.Provider>
+    );
+};
