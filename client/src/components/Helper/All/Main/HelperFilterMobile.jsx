@@ -4,16 +4,8 @@ import DateComponent from '../../../Filters/DateComponent';
 import { FiltersContext } from '../../../../Context/FiltersContext';
 
 import reload from '../../../../assets/reload.svg';
-import WorkType from './Filters/HelperWorkTypeFilter';
 
-import HelperLocationFilter from './Filters/HelperLocationFilter';
-import HelperLanguageFilter from './Filters/HelperLanguageFilter';
-import HelperNationalityFilter from './Filters/HelperNationalityFilter';
-import HelperSkillsFilter from './Filters/HelperSkillsFilter';
-import HelperExperienceFilter from './Filters/HelperExperienceFilter';
-import HelperAgeFilter from './Filters/HelperAgeFilter';
-import HelperGenderFilter from './Filters/HelperGenderFilter';
-import HelperNameFilter from './Filters/HelperNameFilter';
+import { HelperNameFilter, HelperAgeFilter, HelperExperienceFilter, HelperGenderFilter, HelperWorkTypeFilter, HelperLanguageFilter, HelperLocationFilter, HelperNationalityFilter, HelperSkillsFilter } from './Filters/HelperFilter';
 
 import cancel from '../../../../assets/cancel.svg';
 import "../../../../css/HelperFilterMobile.css"
@@ -46,7 +38,7 @@ const HelperFilterMobile = ({ setisPopUpOpen }) => {
 
                 <div className='space-y-4'>
                     <div>
-                        <WorkType placeholderText={"Job Type"} />
+                        <HelperWorkTypeFilter placeholderText={"Job Type"} />
                     </div>
                     <div>
                         <DateComponent placeholderText={"Start Date"} />
