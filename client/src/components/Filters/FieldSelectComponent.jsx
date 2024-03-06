@@ -1,7 +1,7 @@
 import React from 'react'
 
-import useWorkTypeHook from '../../hooks/useWorkTypeHook';
-import useGenderHook from '../../hooks/useGenderHook';
+import { useWorkTypeHook } from '../../hooks/useHelperHook';
+import { useGenderHook } from '../../hooks/useHelperHook';
 
 import HrLine from './HrLine';
 

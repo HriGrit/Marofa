@@ -4,29 +4,27 @@ import DateComponent from '../../../Filters/DateComponent';
 import { FiltersContext } from '../../../../Context/FiltersContext';
 
 import reload from '../../../../assets/reload.svg';
+import WorkType from './Filters/HelperWorkTypeFilter';
 
-import { HelperNameFilter, HelperAgeFilter, HelperExperienceFilter, HelperGenderFilter, HelperWorkTypeFilter, HelperLanguageFilter, HelperLocationFilter, HelperNationalityFilter, HelperSkillsFilter } from './Filters/HelperFilter';
+import HelperLocationFilter from './Filters/HelperLocationFilter';
+import HelperLanguageFilter from './Filters/HelperLanguageFilter';
+import HelperNationalityFilter from './Filters/HelperNationalityFilter';
+import HelperSkillsFilter from './Filters/HelperSkillsFilter';
+import HelperExperienceFilter from './Filters/HelperExperienceFilter';
+import HelperAgeFilter from './Filters/HelperAgeFilter';
+import HelperGenderFilter from './Filters/HelperGenderFilter';
+import HelperNameFilter from './Filters/HelperNameFilter';
 
-import cancel from '../../../../assets/cancel.svg';
-import "../../../../css/HelperFilterMobile.css"
-
-const HelperFilterMobile = ({ setisPopUpOpen }) => {
+const HelperFilter = () => {
     const { resetFilters } = useContext(FiltersContext);
 
     const handleOnReset = () => {
         resetFilters();
     }
 
-    const handleOnBackgroundClick = () => {
-        setisPopUpOpen(false);
-    }
-
     return (
-        <div className='fixed p-4 border border-theme shadow-lg rounded-md inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6' onClick={handleOnBackgroundClick}>
-            <div className='relative space-y-2 bg-white p-6 rounded-2xl shadow-lg w-3/4 max-h-[90vh] overflow-y-auto overflow-x-hidden border-4 border-theme hide-scrollbar' onClick={(e) => e.stopPropagation()}>
-                <div>
-                    <img src={cancel} alt='cancel' className='absolute right-4 w-7 h-7 cursor-pointer' onClick={handleOnBackgroundClick} />
-                </div>
+        <div className='hidden app:block w-[30%] p-4 ml-16 border border-theme shadow-lg bg-[#f6f6f6] rounded-md'>
+            <div className='space-y-2'>
                 <p className='text-2xl my-4'>I'm looking for</p>
                 <div className='flex flex-row justify-between'>
                     <p className='text-xl'>Filter</p>
@@ -38,7 +36,7 @@ const HelperFilterMobile = ({ setisPopUpOpen }) => {
 
                 <div className='space-y-4'>
                     <div>
-                        <HelperWorkTypeFilter placeholderText={"Job Type"} />
+                        <WorkType placeholderText={"Job Type"} />
                     </div>
                     <div>
                         <DateComponent placeholderText={"Start Date"} />
@@ -73,4 +71,4 @@ const HelperFilterMobile = ({ setisPopUpOpen }) => {
     );
 };
 
-export default HelperFilterMobile;
+export default HelperFilter;

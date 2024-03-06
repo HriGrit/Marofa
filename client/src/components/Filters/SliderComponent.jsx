@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactSlider from 'react-slider';
 
-import useExperienceHooks from '../../hooks/useExperienceHook'
-import useAgeHook from '../../hooks/useAgeHook';
+import { useExperienceHooks } from '../../hooks/useHelperHook'
+import { useAgeHook } from '../../hooks/useHelperHook';
 
 import "../../css/SliderComponent.css"
 

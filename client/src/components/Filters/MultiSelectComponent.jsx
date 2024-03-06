@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Select from "react-select";
 
-import useLocationHook from '../../hooks/useLocationHook';
-import useLanguageHooks from '../../hooks/useLanguageHooks';
-import useNationalityHook from '../../hooks/useNationalityHook';
-import useSkillsHooks from '../../hooks/useSkillsHooks';
+import { useLocationHook } from '../../hooks/useHelperHook';
+import { useLanguageHooks } from '../../hooks/useHelperHook';
+import { useNationalityHook } from '../../hooks/useHelperHook';
+import { useSkillsHooks } from '../../hooks/useHelperHook';
 
 const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
     const colorStyles = {
