@@ -6,7 +6,7 @@ import { getMonth, getYear } from 'date-fns'
 import '../../css/DateComponent.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import useDateHook from '../../hooks/useDateHook'
+import { useDateHook } from '../../hooks/useHelperHook'
 
 const DateComponent = ({ placeholderText }) => {
     const { startDate, setStartDate, resetStartDate } = useDateHook();

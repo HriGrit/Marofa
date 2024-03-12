@@ -38,22 +38,28 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (imageFile) {
-            const storageRef = ref(storage, `images/${formData.role}`);
-            try {
-                await uploadBytes(storageRef, imageFile);
-
-                const imageUrl = await getDownloadURL(storageRef);
-
-                setFormData({ ...formData, image: imageUrl });
-                toast.success('Image uploaded successfully');
-            } catch (error) {
-                console.error('Error uploading image: ', error);
-            }
-        } else {
+        if (!imageFile) {
             toast.error('Please upload an image');
+            return;
         }
-    }
+
+        const storageRef = ref(storage, `images/${formData.role}`);
+
+        toast.promise(
+            uploadBytes(storageRef, imageFile).then(() => {
+                return getDownloadURL(storageRef);
+            }),
+            {
+                loading: 'Uploading image...',
+                success: (imageUrl) => {
+                    setFormData({ ...formData, image: imageUrl });
+                    return 'Image uploaded successfully';
+                },
+                error: 'Error uploading image',
+            }
+        );
+    };
+
 
     const handleNext = async () => {
         // if (imageURL) {
