@@ -91,9 +91,9 @@ const MultiStepForm = () => {
             preferredJobLocation: '',
         },
         skillsSelectedByHelper: {
-            languages: '',
+            Languages: [],
 
-        }
+        },
     });
 
     useEffect(() => {
@@ -234,7 +234,7 @@ const MultiStepForm = () => {
                         nextStep={nextStep}
                         prevStep={prevStep}
                     />
-                )
+                );
             }
             else if (formData.role === 'helper') {
                 return (
@@ -256,7 +256,7 @@ const MultiStepForm = () => {
                         nextStep={nextStep}
                         prevStep={prevStep}
                     />
-                )
+                );
             }
             else if (formData.role === 'helper') {
                 return (
@@ -278,27 +278,21 @@ const MultiStepForm = () => {
                         nextStep={nextStep}
                         prevStep={prevStep}
                     />
-                )
+                );
             }
             else if (formData.role === 'helper') {
-                // return (
-                //     <SkillsByH
-                //         values={formData.skillsSelectedByHelper}
-                //         handleChange={handleChange}
-                //         nextStep={nextStep}
-                //         prevStep={prevStep}
-                //     />
-                // );
                 return (
-                    <Review
-                        formData={formData}
+                    <SkillsByH
+                        values={formData.skillsSelectedByHelper}
+                        handleChange={handleChange}
+                        nextStep={nextStep}
                         prevStep={prevStep}
-                        handleSubmit={handleSubmit}
                     />
+
                 );
             }
         case 8:
-            if (formData.role == "employer") {
+            {
                 return (
                     <Review
                         formData={formData}
