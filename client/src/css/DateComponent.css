@@ -1,5 +1,5 @@
 .react-datepicker__day-name {
-    color: black !important;
+    color: white !important;
 }
 
 .react-datepicker {
@@ -12,7 +12,7 @@
     font-size: medium;
     color: white;
     background: #14415a;
-    padding: 8px;
+    padding: 0px;
     margin-right: 100px;
     border-radius: 5px;
 }
@@ -44,6 +44,12 @@ input {
 
 .react-datepicker__header .react-datepicker__header--custom {
     background: #246e96;
+}
+
+.react-datepicker__month-select,
+.react-datepicker__year-select {
+    background-color: #246e96;
+    color: white;
 }
 
 .react-datepicker__month-select:hover,

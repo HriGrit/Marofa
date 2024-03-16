@@ -9,12 +9,6 @@ import DatePicker from "react-datepicker";
 const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
     const [startDate, setStartDate] = useState(null);
 
-    const handleDateChange = (date) => {
-        const formattedDate = date.toISOString().split('T')[0];
-        handleChange('professionalInfoHelper', 'jobStartDate')({
-            target: { value: formattedDate }
-        });
-    };
     return (
         <>
             <Navbar />
@@ -91,10 +85,11 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                         <select
                             id="preferredlocation"
                             value={values.preferredJobLocation}
-                            onChange={handleChange('professionalInfoHelper', 'preferredJobLocation')}
+                            onChange={handleChange('jobPreferenceHelper', 'preferredJobLocation')}
                             className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
-                            <option value="Saudi Arabia" selected>Saudi Arabia</option>
+                            <option value="" disabled>Select preferred job location</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
 
                         </select>
 
@@ -136,36 +131,11 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                             name="salary"
                             placeholder="Enter salary amount"
                             value={values.expectedSalary}
-                            onChange={handleChange('professionalInfoHelper', 'expectedSalary')}
+                            onChange={handleChange('jobPreferenceHelper', 'expectedSalary')}
                             className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
 
-
                         </input>
-
-                    </div>
-
-                    <div>
-
-                        <label htmlFor="jobstartdate"
-                            className="block mb-2 text-m font-normal text-[#14415a]">
-                            Employment start date
-                        </label>
-
-                        <div className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <DatePicker
-                                selected={startDate}
-                                showIcon={false}
-                                value={values.jobStartDate}
-                                onChange={handleDateChange}
-                                placeholderText={' YYYY-MM-DD'}
-                                dateFormat='dd/MM/yyyy'
-                                showMonthDropdown
-                                showYearDropdown
-                                disabledKeyboardNavigation
-                                dropdownMode="select"
-                            />
-                        </div>
 
                     </div>
 

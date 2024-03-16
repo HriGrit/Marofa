@@ -58,16 +58,16 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     </div>
 
                     <div>
-                        <label htmlFor="languages"
+                        <label htmlFor="jobtype"
                             className="block mb-2 text-m font-normal text-[#14415a]">
-                            Languages
+                            Employment type
                         </label>
 
                         <select
-                            id="languages"
+                            id="gender"
                             className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.gender}
-                            onChange={handleChange('skillsSelectedByHelper', 'jobType')}
+                            onChange={handleChange('professionalInfoHelper', 'jobType')}
                             required
                         >
                             <option value="" disabled>Select employment type</option>

@@ -85,10 +85,10 @@ const MultiStepForm = () => {
             Salary: "",
         },
         jobPreferenceHelper: {
-            accomodationPreference: '',
-            dayOffPreference: '',
-            expectedSalary: '',
-            preferredJobLocation: '',
+            accomodationPreference: "",
+            dayOffPreference: "",
+            expectedSalary: "",
+            preferredJobLocation: "",
         },
         skillsSelectedByHelper: {
             Languages: [],

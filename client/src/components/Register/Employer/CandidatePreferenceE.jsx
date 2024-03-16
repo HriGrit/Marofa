@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import MultiSelectComponent from '../MultiSelectComponent2';
+import '../../../css/style.css';
 
 const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
     const handleNextStep = () => {
@@ -11,7 +12,9 @@ const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-
+    onst[selected, setSelected] = useState([]);
+    const ArrowRenderer = ({ expanded }) => <>{expanded ? "🦉" : "🦚"}</>;
+    const CustomClearIcon = () => <div>🤘</div>;
     return (
         <>
             <Navbar />
@@ -31,6 +34,9 @@ const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Location'}
+                                ArrowRenderer={ArrowRenderer}
+                                ClearIcon={<CustomClearIcon />}
+                                ClearSelectedIcon={<CustomClearIcon />}
                                 handleChange={handleChange}
                                 toggle={0} />
                         </div>
