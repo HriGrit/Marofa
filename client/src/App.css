@@ -45,3 +45,27 @@
   font-weight: 500;
   /* Will use NeoSansArabicMedium.ttf */
 }
+
+.custom-phone-input .PhoneInputInput {
+  width: 100%;
+  height: 2.65rem;
+  /* Match the height of your email input */
+  padding-left: 6px;
+  /* Adjust based on the size of the country selector */
+  font-size: 0.875rem;
+  /* Match your form's font size */
+  border: 2px solid #ccc;
+  /* Match your form's border style */
+  border-radius: 9999px;
+  /* Match your form's border-radius */
+  background-color: #f9f9f9;
+  /* Match your form's background color */
+}
+
+.custom-phone-input .PhoneInputInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  /* Match your form's focus border color */
+  background-color: #fff;
+  /* Optional: change background color on focus */
+}
