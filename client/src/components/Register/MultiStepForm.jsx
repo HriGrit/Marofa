@@ -165,15 +165,22 @@ const MultiStepForm = () => {
                 return acc;
             }, {});
         try {
-            // await addDoc(collection(firestore, 'users', formData.role, currentUser.uid, 'formData'), {
-            //     ...roleSpecificData,
-            // });
-            const docRef = doc(firestore, 'users', `${formData.role}/${currentUser.uid}/formData`);
-            await setDoc(docRef, { ...roleSpecificData });
-
+            const docRef = await addDoc(collection(firestore, 'users', `${formData.role}`, 'free'), {
+                ...roleSpecificData,
+                uid: currentUser.uid,
+            });
+            console.log('Document written with ID: ', docRef.id);
+            toast.success('Data saved successfully!', {
+                duration: 4000,
+                position: 'top-right',
+            });
             console.log('Data saved successfully!');
         } catch (error) {
             console.error('Error writing document: ', error);
+            toast.error('Error writing document: ', {
+                duration: 4000,
+                position: 'top-right',
+            });
         }
     };
 

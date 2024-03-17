@@ -19,7 +19,7 @@ const HelperBody = () => {
                 </div>
                 <OrderHelpers onSortChange={setsortBy} />
             </div>
-            <div className='flex flex-row gap-6'>
+            <div className='flex flex-row gap-6 mt-4'>
                 <FiltersProvider>
                     <HelperFilter />
                 </FiltersProvider>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Helper from "../../../../assets/cardpic.svg"
 import location from "../../../../assets/location.svg"
@@ -6,11 +6,38 @@ import experiencestar from "../../../../assets/experiencestar.svg"
 import calender from "../../../../assets/calender.svg"
 import active from "../../../../assets/active.svg"
 
+
+import { firestore } from "../../../../utils/firebase";
+import { collection, getDocs } from 'firebase/firestore'
+
 const HelperCard = () => {
+    const [employers, setEmployers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const docRef = "users/employer/free";
+        const collectionRef = collection(firestore, docRef);
+
+        async function fetchUsers() {
+            try {
+                const querySnapshot = await getDocs(collectionRef);
+                const usersList = [];
+                querySnapshot.forEach((doc) => {
+                    usersList.push({ id: doc.id, ...doc.data() });
+                });
+                setEmployers(usersList);
+            } catch (error) {
+                console.error("Error fetching users: ", error);
+            }
+        }
+
+        fetchUsers();
+    }, []);
+    console.log(employers);
     return (
         <div className='flex flex-row p-2 border-2 shadow-lg rounded-md gap-6'>
             <div className='w-1/4'>
-                <div className="w-40 h-40 rounded-full bg-cover bg-center m-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${Helper})` }}></div>
+                <div className="w-40 h-40 rounded-full bg-cover bg-center m-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${employers[0].image})` }}></div>
             </div>
             <div className='space-y-2'>
                 <div>
