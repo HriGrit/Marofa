@@ -1,25 +1,28 @@
 import React, { useContext } from 'react';
 
-import DateComponent from '../../../Filters/DateComponent';
-import { FiltersContext } from '../../../../Context/FiltersContext';
+// import DateComponent from '../../../Filters/DateComponent';
+import { FilterContext } from '../../../../Context/FilterContext';
 
 import reload from '../../../../assets/reload.svg';
-import WorkType from './Filters/HelperWorkTypeFilter';
 
-import HelperLocationFilter from './Filters/HelperLocationFilter';
-import HelperLanguageFilter from './Filters/HelperLanguageFilter';
-import HelperNationalityFilter from './Filters/HelperNationalityFilter';
-import HelperSkillsFilter from './Filters/HelperSkillsFilter';
-import HelperExperienceFilter from './Filters/HelperExperienceFilter';
-import HelperAgeFilter from './Filters/HelperAgeFilter';
-import HelperGenderFilter from './Filters/HelperGenderFilter';
-import HelperNameFilter from './Filters/HelperNameFilter';
+import {
+    EmployerLanguageFilter,
+    EmployerLocationFilter,
+    EmployerSkillsFilter,
+    EmployerPostedByFilter,
+    EmployerContractStatusFilter,
+    EmployerJobTypeFilter,
+    EmployerStartDateFilter,
+    EmployerPositionFilter
+} from './Filters/EmployerFilter';
 
-const HelperFilter = () => {
-    const { resetFilters } = useContext(FiltersContext);
-
+const EmployerFilter = () => {
+    // const { resetFilter } = useContext(FiltersContext);
+    const { filter, resetFilter } = useContext(FilterContext);
     const handleOnReset = () => {
-        resetFilters();
+        console.log('resetting filter');
+        resetFilter();
+        console.log(filter);
     }
 
     return (
@@ -35,40 +38,39 @@ const HelperFilter = () => {
                 </div>
 
                 <div className='space-y-4'>
-                    <div>
-                        <WorkType placeholderText={"Job Type"} />
-                    </div>
-                    <div>
+                    {/* need to look into this */}
+                    {/* <div>
                         <DateComponent placeholderText={"Start Date"} />
+                    </div> */}
+                    <div>
+                        <EmployerPostedByFilter />
                     </div>
                     <div>
-                        <HelperGenderFilter />
+                        <EmployerContractStatusFilter />
                     </div>
                     <div>
-                        <HelperLocationFilter />
+                        <EmployerJobTypeFilter />
                     </div>
                     <div>
-                        <HelperSkillsFilter />
+                        <EmployerPositionFilter />
                     </div>
                     <div>
-                        <HelperAgeFilter />
+                        <EmployerLocationFilter />
                     </div>
                     <div>
-                        <HelperLanguageFilter />
+                        <EmployerSkillsFilter />
                     </div>
                     <div>
-                        <HelperNationalityFilter />
+                        <EmployerLanguageFilter />
                     </div>
+                    {/* 
                     <div>
-                        <HelperExperienceFilter />
-                    </div>
-                    <div>
-                        <HelperNameFilter />
-                    </div>
+                        <EmployerStartDateFilter />
+                    </div> */}
                 </div>
             </div>
         </div>
     );
 };
 
-export default HelperFilter;
+export default EmployerFilter;

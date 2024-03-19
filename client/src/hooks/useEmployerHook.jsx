@@ -2,68 +2,66 @@ import { useContext } from 'react'
 
 import { FilterContext } from '../Context/FilterContext'
 
-const useLocationHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useLocationHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        age: filters.location,
+        location: filter.location,
         setLocation: (event) => setFilter('location', event),
     }
 }
 
-const usePositionHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const usePositionHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        position: filters.position,
-        setPosition: (event) => setFilter('position', event),
+        jobPosition: filter.jobPosition,
+        setPosition: (event) => setFilter('jobPosition', event),
     }
 }
 
-const useStartDateHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useStartDateHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        startDate: filters.startDate,
+        startDate: filter.startDate,
         setStartDate: (event) => setFilter('startDate', event),
     }
 }
 
-const useJobTypeHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useJobTypeHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        jobType: filters.jobType,
+        jobType: filter.jobType,
         setJobType: (event) => setFilter('jobType', event),
     }
 }
 
-const useContractStatusHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useContractStatusHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        contractStatus: filters.contractStatus,
+        contractStatus: filter.contractStatus,
         setContractStatus: (event) => setFilter('contractStatus', event),
     }
 }
 
-const usePostedByHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const usePostedByHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        postedBy: filters.postedBy,
-        setPostedBy: (event) => setFilter('postedBy', event),
+        postBy: filter.postBy,
+        setPostBy: (event) => setFilter('postBy', event),
     }
 }
 
-const useLanguageHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useLanguageHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        language: filters.language,
+        language: filter.language,
         setLanguage: (event) => setFilter('language', event),
     }
 }
 
-const useMainSkillHook = () => {
-    const { filters, setFilter } = useContext(FilterContext);
+export const useMainSkillHook = () => {
+    const { filter, setFilter } = useContext(FilterContext);
     return {
-        mainSkill: filters.mainSkill,
-        setMainSkill: (event) => setFilter('mainSkill', event),
+        mainSkills: filter.mainSkills,
+        setMainSkill: (event) => setFilter('mainSkills', event),
     }
 }
-
-export default { useContractStatusHook, useJobTypeHook, useLanguageHook, useLocationHook, useMainSkillHook, usePostedByHook, usePositionHook, useStartDateHook }

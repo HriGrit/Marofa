@@ -5,13 +5,13 @@ export const FilterContext = createContext();
 export const FilterProvider = ({ children }) => {
     const [filter, setfilter] = useState({
         location: '',
-        position: '',
-        startDate: null,
+        jobPosition: '',
+        startDate: '',
         jobType: '',
         contractStatus: '',
-        postedBy: '',
+        postBy: '',
         language: '',
-        mainSkill: '',
+        mainSkills: '',
     });
 
     const setFilter = (filterName, value) => {
@@ -21,13 +21,13 @@ export const FilterProvider = ({ children }) => {
     const resetFilter = () => {
         setFilter({
             location: '',
-            position: '',
-            startDate: null,
+            jobPosition: '',
+            startDate: '',
             jobType: '',
             contractStatus: '',
-            postedBy: '',
+            postBy: '',
             language: '',
-            mainSkill: '',
+            mainSkills: '',
         });
     };
 

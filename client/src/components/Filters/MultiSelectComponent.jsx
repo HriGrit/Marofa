@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Select from "react-select";
 
-import { useLocationHook } from '../../hooks/useHelperHook';
-import { useLanguageHooks } from '../../hooks/useHelperHook';
-import { useNationalityHook } from '../../hooks/useHelperHook';
-import { useSkillsHooks } from '../../hooks/useHelperHook';
+import { useLocationHook, useLanguageHooks, useNationalityHook, useSkillsHooks } from '../../hooks/useHelperHook';
+
+import { useLocationHook as useEmployerLocationHook, useMainSkillHook, useLanguageHook, useContractStatusHook } from '../../hooks/useEmployerHook';
 
 const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
     const colorStyles = {
@@ -171,6 +170,127 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
                     options={options}
                     value={skillsOptions}
                     onChange={handleSkillsChange}
+                    isMulti
+                    styles={colorStyles}
+                    placeholder={placeholdertext}
+                />
+            </div>
+        );
+    } else if (toggle == 4) {
+        const { location, setLocation } = useEmployerLocationHook();
+
+        const handleChange = (selectedOptions, { action, option }) => {
+            if (action === 'select-option' && option.value === 'select-all') {
+                setLocation(options.slice(1));
+            } else if (action === 'deselect-option' && option.value === 'select-all') {
+                setLocation([]);
+            } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
+                setLocation(selectedOptions.filter(o => o.value !== 'select-all'));
+            } else {
+                setLocation(selectedOptions);
+            }
+        };
+
+        return (
+            <div className="relative inline-block w-full text-gray-700">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
+                    {placeholdertext}
+                </label>
+                <Select
+                    options={options}
+                    value={location}
+                    onChange={handleChange}
+                    isMulti
+                    styles={colorStyles}
+                    placeholder={placeholdertext}
+                />
+            </div>
+        );
+    } else if (toggle == 5) {
+        const { mainSkills, setMainSkill } = useMainSkillHook();
+
+        const handleSkillsChange = (selectedOptions, { action, option }) => {
+            if (action === 'select-option' && option.value === 'select-all') {
+                setMainSkill(options.slice(1));
+            } else if (action === 'deselect-option' && option.value === 'select-all') {
+                setMainSkill([]);
+            } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
+                setMainSkill(selectedOptions.filter(o => o.value !== 'select-all'));
+            } else {
+                setMainSkill(selectedOptions);
+            }
+        };
+
+        return (
+            <div className="relative inline-block w-full text-gray-700">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
+                    {placeholdertext}
+                </label>
+                <Select
+                    options={options}
+                    value={mainSkills}
+                    onChange={handleSkillsChange}
+                    isMulti
+                    styles={colorStyles}
+                    placeholder={placeholdertext}
+                />
+            </div>
+        );
+    } else if (toggle == 6) {
+        const { language, setLanguage } = useLanguageHook();
+
+        const handleLanguageChange = (selectedOptions, { action, option }) => {
+            if (action === 'select-option' && option.value === 'select-all') {
+                setLanguage(options.slice(1));
+            } else if (action === 'deselect-option' && option.value === 'select-all') {
+                setLanguage([]);
+            } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
+                setLanguage(selectedOptions.filter(o => o.value !== 'select-all'));
+            } else {
+                setLanguage(selectedOptions);
+            }
+        };
+
+        return (
+            <div className="relative inline-block w-full text-gray-700">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
+                    {placeholdertext}
+                </label>
+                <Select
+                    options={options}
+                    value={language}
+                    onChange={handleLanguageChange}
+                    isMulti
+                    styles={colorStyles}
+                    placeholder={placeholdertext}
+                />
+            </div>
+        );
+
+    } else if (toggle == 7) {
+        const { contractStatus, setContractStatus } = useContractStatusHook();
+
+        const handleContractStatusChange = (selectedOptions, { action, option }) => {
+            if (action === 'select-option' && option.value === 'select-all') {
+                setContractStatus(options.slice(1));
+            } else if (action === 'deselect-option' && option.value === 'select-all') {
+                setContractStatus([]);
+            } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
+                setContractStatus(selectedOptions.filter(o => o.value !== 'select-all'));
+            } else {
+                setContractStatus(selectedOptions);
+            }
+        };
+
+        return (
+            <div className="relative inline-block w-full text-gray-700">
+                <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">
+                    {placeholdertext}
+                </label>
+                <Select
+                    options={options}
+                    value={contractStatus}
+                    onChange={handleContractStatusChange}
                     isMulti
                     styles={colorStyles}
                     placeholder={placeholdertext}

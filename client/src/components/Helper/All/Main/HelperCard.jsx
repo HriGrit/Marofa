@@ -37,7 +37,7 @@ const HelperCard = () => {
     return (
         <div className='flex flex-row p-2 border-2 shadow-lg rounded-md gap-6'>
             <div className='w-1/4'>
-                <div className="w-40 h-40 rounded-full bg-cover bg-center m-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${employers[0].image})` }}></div>
+                <div className="w-40 h-40 rounded-full bg-cover bg-center m-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${employers[0]?.image})` }}></div>
             </div>
             <div className='space-y-2'>
                 <div>
