@@ -4,7 +4,7 @@ import Select from "react-select";
 import { useLocationHook, useLanguageHooks, useNationalityHook, useSkillsHooks } from '../../hooks/useHelperHook';
 
 import { useLocationHook as useEmployerLocationHook, useMainSkillHook, useLanguageHook, useContractStatusHook } from '../../hooks/useEmployerHook';
-
+//commit
 const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
     const colorStyles = {
         placeholder: (styles) => ({
