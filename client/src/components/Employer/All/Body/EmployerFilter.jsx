@@ -17,12 +17,9 @@ import {
 } from './Filters/EmployerFilter';
 
 const EmployerFilter = () => {
-    // const { resetFilter } = useContext(FiltersContext);
-    const { filter, resetFilter } = useContext(FilterContext);
+    const { resetFilter } = useContext(FilterContext);
     const handleOnReset = () => {
-        console.log('resetting filter');
         resetFilter();
-        console.log(filter);
     }
 
     return (

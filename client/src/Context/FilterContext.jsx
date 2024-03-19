@@ -19,7 +19,7 @@ export const FilterProvider = ({ children }) => {
     };
 
     const resetFilter = () => {
-        setFilter({
+        setfilter({
             location: '',
             jobPosition: '',
             startDate: '',
