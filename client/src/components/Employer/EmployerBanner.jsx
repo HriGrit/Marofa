@@ -4,9 +4,9 @@ const EmployerBanner = () => {
     return (
         <div className='bg-[#E6E6E6] rounded-lg'>
             <div className='p-6 w-[80%]'>
-                <p className='text-theme text-2xl font-bold pt-2'>Find Helpers in Saudi Arabia<hr className='h-1.5 bg-theme my-2' /></p>
+                <p className='text-theme text-2xl font-bold pt-2'>Available Jobs in Saudi Arabia for you<hr className='h-1.5 bg-theme my-2' /></p>
                 <div className=' font-neosans pt-1.5'>
-                    <p>More than one million Domestic Helpers or housemaids are currently working in Saudi Arabia in order to take care of your families or children. HelperPlace will allow you to connect and message with the best foreign domestic workers looking for a new employer. Easily check availability, skills and experiences and make the right choice!</p>
+                    <p>Find the most suitable job opportunities in Saudi Arabia. Check out our current openings for domestic helpers in Saudi Arabia. Contact and discuss with your future employer in only a few clicks. Direct Hire is a completely free service for any job seekers.</p>
                 </div>
             </div>
         </div>

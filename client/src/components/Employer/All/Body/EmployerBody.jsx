@@ -13,13 +13,13 @@ const EmployerBody = () => {
 
     return (
         <div className='mt-4'>
-            <div className='flex justify-between app:justify-end space-x-4 app:space-x-0'>
+            <div className='flex justify-between app:justify-end space-x-4 app:space-x-0  mx-16'>
                 <div className='block app:hidden'>
                     <FilterEmployers setisPopUpOpen={setisPopUpOpen} ispopUpOpen={ispopUpOpen} />
                 </div>
                 <OrderEmployers onSortChange={setsortBy} />
             </div>
-            <div className='flex flex-row gap-6'>
+            <div className='flex flex-row gap-6 mt-4'>
                 <FilterProvider>
                     <EmployerFilter />
                 </FilterProvider>

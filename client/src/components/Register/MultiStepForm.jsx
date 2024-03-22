@@ -92,7 +92,6 @@ const MultiStepForm = () => {
         },
         skillsSelectedByHelper: {
             Languages: [],
-
         },
     });
 
