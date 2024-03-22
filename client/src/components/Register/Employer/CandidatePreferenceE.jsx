@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import MultiSelectComponent from '../MultiSelectComponent2';
-import '../../../css/style.css';
 
 const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
     const handleNextStep = () => {
@@ -12,13 +11,11 @@ const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-    onst[selected, setSelected] = useState([]);
-    const ArrowRenderer = ({ expanded }) => <>{expanded ? "🦉" : "🦚"}</>;
-    const CustomClearIcon = () => <div>🤘</div>;
+
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
@@ -34,9 +31,6 @@ const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
                         <div>
                             <MultiSelectComponent
                                 placeholdertext={'Location'}
-                                ArrowRenderer={ArrowRenderer}
-                                ClearIcon={<CustomClearIcon />}
-                                ClearSelectedIcon={<CustomClearIcon />}
                                 handleChange={handleChange}
                                 toggle={0} />
                         </div>
@@ -91,7 +85,7 @@ const CandidatePreferenceE = ({ prevStep, nextStep, value, handleChange }) => {
                     <button onClick={handleNextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

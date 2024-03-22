@@ -16,6 +16,7 @@ import JobOfferedE from './Employer/JobOfferedE.jsx';
 import RequiredSkillsE from './Employer/RequiredSkillsE.jsx';
 import CandidatePreferenceE from './Employer/CandidatePreferenceE.jsx';
 import AboutEmployer from './Employer/AboutEmployer.jsx';
+import JobDescription from './Employer/JobDescription.jsx';
 
 
 const MultiStepForm = () => {
@@ -74,6 +75,10 @@ const MultiStepForm = () => {
             Age: [],
             Education: [],
             Experience: []
+        },
+        aboutJobEmployer: {
+            jobTitle: "",
+            jobDescription: "",
         },
         aboutEmployer: {
             EmployerType: "",
@@ -315,11 +320,21 @@ const MultiStepForm = () => {
                 );
             }
         case 8:
-            {
+            if (formData.role === 'employer') {
+                return (
+                    <JobDescription
+                        values={formData.aboutJobEmployer}
+                        handleChange={handleChange}
+                        prevStep={prevStep}
+                        submit={handleSubmit}
+                    />
+                );
+            } else if (formData.role === 'helper') {
                 return (
                     <Review
                         formData={formData}
                         prevStep={prevStep}
+                        handleChange={handleChange}
                         handleSubmit={handleSubmit}
                     />
                 );

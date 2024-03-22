@@ -22,16 +22,20 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
 
     useEffect(() => {
         const countryid = values?.jobLocationCountry;
-
+        console.log(countryid);
         if (countryid) {
             fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
                 .then((response) => response.json())
                 .then((data) => {
                     const countryObject = data.find((item) => {
+                        console.log('item:', item.id, "country", countryid);
+                        console.log(typeof (item.id), typeof (countryid));
+
                         return item.id === parseInt(countryid);
                     });
 
                     if (countryObject) {
+                        console.log('Found country object:', countryObject);
                         setStateList(countryObject);
                     } else {
                         console.log('Country object not found');
@@ -54,14 +58,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-
-    const [countryId, setCountryId] = useState(0);
-    const [stateId, setStateId] = useState(0);
-
-    useEffect(() => {
-        setCountryId(values.jobOfferedEmployer.jobLocationCountry);
-        setStateId(values.jobOfferedEmployer.jobLocationCity);
-    }, [countryId, stateId]);
 
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
