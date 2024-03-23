@@ -10,17 +10,17 @@ const EmployerCard = ({ user }) => {
     return (
         <div className='flex p-2 border-2 shadow-sm rounded-md gap-2 mr-16'>
             <div className='w-1/4 flex items-center'>
-                <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user[0]?.icon})` }}></div>
+                <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user.icon})` }}></div>
             </div>
             <div className='space-y-2'>
                 <div>
                     <p className='text-theme font-bold line-clamp-1'>{user.heading}</p>
                 </div>
                 <div className='flex gap-12'>
-                    <p>{user.jobType} | {user.nationality}</p>
+                    <p>{user.size} | {user.nationality}</p>
                     <div className='flex gap-2'>
                         <img src={location} alt="location" className='w-3' />
-                        <p className='text-theme font-semibold text-md mb-auto '>{user.location}</p>
+                        <p className='text-theme font-semibold text-md mb-auto '>{user.nationality}</p>
                     </div>
                 </div>
                 <div className='mb-4'>
@@ -29,11 +29,11 @@ const EmployerCard = ({ user }) => {
                 <div className='flex space-x-6'>
                     <div className='flex items-center gap-2'>
                         <img src={experiencestar} alt="experiencestar" className='w-5' />
-                        <p className='mt-1'>{user.jobType}</p>
+                        <p className='mt-1'>{user.jobPosition}  | {user.jobType}</p>
                     </div>
                     <div className='flex items-center gap-1'>
                         <img src={calender} alt="calender" className='w-5 mr-2' />
-                        <p className='my-auto mt-1'>From {user.startDate} | {user.jobDuration}</p>
+                        <p className='my-auto mt-1'>Before {user.startDate}</p>
                     </div>
                     <div className='flex items-center gap-1'>
                         <img src={active} alt="active" className='w-5' />

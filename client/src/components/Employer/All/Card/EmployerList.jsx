@@ -28,30 +28,34 @@ const EmployerList = () => {
         fetchUsers();
     }, []);
     console.log(employers);
+    var user = [];
     const checkOut = (employers) => {
         employers.map((item, index) => {
-            console.log(item);
+            user[index] = {
+                icon: item.image,
+                heading: item.aboutJobEmployer?.jobTitle,
+                size: item.aboutEmployer?.FamilySize,
+                nationality: item.aboutEmployer?.Nationality,
+                // location: "Saudi Arabia",
+                need: item.aboutJobEmployer?.jobDescription,
+                jobPosition: item.jobOfferedEmployer.jobPosition,
+                jobType: item.jobOfferedEmployer.jobType,
+                // jobDuration: "Full Time",
+                // startDate: "14th Jan 2024",
+                status: "Active"
+            }
         })
     };
+
     checkOut(employers);
 
-
-
-    const user = {
-        icon: "icon",
-        heading: "Saudi Muslim family looking for a Muslim domestic helper.",
-        size: "5 adults",
-        nationality: "Saudi Arabian",
-        location: "Saudi Arabia",
-        need: "Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.Salam, We are looking for a Muslim domestic helper who is willing to work in Saudi Arabia nearby Madinah.",
-        jobType: "Domestic Employer",
-        jobDuration: "Full Time",
-        startDate: "14th Jan 2024",
-        status: "Active"
-    }
     return (
-        <div className='w-full'>
-            <EmployerCard user={user} />
+        <div className='w-full flex flex-col gap-12'>
+            {user.map((item, index) => {
+                return (
+                    <EmployerCard user={item} />
+                );
+            })}
         </div>
     )
 }
