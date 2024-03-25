@@ -7,7 +7,7 @@ import SvgIcon3 from '../../../assets/svg3.svg'; // Update with the correct path
 
 const RegisterSection = () => {
     return (
-        <>
+        <div id="steps">
             <Box sx={{ textAlign: 'center', py: 8, backgroundColor: "#F5F7FA" }}>
                 <Typography variant="h4" component="div" sx={{ mb: 4 }}>
                     3 simple & easy steps to find your helper
@@ -42,7 +42,7 @@ const RegisterSection = () => {
             <Typography variant="h4" color="#14415A" sx={{ my: 4, textAlign: "center" }}>
                 "Discover Your Ideal Helper in Saudi Arabia with Ease and Speed"
             </Typography>
-        </>
+        </div>
     );
 };
 

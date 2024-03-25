@@ -3,7 +3,7 @@ import "./FAQ.css";
 import dropdown from "../../../assets/dropdown.svg";
 const FAQ = () => {
     return (
-        <div>
+        <div id="faq">
             <div className='dimmed-bg space-y-12 pb-20'>
                 <div className='text-center pt-20 space-y-3 '>
                     <h2 className=' text-md'>Need Help?</h2>

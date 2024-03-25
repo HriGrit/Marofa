@@ -26,6 +26,7 @@
 		"react-multi-select-component": "^4.3.4",
 		"react-phone-number-input": "^3.3.7",
 		"react-router-dom": "^6.20.1",
+		"react-router-hash-link": "^2.4.3",
 		"react-select": "^5.8.0",
 		"react-slider": "^2.0.6",
 		"uuid": "^9.0.1"

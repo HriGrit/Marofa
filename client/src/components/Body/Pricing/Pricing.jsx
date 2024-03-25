@@ -4,7 +4,7 @@ import "./Pricing.css";
 
 const Pricing = () => {
     return (
-        <div class="dimmed-bg h-fit pb-32 p-8 md:flex flex-col gap-4" >
+        <div class="dimmed-bg h-fit pb-32 p-8 md:flex flex-col gap-4" id="pricing" >
             <div className='text-center pt-20 space-y-3'>
                 <h2 className=' text-md'>Pricing</h2>
                 <h4 className=' text-4xl'>Our Plans</h4>

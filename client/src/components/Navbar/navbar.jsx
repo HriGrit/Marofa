@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
-import logo from '../../assets/marofa-logo-dark.svg';
+import { signOut as firebaseSignOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 import { useAuth } from '../../Context/AuthContext';
 import GetStartedContent from '../Register/GetStartedContent';
 
-import { signOut as firebaseSignOut } from 'firebase/auth';
-import { auth } from '../../utils/firebase';
+import logo from '../../assets/marofa-logo-dark.svg';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -86,16 +87,37 @@ function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">Profiles</a>
+                            <Link to="/#profiles"
+                                scroll={(el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                                className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
+                            >
+                                Profiles
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">Pricing</a>
+                            <Link
+                                to="/#pricing"
+                                scroll={(el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                                className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">
+                                Pricing
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">FAQs</a>
+                            <Link
+                                to="/#faq"
+                                scroll={(el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                                className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
+                            >
+                                FAQ
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">How it works</a>
+                            <Link
+                                to="/#steps"
+                                scroll={(el) => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                                className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]">
+                                How it works
+                            </Link>
                         </li>
                     </ul>
                 </div>
