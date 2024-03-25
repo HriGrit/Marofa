@@ -66,6 +66,7 @@ import EmployerCard from './EmployerCard';
 
 import { firestore } from "../../../../utils/firebase";
 import { collection, getDocs } from 'firebase/firestore';
+import SkeletonEmployerCard from './SkeletonEmployerCard';
 
 const EmployerList = () => {
     const [employers, setEmployers] = useState([]);
@@ -76,25 +77,24 @@ const EmployerList = () => {
         const collectionRef = collection(firestore, docRef);
 
         async function fetchUsers() {
-            setLoading(true); // Start loading
-            // try {
-            //     const querySnapshot = await getDocs(collectionRef);
-            //     const usersList = querySnapshot.docs.map(doc => ({
-            //         id: doc.id,
-            //         ...doc.data(),
-            //         // Transform any other necessary data here
-            //     }));
-            //     setEmployers(usersList);
-            // } catch (error) {
-            //     console.error("Error fetching users: ", error);
-            // }
-            // setLoading(false); // Stop loading
+            setLoading(true);
+            try {
+                const querySnapshot = await getDocs(collectionRef);
+                const usersList = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                    // Transform any other necessary data here
+                }));
+                setEmployers(usersList);
+            } catch (error) {
+                console.error("Error fetching users: ", error);
+            }
+            setLoading(false); // Stop loading
         }
 
         fetchUsers();
     }, []);
 
-    // Transform employer data just before rendering to keep it close to where it's used
     const users = employers.map((employer) => ({
         id: employer.id,
         icon: employer.image,
@@ -104,14 +104,13 @@ const EmployerList = () => {
         need: employer.aboutJobEmployer?.jobDescription,
         jobPosition: employer.jobOfferedEmployer.jobPosition,
         jobType: employer.jobOfferedEmployer.jobType,
-        status: "Active" // Assuming this is static for now
-        // Add more properties if needed
+        status: "Active"
     }));
 
     return (
         <div className='w-full flex flex-col gap-12'>
             {loading ? (
-                <EmployerCard user={0} /> // Display a loading indicator while loading
+                <SkeletonEmployerCard />
             ) : (
                 users.map((item) => (
                     <EmployerCard key={item.id} user={item} />
