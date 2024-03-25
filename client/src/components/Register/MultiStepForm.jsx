@@ -155,7 +155,7 @@ const MultiStepForm = () => {
             return;
         }
 
-        const roleSpecificData = formData.role === 'Helper' ?
+        const roleSpecificData = formData.role === 'helper' ?
             Object.keys(formData).reduce((acc, key) => {
                 if (key.endsWith('Helper') || key === 'role' || key === 'image') {
                     acc[key] = formData[key];

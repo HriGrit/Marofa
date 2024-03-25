@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import Employer from "../../../../assets/cardpic.svg"
 import location from "../../../../assets/location.svg"
 import experiencestar from "../../../../assets/experiencestar.svg"
 import calender from "../../../../assets/calender.svg"

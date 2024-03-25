@@ -39,10 +39,12 @@ function Navbar() {
     return (
         <nav className="position-sticky border-gray-200 bg-[#14415a] p-2">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
-                <a className="flex items-center space-x-0 rtl:space-x-reverse">
-                    <img src={logo} className="h-[40px]" alt="MAROFA Logo" />
-                    <span className="self-center font-semibold text-white">MAROFA</span>
-                </a>
+                <Link to="/">
+                    <div className="flex items-center space-x-0 rtl:space-x-reverse">
+                        <img src={logo} className="h-[40px]" alt="MAROFA Logo" />
+                        <span className="self-center font-semibold text-white">MAROFA</span>
+                    </div>
+                </Link>
                 <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
                     {currentUser ? (
                         <div className=' cursor-pointer outline-none flex flex-row gap-4'>

@@ -8,7 +8,7 @@ const AllEmployers = () => {
     return (
         <div>
             <Navbar />
-            <div>
+            <div className='m-4'>
                 <EmployerBanner />
                 <EmployerBody />
             </div>
