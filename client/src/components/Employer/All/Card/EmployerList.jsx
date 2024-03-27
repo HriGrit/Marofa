@@ -49,7 +49,7 @@ const EmployerList = () => {
                 <>
                     <SkeletonEmployerCard />
                     <SkeletonEmployerCard />
-                    <SkeletonEmployerCard />
+                    {/* <SkeletonEmployerCard /> */}
                 </>
             ) : (
                 users.map((item) => (
