@@ -33,6 +33,7 @@ const HelperList = () => {
     // console.log(helpers);
 
     const users = helpers.map((helper) => ({
+        id: helper.id,
         icon: helper.image,
         name: helper.personalInfoHelper?.firstName + " " + helper.personalInfoHelper?.lastName,
         age: helper.personalInfoHelper?.dob,

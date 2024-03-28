@@ -5,7 +5,10 @@ import experiencestar from "../../../../assets/experiencestar.svg"
 import calender from "../../../../assets/calender.svg"
 import active from "../../../../assets/active.svg"
 
+import { useNavigate } from 'react-router-dom'
+
 const EmployerCard = ({ user }) => {
+    const navigate = useNavigate();
     const [load, setLoad] = useState(true);
 
     useEffect(() => {
@@ -14,8 +17,12 @@ const EmployerCard = ({ user }) => {
         }
     }, [user]);
 
+    const handleClick = () => {
+        navigate(`/employers/${user.id}`);
+    }
+
     return (
-        <div className={`flex p-2 border-2 shadow-sm rounded-md mr-16 gap-4`}>
+        <div className={`flex p-2 border-2 shadow-sm rounded-md mr-16 gap-4`} onClick={handleClick}>
             <div className='max-w-1/4 flex items-center'>
                 <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user.icon})` }}></div>
             </div>
