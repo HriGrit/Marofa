@@ -71,14 +71,28 @@ const EmployerCardSingle = ({ employerId }) => {
         fetchUser();
     }, []);
 
-    const userDetails = user.map((employer) => ({
-        id: employer.id,
-        icon: employer.image,
-        heading: employer.aboutJobEmployer?.Accomodation,
-        nationality: employer.aboutEmployer?.Nationality,
+    const userDetails = {
+        id: user.id,
+        icon: user.image,
+        heading: user.aboutJobEmployer?.jobTitle,
+        need: user.aboutJobEmployer?.jobDescription,
+        nationality: user.aboutEmployer?.Nationality,
         size: "Family",
-        members: employer.aboutEmployer?.FamilySize,
-    }));
+        members: user.aboutEmployer?.FamilySize,
+        language: user.skillsRequiredEmployer?.languages,
+        experience: user.candidatePreferenceEmployer?.Experience,
+        mainSkills: user.skillsRequiredEmployer?.mainSkills,
+        salary: user.aboutEmployer?.Salary,
+        accomodation: user.aboutEmployer?.Accomodation,
+        country: user.jobOfferedEmployer?.jobLocationCountry,
+        city: user.jobOfferedEmployer?.jobLocationCity,
+        jobPosition: user.jobOfferedEmployer?.jobPosition,
+        jobType: user.jobOfferedEmployer?.jobType,
+        date: user.jobOfferedEmployer?.jobStartDate,
+        holiday: user.aboutEmployer?.Holidays,
+        contract: user.candidatePreferenceEmployer?.Contract
+    };
+
 
     if (!userDetails) return <div>No user found.</div>;
 
@@ -87,7 +101,7 @@ const EmployerCardSingle = ({ employerId }) => {
             {loading ? (<SkeletonEmployerCardSingle />) : (<div className='border-2 shadow-md'>
                 <div className='flex gap-5 p-6 pl-12'>
                     <div className=''>
-                        <img src={userDetails.icon} alt="icon" className='w-full h-full rounded-[100%] border-2' />
+                        <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${userDetails.icon})` }}></div>
                     </div >
                     <div className='w-full space-y-1'>
                         <div>
@@ -97,7 +111,7 @@ const EmployerCardSingle = ({ employerId }) => {
                             <p>{userDetails.nationality} | {userDetails.size} | with {userDetails.members}</p>
                         </div>
                         <div className='flex justify-between'>
-                            <p className='my-auto'>Posted {userDetails.time} hours ago</p>
+                            {/* <p className='my-auto'>Posted {userDetails.time} hours ago</p> */}
                             <button className='px-6 py-2 bg-[#123750] text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto'>
                                 Apply
                             </button>
@@ -115,7 +129,7 @@ const EmployerCardSingle = ({ employerId }) => {
                         </div>
                         <div className='flex gap-2'>
                             <img src={location} alt="location" className='w-4' />
-                            <p className='my-auto'>{userDetails.city}, {userDetails.country}</p>
+                            <p className='my-auto'>{userDetails.city} ,{userDetails.country}</p>
                         </div>
                         <div className='flex gap-2'>
                             <img src={salary} alt="location" className='w-4' />
@@ -137,11 +151,11 @@ const EmployerCardSingle = ({ employerId }) => {
                         </div>
                         <div className='flex gap-2'>
                             <img src={experience} alt="experience" className='w-4' />
-                            <p className='my-auto'>Required Experience: {userDetails.min_experience} - {userDetails.max_experience}</p>
+                            <p className='my-auto'>Required Experience: {userDetails.experience} years</p>
                         </div>
                         <div className='flex gap-2'>
                             <img src={holiday} alt="holiday" className='w-4' />
-                            <p className='my-auto'>Days Off Required: {userDetails.holiday}</p>
+                            <p className='my-auto'>Days Off Given: {userDetails.holiday}</p>
                         </div>
                     </div>
                 </div>
