@@ -98,6 +98,9 @@ const MultiStepForm = () => {
         skillsSelectedByHelper: {
             Languages: [],
         },
+        Applications: {
+            Id: "",
+        }
     });
 
     useEffect(() => {
