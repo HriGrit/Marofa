@@ -99,6 +99,21 @@ const MultiStepForm = () => {
             Accomodation: "",
             Salary: "",
         },
+<<<<<<< HEAD
+=======
+        jobPreferenceHelper: {
+            accomodationPreference: "",
+            dayOffPreference: "",
+            expectedSalary: "",
+            preferredJobLocation: "",
+        },
+        skillsSelectedByHelper: {
+            Languages: [],
+        },
+        Applications: {
+            Id: "",
+        }
+>>>>>>> 1b884b1eeb43eb3df9534f80d1bcd9f2cbf68f7b
     });
 
     useEffect(() => {

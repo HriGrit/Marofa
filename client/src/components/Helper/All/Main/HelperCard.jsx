@@ -5,7 +5,10 @@ import experiencestar from "../../../../assets/experiencestar.svg"
 import calender from "../../../../assets/calender.svg"
 import active from "../../../../assets/active.svg"
 
+import { useNavigate } from 'react-router-dom'
+
 const HelperCard = ({ user }) => {
+    const navigate = useNavigate();
     const [load, setLoad] = useState(true);
     console.log(user);
     useEffect(() => {
@@ -14,8 +17,12 @@ const HelperCard = ({ user }) => {
         }
     }, [user]);
 
+    const handleClick = () => {
+        navigate(`/helpers/${user.id}`);
+    }
+
     return (
-        <div className='flex flex-row p-2 border-2 shadow-lg rounded-md gap-6'>
+        <div className='flex flex-row p-2 border-2 shadow-lg rounded-md gap-6 cursor-pointer' onClick={handleClick}>
             <div className='max-w-1/4 flex items-center'>
                 <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user.icon})` }}></div>
             </div>

@@ -18,63 +18,82 @@ import skills from "../../../assets/Employer/Single/mainSkills.svg"
 import SkeletonEmployerCardSingle from './SkeletonEmployerCardSingle';
 
 const EmployerCardSingle = ({ employerId }) => {
-    const lastTime = 2;
-    const [userDetails, setUserDetails] = useState({
-        id: "1",
-        icon: icon,
-        heading: "Senior Software Engineer",
-        size: "family",
-        members: "5",
-        nationality: "Canadian",
-        city: "City",
-        country: "Country",
-        need: "Looking for a seasoned developer with experience in React and Node.js",
-        jobPosition: "Senior Developer",
-        jobType: "Full-time",
-        status: "Active",
-        time: "2",
-        salary: "2500",
-        accomodation: "To be discussed",
-        holiday: "To be discussed",
-        date: "14 Jan 2025",
-        contract: "Any Situtation",
-        min_experience: "2",
-        max_experience: "10",
-        language: ["English", "Arabic"],
-        mainSkills: ["Housekeeping", "Teen Care"]
-    },);
+    const [user, setUser] = useState({});
+    // const [userDetails, setUserDetails] = useState({
+    //     id: "1",
+    //     icon: icon,
+    //     heading: "Senior Software Engineer",
+    //     size: "family",
+    //     members: "5",
+    //     nationality: "Canadian",
+    //     city: "City",
+    //     country: "Country",
+    //     need: "Looking for a seasoned developer with experience in React and Node.js",
+    //     jobPosition: "Senior Developer",
+    //     jobType: "Full-time",
+    //     status: "Active",
+    //     time: "2",
+    //     salary: "2500",
+    //     accomodation: "To be discussed",
+    //     holiday: "To be discussed",
+    //     date: "14 Jan 2025",
+    //     contract: "Any Situtation",
+    //     min_experience: "2",
+    //     max_experience: "10",
+    //     language: ["English", "Arabic"],
+    //     mainSkills: ["Housekeeping", "Teen Care"]
+    // },);
     const [loading, setLoading] = useState(true);
 
     const userId = employerId;
 
-    // React.useEffect(() => {
-    //     const docRef = doc(firestore, "users/employer/free", userId);
+    React.useEffect(() => {
+        const docRef = doc(firestore, "users/employer/free", userId);
 
-    //     const fetchUser = async () => {
-    //         setLoading(true);
-    //         try {
-    //             const docSnap = await getDoc(docRef);
-    //             if (docSnap.exists()) {
-    //                 setUserDetails({ id: docSnap.id, ...docSnap.data() });
-    //             } else {
-    //                 console.log("No such document!");
-    //             }
-    //         } catch (error) {
-    //             console.error("Error fetching user: ", error);
-    //         }
-    //         setLoading(false);
-    //     };
-
-    //     fetchUser();
-    // }, [userId]);
-
-    console.log(userDetails);
-    useEffect(() => {
-        setTimeout(() => {
+        const fetchUser = async () => {
+            setLoading(true);
+            try {
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const list = docSnap.data();
+                    console.log("here ", list);
+                    setUser(list);
+                    // setUser({ id: docSnap.id, ...docSnap.data() });
+                } else {
+                    console.log("No such document!");
+                }
+            } catch (error) {
+                console.error("Error fetching user: ", error);
+            }
             setLoading(false);
-        }, 5000);
+        };
+
+        fetchUser();
     }, []);
-    // if (loading) return <div>Loading...</div>;
+
+    const userDetails = {
+        id: user.id,
+        icon: user.image,
+        heading: user.aboutJobEmployer?.jobTitle,
+        need: user.aboutJobEmployer?.jobDescription,
+        nationality: user.aboutEmployer?.Nationality,
+        size: "Family",
+        members: user.aboutEmployer?.FamilySize,
+        language: user.skillsRequiredEmployer?.languages,
+        experience: user.candidatePreferenceEmployer?.Experience,
+        mainSkills: user.skillsRequiredEmployer?.mainSkills,
+        salary: user.aboutEmployer?.Salary,
+        accomodation: user.aboutEmployer?.Accomodation,
+        country: user.jobOfferedEmployer?.jobLocationCountry,
+        city: user.jobOfferedEmployer?.jobLocationCity,
+        jobPosition: user.jobOfferedEmployer?.jobPosition,
+        jobType: user.jobOfferedEmployer?.jobType,
+        date: user.jobOfferedEmployer?.jobStartDate,
+        holiday: user.aboutEmployer?.Holidays,
+        contract: user.candidatePreferenceEmployer?.Contract
+    };
+
+
     if (!userDetails) return <div>No user found.</div>;
 
     return (
@@ -82,17 +101,17 @@ const EmployerCardSingle = ({ employerId }) => {
             {loading ? (<SkeletonEmployerCardSingle />) : (<div className='border-2 shadow-md'>
                 <div className='flex gap-5 p-6 pl-12'>
                     <div className=''>
-                        <img src={icon} alt="icon" className='w-full h-full rounded-[100%] border-2' />
+                        <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${userDetails.icon})` }}></div>
                     </div >
                     <div className='w-full space-y-1'>
                         <div>
                             <h2 className='text-theme font-[600] line-clamp-1 tracking-wide text-[24px]'>{userDetails.heading}</h2>
                         </div>
                         <div>
-                            <p>{userDetails.nationality} | {userDetails.size} | with {userDetails.members} adults | {userDetails.members} - members</p>
+                            <p>{userDetails.nationality} | {userDetails.size} | with {userDetails.members}</p>
                         </div>
                         <div className='flex justify-between'>
-                            <p className='my-auto'>Posted {userDetails.time} hours ago</p>
+                            {/* <p className='my-auto'>Posted {userDetails.time} hours ago</p> */}
                             <button className='px-6 py-2 bg-[#123750] text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto'>
                                 Apply
                             </button>
@@ -110,7 +129,7 @@ const EmployerCardSingle = ({ employerId }) => {
                         </div>
                         <div className='flex gap-2'>
                             <img src={location} alt="location" className='w-4' />
-                            <p className='my-auto'>{userDetails.city}, {userDetails.country}</p>
+                            <p className='my-auto'>{userDetails.city} ,{userDetails.country}</p>
                         </div>
                         <div className='flex gap-2'>
                             <img src={salary} alt="location" className='w-4' />
@@ -132,11 +151,11 @@ const EmployerCardSingle = ({ employerId }) => {
                         </div>
                         <div className='flex gap-2'>
                             <img src={experience} alt="experience" className='w-4' />
-                            <p className='my-auto'>Required Experience: {userDetails.min_experience} - {userDetails.max_experience}</p>
+                            <p className='my-auto'>Required Experience: {userDetails.experience} years</p>
                         </div>
                         <div className='flex gap-2'>
                             <img src={holiday} alt="holiday" className='w-4' />
-                            <p className='my-auto'>Days Off Required: {userDetails.holiday}</p>
+                            <p className='my-auto'>Days Off Given: {userDetails.holiday}</p>
                         </div>
                     </div>
                 </div>
