@@ -4,29 +4,14 @@ import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import { MultiSelect } from 'react-multi-select-component';
 
-const SkillsByH = ({ values, handleChange, nextStep, prevStep }) => {
-    const skillsOptions = [
-        { label: 'Cooking', value: 'cooking' },
-        { label: 'Cleaning', value: 'cleaning' },
-        { label: 'Driving', value: 'driving' },
-    ];
-
-
-    const [selectedSkills, setSelectedSkills] = useState([]);
-
-    // Mock handleChangeMultiSelect function. Replace with your actual function logic.
-    const handleChangeMultiSelect = (section, field) => (selectedValues) => {
-        // Update the parent component's state here
-        console.log(`Update ${section} ${field} with`, selectedValues);
-        // Example: handleChange(section, field, selectedValues);
-    };
-
-    const handleSkillsChange = (selectedOptions) => {
-        setSelectedSkills(selectedOptions); // Update local state
-        const selectedValues = selectedOptions.map(option => option.value);
-        // Assuming handleChangeMultiSelect correctly updates the parent state
-        handleChangeMultiSelect('skillsSelectedByHelper', 'Languages')(selectedValues);
-    };
+    const SkillsByH = ({ prevStep, nextStep, values, handleChange }) => {
+        const handleNextStep = () => {
+            nextStep();
+        };
+    
+        const handlePrevStep = () => {
+            prevStep();
+        };
     return (
         <>
             <Navbar />
@@ -52,7 +37,7 @@ const SkillsByH = ({ values, handleChange, nextStep, prevStep }) => {
                         <MultiSelect
                             options={skillsOptions}
                             value={selectedSkills} // Ensure this is mapped correctly from props
-                            onChange={handleSkillsChange} // Use the handler function
+                            onChange={handleChange} // Use the handler function
                             labelledBy="Select Skills"
                         />
                     </div>

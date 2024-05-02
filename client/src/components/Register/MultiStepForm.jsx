@@ -31,20 +31,6 @@ const MultiStepForm = () => {
             altMobileNo: '',
             waMobileNo: '',
         },
-        contactDetailsEmployer: {
-            mobileNo: '',
-            email: '',
-            altMobileNo: '',
-            waMobileNo: '',
-        },
-        jobOfferedEmployer: {
-            jobLocationCountry: '',
-            jobLocationCity: '',
-            jobStartDate: '',
-            jobFlexibility: '',
-            jobType: '',
-            jobPosition: '',
-        },
         personalInfoHelper: {
             firstName: '',
             lastName: '',
@@ -60,6 +46,30 @@ const MultiStepForm = () => {
             jobStartDate: '',
             currentWorkStatus: '',
         },
+        jobPreferenceHelper: {
+            accomodationPreference: "",
+            dayOffPreference: "",
+            expectedSalary: "",
+            preferredJobLocation: "",
+        },
+        skillsSelectedByHelper: {
+            Languages: [],
+        },
+        contactDetailsEmployer: {
+            mobileNo: '',
+            email: '',
+            altMobileNo: '',
+            waMobileNo: '',
+        },
+        jobOfferedEmployer: {
+            jobLocationCountry: '',
+            jobLocationCity: '',
+            jobStartDate: '',
+            jobFlexibility: '',
+            jobType: '',
+            jobPosition: '',
+        },
+        
         skillsRequiredEmployer: {
             languages: [],
             cookingSkills: [],
@@ -88,15 +98,6 @@ const MultiStepForm = () => {
             Holidays: "",
             Accomodation: "",
             Salary: "",
-        },
-        jobPreferenceHelper: {
-            accomodationPreference: "",
-            dayOffPreference: "",
-            expectedSalary: "",
-            preferredJobLocation: "",
-        },
-        skillsSelectedByHelper: {
-            Languages: [],
         },
     });
 
@@ -312,7 +313,7 @@ const MultiStepForm = () => {
                 return (
                     <SkillsByH
                         values={formData.skillsSelectedByHelper}
-                        handleChange={handleChange}
+                        handleChange={handleChangeMultiSelect}
                         nextStep={nextStep}
                         prevStep={prevStep}
                     />

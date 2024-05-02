@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import MultiSelectComponent from '../MultiSelectComponent1';
+import "../../../css/style.css"
+import CustomArrowSVG from "../../../assets/darkdropdown.svg"
 
 const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
     const handleNextStep = () => {
@@ -27,28 +29,31 @@ const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
                         Required Skils
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
-                        <div>
+                    <div>
                             <MultiSelectComponent
-                                placeholdertext={'Languages'}
+                                placeholdertext={''}
                                 handleChange={handleChange}
                                 toggle={0}
+                                
+                                  
+                                   
                             />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={'Cooking Skills'}
+                                placeholdertext={''}
                                 handleChange={handleChange}
                                 toggle={1} />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={'Main Skills'}
+                                placeholdertext={''}
                                 handleChange={handleChange}
                                 toggle={2} />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={'Other Skills'}
+                                placeholdertext={''}
                                 handleChange={handleChange}
                                 toggle={3} />
                         </div>

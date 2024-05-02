@@ -101,3 +101,36 @@ input {
 .react-datepicker__year-dropdown--scrollable {
   color: #121822;
 }
+
+.css-ia5g2l-control {
+  border-radius: 100px !important;
+}
+.css-1ar1130-control{
+  border-radius: 100px !important;
+}
+
+.css-1xc3v61-indicatorContainer,.css-15lsz6c-indicatorContainer{ 
+  color: #f8f9fa; 
+  border-radius: 100px !important;
+  background-color: black;
+  /* background-image: url('../assets/darkdropdown.svg'); */
+  size: 20px;
+  height: 20px;
+  width: 20px;
+  display: flex; /* Added for centering content, if necessary */
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+  margin-right: 10px;
+}
+
+.css-1u9des2-indicatorSeparator{
+  margin-right: 15px;
+}
+
+.css-tj5bde-Svg{
+ padding:0;
+}
+
+.css-art2ul-ValueContainer2{
+
+}
