@@ -69,7 +69,7 @@ const MultiStepForm = () => {
             jobType: '',
             jobPosition: '',
         },
-        
+
         skillsRequiredEmployer: {
             languages: [],
             cookingSkills: [],
@@ -99,8 +99,6 @@ const MultiStepForm = () => {
             Accomodation: "",
             Salary: "",
         },
-<<<<<<< HEAD
-=======
         jobPreferenceHelper: {
             accomodationPreference: "",
             dayOffPreference: "",
@@ -113,7 +111,6 @@ const MultiStepForm = () => {
         Applications: {
             Id: "",
         }
->>>>>>> 1b884b1eeb43eb3df9534f80d1bcd9f2cbf68f7b
     });
 
     useEffect(() => {
