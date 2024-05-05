@@ -3,7 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import 'react-phone-number-input/style.css';
-import '../../../css/style.css';
+// import '../../../css/style.css';
 import PhoneInput from 'react-phone-number-input';
 
 const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
@@ -112,32 +112,36 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
                             class="block mb-2 text-m font-normal text-[#14415a]">
                             Phone number
                         </label>
-                        <PhoneInput
-                            id="phone-number"
-                            className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 phone"
-                            placeholder="123-456-7890"
-                            required
-                            limitMaxLength="9"
-                            value={values.mobileNo}
-                            onChange={handleMobileNoChange}
-                            defaultCountry="SA"
-                        />
+                        <div className='custom-phone-input'>
+                            <PhoneInput
+                                id="phone-number"
+                                className='input-custom'
+                                placeholder="123-456-7890"
+                                required
+                                limitMaxLength="9"
+                                value={values.mobileNo}
+                                onChange={handleMobileNoChange}
+                                defaultCountry="SA"
+                            />
+                        </div>
                     </div>
                     <div>
                         <label for="phone"
                             class="block mb-2 text-m font-normal text-[#14415a]">
                             Alternate phone number <span className='font-thin'>(optional)</span>
                         </label>
-                        <PhoneInput
-                            id="alt-phone-number"
-                            className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 phone"
-                            placeholder="123-456-7890"
-                            required
-                            limitMaxLength="9"
-                            value={values.altMobileNo}
-                            onChange={handleAltMobileNoChange}
-                            defaultCountry="SA"
-                        />
+                        <div className='custom-phone-input'>
+                            <PhoneInput
+                                id="alt-phone-number"
+                                className="input-custom"
+                                placeholder="123-456-7890"
+                                required
+                                limitMaxLength="9"
+                                value={values.altMobileNo}
+                                onChange={handleAltMobileNoChange}
+                                defaultCountry="SA"
+                            />
+                        </div>
                     </div>
 
                     <div>
@@ -145,16 +149,18 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
                             class="block mb-2 text-m font-normal text-[#14415a]">
                             WhatsApp phone number <span className='font-thin'>(optional)</span>
                         </label>
-                        <PhoneInput
-                            id="alt-phone-number"
-                            className="border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 phone"
-                            placeholder="123-456-7890"
-                            required
-                            limitMaxLength="9"
-                            value={values.waMobileNo}
-                            onChange={handleWaMobileNoChange}
-                            defaultCountry="SA"
-                        />
+                        <div className='custom-phone-input'>
+                            <PhoneInput
+                                id="alt-phone-number"
+                                className="input-custom"
+                                placeholder="123-456-7890"
+                                required
+                                limitMaxLength="9"
+                                value={values.waMobileNo}
+                                onChange={handleWaMobileNoChange}
+                                defaultCountry="SA"
+                            />
+                        </div>
                     </div>
                 </form>
                 <div className='flex flex-row justify-between mt-6'>

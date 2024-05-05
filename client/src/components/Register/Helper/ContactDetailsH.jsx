@@ -4,16 +4,17 @@ import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
+
 const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const [errors, setErrors] = useState({});
 
     const validatePhoneNumber = (phone, isPrimary = true) => {
         if (isPrimary && !phone) {
-            return 'Required'; // Primary phone is required
+            return 'Required';
         } else if (phone && phone.replace(/\D/g, "").length < 10) {
             return 'Invalid phone number, must be at least 10 digits';
         }
-        return ''; // Return an empty string if there's no error
+        return '';
     };
 
 
@@ -33,7 +34,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
     };
 
     const handleAltPhoneChange = (phone) => {
-        const error = validatePhoneNumber(phone, false); // Note the 'false' indicating it's not the primary number
+        const error = validatePhoneNumber(phone, false);
         if (error) {
             setErrors({ ...errors, altMobileNo: error });
         } else {
@@ -48,7 +49,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
     };
 
     const handleWaPhoneChange = (phone) => {
-        const error = validatePhoneNumber(phone, false); // Note the 'false' indicating it's not the primary number
+        const error = validatePhoneNumber(phone, false);
         if (error) {
             setErrors({ ...errors, waMobileNo: error });
         } else {

@@ -29,31 +29,28 @@ const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
                         Required Skils
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
-                    <div>
+                        <div>
                             <MultiSelectComponent
-                                placeholdertext={''}
+                                placeholdertext={'Languages'}
                                 handleChange={handleChange}
                                 toggle={0}
-                                
-                                  
-                                   
                             />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={''}
+                                placeholdertext={'Cooking Skills'}
                                 handleChange={handleChange}
                                 toggle={1} />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={''}
+                                placeholdertext={'Main Skills'}
                                 handleChange={handleChange}
                                 toggle={2} />
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={''}
+                                placeholdertext={'Other Skills'}
                                 handleChange={handleChange}
                                 toggle={3} />
                         </div>

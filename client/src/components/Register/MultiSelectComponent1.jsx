@@ -58,21 +58,24 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
     };
 
     const colorStyles = {
+        dropdownIndicator: (provided) => ({
+            ...provided,
+            color: 'black'
+        }),
         placeholder: (styles) => ({
             ...styles,
-            color: '#ccc', // Light grey color for the placeholder text.
-            fontStyle: 'italic', // If you want the placeholder text to be italicized.
-            padding: '6px',
+            color: '#ccc',
+            fontStyle: 'italic',
+            padding: '8px',
             fontSize: '18px',
         }),
-        // control: (styles) => ({ ...styles, backgroundColor: "white", borderRadius: "10px" }),
         control: (styles) => ({
             ...styles,
             backgroundColor: "white",
             borderRadius: "10px",
             borderColor: '#14415A',
-            outline: 'none',  // Remove outline
-            boxShadow: 'none',  // Optionally remove box-shadow if present
+            outline: 'none',
+            boxShadow: 'none',
         }),
         option: (styles, { data, isDisabled, isFocused, isSelected }) => {
             return { ...styles, color: data.color, borderRadius: "10px" };
@@ -83,11 +86,17 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
                 backgroundColor: data.color,
                 color: "#fff",
                 borderRadius: "10px",
+                fontSize: "15px",
+                padding: "2px 6px",
             };
         },
+        clearIndicator: (provided) => ({
+            ...provided,
+            color: 'black',
+        }),
         multiValueLabel: (styles, { data }) => ({
             ...styles,
-            color: "#fff",
+            color: "#ffff",
             borderRadius: "10px 0 0 10px",
         }),
         multiValueRemove: (styles, { data }) => ({

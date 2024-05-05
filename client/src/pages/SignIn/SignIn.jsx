@@ -8,15 +8,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import { Button } from '@mui/material';
 import { useState } from 'react';
+
 import GoogleImg from '../../assets/google.png';
-// import { initializeApp } from "firebase/app";
+
+
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from '../../utils/firebase';
-
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-
-
 import logo from "../../assets/marofa-whitebg.png";
 
 import { useNavigate } from 'react-router-dom';
@@ -133,8 +130,8 @@ const SignIn = () => {
                     </div>
                     <form class='flex flex-col items-center p-0'>
                         <div class='form-group mt-5 mb-4 w-100 signInOr'>
-                            <Button type="button" class=" alignitems-center bg-white hover:bg-[#e6e6e6] focus:ring-1 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center me-2 mb-2"
-                                onClick={signInWithGoogle}><img src={GoogleImg} />
+                            <Button type="button" class=" alignitems-center bg-white hover:bg-[#e6e6e6] focus:ring-1 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center me-2 mb-2 space-x-2"
+                                onClick={signInWithGoogle}><img src={GoogleImg} className='w-10 h-10' />
                                 <p class="text-[#14415a]">Sign In with Google</p> </Button>
                             <div class="flex items-center justify-center w-full">
                                 <hr class="w-64 h-px my-8 bg-[#14415A] border-0" />
