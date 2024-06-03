@@ -11,7 +11,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../utils/firebase';
 
-import logo from "../../assets/marofa-whitebg.png";
+import logo from "../../assets/marofa-whitebg.svg";
 import GoogleImg from '../../assets/google.png';
 
 const auth = getAuth(app);

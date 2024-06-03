@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/marofa-whitebg.png";
+import logo from "../../assets/marofa-whitebg.svg";
 import emplogo from "../../assets/employerlogo.png";
 import helperlogo from "../../assets/helperlogo.png";
 import Navbar from '../../components/Navbar/navbar';

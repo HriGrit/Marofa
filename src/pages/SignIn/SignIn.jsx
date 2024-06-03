@@ -14,7 +14,7 @@ import GoogleImg from '../../assets/google.png';
 
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from '../../utils/firebase';
-import logo from "../../assets/marofa-whitebg.png";
+import logo from "../../assets/marofa-whitebg.svg";
 
 import { useNavigate } from 'react-router-dom';
 

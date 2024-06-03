@@ -8,7 +8,7 @@ import { auth } from '../../utils/firebase';
 import { useAuth } from '../../Context/AuthContext';
 import GetStartedContent from '../Register/GetStartedContent';
 
-import logo from '../../assets/marofa-logo-dark.svg';
+import logo from '../../assets/marofa.svg';
 
 function Navbar() {
     const navigate = useNavigate();
