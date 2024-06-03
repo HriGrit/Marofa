@@ -15,12 +15,13 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
             target: { value: formattedDate }
         });
     };
+    
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
             <Toaster />
 
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
 
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16 color-[#14415a]" alt="MAROFA Logo" />
@@ -44,7 +45,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="years of experience"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.yearsOfExperience}
                             onChange={handleChange('professionalInfoHelper', 'yearsOfExperience')}
                             required
@@ -65,7 +66,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="gender"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.gender}
                             onChange={handleChange('professionalInfoHelper', 'jobType')}
                             required
@@ -85,7 +86,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                             Employment start date
                         </label>
 
-                        <div className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <div className="bg-white text-gray-900 rounded-full focus:ring-blue-500 focus:border-blue-500 block">
                             <DatePicker
                                 selected={startDate}
                                 showIcon={false}
@@ -112,7 +113,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                             id="currentworkstatus"
                             value={values.currentWorkStatus}
                             onChange={handleChange('professionalInfoHelper', 'currentWorkStatus')}
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
                             <option value="" disabled>Select your current work status</option>
                             <option value="Finished contract">Finished contract</option>
@@ -136,7 +137,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

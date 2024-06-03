@@ -8,6 +8,7 @@ import SkeletonEmployerCard from './SkeletonEmployerCard';
 const EmployerList = () => {
     const [employers, setEmployers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [auth, setAuth] = useState(false);
 
     useEffect(() => {
         const docRef = "users/employer/free";
@@ -23,7 +24,10 @@ const EmployerList = () => {
                 }));
                 setEmployers(usersList);
             } catch (error) {
-                console.error("Error fetching users: ", error);
+                if (error.code === "permission-denied") {
+                    setAuth(true);
+                    console.error("User does not have permission to access this data");
+                }
             }
             setLoading(false);
         }
@@ -45,6 +49,9 @@ const EmployerList = () => {
 
     return (
         <div className='w-full flex flex-col gap-12'>
+            {auth ?  <div className='text-red-400 font-bold text-2xl m-auto'>
+                Sign in to view the Employers List
+            </div> : null}
             {loading ? (
                 <>
                     <SkeletonEmployerCard />

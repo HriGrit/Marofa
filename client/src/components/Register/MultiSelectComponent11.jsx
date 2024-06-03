@@ -31,7 +31,7 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
         { value: "Cook", label: "Cook", color: "#14415A" },
         { value: "Nanny", label: "Nanny", color: "#14415A" }
     ];
-
+    
     let options;
     let field;
     switch (toggle) {
@@ -55,6 +55,10 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
             options = PersonalitySkills;
             field = "personalitySkills";
             break;
+        case 5:
+            options = MainSkills;
+            field = "Skills";
+            break;
         default:
             options = [];
             field = "";
@@ -64,7 +68,11 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
 
     const handleSkillsChange = (newSelectedOptions) => {
         setSelectedOptions(newSelectedOptions);
-        handleChange("skillsRequiredEmployer", field)(newSelectedOptions);
+        if (toggle === 5) {
+            handleChange("workExperienceHelper", field)(newSelectedOptions);
+        } else {
+            handleChange("skillsSelectedByHelper", field)(newSelectedOptions);
+        }
     };
 
     const colorStyles = {
@@ -122,19 +130,19 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
     };
 
     return (
-        <div className="relative inline-block w-full text-gray-700">
-            <label className="block text-md font-medium text-gray-700">
-                {placeholdertext}
-            </label>
-            <Select
-                options={options}
-                value={selectedOptions}
-                onChange={handleSkillsChange}
-                isMulti
-                styles={colorStyles}
-                placeholder={placeholdertext}
-            />
-        </div>
+      <div className="relative inline-block w-full text-gray-700 space-y-2">
+        <label className="block text-md font-medium text-gray-700">
+          {placeholdertext}
+        </label>
+        <Select
+          options={options}
+          value={selectedOptions}
+          onChange={handleSkillsChange}
+          isMulti
+          styles={colorStyles}
+          placeholder={placeholdertext}
+        />
+      </div>
     );
 };
 

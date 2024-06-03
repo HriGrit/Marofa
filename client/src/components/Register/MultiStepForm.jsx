@@ -17,6 +17,9 @@ import RequiredSkillsE from './Employer/RequiredSkillsE.jsx';
 import CandidatePreferenceE from './Employer/CandidatePreferenceE.jsx';
 import AboutEmployer from './Employer/AboutEmployer.jsx';
 import JobDescription from './Employer/JobDescription.jsx';
+import WorkExperienceH from './Helper/WorkExperienceH.jsx';
+import EducationH from './Helper/EducationH.jsx';
+import DescriptionH from './Helper/DescriptionH.jsx';
 
 
 const MultiStepForm = () => {
@@ -46,15 +49,6 @@ const MultiStepForm = () => {
             jobStartDate: '',
             currentWorkStatus: '',
         },
-        jobPreferenceHelper: {
-            accomodationPreference: "",
-            dayOffPreference: "",
-            expectedSalary: "",
-            preferredJobLocation: "",
-        },
-        skillsSelectedByHelper: {
-            Languages: [],
-        },
         contactDetailsEmployer: {
             mobileNo: '',
             email: '',
@@ -68,13 +62,6 @@ const MultiStepForm = () => {
             jobFlexibility: '',
             jobType: '',
             jobPosition: '',
-        },
-
-        skillsRequiredEmployer: {
-            languages: [],
-            cookingSkills: [],
-            mainSkills: [],
-            otherSkills: [],
         },
         candidatePreferenceEmployer: {
             Location: [],
@@ -99,6 +86,9 @@ const MultiStepForm = () => {
             Accomodation: "",
             Salary: "",
         },
+        aboutHelper:{
+            Text: "",
+        },
         jobPreferenceHelper: {
             accomodationPreference: "",
             dayOffPreference: "",
@@ -106,7 +96,23 @@ const MultiStepForm = () => {
             preferredJobLocation: "",
         },
         skillsSelectedByHelper: {
-            Languages: [],
+            languages: [],
+            cookingSkills: [],
+            mainSkills: [],
+            otherSkills: [],
+        },
+        workExperienceHelper: {
+            Experience: "",
+            Skills: "",
+            Country: "",
+            StartDate: "",
+            ReferenceLetter: "",
+        },
+        educationHelper: {
+            LevelofEducation: "",
+            Completed: "",
+            Duration: "",
+            Country: ""
         },
         Applications: {
             Id: "",
@@ -192,6 +198,7 @@ const MultiStepForm = () => {
                 position: 'top-right',
             });
             console.log('Data saved successfully!');
+            window.location.href = '/';
         } catch (error) {
             console.error('Error writing document: ', error);
             toast.error('Error writing document: ', {
@@ -343,14 +350,37 @@ const MultiStepForm = () => {
                     />
                 );
             } else if (formData.role === 'helper') {
-                return (
-                    <Review
-                        formData={formData}
+                return(
+                    <WorkExperienceH
+                        values={formData.workExperienceHelper}
                         prevStep={prevStep}
                         handleChange={handleChange}
-                        handleSubmit={handleSubmit}
+                        handleChanges={handleChangeMultiSelect}
+                        nextStep={nextStep}
                     />
-                );
+                )
+            } 
+        case 9: 
+            if (formData.role === 'helper') {
+                return (
+                    <EducationH
+                        values={formData.educationHelper}
+                        handleChange={handleChange}
+                        prevStep={prevStep}
+                        nextStep={nextStep}
+                        />
+                )
+            }
+        case 10:
+            if (formData.role === 'helper') {
+                return (
+                    <DescriptionH
+                        values={formData.aboutHelper}
+                        handleChange={handleChange}
+                        prevStep={prevStep}
+                        submit={handleSubmit}
+                        />
+                )
             }
         default:
             return <div>Unknown step</div>;

@@ -3,7 +3,7 @@ import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import MultiSelectComponent from '../MultiSelectComponent1';
 import "../../../css/style.css"
-import CustomArrowSVG from "../../../assets/darkdropdown.svg"
+// import CustomArrowSVG from "../../../assets/darkdropdown.svg"
 
 const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
     const handleNextStep = () => {
@@ -13,8 +13,8 @@ const RequiredSkillsE = ({ prevStep, nextStep, values, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-
-    return (
+    
+    return (    
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
             <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">

@@ -1,54 +1,69 @@
 import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
-import { MultiSelect } from 'react-multi-select-component';
+import MultiSelectComponent from '../MultiSelectComponent11';
+import "../../../css/style.css"
 
-    const SkillsByH = ({ prevStep, nextStep, values, handleChange }) => {
-        const handleNextStep = () => {
-            nextStep();
-        };
+const SkillsByH = ({ prevStep, nextStep, values, handleChange }) => {
     
-        const handlePrevStep = () => {
-            prevStep();
-        };
-    return (
-        <>
-            <Navbar />
-            <Toaster />
+    const handleNextStep = () => {
+        nextStep();
+    };
 
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+    const handlePrevStep = () => {
+        prevStep();
+    };
+
+    return (
+        <div className='h-[100vh] flex flex-col justify-between'>
+            <Navbar />
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
-                    <span className="self-center text-xl font-semibold">MAROFA</span>
+                    <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
                 </div>
-
                 <hr className='h-1 bg-theme' />
 
-                <div className='pt-5 text-xl font-semibold'>
-                    <p>Select your Skills</p>
+                <div className="mb-4 mt-4">
+                    <label className='text-xl font-semibold text-[#14415a]'>
+                        Your Skills
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
+                        <div>
+                            <MultiSelectComponent
+                                placeholdertext={'Languages'}
+                                handleChange={handleChange}
+                                toggle={0}
+                            />
+                        </div>
+                        <div>
+                            <MultiSelectComponent
+                                placeholdertext={'Cooking Skills'}
+                                handleChange={handleChange}
+                                toggle={1} />
+                        </div>
+                        <div>
+                            <MultiSelectComponent
+                                placeholdertext={'Main Skills'}
+                                handleChange={handleChange}
+                                toggle={2} />
+                        </div>
+                        <div>
+                            <MultiSelectComponent
+                                placeholdertext={'Other Skills'}
+                                handleChange={handleChange}
+                                toggle={3} />
+                        </div>
+                    </div>
                 </div>
 
-                <form className="my-4 mx-4">
-                    <div>
-                        <label htmlFor="languages" className="block mb-2 text-m font-normal">
-                            Languages
-                        </label>
-                        <MultiSelect
-                            options={skillsOptions}
-                            value={selectedSkills} // Ensure this is mapped correctly from props
-                            onChange={handleChange} // Use the handler function
-                            labelledBy="Select Skills"
-                        />
-                    </div>
-                </form>
-
-                <div className='flex justify-between mt-6'>
-                    <button onClick={prevStep} className='bg-theme text-white rounded-full px-4 py-2'>Back</button>
-                    <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
+                {/* // footer for prev and next button */}
+                <div className='flex flex-row justify-between mt-6'>
+                    <button onClick={handlePrevStep} className='bg-theme text-white rounded-full px-4 py-2'>Back</button>
+                    <button onClick={handleNextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

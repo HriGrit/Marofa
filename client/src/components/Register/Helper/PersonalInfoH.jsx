@@ -31,11 +31,11 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
     }, []);
 
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <Toaster />
+            {/* <Toaster /> */}
 
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16 color-[#14415a]" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
@@ -53,7 +53,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <input type="text"
                             id="firstName"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             placeholder="John"
                             pattern="[A-Za-z]"
                             required
@@ -71,7 +71,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <input type="text"
                             id="lastName"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             placeholder="Smith"
                             pattern="[A-Za-z]"
                             required
@@ -90,7 +90,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="gender"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.gender}
                             onChange={handleChange('personalInfoHelper', 'gender')}
                             required
@@ -111,7 +111,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="religion"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.religion}
                             onChange={handleChange('personalInfoHelper', 'religion')}
                             required
@@ -139,7 +139,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                             id="nationality"
                             value={values.nationality}
                             onChange={handleChange('personalInfoHelper', 'nationality')}
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
                             <option value="" disabled>Select your Nationality</option>
                             {countriesList.map((country) => (
@@ -160,7 +160,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="educationlvl"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.educationLvl}
                             onChange={handleChange('personalInfoHelper', 'educationLvl')}
                             required
@@ -184,7 +184,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                             Date of Birth
                         </label>
 
-                        <div className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <div className="bg-[#ffffff]  text-gray-900 rounded-full focus:ring-blue-500 focus:border-blue-500">
                             <DatePicker
                                 selected={startDate}
                                 showIcon={false}
@@ -198,10 +198,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                                 dropdownMode="select"
                             />
                         </div>
-
                     </div>
-
-
                 </form>
 
                 <div className='flex flex-row justify-between mt-6'>
@@ -209,7 +206,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import "react-datepicker/dist/react-datepicker.css";
 import '../../../css/style.css';
-import DatePicker from "react-datepicker";
 
 const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
     const [startDate, setStartDate] = useState(null);
 
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <Toaster />
+            {/* <Toaster /> */}
 
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
 
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16 color-[#14415a]" alt="MAROFA Logo" />
@@ -38,7 +37,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="preferredaccomodationtype"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.accomodationPreference}
                             onChange={handleChange('jobPreferenceHelper', 'accomodationPreference')}
                             required
@@ -62,7 +61,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <select
                             id="gender"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.gender}
                             onChange={handleChange('professionalInfoHelper', 'jobType')}
                             required
@@ -86,7 +85,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                             id="preferredlocation"
                             value={values.preferredJobLocation}
                             onChange={handleChange('jobPreferenceHelper', 'preferredJobLocation')}
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
                             <option value="" disabled>Select preferred job location</option>
                             <option value="Saudi Arabia">Saudi Arabia</option>
@@ -101,7 +100,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                         </label>
                         <select
                             id="dayOffPreference"
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             value={values.dayOffPreference}
                             onChange={handleChange('jobPreferenceHelper', 'dayOffPreference')}
                             required
@@ -132,7 +131,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                             placeholder="Enter salary amount"
                             value={values.expectedSalary}
                             onChange={handleChange('jobPreferenceHelper', 'expectedSalary')}
-                            className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
 
                         </input>
@@ -146,7 +145,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                     <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

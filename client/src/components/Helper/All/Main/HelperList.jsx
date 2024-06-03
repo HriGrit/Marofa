@@ -8,6 +8,7 @@ import SkeletonHelperCard from './SkeletonHelperCard';
 const HelperList = () => {
     const [helpers, setHelpers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [auth, setAuth] = useState(false);
 
     useEffect(() => {
         const docRef = "users/helper/free";
@@ -23,7 +24,12 @@ const HelperList = () => {
                 }));
                 setHelpers(usersList);
             } catch (error) {
+                if (error.code === "permission-denied") {
+                    setAuth(true);
+                    console.error("User does not have permission to access this data");
+                } else {
                 console.error("Error fetching users: ", error);
+                }
             }
             setLoading(false);
         }
@@ -49,6 +55,9 @@ const HelperList = () => {
 
     return (
         <div className='w-full flex flex-col gap-12'>
+            {auth ?  <div className=' text-red-400 font-bold text-2xl m-auto'>
+                Sign in to view the Helpers List
+            </div> : null}
             {loading ? (
                 <>
                     <SkeletonHelperCard />

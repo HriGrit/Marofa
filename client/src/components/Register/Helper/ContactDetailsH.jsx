@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import 'react-phone-number-input/style.css';
@@ -17,14 +17,13 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
         return '';
     };
 
-
     const handlePrimaryPhoneChange = (phone) => {
         const error = validatePhoneNumber(phone, true);
-        if (error) {
-            setErrors({ ...errors, mobileNo: error });
-        } else {
-            setErrors((prevErrors) => ({ ...prevErrors, mobileNo: '' }));
-        }
+        setErrors({
+            mobileNo: error,
+            altMobileNo: '',
+            waMobileNo: ''
+        });
         setFormData({
             ...formData, contactDetailsHelper: {
                 ...formData.contactDetailsHelper,
@@ -35,11 +34,11 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
 
     const handleAltPhoneChange = (phone) => {
         const error = validatePhoneNumber(phone, false);
-        if (error) {
-            setErrors({ ...errors, altMobileNo: error });
-        } else {
-            setErrors((prevErrors) => ({ ...prevErrors, altMobileNo: '' }));
-        }
+        setErrors({
+            mobileNo: '',
+            altMobileNo: error,
+            waMobileNo: ''
+        });
         setFormData({
             ...formData, contactDetailsHelper: {
                 ...formData.contactDetailsHelper,
@@ -50,11 +49,11 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
 
     const handleWaPhoneChange = (phone) => {
         const error = validatePhoneNumber(phone, false);
-        if (error) {
-            setErrors({ ...errors, waMobileNo: error });
-        } else {
-            setErrors((prevErrors) => ({ ...prevErrors, altMobileNo: '' }));
-        }
+        setErrors({
+            mobileNo: '',
+            altMobileNo: '',
+            waMobileNo: error
+        });
         setFormData({
             ...formData, contactDetailsHelper: {
                 ...formData.contactDetailsHelper,
@@ -64,11 +63,11 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
     };
 
     return (
-        <>
+        <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <Toaster />
+            {/* <Toaster /> */}
 
-            <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl border-4 mt-2">
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold sm:text-3xl">MAROFA</span>
@@ -87,7 +86,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                         </label>
                         <input type="email"
                             id="emailId"
-                            className="bg-gray-50 border-[2px] border-[#ccc]  text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="bg-gray-50 border-[2px] border-[#ccc] text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="sophie@example.com"
                             required
                             value={values.email}
@@ -113,7 +112,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                         {errors.mobileNo && <p className="text-red-500 text-xs">{errors.mobileNo}</p>}
                     </div>
 
-                    {/* Phone Number Input */}
+                    {/* Alternate Phone Number Input */}
                     <div className="phone-input">
                         <label htmlFor="phoneNumber" className="block mb-2 text-m font-normal">
                             Alternate phone number (optional)
@@ -128,10 +127,10 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             />
                         </div>
 
-                        {errors.mobileNo && <p className="text-red-500 text-xs">{errors.mobileNo}</p>}
+                        {errors.altMobileNo && <p className="text-red-500 text-xs">{errors.altMobileNo}</p>}
                     </div>
 
-                    {/* Phone Number Input */}
+                    {/* Whatsapp Phone Number Input */}
                     <div className="phone-input">
                         <label htmlFor="phoneNumber" className="block mb-2 text-m font-normal">
                             Whatsapp phone number (optional)
@@ -146,7 +145,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                             />
                         </div>
 
-                        {errors.mobileNo && <p className="text-red-500 text-xs">{errors.mobileNo}</p>}
+                        {errors.waMobileNo && <p className="text-red-500 text-xs">{errors.waMobileNo}</p>}
                     </div>
                 </form >
                 <div className='flex flex-row justify-between mt-6'>
@@ -154,7 +153,7 @@ const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData
                     <button type="button" onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
                 </div>
             </div >
-        </>
+        </div>
     );
 };
 

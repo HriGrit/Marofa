@@ -9,6 +9,7 @@ import Footer from '../../components/Footer/Footer';
 
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
+import Dashboard from '../Dashboard/Dashboard';
 
 const Home = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,7 +27,15 @@ const Home = () => {
 
     return (
         <div>
-            {isAuthenticated ? <div><Navbar /><Footer /></div> : <div>
+            {isAuthenticated ? (<div>
+                <Navbar />
+                <Dashboard />
+                <Hero />
+                <Profiles />
+                <RegisterSection />
+                <Pricing />
+                <Footer />
+            </div>) : (<div>
                 <Navbar />
                 <Hero />
                 <Profiles />
@@ -34,7 +43,7 @@ const Home = () => {
                 <Pricing />
                 <FAQ />
                 <Footer />
-            </div>}
+            </div>)}
         </div>
     );
 };

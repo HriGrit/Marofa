@@ -1,0 +1,139 @@
+import React, { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import logo from '../../../assets/marofa-whitebg.svg';
+import Navbar from '../../Navbar/navbar';
+
+const EducationH = ({ values, handleChange, nextStep, prevStep }) => {
+
+    const [countriesList, setCountriesList] = useState([]);
+    console.log(values);
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/Hipo/university-domains-list/master/world_universities_and_domains.json')
+            .then((response) => response.json())
+            .then((data) => {
+                setCountriesList(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching countries:', error);
+            });
+    }, []);
+
+    return (
+        <div className='h-[100vh] flex flex-col justify-between'>
+            <Navbar />
+            {/* <Toaster /> */}
+
+            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
+                <div className="flex items-center justify-center space-x-2 pb-0">
+                    <img src={logo} className="h-10 sm:h-16 color-[#14415a]" alt="MAROFA Logo" />
+                    <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
+                </div>
+                <hr className='h-1 bg-theme' />
+                <div className='pt-5 text-xl font-semibold text-[#14415a]'>
+                    <p>Personal Information</p>
+                </div>
+                <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
+
+                    <div>
+                        <label htmlFor="nationality"
+                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            University
+                        </label>
+
+                        <select
+                            id="university"
+                            value={values.Country}
+                            onChange={handleChange('educationHelper', 'Country')}
+                            className="text-wrap bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                        >
+                            <option value="" disabled>Select your University</option>
+                            {countriesList.map((country) => (
+                                <option key={country.id} value={country.name}>
+                                    {country.name}
+                                </option>
+                            ))}
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label htmlFor="educationlvl"
+                            className="block mb-2 text-m font-normal text-[#14415a]">
+                            Completed Course
+                        </label>
+
+                        <select
+                            id="educationlvl"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            value={values.educationLvl}
+                            onChange={handleChange('educationHelper', 'LevelofEducation')}
+                            required
+                        >
+                            <option className="text-gray-900" value="" disabled>Compeleted the Course</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label for="Duration"
+                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            Duration of Course
+                        </label>
+
+                        <select
+                            id="DurationofCoursee"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            value={values.yearsOfExperience}
+                            onChange={handleChange('educationHelper', 'Duration')}
+                            required
+                        >
+                            <option className="text-gray-900" value="" disabled>Select years of experience</option>
+                            {Array.from({ length: 8 }, (_, index) => (
+                                <option key={index} value={index}>{index}</option>
+                            ))}
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label htmlFor="educationlvl"
+                            className="block mb-2 text-m font-normal text-[#14415a]">
+                            Education level
+                        </label>
+
+                        <select
+                            id="educationlvl"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            value={values.educationLvl}
+                            onChange={handleChange('educationHelper', 'LevelofEducation')}
+                            required
+                        >
+                            <option className="text-gray-900" value="" disabled>Select your highest qualification</option>
+                            <option value="Secondary school">Secondary school</option>
+                            <option value="High school">High school</option>
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Master">Master</option>
+                            <option value="Doctorate">Doctorate</option>
+                            <option value="University">University</option>
+                            <option value="none">None</option>
+                        </select>
+
+                    </div>
+                </form>
+
+                <div className='flex flex-row justify-between mt-6'>
+                    <button onClick={prevStep} className='bg-theme text-white rounded-full px-4 py-2'>Back</button>
+                    <button onClick={nextStep} className='bg-theme text-white rounded-full px-4 py-2'>Next</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default EducationH;
