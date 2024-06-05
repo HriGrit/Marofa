@@ -49,7 +49,7 @@ const Footer = () => {
 
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <div className="flex justify-center items-center text-center">
-                    <span className="text-lg text-theme sm:text-center">© 2023 <a href="https://flowbite.com/" className="hover:underline">MAROFA</a>. All Rights Reserved.
+                    <span className="text-lg text-theme sm:text-center">© 2024 <a href="https://flowbite.com/" className="hover:underline">MAROFA</a>. All Rights Reserved.
                     </span>
                 </div>
             </div>

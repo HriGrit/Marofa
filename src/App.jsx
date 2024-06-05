@@ -15,6 +15,7 @@ const AllHelpers = lazy(() => import('./pages/Helper/AllHelpers'));
 const SingleHelper = lazy(() => import('./pages/Helper/SingleHelper'));
 
 import './App.css';
+import NotFound from './pages/NotFound/NotFound.jsx';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route path="/helpers/:helperId" element={<SingleHelper />} />
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path='/register' element={<MultiStepForm />} />
-            <Route path='*' element={<div>Not Found</div>} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </Suspense>

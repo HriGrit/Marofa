@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../../utils/firebase';
 
-import icon from "../../../assets/employerSingle.svg"
+import toast, {Toaster} from 'react-hot-toast';
+
 import helper from "../../../assets/Employer/Single/helper.svg"
 import location from "../../../assets/Employer/Single/location.svg"
 import salary from "../../../assets/Employer/Single/salary.svg"
@@ -19,31 +20,8 @@ import SkeletonEmployerCardSingle from './SkeletonEmployerCardSingle';
 
 const EmployerCardSingle = ({ employerId }) => {
     const [user, setUser] = useState({});
-    // const [userDetails, setUserDetails] = useState({
-    //     id: "1",
-    //     icon: icon,
-    //     heading: "Senior Software Engineer",
-    //     size: "family",
-    //     members: "5",
-    //     nationality: "Canadian",
-    //     city: "City",
-    //     country: "Country",
-    //     need: "Looking for a seasoned developer with experience in React and Node.js",
-    //     jobPosition: "Senior Developer",
-    //     jobType: "Full-time",
-    //     status: "Active",
-    //     time: "2",
-    //     salary: "2500",
-    //     accomodation: "To be discussed",
-    //     holiday: "To be discussed",
-    //     date: "14 Jan 2025",
-    //     contract: "Any Situtation",
-    //     min_experience: "2",
-    //     max_experience: "10",
-    //     language: ["English", "Arabic"],
-    //     mainSkills: ["Housekeeping", "Teen Care"]
-    // },);
     const [loading, setLoading] = useState(true);
+    const [noAuth, setNoAuth] = useState(false);
 
     const userId = employerId;
 
@@ -61,13 +39,16 @@ const EmployerCardSingle = ({ employerId }) => {
                 } else {
                     console.log("No such document!");
                 }
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching user: ", error);
+                if (error.code === 'permission-denied') {
+                    console.error("Permission denied. User is not authorized to view this document.");
+                    toast.error('Permission denied. User is not authorized to view this document.');
+                }
             }
-            setLoading(false);
         };
-
-        fetchUser();
+        return () => fetchUser();
     }, []);
 
     const userDetails = {
@@ -92,11 +73,12 @@ const EmployerCardSingle = ({ employerId }) => {
         contract: user.candidatePreferenceEmployer?.Contract
     };
 
-
-    if (!userDetails) return <div>No user found.</div>;
+    console.log("userDetails: ", user);
+    if (!user?.image) return <div>No user found.</div>;
 
     return (
         <>
+            <Toaster />
             {loading ? (<SkeletonEmployerCardSingle />) : (<div className='border-2 shadow-md'>
                 <div className='flex gap-5 p-6 pl-12'>
                     <div className=''>

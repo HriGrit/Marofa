@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../../utils/firebase';
 
+import toast, {Toaster} from 'react-hot-toast';
+
 import helper from "../../../assets/Employer/Single/helper.svg";
 import location from "../../../assets/Employer/Single/location.svg";
 import otherSkills from "../../../assets/Helper/otherSkills.webp";
@@ -36,19 +38,19 @@ const HelperCardSingle = () => {
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
                     const list = docSnap.data();
-                    console.log("here ", list);
                     setUser(list);
                 } else {
                     console.log("No such document!");
                 }
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching user: ", error);
+                toast.error("Error fetching user: ");
             }
-            setLoading(false);
         };
 
-        fetchUser();
-    }, [userId]);
+        return()=>fetchUser();
+    }, []);
 
     console.log("user", user);
 
@@ -100,32 +102,15 @@ const HelperCardSingle = () => {
     const age = calculateAge(user.personalInfoHelper?.dob);
     const formatedDate = formatDateWithOrdinalAndShorthandMonth(user.professionalInfoHelper?.jobStartDate);
 
-    const userDetails = {
-        id: user.id,
-        icon: user.image,
-        heading: user.aboutJobEmployer?.jobTitle,
-        need: user.aboutJobEmployer?.jobDescription,
-        nationality: user.aboutEmployer?.Nationality,
-        size: "Family",
-        members: user.aboutEmployer?.FamilySize,
-        language: user.skillsRequiredEmployer?.languages,
-        experience: user.candidatePreferenceEmployer?.Experience,
-        mainSkills: user.skillsRequiredEmployer?.mainSkills,
-        salary: user.aboutEmployer?.Salary,
-        accomodation: user.aboutEmployer?.Accomodation,
-        country: user.jobOfferedEmployer?.jobLocationCountry,
-        city: user.jobOfferedEmployer?.jobLocationCity,
-        jobPosition: user.jobOfferedEmployer?.jobPosition,
-        jobType: user.jobOfferedEmployer?.jobType,
-        date: user.jobOfferedEmployer?.jobStartDate,
-        holiday: user.aboutEmployer?.Holidays,
-        contract: user.candidatePreferenceEmployer?.Contract,
-    };
+    console.log("userDetails", user);
 
-    if (!userDetails) return <div>No user found.</div>;
+    if (!user?.userId) {
+        return <div>Invalid User Id.</div>
+    };
 
     return (
         <>
+            <Toaster />
             {loading ? (
                 <SkeletonHelper />
             ) : (
@@ -134,7 +119,7 @@ const HelperCardSingle = () => {
                         <div className="">
                             <div
                                 className="w-32 h-32 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto"
-                                style={{ backgroundImage: `url(${userDetails.icon})` }}
+                                style={{ backgroundImage: `url(${user.image})` }}
                             ></div>
                         </div>
                         <div className="w-full flex flex-col">
@@ -304,11 +289,12 @@ const HelperCardSingle = () => {
                                 <div>
                                     {/* <span className="text-gray-500">As: </span> */}
                                     <ul className="flex flex-wrap gap-2">
-                                        {user.workExperienceHelper?.Skills.map((item, index) => (
+                                        {/* {user.workExperienceHelper?.Skills?.map((item, index) => (
                                             <li key={index} className="border border-[#7A7A7A] p-1 rounded-[5px] bg-[#7A7A7A] text-white">
                                                 {item}
                                             </li>
-                                        ))}
+                                        ))} */}
+                                        {user.workExperienceHelper?.Skills}
                                     </ul>
                                 </div>
                             </div>

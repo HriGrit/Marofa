@@ -31,25 +31,37 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     }, []);
 
     useEffect(() => {
-        const countryid = values?.jobLocationCountry;
-        if (countryid) {
-            fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
+        const countryName = values?.jobLocationCountry;
+        console.log('Country Name:', countryName);
+
+        if (countryName) {
+            // First fetch to get the country code based on the country name
+            fetch('https://venkatmcajj.github.io/react-country-state-city/data/countriesminified.json')
                 .then((response) => response.json())
-                .then((data) => {
-                    const countryObject = data.find((item) => {
-                        return item.id === parseInt(countryid);
-                    });
-
-                    if (countryObject) {
-                        // console.log('Found country object:', countryObject);
-                        setStateList(countryObject);
+                .then((countries) => {
+                    const country = countries.find(item => item.name === countryName);
+                    const countryId = country?.id;
+                    console.log('Country ID:', countryId);
+                    if (countryId) {
+                        // Fetch states using the country code
+                        fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
+                            .then((response) => response.json())
+                            .then((states) => {
+                                const countryStates = states.filter(state => state.id === countryId);
+                                console.log('Country States:', countryStates[0].states);
+                                setStateList(countryStates[0].states);
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching states:', error);
+                                setStateList([]);
+                            });
                     } else {
-                        console.log('Country object not found');
+                        console.log('Country ID not found');
+                        setStateList([]);
                     }
-
                 })
                 .catch((error) => {
-                    console.error('Error fetching states:', error);
+                    console.error('Error fetching country code:', error);
                     setStateList([]);
                 });
         } else {
@@ -111,7 +123,7 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                             >
                                 <option value="select-state">Select State</option>
-                                {stateList.states && stateList.states.map((state) => (
+                                {stateList && stateList.map((state) => (
                                     <option key={state.id} value={state.name}>
                                         {state.name}
                                     </option>
@@ -123,7 +135,7 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                                 className="block mb-2 text-m font-normal text-[#14415a]">
                                 Start Date
                             </label>
-                            <div className="bg-white text-gray-900 rounded-full focus:ring-blue-500 focus:border-blue-500 block">
+                            <div className="bg-[#ffffff] border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 <DatePicker
                                     selected={startDate}
                                     showIcon={false}
