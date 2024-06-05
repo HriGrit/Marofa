@@ -13,7 +13,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
             <Navbar />
             {/* <Toaster /> */}
 
-            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
+            <div className="w-3/4 mdnav:w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
 
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16 color-[#14415a]" alt="MAROFA Logo" />

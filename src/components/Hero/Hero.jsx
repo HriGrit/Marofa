@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
 import ladyImg from "../../assets/landingpagefemale.svg";
 
 import "./Hero.css";
@@ -9,8 +8,8 @@ const Hero = () => {
   return (
     <section className="flex flex-col pt-[30px] app:pt-0 app:flex-row bg-gray-100 gap-2 justify-between items-center">
       <div className="space-y-4 text-center app:text-left pt-[30px] app:pt-0 h-fill app:mx-8">
-        <h1 className="text-2xl app:text-xl xl:text-2xl text-gray-400 mb-2">Looking for a House help?</h1>
-        <h2 className="text-xl app:text-4xl xl:text-5xl font-hero text-gray-700 heroText">Find available helpers and maids in Saudi Arabia</h2>
+        <h1 className="text-2xl app:text-xl text-gray-400 mb-2">Looking for a House help?</h1>
+        <h2 className="text-xl app:text-4xl font-hero text-gray-700 heroText">Find available helpers and maids in Saudi Arabia</h2>
         <p className="text-gray-400 xl:text-xl">Explore profiles and contact helpers directly</p>
         <div className="flex flex-col app:flex-row space-y-2 app:space-y-0 app:space-x-5 pt-2">
           <Link to="/employers">
@@ -22,7 +21,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="mx-0 mt-4 app:mt-0">
-        <img src={ladyImg} alt="House helper" className="h-fill" />
+        <img src={ladyImg} alt="House helper" className="h-fill w-auto" width="400" height="400" />
       </div>
     </section>
   );

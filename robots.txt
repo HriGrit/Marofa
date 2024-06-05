@@ -1,0 +1,81 @@
+User-agent: 360Spider
+User-agent: 360Spider-Image
+User-agent: 360Spider-Video
+# google.com landing page quality checks
+User-agent: AdsBot-Google
+User-agent: AdsBot-Google-Mobile
+# google.com app resource fetcher
+User-agent: AdsBot-Google-Mobile-Apps
+# bing ads bot
+User-agent: adidxbot
+# apple.com search engine
+User-agent: Applebot
+user-agent: AppleNewsBot
+# bing.com international search engine
+User-agent: bingbot
+User-agent: BingPreview
+# bublup.com suggestion/search engine
+User-agent: BublupBot
+# commoncrawl.org open repository of web crawl data
+User-agent: CCBot
+# coccoc.com vietnamese search engine
+User-agent: coccoc
+User-agent: coccocbot-image
+User-agent: coccocbot-web
+# daum.net korean search engine
+User-agent: Daumoa
+# dazoo.fr french search engine
+User-agent: Dazoobot
+# duckduckgo.com international privacy search engine
+User-agent: DuckDuckBot
+User-agent: DuckDuckGo-Favicons-Bot
+# eurip.com european search engine
+User-agent: EuripBot
+# exploratodo.com latin search engine
+User-agent: Exploratodo
+# facebook.com social network
+User-agent: Facebot
+# feedly.com feed fetcher
+User-agent: Feedly
+# findx.com european search engine
+User-agent: Findxbot
+# goo.ne.jp japanese search engine
+User-agent: gooblog
+# google.com international search engine
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-Mobile
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+# goo.ne.jp japanese search engine
+User-agent: ichiro
+# istella.it italian search engine
+User-agent: istellabot
+# lycos.com & hotbot.com international search engine
+User-agent: Lycos
+# google.com adsense bot
+User-agent: Mediapartners-Google
+# mojeek.com search engine
+User-agent: MojeekBot
+# bing.com international search engine
+User-agent: msnbot
+User-agent: msnbot-media
+# orange.com international search engine
+User-agent: OrangeBot
+# pinterest.com social networtk
+User-agent: Pinterest
+# botje.nl dutch search engine
+User-agent: Plukkie
+# qwant.com french search engine
+User-agent: Qwantify
+# yahoo.com international search engine
+User-agent: Slurp
+# twitter.com bot
+User-agent: Twitterbot
+# search.naver.com south korean search engine
+user-agent: Yeti
+# crawling rule(s) for above bots
+Disallow:
+# disallow all other bots
+User-agent: *
+Disallow: /

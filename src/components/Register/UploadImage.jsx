@@ -65,22 +65,21 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
 
 
     const handleNext = async () => {
-        // if (imageURL) {
-        //     nextStep();
-        // } else {
-        //     toast.error('Please upload an image');
-        // }
-        nextStep();
+        if (imageURL) {
+            nextStep();
+        } else {
+            toast.error('Please upload an image');
+        }
     };
 
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
             <Toaster />
-            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
+            <div className="w-3/4 mdnav:w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
-                    <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
+                    <span className="self-center text-xl font-semibold text-theme mdnav:text-3xl">MAROFA</span>
                 </div>
                 <hr className='h-1 bg-theme' />
                 <div className='cursor-pointer' onClick={handleUploadClick}>
@@ -91,7 +90,7 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
                     )}
                 </div>
                 <div className='flex justify-center'>
-                    <label className='bg-theme text-white rounded-lg px-4 py-2 w-1/3 text-center cursor-pointer'>
+                    <label className='bg-theme text-white rounded-lg px-4 py-2 w-3/4 mdnav:w-1/3 text-center cursor-pointer'>
                         <button onClick={handleSubmit}>Upload Photo</button>
                         <input id='file-upload' type='file' onChange={handleFileChange} className='hidden' />
                     </label>

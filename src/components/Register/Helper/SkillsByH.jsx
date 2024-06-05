@@ -17,7 +17,7 @@ const SkillsByH = ({ prevStep, nextStep, values, handleChange }) => {
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
-            <div className="w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
+            <div className="w-3/4 mdnav:w-1/2 mx-auto bg-white p-8 rounded-2xl border-4 my-auto">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
                     <span className="self-center text-xl font-semibold text-theme sm:text-3xl">MAROFA</span>
