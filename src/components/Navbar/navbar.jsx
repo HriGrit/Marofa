@@ -126,8 +126,6 @@ function Navbar() {
             </div>
             {open && <GetStartedContent setOpen={setOpen} />}
         </nav >
-
-
     );
 }
 

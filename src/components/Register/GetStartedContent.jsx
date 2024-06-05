@@ -1,16 +1,33 @@
 import React from "react";
+import toast, {Toaster} from "react-hot-toast";
+import Navbar from '../../components/Navbar/navbar';
+
 import logo from "../../assets/marofa-whitebg.svg";
 import emplogo from "../../assets/employerlogo.png";
 import helperlogo from "../../assets/helperlogo.png";
-import Navbar from '../../components/Navbar/navbar';
+import { useEffect } from "react";
 
-function GetStartedContent({ setRole }) {
+function GetStartedContent({ setRole, accountExist }) {
     const handleRoleSelection = (role) => {
         setRole(role);
     };
+    console.log("Account exists:", accountExist);
+    
+    useEffect(() => {
+        if (accountExist) {
+            toast.error("Account already exists. Re-Enter form details to update existing one.", {
+                duration: 5000, // Duration in milliseconds (adjust as needed)
+                style: {
+                    color: '#990000', // Text color
+                },
+            });
+        }
+    }, [accountExist]);
+
     return (
         <div className="h-[100vh] flex flex-col justify-between">
             <Navbar />
+            <Toaster />
             <div className="w-fit mx-auto my-auto p-8 rounded-2xl border-4 bg-white shadow-md">
                 <div className="flex items-center justify-center space-x-2 pb-0">
                     <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />

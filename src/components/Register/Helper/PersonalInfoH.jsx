@@ -47,7 +47,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
                     <div>
                         <label for="firstName"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             First Name
                         </label>
 
@@ -65,7 +65,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label for="lastName"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Last Name
                         </label>
 
@@ -131,7 +131,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     <div>
                         <label htmlFor="nationality"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Ntionality
                         </label>
 
@@ -180,7 +180,7 @@ const PersonalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label htmlFor="dob"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Date of Birth
                         </label>
 

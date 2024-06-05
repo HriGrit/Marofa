@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { firestore, auth } from '../../utils/firebase';
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
 import toast, { Toaster } from 'react-hot-toast';
-//components for user input
+import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { Timestamp } from 'firebase/firestore';
+import { firestore, auth } from '../../utils/firebase';
+
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
 import ContactDetailsH from './Helper/ContactDetailsH.jsx';
@@ -21,10 +22,42 @@ import WorkExperienceH from './Helper/WorkExperienceH.jsx';
 import EducationH from './Helper/EducationH.jsx';
 import DescriptionH from './Helper/DescriptionH.jsx';
 
+// import isLoggedInUserDocExists from '../../utils/isLoggedInUserDocExists.js';
 
 const MultiStepForm = () => {
     const [step, setStep] = useState(1);
     const [currentUser, setCurrentUser] = useState(null);
+
+    const [accountExist, setAccountExist] = useState(false);
+    const [roleExist, setRoleExist] = useState("");
+
+    const checkAccount = async () => {
+        if (!currentUser) {
+            return;
+        }
+    
+        const userId = currentUser.uid;
+        const helperDocRef = doc(firestore, 'documents', `${userId}_helper`);
+        
+        const helperDocSnap = await getDoc(helperDocRef);
+    
+        if (helperDocSnap.exists()) {
+            setAccountExist(true);
+            setRoleExist("helper");
+            return;
+        } else {
+            const employerDocRef = doc(firestore, 'documents', `${userId}_employer`);
+            const employerDocSnap = await getDoc(employerDocRef);
+            
+            if (employerDocSnap.exists()) {
+                setAccountExist(true);
+                setRoleExist("employer");
+                return;
+            }
+        }
+    }
+    checkAccount();
+
     const [formData, setFormData] = useState({
         role: '',
         image: null,
@@ -188,15 +221,27 @@ const MultiStepForm = () => {
                 return acc;
             }, {});
         try {
-            const docRef = await addDoc(collection(firestore, 'users', `${formData.role}`, 'free'), {
-                ...roleSpecificData,
-                uid: currentUser.uid,
+            if (accountExist) {
+                const documentRef = doc (firestore, "documents", `${currentUser?.uid}_${roleExist}`);
+                await deleteDoc(documentRef);
+                console.log('Document deleted successfully!');
+            }
+            const docId = `${currentUser?.uid}_${formData.role}`;
+
+            const docRef = doc(firestore, 'documents', docId);
+            
+            await setDoc(docRef, {
+            ...roleSpecificData,
+            createdAt: Timestamp.now(),
+            role: formData.role,
+            userId: currentUser?.uid,
             });
-            console.log('Document written with ID: ', docRef.id);
+
             toast.success('Data saved successfully!', {
                 duration: 4000,
                 position: 'top-right',
             });
+
             console.log('Data saved successfully!');
             window.location.href = '/';
         } catch (error) {
@@ -208,7 +253,6 @@ const MultiStepForm = () => {
         }
     };
 
-
     const nextStep = () => setStep((prev) => prev + 1);
     const prevStep = () => setStep((prev) => prev - 1);
 
@@ -217,6 +261,7 @@ const MultiStepForm = () => {
             return (
                 <GetStartedContent
                     setRole={handleSetRole}
+                    accountExist={accountExist}
                 />
             );
         case 2:

@@ -94,7 +94,7 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
                     <div>
                         <label for="phone"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Email-Id
                         </label>
                         <input type="email"
@@ -109,7 +109,7 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
                     </div>
                     <div>
                         <label for="phone"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Phone number
                         </label>
                         <div className='custom-phone-input'>
@@ -127,7 +127,7 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
                     </div>
                     <div>
                         <label for="phone"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Alternate phone number <span className='font-thin'>(optional)</span>
                         </label>
                         <div className='custom-phone-input'>
@@ -146,7 +146,7 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
 
                     <div>
                         <label for="phone"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             WhatsApp phone number <span className='font-thin'>(optional)</span>
                         </label>
                         <div className='custom-phone-input'>

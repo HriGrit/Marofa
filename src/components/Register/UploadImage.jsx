@@ -4,11 +4,14 @@ import logo from '../../assets/marofa-whitebg.svg';
 import uploadpic from "../../assets/Uploadpic.png";
 import Navbar from '../Navbar/navbar';
 import { uploadBytes, getDownloadURL, ref } from 'firebase/storage';
-import { storage } from '../../utils/firebase';
+import { storage, auth } from '../../utils/firebase';
 
 const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
     const [imageFile, setImageFile] = useState(null);
     const [imageURL, setImageURL] = useState(null);
+
+    const user = auth.currentUser;
+    const uid = user.uid;
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -43,7 +46,7 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
             return;
         }
 
-        const storageRef = ref(storage, `images/${formData.role}`);
+        const storageRef = ref(storage, `images/${formData.role}/${uid}`);
 
         toast.promise(
             uploadBytes(storageRef, imageFile).then(() => {

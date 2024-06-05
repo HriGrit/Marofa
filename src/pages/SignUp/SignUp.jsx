@@ -63,14 +63,14 @@ const SignUp = () => {
     return (
         <div>
             <Toaster />
-            <div class="mt-[60px] mb-[60px] border-4 pb-6 max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                <div class="flex items-center justify-center space-x-2 pb-0">
-                    <img src={logo} class="h-10 sm:h-16" alt="MAROFA Logo" />
-                    <span class="self-center text-xl font-semibold text-[#14415A] sm:text-3xl">MAROFA</span>
+            <div className="mt-[60px] mb-[60px] border-4 pb-6 max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="flex items-center justify-center space-x-2 pb-0">
+                    <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" />
+                    <span className="self-center text-xl font-semibold text-[#14415A] sm:text-3xl">MAROFA</span>
                 </div>
-                <hr class=" my-2 border-[#14415A] border-[1px] rounded sm:mx-auto lg:my-2 " />
-                <div class="text-center mb-2 pt-4">
-                    <span class="text-l text-align:center font-thin text-[#14415A] sm:text-m">Sign up</span>
+                <hr className=" my-2 border-[#14415A] border-[1px] rounded sm:mx-auto lg:my-2 " />
+                <div className="text-center mb-2 pt-4">
+                    <span className="text-l text-align:center font-thin text-[#14415A] sm:text-m">Sign up</span>
                 </div>
 
                 <Backdrop
@@ -80,14 +80,14 @@ const SignUp = () => {
                 >
                     <CircularProgress color="inherit" />
                 </Backdrop>
-                <form class='flex flex-col items-center p-0'>
-                    <div class='form-group mt-5 mb-4 w-100 signInOr'>
-                        <Button type="button" class=" alignitems-center bg-white hover:bg-[#e6e6e6] focus:ring-1 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center me-2 mb-2"
+                <form className='flex flex-col items-center p-0'>
+                    <div className='form-group mt-5 mb-4 w-100 signInOr'>
+                        <Button type="button" className=" alignitems-center bg-white hover:bg-[#e6e6e6] focus:ring-1 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center me-2 mb-2"
                             onClick={signInWithGoogle}><img src={GoogleImg} />
-                            <p class="text-[#14415a]">Sign Up with Google</p> </Button>
-                        <div class="flex items-center justify-center w-full">
-                            <hr class="w-64 h-px my-8 bg-[#14415A] border-0" />
-                            <span class="absolute px-3 font-thin text-[#14415A] -translate-x-1/2 bg-white left-1/2">or sign up with E-mail</span>
+                            <p className="text-[#14415a]">Sign Up with Google</p> </Button>
+                        <div className="flex items-center justify-center w-full">
+                            <hr className="w-64 h-px my-8 bg-[#14415A] border-0" />
+                            <span className="absolute px-3 font-thin text-[#14415A] -translate-x-1/2 bg-white left-1/2">or sign up with E-mail</span>
                         </div>
                     </div>
 
@@ -148,14 +148,14 @@ const SignUp = () => {
                     </div>
 
                     <div className='flex flex-col mt-5 mb-4 w-full items-center'>
-                        <Button class="relative inline-flex items-center justify-center border-2 border-[#14415A] p-2 px-[130px] mb-2 me-2 overflow-hidden text-l font-medium text-[#14415A] rounded-lg group bg-[#14415A] focus:ring-4 focus:outline-none focus:ring-bg-[#14415A] hover:bg-[#14415A] hover:text-white"
+                        <Button className="relative inline-flex items-center justify-center border-2 border-[#14415A] p-2 px-[130px] mb-2 me-2 overflow-hidden text-l font-medium text-[#14415A] rounded-lg group bg-[#14415A] focus:ring-4 focus:outline-none focus:ring-bg-[#14415A] hover:bg-[#14415A] hover:text-white"
                             onClick={signUp}>
                             Sign Up
                         </Button>
                     </div>
 
                     <p className='text-center text-[#14415A] text-thin'>Already have an account?
-                        <b> <Link to="/signIn" class="no-underline hover:underline">Sign In</Link>
+                        <b> <Link to="/signIn" className="no-underline hover:underline">Sign In</Link>
                         </b>
                     </p>
                 </form>

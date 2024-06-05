@@ -3,53 +3,53 @@ import logo from '../../assets/marofa-logo-footer.png';
 import stripe from '../../assets/stripeimg.png';
 const Footer = () => {
     return (
-        <footer class="bg-[#F3F3F3] shadow-inner shadow-black shadow-4xl h-auto">
-            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                <div class="flex justify-center items-center text-center">
-                    <a href="https://flowbite.com/" class="flex items-center">
-                        <img src={logo} class="h-[80px] me-3 md:h-[100px]" alt="Footer logo" />
-                        <span class="text-2xl text-theme font-semibold whitespace-nowrap md:text-4xl pt-0">MAROFA</span>
+        <footer className="bg-[#F3F3F3] shadow-inner shadow-black shadow-4xl h-auto">
+            <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                <div className="flex justify-center items-center text-center">
+                    <a href="https://flowbite.com/" className="flex items-center">
+                        <img src={logo} className="h-[80px] me-3 md:h-[100px]" alt="Footer logo" />
+                        <span className="text-2xl text-theme font-semibold whitespace-nowrap md:text-4xl pt-0">MAROFA</span>
                     </a>
                 </div>
-                <div class="flex justify-center items-center text-center">
-                    <div class="grid grid-cols-2 gap-8 sm:grid-cols-2 gap-4 flex justify-center">
+                <div className="flex justify-center items-center text-center">
+                    <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 justify-center">
                         <div>
-                            <h2 class="mb-6 text-lg font-semibold text-[#2D2D2D] uppercase">Support</h2>
-                            <ul class="text-[#5D5D5D] font-semibold">
-                                <li class="mb-2">
-                                    <a href="https://flowbite.com/" class="hover:underline">Contact us</a>
+                            <h2 className="mb-6 text-lg font-semibold text-[#2D2D2D] uppercase">Support</h2>
+                            <ul className="text-[#5D5D5D] font-semibold">
+                                <li className="mb-2">
+                                    <a href="https://flowbite.com/" className="hover:underline">Contact us</a>
                                 </li>
-                                <li class="mb-2">
-                                    <a href="https://tailwindcss.com/" class="hover:underline">Find helpers</a>
+                                <li className="mb-2">
+                                    <a href="https://tailwindcss.com/" className="hover:underline">Find helpers</a>
                                 </li>
-                                <li class="mb-2">
-                                    <a href="https://tailwindcss.com/" class="hover:underline">FAQs</a>
+                                <li className="mb-2">
+                                    <a href="https://tailwindcss.com/" className="hover:underline">FAQs</a>
                                 </li>
-                                <li class="mb-2">
-                                    <a href="https://tailwindcss.com/" class="hover:underline">About us</a>
+                                <li className="mb-2">
+                                    <a href="https://tailwindcss.com/" className="hover:underline">About us</a>
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <h2 class="mb-6 text-lg font-semibold text-[#2D2D2D] uppercase">Join us</h2>
-                            <ul class="text-[#5D5D5D] font-semibold">
-                                <li class="mb-2">
-                                    <a href="https://flowbite.com/" class="hover:underline">Register</a>
+                            <h2 className="mb-6 text-lg font-semibold text-[#2D2D2D] uppercase">Join us</h2>
+                            <ul className="text-[#5D5D5D] font-semibold">
+                                <li className="mb-2">
+                                    <a href="https://flowbite.com/" className="hover:underline">Register</a>
                                 </li>
-                                <li class="mb-2">
-                                    <a href="https://tailwindcss.com/" class="hover:underline">Log in</a>
+                                <li className="mb-2">
+                                    <a href="https://tailwindcss.com/" className="hover:underline">Log in</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center items-center pt-4">
-                    <img src={stripe} class="h-[60px] me-3 md:h-[60px]" alt="stripepay" />
+                <div className="flex justify-center items-center pt-4">
+                    <img src={stripe} className="h-[60px] me-3 md:h-[60px]" alt="stripepay" />
                 </div>
 
-                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                <div class="flex justify-center items-center text-center">
-                    <span class="text-lg text-theme sm:text-center">© 2023 <a href="https://flowbite.com/" class="hover:underline">MAROFA</a>. All Rights Reserved.
+                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <div className="flex justify-center items-center text-center">
+                    <span className="text-lg text-theme sm:text-center">© 2023 <a href="https://flowbite.com/" className="hover:underline">MAROFA</a>. All Rights Reserved.
                     </span>
                 </div>
             </div>

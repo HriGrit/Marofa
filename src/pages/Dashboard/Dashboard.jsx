@@ -6,10 +6,12 @@ import { auth } from '../../utils/firebase';
 
 const Dashboard = () => {
     const [name, setname] = useState('');
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log(user.uid);
                 setname(user.displayName);
                 setIsAuthenticated(true);
             } else {
@@ -20,7 +22,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className=' m-3'>
+        <div className='m-3'>
             <div>Welcome {name}</div>
         </div>
     )

@@ -39,7 +39,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label for="firstName"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Years of experience
                         </label>
 
@@ -105,7 +105,7 @@ const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     <div>
                         <label htmlFor="currentworkstatus"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Current work status
                         </label>
 

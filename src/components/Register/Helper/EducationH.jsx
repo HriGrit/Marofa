@@ -37,7 +37,7 @@ const EducationH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     <div>
                         <label htmlFor="nationality"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             University
                         </label>
 
@@ -81,7 +81,7 @@ const EducationH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label for="Duration"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Duration of Course
                         </label>
 

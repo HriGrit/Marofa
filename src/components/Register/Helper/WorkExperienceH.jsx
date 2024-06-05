@@ -53,7 +53,7 @@ const WorkExperienceH = ({ prevStep, nextStep, values, handleChange, handleChang
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
                         <div>
                             <label for="firstName"
-                                class="block mb-2 text-m font-normal text-[#14415a]">
+                                className="block mb-2 text-m font-normal text-[#14415a]">
                                 Years of experience
                             </label>
 
@@ -98,7 +98,7 @@ const WorkExperienceH = ({ prevStep, nextStep, values, handleChange, handleChang
                         </div>
                         <div>
                             <label htmlFor="nationality"
-                                class="block mb-2 text-m font-normal text-[#14415a]">
+                                className="block mb-2 text-m font-normal text-[#14415a]">
                                 Work Country
                             </label>
 

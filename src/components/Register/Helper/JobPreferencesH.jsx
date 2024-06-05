@@ -31,7 +31,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                     <div>
 
                         <label for="preferredaccomodationtype"
-                            class="flex-1 block mb-2 text-m font-normal text-[#14415a] align-bottom justify-center self-center">
+                            className="flex-1 block mb-2 text-m font-normal text-[#14415a] align-bottom justify-center self-center">
                             Preferred accomodation type
                         </label>
 
@@ -77,7 +77,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     <div>
                         <label htmlFor="currentworkstatus"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Preferred job location
                         </label>
 
@@ -120,7 +120,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
 
                     <div>
                         <label htmlFor="expectedSalary"
-                            class="block mb-2 text-m font-normal text-[#14415a]">
+                            className="block mb-2 text-m font-normal text-[#14415a]">
                             Expected salary per month <span className='font-thin'>(SAR)</span>
                         </label>
 
