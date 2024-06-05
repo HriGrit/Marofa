@@ -64,7 +64,7 @@ const HelperCard = ({ user }) => {
         const monthString = months[month];
       
         return `${day}${ordinalSuffix} ${monthString} ${year}`;
-      }
+    }
       
     
     const age = calculateAge(user.personalInfoHelper.dob);
