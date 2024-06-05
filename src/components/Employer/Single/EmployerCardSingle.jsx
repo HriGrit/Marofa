@@ -48,7 +48,7 @@ const EmployerCardSingle = ({ employerId }) => {
     const userId = employerId;
 
     React.useEffect(() => {
-        const docRef = doc(firestore, "users/employer/free", userId);
+        const docRef = doc(firestore, `documents/${userId}`);
 
         const fetchUser = async () => {
             setLoading(true);
@@ -58,7 +58,6 @@ const EmployerCardSingle = ({ employerId }) => {
                     const list = docSnap.data();
                     console.log("here ", list);
                     setUser(list);
-                    // setUser({ id: docSnap.id, ...docSnap.data() });
                 } else {
                     console.log("No such document!");
                 }

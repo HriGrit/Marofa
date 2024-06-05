@@ -93,7 +93,7 @@ const ContactDetailsE = ({ values, handleChange, nextStep, prevStep, setFormData
 
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-4">
                     <div>
-                        <label for="phone"
+                        <label for="email"
                             className="block mb-2 text-m font-normal text-[#14415a]">
                             Email-Id
                         </label>

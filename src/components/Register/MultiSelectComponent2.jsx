@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 
 const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
+    const [countriesList, setCountriesList] = useState([]);
+
+    useEffect(() => {
+        fetch('https://raw.githubusercontent.com/Imagin-io/country-nationality-list/master/countries.json')
+            .then((response) => response.json())
+            .then((data) => {
+                setCountriesList(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching countries:', error);
+            });
+    }, []);
+    console.log(countriesList);
+    const NationalityOptions = countriesList.map(country => ({
+        value: country.alpha_2_code,
+        label: country.nationality,
+        color: "#14415A"
+    }));
+
     const LocationOptions = [
         { label: 'Saudi Arabia', value: 'Saudi Arabia', color: "#14415A" },
         { label: 'UAE', value: 'UAE', color: "#14415A" },
@@ -18,18 +37,6 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
         { label: 'Permanent', value: 'Permanent', color: "#14415A" },
         { label: 'Contract', value: 'Contract', color: "#14415A" },
         { label: 'Internship', value: 'Internship', color: "#14415A" },
-    ]
-
-    const NationalityOptions = [
-        { label: 'Saudi', value: 'Saudi', color: "#14415A" },
-        { label: 'Egyptian', value: 'Egyptian', color: "#14415A" },
-        { label: 'Jordanian', value: 'Jordanian', color: "#14415A" },
-        { label: 'Lebanese', value: 'Lebanese', color: "#14415A" },
-        { label: 'Kuwaiti', value: 'Kuwaiti', color: "#14415A" },
-        { label: 'Omani', value: 'Omani', color: "#14415A" },
-        { label: 'Bahraini', value: 'Bahraini', color: "#14415A" },
-        { label: 'Qatari', value: 'Qatari', color: "#14415A" },
-        { label: 'Emirati', value: 'Emirati', color: "#14415A" },
     ]
 
     const ReligionOptions = [

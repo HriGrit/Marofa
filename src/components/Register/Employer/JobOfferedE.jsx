@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../../assets/marofa-whitebg.svg';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+
 import Navbar from '../../Navbar/navbar';
-import '../../../css/style.css';
-import DateComponent from '../DateComponent';
+import logo from '../../../assets/marofa-whitebg.svg';
+
+import "../../../css/style.css"
 
 const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     const [countriesList, setCountriesList] = useState([]);
     const [stateList, setStateList] = useState([]);
     const [startDate, setStartDate] = useState(null);
+    
+    const handleDateChange = (date) => {
+        const formattedDate = date.toISOString().split('T')[0];
+        handleChange('jobOfferedEmployer', 'jobStartDate')({
+            target: { value: formattedDate }
+        });
+    };
 
     useEffect(() => {
         fetch('https://venkatmcajj.github.io/react-country-state-city/data/countriesminified.json')
@@ -22,20 +32,16 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
 
     useEffect(() => {
         const countryid = values?.jobLocationCountry;
-        console.log(countryid);
         if (countryid) {
             fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
                 .then((response) => response.json())
                 .then((data) => {
                     const countryObject = data.find((item) => {
-                        console.log('item:', item.id, "country", countryid);
-                        console.log(typeof (item.id), typeof (countryid));
-
                         return item.id === parseInt(countryid);
                     });
 
                     if (countryObject) {
-                        console.log('Found country object:', countryObject);
+                        // console.log('Found country object:', countryObject);
                         setStateList(countryObject);
                     } else {
                         console.log('Country object not found');
@@ -58,7 +64,7 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-
+    console.log(values);
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />
@@ -87,7 +93,7 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                             >
                                 <option value="select-country">Select Country</option>
                                 {countriesList.map((country) => (
-                                    <option key={country.id} value={country.id}>
+                                    <option key={country.id} value={country.name}>
                                         {country.name}
                                     </option>
                                 ))}
@@ -106,14 +112,31 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                             >
                                 <option value="select-state">Select State</option>
                                 {stateList.states && stateList.states.map((state) => (
-                                    <option key={state.id} value={state.id}>
+                                    <option key={state.id} value={state.name}>
                                         {state.name}
                                     </option>
                                 ))}
                             </select>
                         </div>
                         <div>
-                            <DateComponent startDate={startDate} setStartDate={setStartDate} placeholderText="Start Date" value={values} handleChange={handleChange} />
+                            <label htmlFor="jobstartdate"
+                                className="block mb-2 text-m font-normal text-[#14415a]">
+                                Start Date
+                            </label>
+                            <div className="bg-white text-gray-900 rounded-full focus:ring-blue-500 focus:border-blue-500 block">
+                                <DatePicker
+                                    selected={startDate}
+                                    showIcon={false}
+                                    value={values.jobStartDate}
+                                    onChange={handleDateChange}
+                                    placeholderText={'YYYY-MM-DD'}
+                                    dateFormat='dd/MM/yyyy'
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    disabledKeyboardNavigation
+                                    dropdownMode="select"
+                                />
+                            </div>
                         </div>
                         <div>
                             <label htmlFor="weeks-select" className="block mb-2 text-m font-normal text-[#14415a]">
