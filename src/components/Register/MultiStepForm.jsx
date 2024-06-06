@@ -3,7 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Timestamp } from 'firebase/firestore';
-import { firestore, auth } from '../../utils/firebase';
+import { firestore, auth, app } from '../../utils/firebase';
 
 import GetStartedContent from './GetStartedContent';
 import UploadImage from './UploadImage.jsx';
@@ -148,7 +148,7 @@ const MultiStepForm = () => {
             Country: ""
         },
         Applications: {
-            Id: "",
+            Id: [],
         }
     });
 
@@ -235,6 +235,7 @@ const MultiStepForm = () => {
             createdAt: Timestamp.now(),
             role: formData.role,
             userId: currentUser?.uid,
+            applications: formData?.Applications,
             });
 
             toast.success('Data saved successfully!', {
