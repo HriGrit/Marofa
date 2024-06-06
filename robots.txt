@@ -79,3 +79,6 @@ Disallow:
 # disallow all other bots
 User-agent: *
 Disallow: /
+
+
+Sitemap: https://marofa-2279c.web.app/sitemap.xml

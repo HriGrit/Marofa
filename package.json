@@ -5,9 +5,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build",
+		"build": "vite build && npm run generate-sitemap",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"generate-sitemap": "node generate-sitemap.js"
 	},
 	"dependencies": {
 		"firebase": "^10.7.1",
@@ -22,7 +23,8 @@
 		"react-router-dom": "^6.20.1",
 		"react-router-hash-link": "^2.4.3",
 		"react-select": "^5.8.0",
-		"react-slider": "^2.0.6"
+		"react-slider": "^2.0.6",
+		"sitemap": "^8.0.0"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.37",
