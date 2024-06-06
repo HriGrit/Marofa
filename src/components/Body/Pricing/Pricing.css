@@ -2,7 +2,7 @@
     font-family: "NeoSans";
 }
 .dimmed-bg {
-    background-image: linear-gradient(rgba(240, 240, 240, 0.99), rgba(255, 255, 255, 0.9)),url("../../../assets/landingpagefemale.svg");
+    background-image: linear-gradient(rgba(240, 240, 240, 0.99), rgba(255, 255, 255, 0.9)),url("../../../assets/landingpagefemale.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; 

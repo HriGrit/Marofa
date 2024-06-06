@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-// import toast, { Toaster } from 'react-hot-toast';
+import { lazy } from 'react';
+
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
+
 import 'react-phone-number-input/style.css';
-import PhoneInput from 'react-phone-number-input';
+
+const PhoneInput = lazy(() => import('react-phone-number-input'));
 
 const ContactDetailsH = ({ values, handleChange, nextStep, prevStep, setFormData, formData }) => {
     const [errors, setErrors] = useState({});

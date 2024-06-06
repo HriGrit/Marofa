@@ -4,7 +4,8 @@ import React, { Suspense, lazy } from 'react';
 import { AuthProvider } from './Context/AuthContext';
 import Home from './pages/Home/Home';
 import Loader from './pages/Loader';
-import MultiStepForm from './components/Register/MultiStepForm.jsx';
+// import MultiStepForm from './components/Register/MultiStepForm.jsx';
+const MultiStepForm = lazy(() => import('./components/Register/MultiStepForm.jsx'));
 
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));

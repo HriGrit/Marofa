@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from "react-datepicker";
+import React, { useEffect, lazy } from 'react';
+const DatePicker = lazy(() => import('react-datepicker'));
 import MultiSelectComponent from '../MultiSelectComponent11';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-// import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
-import "react-datepicker/dist/react-datepicker.css";
 import '../../../css/style.css';
 
 const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {

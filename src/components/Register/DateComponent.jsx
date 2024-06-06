@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+import React, { useEffect, lazy } from 'react';
+const DatePicker = lazy(() => import('react-datepicker'));
 import { getMonth, getYear } from 'date-fns';
 
 import '../../css/DateComponent.css';

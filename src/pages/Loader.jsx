@@ -1,23 +1,9 @@
 import React from 'react';
-import CircularProgress from '@mui/joy/CircularProgress';
-
-
-
 
 const Loader = () => {
-
-
     return (
-        <div className="h-screen flex items-center justify-center" >
-            <CircularProgress
-
-                color="primary"
-                determinate={false}
-                size="lg"
-                variant="soft"
-            />
-
-
+        <div className="h-screen flex items-center justify-center">
+            <div className="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
         </div>
     );
 };

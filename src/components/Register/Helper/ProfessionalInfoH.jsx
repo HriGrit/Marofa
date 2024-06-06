@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, lazy } from 'react';
+const DatePicker = lazy(() => import('react-datepicker'));
 import toast, { Toaster } from 'react-hot-toast';
 import logo from '../../../assets/marofa-whitebg.svg';
 import Navbar from '../../Navbar/navbar';
 import "react-datepicker/dist/react-datepicker.css";
 import '../../../css/style.css';
-import DatePicker from "react-datepicker";
 
 const ProfessionalInfoH = ({ values, handleChange, nextStep, prevStep }) => {
     const [startDate, setStartDate] = useState(null);

@@ -1,47 +1,44 @@
-// RegisterSection.jsx
 import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
 import SvgIcon1 from '../../../assets/svg1.svg'; // Update with the correct path
 import SvgIcon2 from '../../../assets/svg2.svg'; // Update with the correct path
 import SvgIcon3 from '../../../assets/svg3.svg'; // Update with the correct path
 
 const RegisterSection = () => {
     return (
-        <div id="steps">
-            <Box sx={{ textAlign: 'center', py: 8, backgroundColor: "#F5F7FA" }}>
-                <Typography variant="h4" component="div" sx={{ mb: 4 }}>
-                    3 simple & easy steps to find your helper
-                </Typography>
+        <div id="steps" className="py-8">
+            <div className='bg-[#F5F7FA] py-12'>
+                <div className="text-center mb-8">
+                    <h2 className="text-3xl font-semibold mb-4">
+                        3 simple & easy steps to find your helper
+                    </h2>
+                </div>
 
-                <Stack direction={{ sm: 'column', md: 'row' }} spacing={{ xs: 6, sm: 8, md: 8 }} justifyContent="center" sx={{ mx: { sm: 4, xs: 4, md: 4, lg: 8 } }}>
-                    <Box sx={{ textAlign: 'center', textOverflow: "none" }}>
-                        <img src={SvgIcon1} alt="Explore" className='mx-auto' />
-                        <Typography variant="h6">1. Explore</Typography>
-                        <Typography>
-                            Explore hundreds of profiles ready to start in Saudi Arabia
-                        </Typography>
-                    </Box>
+                <div className="flex flex-col md:flex-row items-center justify-center mx-4 md:mx-8 gap-8">
+                    <div className="text-center max-w-sm">
+                        <img src={SvgIcon1} alt="Explore" className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold">1. Explore</h3>
+                        <p>Explore hundreds of profiles ready to start in Saudi Arabia</p>
+                    </div>
 
-                    <Box sx={{ textAlign: 'center' }}>
-                        <img src={SvgIcon2} alt="Subscribe" className='mx-auto' />
-                        <Typography variant="h6">2. Subscribe</Typography>
-                        <Typography>
-                            Subscribe from 100 SAR per week and get access to helpers contact details
-                        </Typography>
-                    </Box>
+                    <div className="text-center max-w-sm">
+                        <img src={SvgIcon2} alt="Subscribe" className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold">2. Subscribe</h3>
+                        <p>Subscribe from 100 SAR per week and get access to helpers contact details</p>
+                    </div>
 
-                    <Box sx={{ textAlign: 'center' }} className="">
-                        <img src={SvgIcon3} alt="Contact" className='mx-auto' />
-                        <Typography variant="h6">3. Contact</Typography>
-                        <Typography>
-                            Contact helpers directly - saving thousands on agency fees
-                        </Typography>
-                    </Box>
-                </Stack>
-            </Box>
-            <Typography variant="h4" color="#14415A" sx={{ my: 4, textAlign: "center" }}>
-                "Discover Your Ideal Helper in Saudi Arabia with Ease and Speed"
-            </Typography>
+                    <div className="text-center max-w-sm">
+                        <img src={SvgIcon3} alt="Contact" className="mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold">3. Contact</h3>
+                        <p>Contact helpers directly - saving thousands on agency fees</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-8 text-center">
+                <h2 className="text-3xl font-semibold text-[#14415A]">
+                    "Discover Your Ideal Helper in Saudi Arabia with Ease and Speed"
+                </h2>
+            </div>
         </div>
     );
 };

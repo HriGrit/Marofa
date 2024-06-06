@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import ladyImg from "../../assets/landingpagefemale.svg";
+import ladyImg from "../../assets/landingpagefemale.webp";
 
 import "./Hero.css";
 

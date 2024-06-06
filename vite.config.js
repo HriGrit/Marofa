@@ -10,11 +10,12 @@ export default defineConfig(({ mode }) => {
 			"process.env": env,
 		},
 		plugins: [
-			react(),
+			react()
 		],
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "./src"),
+				'~components': path.resolve(__dirname, './src/components'),
 			},
 		},
 	};
