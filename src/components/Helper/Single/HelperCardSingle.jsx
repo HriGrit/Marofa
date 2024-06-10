@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from 'react';
+import React, { useEffect, useState, lazy, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { firestore, auth } from '../../../utils/firebase';
 import { collection, getDocs, query, where, doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
@@ -27,32 +27,32 @@ const HelperCardSingle = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [allow, setAllow] = useState(true);
+    const fetchCalled = useRef(false);
 
     const { helperId } = useParams();
     const userId = helperId;
 
     useEffect(() => {
-        const docRef = doc(firestore, `documents/${userId}`);
+        if (!fetchCalled.current) {
+            fetchCalled.current = true;
+            const fetchDetails = async () => {
+                setLoading(true);
+                try {
+                    const docRef = doc(firestore, `documents/${userId}`);
+                    const docSnap = await getDoc(docRef);
 
-        const fetchDetails = async () => {
-            setLoading(true);
-            try {
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    const list = docSnap.data();
-                    setUser(list);
-                } else {
-                    console.log("No such document!");
-                    setError(true);
-                }
+                    if (docSnap.exists()) {
+                        setUser(docSnap.data());
+                    } else {
+                        console.log("No such document!");
+                        setError(true);
+                    }
 
-                const documentsRef = collection(firestore, 'documents');
-                const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
+                    const documentsRef = collection(firestore, 'documents');
+                    const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
+                    const querySnapshot = await getDocs(q);
 
-                const querySnapshot = await getDocs(q);
-
-                if (!querySnapshot.empty) {
-                    if (querySnapshot.docs[0].data().role === "helper") {
+                    if (!querySnapshot.empty && querySnapshot.docs[0].data().role === "helper") {
                         setAllow(false);
                         toast.error('Helper Can Not Apply to Helper', {
                             duration: 4000,
@@ -63,16 +63,16 @@ const HelperCardSingle = () => {
                             }
                         });
                     }
+                } catch (error) {
+                    setError(true);
+                    toast.error("Error fetching document: ");
                 }
-            } catch (error) {
-                setError(true);
-                toast.error("Error fetching document: ");
-            }
-            setLoading(false);
-        }
+                setLoading(false);
+            };
 
-        return () => fetchDetails();
-    }, [userId, auth, firestore]);
+            fetchDetails();
+        }
+    }, [userId]);
 
 
     function calculateAge(dateOfBirthString) {

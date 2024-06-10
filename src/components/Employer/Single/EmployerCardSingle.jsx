@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from 'react'
+import React, { useEffect, useState, lazy, useRef } from 'react'
 
 import { doc, getDoc, collection, getDocs, query, where, updateDoc, arrayUnion } from 'firebase/firestore';
 import { firestore, auth } from '../../../utils/firebase';
@@ -25,30 +25,31 @@ const EmployerCardSingle = ({ employerId }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [allow, setAllow] = useState(true);
+    const fetchCalled = useRef(false);
     
     const userId = employerId;
 
     useEffect(() => {
-        const fetchDetails = async () => {
-            setLoading(true);
-            try {
-                const docRef = doc(firestore, `documents/${userId}`);
-                const docSnap = await getDoc(docRef);
-                
-                if (docSnap.exists()) {
-                    const list = docSnap.data();
-                    setUser(list);
-                } else {
-                    console.log('No such document!');
-                    setError(true);
-                }
+        if (!fetchCalled.current) {
+            fetchCalled.current = true;
+            const fetchDetails = async () => {
+                setLoading(true);
+                try {
+                    const docRef = doc(firestore, `documents/${userId}`);
+                    const docSnap = await getDoc(docRef);
 
-                const documentsRef = collection(firestore, 'documents');
-                const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
-                const querySnapshot = await getDocs(q);
+                    if (docSnap.exists()) {
+                        setUser(docSnap.data());
+                    } else {
+                        console.log('No such document!');
+                        setError(true);
+                    }
 
-                if (!querySnapshot.empty) {
-                    if (querySnapshot?.docs[0]?.data()?.role === "employer") {
+                    const documentsRef = collection(firestore, 'documents');
+                    const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty && querySnapshot.docs[0].data().role === "employer") {
                         setAllow(false);
                         toast.error('Employers Can Not Apply to Employers', {
                             duration: 4000,
@@ -59,15 +60,15 @@ const EmployerCardSingle = ({ employerId }) => {
                             }
                         });
                     }
+                } catch (error) {
+                    setError(true);
+                    toast.error("Error fetching document: ");
                 }
-            } catch (error) {
-                setError(true);
-                toast.error("Error fetching document: ");
-            }
-            setLoading(false);
-        };
+                setLoading(false);
+            };
 
-        return()=>fetchDetails();
+            fetchDetails();
+        }
     }, [userId, auth.currentUser.uid, firestore]);
 
     const userDetails = {
