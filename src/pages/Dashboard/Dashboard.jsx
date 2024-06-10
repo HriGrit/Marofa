@@ -7,6 +7,7 @@ import { auth, firestore } from '../../utils/firebase';
 import { getDoc } from 'firebase/firestore';
 import HelperView from './HelperView';
 import EmployerView from './EmployerView';
+import Loader from '../Loader';
 
 const Dashboard = () => {
     const [name, setName] = useState('');
@@ -65,13 +66,13 @@ const Dashboard = () => {
         <div>
             <Toaster position="top-center" />
             {isAuthenticated ? (
-                <div>
+                <div className='my-16'>
                     {role === 'employer' ? (
                         <EmployerView name={name} applications={applications} />
                     ) : role === 'helper' ? (
                         <HelperView name={name} applications={applications} />
                     ) : (
-                        <h2>Loading...</h2>
+                        <Loader />
                     )}
                 </div>
             ) : (

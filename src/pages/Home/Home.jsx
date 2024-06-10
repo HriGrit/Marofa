@@ -30,8 +30,9 @@ const Home = () => {
             {isAuthenticated ? (<div className='flex flex-col h-screen justify-between'>
                 <Navbar />
                 <Dashboard />
-                {/* <RegisterSection />
-                <Pricing /> */}
+                {/* <RegisterSection /> */}
+                <Pricing /> 
+                <FAQ />
                 <Footer />
             </div>) : (<div>
                 <Navbar />

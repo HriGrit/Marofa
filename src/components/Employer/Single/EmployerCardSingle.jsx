@@ -25,20 +25,21 @@ const EmployerCardSingle = ({ employerId }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [allow, setAllow] = useState(true);
-
+    
     const userId = employerId;
 
     useEffect(() => {
         const fetchDetails = async () => {
             setLoading(true);
             try {
-                const docRef = doc(firestore, `documents/${userId}_employer`);
+                const docRef = doc(firestore, `documents/${userId}`);
                 const docSnap = await getDoc(docRef);
                 
                 if (docSnap.exists()) {
                     const list = docSnap.data();
                     setUser(list);
                 } else {
+                    console.log('No such document!');
                     setError(true);
                 }
 
@@ -47,7 +48,7 @@ const EmployerCardSingle = ({ employerId }) => {
                 const querySnapshot = await getDocs(q);
 
                 if (!querySnapshot.empty) {
-                    if (querySnapshot.docs[0].data().role === "employer") {
+                    if (querySnapshot?.docs[0]?.data()?.role === "employer") {
                         setAllow(false);
                         toast.error('Employers Can Not Apply to Employers', {
                             duration: 4000,

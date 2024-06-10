@@ -32,7 +32,7 @@ const HelperCardSingle = () => {
     const userId = helperId;
 
     useEffect(() => {
-        const docRef = doc(firestore, `documents/${userId}_helper`);
+        const docRef = doc(firestore, `documents/${userId}`);
 
         const fetchDetails = async () => {
             setLoading(true);

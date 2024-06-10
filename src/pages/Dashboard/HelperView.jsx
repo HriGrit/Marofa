@@ -10,28 +10,40 @@ const CircleProgress = ({ applicationsCount }) => {
 
     return (
         <svg className="transform -rotate-90" width="100" height="100">
-            <circle
-                className="text-gray-300"
-                strokeWidth="10"
-                stroke="currentColor"
-                fill="transparent"
-                r="45"
-                cx="50"
-                cy="50"
-            />
-            <circle
-                className="text-blue-500"
-                strokeWidth="10"
-                strokeDasharray={strokeDasharray}
-                strokeDashoffset={strokeDashoffset}
-                strokeLinecap="round"
-                stroke="currentColor"
-                fill="transparent"
-                r="45"
-                cx="50"
-                cy="50"
-            />
-        </svg>
+                    <circle
+                        className="text-gray-300"
+                        strokeWidth="10"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="45"
+                        cx="50"
+                        cy="50"
+                    />
+                    <circle
+                        className="text-blue-500"
+                        strokeWidth="10"
+                        strokeDasharray={strokeDasharray}
+                        strokeDashoffset={strokeDashoffset}
+                        strokeLinecap="round"
+                        stroke="currentColor"
+                        fill="transparent"
+                        r="45"
+                        cx="50"
+                        cy="50"
+                    />
+                    <text
+                        x="50%"
+                        y="50%"
+                        dominantBaseline="middle"
+                        textAnchor="middle"
+                        fontSize="20"
+                        stroke="white"
+                        fill='white'
+                        transform='rotate(90, 50, 50)'
+                    >
+                        {applicationsCount}/{maxApplications}
+                    </text>
+                </svg>
     );
 };
 
@@ -47,7 +59,7 @@ const HelperView = ({ name, applications }) => {
                 {applications.length > 0 ? (
                     applications.map(id => (
                         <li key={id} className="mb-2">
-                            <Link to={`/helpers/${id}`} className="text-blue-400 hover:text-blue-200">
+                            <Link to={`/employers/${id}_employer`} className="text-blue-400 hover:text-blue-200">
                                 Application ID: {id}
                             </Link>
                         </li>
