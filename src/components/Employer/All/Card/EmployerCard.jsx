@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom'
 const EmployerCard = ({ user }) => {
     const navigate = useNavigate();
     const [load, setLoad] = useState(true);
-    console.log(user);
     useEffect(() => {
         if (user) {
             setLoad(false);

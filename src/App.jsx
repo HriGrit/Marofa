@@ -14,6 +14,7 @@ const AllEmployers = lazy(() => import('./pages/Employer/AllEmployers'));
 const SingleEmployer = lazy(() => import('./pages/Employer/SingleEmployer'));
 const AllHelpers = lazy(() => import('./pages/Helper/AllHelpers'));
 const SingleHelper = lazy(() => import('./pages/Helper/SingleHelper'));
+const ComingSoon = lazy(() => import('./pages/ComingSoon'));
 
 import './App.css';
 import NotFound from './pages/NotFound/NotFound.jsx';
@@ -32,6 +33,7 @@ function App() {
             <Route path="/helpers/:helperId" element={<SingleHelper />} />
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path='/register' element={<MultiStepForm />} />
+            <Route path="/pricing" element={<ComingSoon />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </AuthProvider>

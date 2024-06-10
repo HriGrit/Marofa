@@ -29,8 +29,7 @@ function Navbar() {
     const signOut = async () => {
         try {
             await firebaseSignOut(auth);
-            console.log('User signed out successfully');
-            navigate('/'); // Redirect to sign-in page after sign out
+            navigate('/');
         } catch (error) {
             console.error('Error signing out:', error);
         }

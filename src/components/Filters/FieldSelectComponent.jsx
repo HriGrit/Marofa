@@ -68,7 +68,6 @@ const FieldSelectComponent = ({ placeholderText, toggle }) => {
         const { postBy, setPostBy } = usePostedByHook();
 
         const handlePostedByChange = (event) => {
-            console.log(postBy, event.target.value);
             setPostBy(event.target.value);
         };
         const PostedByOptions = ["Agency", "Employer"];

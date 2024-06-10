@@ -224,7 +224,6 @@ const MultiStepForm = () => {
             if (accountExist) {
                 const documentRef = doc (firestore, "documents", `${currentUser?.uid}_${roleExist}`);
                 await deleteDoc(documentRef);
-                console.log('Document deleted successfully!');
             }
             const docId = `${currentUser?.uid}_${formData.role}`;
 
@@ -243,7 +242,6 @@ const MultiStepForm = () => {
                 position: 'top-right',
             });
 
-            console.log('Data saved successfully!');
             window.location.href = '/';
         } catch (error) {
             console.error('Error writing document: ', error);

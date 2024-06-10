@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy } from 'react'
 
-import { doc, getDoc } from 'firebase/firestore';
-import { firestore } from '../../../utils/firebase';
+import { doc, getDoc, collection, getDocs, query, where, updateDoc, arrayUnion } from 'firebase/firestore';
+import { firestore, auth } from '../../../utils/firebase';
 
 import toast, {Toaster} from 'react-hot-toast';
 
@@ -16,40 +16,58 @@ import holiday from "../../../assets/Employer/Single/holiday.svg"
 
 import language from "../../../assets/Employer/Single/language.svg"
 import skills from "../../../assets/Employer/Single/mainSkills.svg"
-import SkeletonEmployerCardSingle from './SkeletonEmployerCardSingle';
+import { update } from 'firebase/database';
+
+const SkeletonEmployerCardSingle = lazy(() => import('./SkeletonEmployerCardSingle'));
 
 const EmployerCardSingle = ({ employerId }) => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const [noAuth, setNoAuth] = useState(false);
+    const [error, setError] = useState(false);
+    const [allow, setAllow] = useState(true);
 
     const userId = employerId;
 
-    React.useEffect(() => {
-        const docRef = doc(firestore, `documents/${userId}`);
-
-        const fetchUser = async () => {
+    useEffect(() => {
+        const fetchDetails = async () => {
             setLoading(true);
             try {
+                const docRef = doc(firestore, `documents/${userId}_employer`);
                 const docSnap = await getDoc(docRef);
+                
                 if (docSnap.exists()) {
                     const list = docSnap.data();
-                    console.log("here ", list);
                     setUser(list);
                 } else {
-                    console.log("No such document!");
+                    setError(true);
                 }
-                setLoading(false);
+
+                const documentsRef = collection(firestore, 'documents');
+                const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    if (querySnapshot.docs[0].data().role === "employer") {
+                        setAllow(false);
+                        toast.error('Employers Can Not Apply to Employers', {
+                            duration: 4000,
+                            className: 'bg-red-200',
+                            iconTheme: {
+                                primary: '#ff0000',
+                                secondary: '#FFFAEE',
+                            }
+                        });
+                    }
+                }
             } catch (error) {
-                console.error("Error fetching user: ", error);
-                if (error.code === 'permission-denied') {
-                    console.error("Permission denied. User is not authorized to view this document.");
-                    toast.error('Permission denied. User is not authorized to view this document.');
-                }
+                setError(true);
+                toast.error("Error fetching document: ");
             }
+            setLoading(false);
         };
-        return () => fetchUser();
-    }, []);
+
+        return()=>fetchDetails();
+    }, [userId, auth.currentUser.uid, firestore]);
 
     const userDetails = {
         id: user.id,
@@ -73,13 +91,72 @@ const EmployerCardSingle = ({ employerId }) => {
         contract: user.candidatePreferenceEmployer?.Contract
     };
 
-    console.log("userDetails: ", user);
-    if (!user?.image) return <div>No user found.</div>;
+    const handleClick = () => {
+        if (!allow) {
+            toast.error('Employers Can Not Apply to Employers', {
+                duration: 4000,
+                className: 'bg-red-200',
+                iconTheme: {
+                    primary: '#ff0000',
+                    secondary: '#FFFAEE',
+                }
+            });
+        }else {
+            const UpdateApplication = async () => {
+                const docRef = doc(firestore, `documents/${auth.currentUser.uid}_helper`);
+                try {
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        const applications = data.applications?.Id || [];
+                        
+                        // Check if the ID already exists in the array
+                        if (!applications.includes(userId.split('_')[0])) {
+                            await updateDoc(docRef, {
+                                'applications.Id': arrayUnion(userId.split('_')[0])
+                            });
+                            toast.success('Application Submitted', {
+                                duration: 4000,
+                                className: 'bg-green-200',
+                                iconTheme: {
+                                    primary: '#10B981',
+                                    secondary: '#ECFDF5',
+                                }
+                            });
+        
+                            // Check if the array has more than 2 users
+                            if (applications.length + 1 > 1) {
+                                // Handle the case where there are more than 2 users
+                                toast.error('More than 2 applications', {
+                                    duration: 4000,
+                                    className: 'bg-yellow-200',
+                                    icon: '⚠️'
+                                });
+                            }
+                        } else {
+                            toast.success('Application already exists', {
+                                duration: 4000,
+                                style: { background: '#EFF6FF', color: '#3B82F6' },
+                                icon: 'ℹ️'
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error updating document:', error);
+                }
+            } 
+            UpdateApplication();
+        }
+    }
 
     return (
         <>
             <Toaster />
-            {loading ? (<SkeletonEmployerCardSingle />) : (<div className='border-2 shadow-md'>
+            {loading ? (<SkeletonEmployerCardSingle />) :  error ? (
+                <div className="text-center py-4">
+                    <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
+                </div>
+            ) : (<div className='border-2 shadow-md'>
                 <div className='flex gap-5 p-6 pl-12'>
                     <div className=''>
                         <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${userDetails.icon})` }}></div>
@@ -93,7 +170,7 @@ const EmployerCardSingle = ({ employerId }) => {
                         </div>
                         <div className='flex justify-between'>
                             {/* <p className='my-auto'>Posted {userDetails.time} hours ago</p> */}
-                            <button className='px-6 py-2 bg-[#123750] text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto'>
+                            <button className={`px-6 py-2 bg-[#123750] ${!allow ? "cursor-not-allowed bg-slate-400 hover:bg-slate-500" : ""} text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto`} onClick={handleClick}>
                                 Apply
                             </button>
                         </div>

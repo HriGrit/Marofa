@@ -87,7 +87,6 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
 
         const handleLanguageChange = (selectedOptions, { action, option }) => {
             if (action === 'select-option' && option.value === 'select-all') {
-                console.log(options.slice(1));
                 setlanguageOptions(options.slice(1)); // select all options except 'Select All'
             } else if (action === 'deselect-option' && option.value === 'select-all') {
                 setlanguageOptions([]); // deselect all options
@@ -95,7 +94,6 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
                 setlanguageOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
             } else {
                 setlanguageOptions(selectedOptions); // any other selection
-                console.log(languageOptions);
             }
         };
 
@@ -125,7 +123,6 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
             } else if (action === 'deselect-option' && selectedOptions.some(o => o.value === 'select-all')) {
                 setNationalityOptions(selectedOptions.filter(o => o.value !== 'select-all')); // deselect 'Select All'
             } else {
-                console.log(selectedOptions);
                 setNationalityOptions(selectedOptions); // any other selection
             }
         };
@@ -149,7 +146,6 @@ const MultiSelectComponent = ({ placeholdertext, options, toggle }) => {
         const { skillsOptions, setskillsOptions } = useSkillsHooks();
 
         const handleSkillsChange = (selectedOptions, { action, option }) => {
-            console.log("yes");
             if (action === 'select-option' && option.value === 'select-all') {
                 setskillsOptions(options.slice(1)); // select all options except 'Select All'
             } else if (action === 'deselect-option' && option.value === 'select-all') {

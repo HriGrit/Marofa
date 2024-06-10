@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import { firestore } from '../../../utils/firebase';
+import { firestore, auth } from '../../../utils/firebase';
+import { collection, getDocs, query, where, doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 import toast, {Toaster} from 'react-hot-toast';
 
@@ -20,19 +20,21 @@ import daysOff from "../../../assets/Helper/daysOff.png";
 
 import language from "../../../assets/Employer/Single/language.svg";
 import skills from "../../../assets/Employer/Single/mainSkills.svg";
-import SkeletonHelper from './SkeletonHelper';
+const SkeletonHelper = lazy(() => import('./SkeletonHelper'));
 
 const HelperCardSingle = () => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [allow, setAllow] = useState(true);
 
     const { helperId } = useParams();
     const userId = helperId;
 
     useEffect(() => {
-        const docRef = doc(firestore, `documents/${userId}`);
+        const docRef = doc(firestore, `documents/${userId}_helper`);
 
-        const fetchUser = async () => {
+        const fetchDetails = async () => {
             setLoading(true);
             try {
                 const docSnap = await getDoc(docRef);
@@ -41,18 +43,37 @@ const HelperCardSingle = () => {
                     setUser(list);
                 } else {
                     console.log("No such document!");
+                    setError(true);
                 }
-                setLoading(false);
+
+                const documentsRef = collection(firestore, 'documents');
+                const q = query(documentsRef, where('userId', '==', auth.currentUser.uid));
+
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    if (querySnapshot.docs[0].data().role === "helper") {
+                        setAllow(false);
+                        toast.error('Helper Can Not Apply to Helper', {
+                            duration: 4000,
+                            className: 'bg-red-200',
+                            iconTheme: {
+                                primary: '#ff0000',
+                                secondary: '#FFFAEE',
+                            }
+                        });
+                    }
+                }
             } catch (error) {
-                console.error("Error fetching user: ", error);
-                toast.error("Error fetching user: ");
+                setError(true);
+                toast.error("Error fetching document: ");
             }
-        };
+            setLoading(false);
+        }
 
-        return()=>fetchUser();
-    }, []);
+        return () => fetchDetails();
+    }, [userId, auth, firestore]);
 
-    console.log("user", user);
 
     function calculateAge(dateOfBirthString) {
         if (!dateOfBirthString || !Date.parse(dateOfBirthString)) {
@@ -102,17 +123,73 @@ const HelperCardSingle = () => {
     const age = calculateAge(user.personalInfoHelper?.dob);
     const formatedDate = formatDateWithOrdinalAndShorthandMonth(user.professionalInfoHelper?.jobStartDate);
 
-    console.log("userDetails", user);
-
-    if (!user?.userId) {
-        return <div>Invalid User Id.</div>
-    };
+    const handleClick = () => {
+        if (allow) {
+            const UpdateApplication = async () => {
+                const docRef = doc(firestore, `documents/${auth.currentUser.uid}_employer`);
+                try {
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        const applications = data.applications?.Id || [];
+                        
+                        // Check if the ID already exists in the array
+                        if (!applications.includes(userId.split('_')[0])) {
+                            await updateDoc(docRef, {
+                                'applications.Id': arrayUnion(userId.split('_')[0])
+                            });
+                            toast.success('Application Submitted', {
+                                duration: 4000,
+                                className: 'bg-green-200',
+                                iconTheme: {
+                                    primary: '#10B981',
+                                    secondary: '#ECFDF5',
+                                }
+                            });
+        
+                            // Check if the array has more than 2 users
+                            if (applications.length + 1 > 1) {
+                                // Handle the case where there are more than 2 users
+                                toast.error('More than 2 applications', {
+                                    duration: 4000,
+                                    className: 'bg-yellow-200',
+                                    icon: '⚠️'
+                                });
+                            }
+                        } else {
+                            toast.success('Application already exists', {
+                                duration: 4000,
+                                style: { background: '#EFF6FF', color: '#3B82F6' },
+                                icon: 'ℹ️'
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error updating document:', error);
+                }
+            } 
+            UpdateApplication();
+        }else {
+            toast.error('Contacting Helper is not available at the moment', {
+                duration: 4000,
+                className: 'bg-red-200',
+                iconTheme: {
+                    primary: '#ff0000',
+                    secondary: '#FFFAEE',
+                }
+            });
+        }
+    }
 
     return (
         <>
             <Toaster />
             {loading ? (
                 <SkeletonHelper />
+            ) : error ? (
+                <div className="text-center py-4">
+                    <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
+                </div>
             ) : (
                 <div className="border-2 shadow-md">
                     <div className="flex gap-5 p-2 pl-4">
@@ -148,7 +225,7 @@ const HelperCardSingle = () => {
                                     </p>
                                 </div>
                                 <div className="flex justify-between">
-                                    <button className="px-6 py-2 bg-[#123750] text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto">
+                                    <button className={`px-6 py-2 bg-[#123750] ${!allow ? "cursor-not-allowed bg-slate-400 hover:bg-slate-500" : ""} text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto`} onClick={handleClick}>
                                         Contact
                                     </button>
                                 </div>

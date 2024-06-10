@@ -32,7 +32,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
 
     useEffect(() => {
         const countryName = values?.jobLocationCountry;
-        console.log('Country Name:', countryName);
 
         if (countryName) {
             // First fetch to get the country code based on the country name
@@ -41,14 +40,12 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                 .then((countries) => {
                     const country = countries.find(item => item.name === countryName);
                     const countryId = country?.id;
-                    console.log('Country ID:', countryId);
                     if (countryId) {
                         // Fetch states using the country code
                         fetch('https://venkatmcajj.github.io/react-country-state-city/data/statesminified.json')
                             .then((response) => response.json())
                             .then((states) => {
                                 const countryStates = states.filter(state => state.id === countryId);
-                                console.log('Country States:', countryStates[0].states);
                                 setStateList(countryStates[0].states);
                             })
                             .catch((error) => {
@@ -56,7 +53,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                                 setStateList([]);
                             });
                     } else {
-                        console.log('Country ID not found');
                         setStateList([]);
                     }
                 })
@@ -76,7 +72,7 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
     const handlePrevStep = () => {
         prevStep();
     };
-    console.log(values);
+    
     return (
         <div className='h-[100vh] flex flex-col justify-between'>
             <Navbar />

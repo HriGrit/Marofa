@@ -7,9 +7,9 @@ import EmployerSingleBody from "../../components/Employer/Single/EmployerSingleB
 
 const SingleEmployer = () => {
     const { employerId } = useParams();
-    console.log(employerId);
+    
     return (
-        <div>
+        <div className='flex flex-col h-screen justify-between'>
             <Navbar />
             <EmployerSingleBody employerId={employerId} />
             <Footer />

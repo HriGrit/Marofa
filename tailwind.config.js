@@ -7,8 +7,8 @@ export default {
 				neosans: ["NeoSans", "sans-serif"],
 			},
 			screens: {
-				app: "900px",
-				mdnav: "914px",
+				app: "969px",
+				mdnav: "969px",
 			},
 			fontWeight: {
 				hero: "500",

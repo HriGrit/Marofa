@@ -34,7 +34,6 @@ const firebaseFileUpload = async (file, setImagelink) => {
 			toast.success("Image Uploaded Successfully");
 		})
 		.catch((error) => {
-			console.log(error);
 			toast.error("Error uploading image or saving URL");
 		});
 };

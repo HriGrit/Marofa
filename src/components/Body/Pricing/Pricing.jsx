@@ -28,7 +28,9 @@ const Pricing = () => {
                         <p>Directly contact helper</p>
                     </div>
                     <div>
-                        <button className='mt-auto p-3 px-6 bg-[#fffff] text-black rounded-[24px] text-sm border-solid border-2 border-[#123750] hover:bg-[#2E72D9] hover:text-white'>Get Started</button>
+                        <a href="/pricing">
+                            <button className='mt-auto p-3 px-6 bg-[#fffff] text-black rounded-[24px] text-sm border-solid border-2 border-[#123750] hover:bg-[#2E72D9] hover:text-white'>Get Started</button>
+                        </a>
                     </div>
                 </div>
                 <div className='flex flex-col bg-grey-200 text-center space-y-6 border-2 border-black bg-white rounded-2xl'>
@@ -52,7 +54,9 @@ const Pricing = () => {
                         <p>Directly contact helper</p>
                     </div>
                     <div className='px-4 pb-4'>
-                        <button className='mt-auto p-3 px-6 bg-[#123750] text-white rounded-[24px] text-sm hover:bg-[#2E72D9]'>Get Started</button>
+                        <a href="/pricing">
+                            <button className='mt-auto p-3 px-6 bg-[#123750] text-white rounded-[24px] text-sm hover:bg-[#2E72D9]'>Get Started</button>
+                        </a>
                     </div>
                 </div>
             </div>

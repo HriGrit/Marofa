@@ -11,7 +11,6 @@ function GetStartedContent({ setRole, accountExist }) {
     const handleRoleSelection = (role) => {
         setRole(role);
     };
-    console.log("Account exists:", accountExist);
     
     useEffect(() => {
         if (accountExist) {

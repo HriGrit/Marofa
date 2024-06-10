@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 
 const SingleEmployer = () => {
     const { helperId } = useParams();
-    console.log(helperId);
+    
     return (
-        <div>
+        <div className='flex flex-col h-screen justify-between'>
             <Navbar />
             <HelperSingleBody employerId={helperId} />
             <Footer />

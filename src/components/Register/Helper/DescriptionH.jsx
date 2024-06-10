@@ -3,8 +3,6 @@ import logo from "../../../assets/marofa-whitebg.svg";
 import Navbar from '../../Navbar/navbar';
 
 const DescriptionH = ({ prevStep, values, submit, handleChange }) => {
-  console.log(values);
-
   const handlePrevStep = () => {
     prevStep();
   };

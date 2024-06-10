@@ -8,10 +8,8 @@ const NameComponent = ({ placeholder, toggle }) => {
 
         const handleNameChange = (e) => {
             const name = e.target.value;
-            console.log(name);
             setName(name);
         }
-        console.log(name);
         return (
             <div className=''>
                 <label className="block text-md font-medium text-gray-700" htmlFor="candidate-location">

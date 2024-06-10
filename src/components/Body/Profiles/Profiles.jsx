@@ -38,7 +38,7 @@ const Profiles = () => {
 
             <div className="text-center mt-5">
                 <h5 className="font-semibold text-1.5rem text-[#ACA5A4]">
-                    600+ helpers are waiting for you
+                    Several helpers are waiting for you
                 </h5>
             </div>
 

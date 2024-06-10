@@ -14,7 +14,6 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
                 console.error('Error fetching countries:', error);
             });
     }, []);
-    console.log(countriesList);
     const NationalityOptions = countriesList.map(country => ({
         value: country.alpha_2_code,
         label: country.nationality,

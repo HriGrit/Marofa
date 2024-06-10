@@ -10,7 +10,6 @@ const fetchUserDetails = async () => {
 
 	try {
 		const userRecord = await auth.currentUser;
-		console.log(userRecord);
 		return userRecord;
 	} catch (error) {
 		console.error("Error fetching user data: ", error);
