@@ -49,7 +49,7 @@ const CircleProgress = ({ applicationsCount }) => {
 
 const EmployerView = ({ name, applications }) => {
     return (
-        <div className='flex justify-evenly'>
+        <div className='mx-8 md:flex justify-evenly'>
             <div className="bg-theme text-white p-6 rounded-lg">
                 <h2 className="text-2xl mb-4">Welcome, {name} (Employer)</h2>
                 <div className="flex justify-center mb-6">
@@ -70,7 +70,7 @@ const EmployerView = ({ name, applications }) => {
                     )}
                 </ul>
             </div>
-            <div className='p-6'>
+            <div className='p-6 text-center md:text-left'>
                 <h2 className="text-2xl mb-4">View more Helpers</h2>
                 {/* <h3 className="text-lg mb-2">Get in Touch with {5 - applications.length} more helpers for free</h3> */}
                 <a href="/helpers" className="block mb-4">

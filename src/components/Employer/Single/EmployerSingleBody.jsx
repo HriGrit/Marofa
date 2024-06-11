@@ -4,7 +4,7 @@ import EmployerSingleSidebar from './EmployerSingleSidebar'
 
 const EmployerSingleBody = ({ employerId }) => {
     return (
-        <div className='m-16 mx-32 grid grid-cols-12'>
+        <div className='sm:m-16 sm:mx-32 grid grid-cols-12'>
             <div className='col-span-12'>
                 <EmployerCardSingle employerId={employerId} />
             </div>

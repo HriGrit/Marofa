@@ -71,13 +71,13 @@ const HelperCard = ({ user }) => {
     const formatedDate = formatDateWithOrdinalAndShorthandMonth(user.professionalInfoHelper.jobStartDate);
       
     return (
-        <div className='flex flex-row p-2 border-2 shadow-lg rounded-md gap-6 cursor-pointer' onClick={handleClick}>
-            <div className='max-w-1/4 flex items-center'>
+        <div className='flex flex-col sm:flex-row p-2 border-2 shadow-lg rounded-md gap-6 cursor-pointer' onClick={handleClick}>
+            <div className='max-w-1/4 flex items-center mx-auto'>
                 <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user.image})` }}></div>
             </div>
             <div className='space-y-2 w-full'>
                 <div>
-                    <p className='font-bold text-[#054A84]'>{user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName} - {age} yr</p>
+                    <p className='font-bold text-[#054A84] text-center'>{user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName} - {age} yr</p>
                 </div>
                 <div className='flex flex-row gap-6'>
                     <p className='font-bold text-[#666666]'>{user.professionalInfoHelper.jobType} - {user.professionalInfoHelper.currentWorkStatus}</p>

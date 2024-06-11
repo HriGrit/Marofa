@@ -181,6 +181,272 @@ const HelperCardSingle = () => {
         }
     }
 
+    // return (
+    //     <>
+    //         <Toaster />
+    //         {loading ? (
+    //             <SkeletonHelper />
+    //         ) : error ? (
+    //             <div className="text-center py-4">
+    //                 <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
+    //             </div>
+    //         ) : (
+    //             <div className="border-2 shadow-md">
+    //                 <div className="flex gap-5 p-2 pl-4">
+    //                     <div className="">
+    //                         <div
+    //                             className="w-32 h-32 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto"
+    //                             style={{ backgroundImage: `url(${user.image})` }}
+    //                         ></div>
+    //                     </div>
+    //                     <div className="w-full flex flex-col">
+    //                         <div className="flex gap-2">
+    //                             <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[28px]">
+    //                                 {user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName}
+    //                             </h2>
+    //                             <h3 className="text-theme font-[500] line-clamp-1 tracking-wide text-[22px] mt-auto">
+    //                                 ({age} Years)
+    //                             </h3>
+    //                         </div>
+    //                         <div className="flex justify-between my-auto">
+    //                             <div>
+    //                                 <p className="text-[#053c84] font-[800] text-[20px]">
+    //                                     {user.personalInfoHelper.gender.charAt(0).toUpperCase() +
+    //                                         user.personalInfoHelper.gender.slice(1)}{" "}
+    //                                     | {/* Space after | */}
+    //                                     {user.personalInfoHelper.educationLvl.charAt(0).toUpperCase() +
+    //                                         user.personalInfoHelper.educationLvl.slice(1)}{" "}
+    //                                     | {/* Space after | */}
+    //                                     {user.personalInfoHelper.nationality.charAt(0).toUpperCase() +
+    //                                         user.personalInfoHelper.nationality.slice(1)}{" "}
+    //                                     | {/* Space after | */}
+    //                                     {user.personalInfoHelper.religion.charAt(0).toUpperCase() +
+    //                                         user.personalInfoHelper.religion.slice(1)}
+    //                                 </p>
+    //                             </div>
+    //                             <div className="flex justify-between">
+    //                                 <button className={`px-6 py-2 bg-[#123750] ${!allow ? "cursor-not-allowed bg-slate-400 hover:bg-slate-500" : ""} text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto`} onClick={handleClick}>
+    //                                     Contact
+    //                                 </button>
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">Professional Information</p>
+    //                 </div>
+    //                 <div className="grid grid-cols-12 mx-16 my-8">
+    //                     <div className="col-span-12 sm:col-span-6 w-full space-y-2">
+    //                         <div className="flex gap-2">
+    //                             <img src={helper} alt="helper" className="w-4" />
+    //                             <p className="my-auto mt-1">
+    //                                 {user.professionalInfoHelper.jobType} | {user.professionalInfoHelper.currentWorkStatus}
+    //                             </p>
+    //                         </div>
+    //                         <div className="flex gap-2">
+    //                             <img src={location} alt="location" className="w-4" />
+    //                             <p className="my-auto mt-1">
+    //                                 Preferred Location: {user.jobPreferenceHelper.preferredJobLocation}
+    //                             </p>
+    //                         </div>
+    //                         {/* <div className='flex gap-2'>
+    //                             <img src={salary} alt="location" className='w-4' />
+    //                             <p className='my-auto'>Salary: SAR {userDetails.salary}</p>
+    //                         </div>
+    //                         <div className='flex gap-2'>
+    //                             <img src={accomodation} alt="accomodation" className='w-4' />
+    //                             <p className='my-auto'>Accomodation: {userDetails.accomodation}</p>
+    //                         </div> */}
+    //                     </div>
+    //                     <div className="col-span-12 sm:col-span-6 w-full space-y-2">
+    //                         <div className="flex gap-2">
+    //                             <img src={date} alt="date" className="w-4" />
+    //                             <p className="my-auto mt-1">Start from {formatedDate}</p>
+    //                         </div>
+    //                         {/* <div className='flex gap-2'>
+    //                             <img src={contract} alt="contract" className='w-4' />
+    //                             <p className='my-auto'>Contract Status: {userDetails.contract}</p>
+    //                         </div> */}
+    //                         <div className="flex gap-2">
+    //                             <img src={experience} alt="experience" className="w-4" />
+    //                             <p className="my-auto mt-1">Required Experience: {user.professionalInfoHelper.yearsOfExperience} years</p>
+    //                         </div>
+    //                         {/* <div className='flex gap-2'>
+    //                             <img src={holiday} alt="holiday" className='w-4' />
+    //                             <p className='my-auto'>Days Off Given: {userDetails.holiday}</p>
+    //                         </div> */}
+    //                     </div>
+    //                 </div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">About Me</p>
+    //                 </div>
+    //                 <div className="p-6 pl-16">{user.aboutHelper.Text}</div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">Skills / Duties</p>
+    //                 </div>
+    //                 <div className="p-6 pl-16 space-y-4">
+    //                     <div className="flex gap-2">
+    //                         <img src={language} alt="language" className="w-10 h-10 my-auto" />
+    //                         <div className="flex flex-col gap-2">
+    //                             <p className="text-[#054A84] font-[600]">Language</p>
+    //                             <div className="flex gap-2">
+    //                                 {user.skillsSelectedByHelper?.languages?.map((item, index) => {
+    //                                     return (
+    //                                         <p key={index} className="border-2 p-1.5 rounded-[5px]">
+    //                                             {item}
+    //                                         </p>
+    //                                     );
+    //                                 })}
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                     <div className="flex gap-2">
+    //                         <img src={skills} alt="skills" className="w-10 h-10 my-auto" />
+    //                         <div className="flex flex-col gap-2">
+    //                             <p className="text-[#054A84] font-[600]">Main skills</p>
+    //                             <div className="flex gap-2">
+    //                                 {user.skillsSelectedByHelper?.mainSkills?.map((item, index) => {
+    //                                     return (
+    //                                         <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
+    //                                             {item}
+    //                                         </p>
+    //                                     );
+    //                                 })}
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                     <div className="flex gap-2">
+    //                         <img src={cookingSkills} alt="cookingSkills" className="w-10 h-10 my-auto" />
+    //                         <div className="flex flex-col gap-2">
+    //                             <p className="text-[#054A84] font-[600]">Cooking skills</p>
+    //                             <div className="flex gap-2">
+    //                                 {user.skillsSelectedByHelper?.cookingSkills?.map((item, index) => {
+    //                                     return (
+    //                                         <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
+    //                                             {item}
+    //                                         </p>
+    //                                     );
+    //                                 })}
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                     <div className="flex gap-2">
+    //                         <img src={otherSkills} alt="otherSkills" className="w-10 h-10 my-auto" />
+    //                         <div className="flex flex-col gap-2">
+    //                             <p className="text-[#054A84] font-[600]">Other skills</p>
+    //                             <div className="flex gap-2">
+    //                                 {user.skillsSelectedByHelper?.otherSkills?.map((item, index) => {
+    //                                     return (
+    //                                         <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
+    //                                             {item}
+    //                                         </p>
+    //                                     );
+    //                                 })}
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">Work Experience</p>
+    //                 </div>
+    //                 <div className="flex p-6 py-4 pl-16 space-y-4 gap-3">
+    //                     <div className="bg-white p-4 space-y-2 flex gap-2">
+    //                         <div className="flex items-center space-x-2">
+    //                             <img src={experienceHelper} alt="Company Logo" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+    //                         </div>
+    //                         <div className="flex flex-col space-y-1">
+    //                             <p>
+    //                                 {/* <span className="text-gray-500">From: </span> */}
+    //                                 {formatDateWithOrdinalAndShorthandMonth(user.workExperienceHelper?.StartDate)} | {user.workExperienceHelper?.Experience} years
+    //                             </p>
+    //                             <p>
+    //                                 {/* <span className="text-gray-500">In: </span> */}
+    //                                 {user.workExperienceHelper?.Country}
+    //                             </p>
+    //                             <div>
+    //                                 {/* <span className="text-gray-500">As: </span> */}
+    //                                 <ul className="flex flex-wrap gap-2">
+    //                                     {/* {user.workExperienceHelper?.Skills?.map((item, index) => (
+    //                                         <li key={index} className="border border-[#7A7A7A] p-1 rounded-[5px] bg-[#7A7A7A] text-white">
+    //                                             {item}
+    //                                         </li>
+    //                                     ))} */}
+    //                                     {user.workExperienceHelper?.Skills}
+    //                                 </ul>
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">Education</p>
+    //                 </div>
+    //                 <div className="flex p-6 py-4 pl-16 space-y-4 gap-3">
+    //                     <div className="bg-white p-4 space-y-2 flex gap-2">
+    //                         <div className="flex items-center space-x-2">
+    //                             <img src={education} alt="education" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+    //                         </div>
+    //                         <div className="flex flex-col space-y-1">
+    //                             <p>
+    //                                 {user.educationHelper?.Duration} years
+    //                             </p>
+    //                             <p>
+    //                                 {/* <span className="text-gray-500">In: </span> */}
+    //                                 {user.educationHelper?.Country}
+    //                             </p>
+    //                             <div>
+    //                                 Education {user.educationHelper?.LevelofEducation}
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //                 <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
+    //                     <p className="text-[#053c84] font-[800] py-2 text-[18px]">My Expectations</p>
+    //                 </div>
+    //                 <div className="flex flex-col p-6 py-4 pl-16 space-y-1 gap-3">
+    //                     <div className="bg-white p-2 space-y-2 flex gap-4">
+    //                         <div className="flex items-center space-x-2">
+    //                             <img src={salary} alt="salary" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+    //                         </div>
+    //                         <div className="flex flex-col space-y-1">
+    //                             <p>
+    //                                 Salary: 
+    //                             </p>
+    //                             <p>
+    //                                 {user.jobPreferenceHelper?.expectedSalary} SAR
+    //                             </p>
+    //                         </div>
+    //                     </div>
+    //                     <div className="bg-white p-2 space-y-2 flex gap-2">
+    //                         <div className="flex items-center space-x-2">
+    //                             <img src={accomodation} alt="accomodation" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+    //                         </div>
+    //                         <div className="flex flex-col space-y-1">
+    //                             <p>
+    //                                 Accomodation:
+    //                             </p>
+    //                             <p>
+    //                                 {user.jobPreferenceHelper?.accomodationPreference}
+    //                             </p>
+    //                         </div>
+    //                     </div>
+    //                     <div className="bg-white p-2 space-y-2 flex gap-2">
+    //                         <div className="flex items-center space-x-2">
+    //                             <img src={daysOff} alt="daysOff" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+    //                         </div>
+    //                         <div className="flex flex-col space-y-1">
+    //                             <p>
+    //                                 Days Off:
+    //                             </p>
+    //                             <p>
+    //                                 {user.jobPreferenceHelper?.dayOffPreference}
+    //                             </p>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         )}
+    //     </>
+    // );
     return (
         <>
             <Toaster />
@@ -191,255 +457,189 @@ const HelperCardSingle = () => {
                     <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
                 </div>
             ) : (
-                <div className="border-2 shadow-md">
-                    <div className="flex gap-5 p-2 pl-4">
-                        <div className="">
+                <div className="border-2 shadow-md w-full">
+                    <div className="flex flex-col sm:flex-row gap-5 p-2 pl-4">
+                        <div className="flex justify-center sm:justify-start">
                             <div
-                                className="w-32 h-32 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto"
+                                className="w-32 h-32 rounded-full bg-cover bg-center border-2 border-theme"
                                 style={{ backgroundImage: `url(${user.image})` }}
                             ></div>
                         </div>
                         <div className="w-full flex flex-col">
-                            <div className="flex gap-2">
-                                <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[28px]">
+                            <div className="flex flex-col sm:flex-row gap-2 text-center">
+                                <h2 className="text-theme font-semibold line-clamp-1 tracking-wide text-xl sm:text-2xl lg:text-3xl">
                                     {user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName}
                                 </h2>
-                                <h3 className="text-theme font-[500] line-clamp-1 tracking-wide text-[22px] mt-auto">
+                                <h3 className="text-theme font-medium line-clamp-1 tracking-wide text-lg sm:text-xl lg:text-2xl mt-auto">
                                     ({age} Years)
                                 </h3>
                             </div>
-                            <div className="flex justify-between my-auto">
-                                <div>
-                                    <p className="text-[#053c84] font-[800] text-[20px]">
+                            <div className="flex flex-col sm:flex-row justify-between my-auto mt-4 sm:mt-0">
+                                <div className='text-center'>
+                                    <p className="text-blue-900 font-extrabold text-lg sm:text-xl lg:text-2xl">
                                         {user.personalInfoHelper.gender.charAt(0).toUpperCase() +
                                             user.personalInfoHelper.gender.slice(1)}{" "}
-                                        | {/* Space after | */}
-                                        {user.personalInfoHelper.educationLvl.charAt(0).toUpperCase() +
+                                        | {user.personalInfoHelper.educationLvl.charAt(0).toUpperCase() +
                                             user.personalInfoHelper.educationLvl.slice(1)}{" "}
-                                        | {/* Space after | */}
-                                        {user.personalInfoHelper.nationality.charAt(0).toUpperCase() +
+                                        | {user.personalInfoHelper.nationality.charAt(0).toUpperCase() +
                                             user.personalInfoHelper.nationality.slice(1)}{" "}
-                                        | {/* Space after | */}
-                                        {user.personalInfoHelper.religion.charAt(0).toUpperCase() +
+                                        | {user.personalInfoHelper.religion.charAt(0).toUpperCase() +
                                             user.personalInfoHelper.religion.slice(1)}
                                     </p>
                                 </div>
-                                <div className="flex justify-between">
-                                    <button className={`px-6 py-2 bg-[#123750] ${!allow ? "cursor-not-allowed bg-slate-400 hover:bg-slate-500" : ""} text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto`} onClick={handleClick}>
+                                <div className="flex justify-center sm:justify-start mt-4 sm:mt-0">
+                                    <button className={`px-6 py-2 bg-blue-900 ${!allow ? "cursor-not-allowed bg-gray-400 hover:bg-gray-500" : "hover:bg-blue-600"} text-white rounded transition duration-300`} onClick={handleClick}>
                                         Contact
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">Professional Information</p>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">Professional Information</p>
                     </div>
-                    <div className="grid grid-cols-12 mx-16 my-8">
-                        <div className="col-span-12 md:col-span-6 w-full space-y-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mx-4 sm:mx-16 my-8">
+                        <div className="space-y-2">
                             <div className="flex gap-2">
                                 <img src={helper} alt="helper" className="w-4" />
-                                <p className="my-auto mt-1">
-                                    {user.professionalInfoHelper.jobType} | {user.professionalInfoHelper.currentWorkStatus}
-                                </p>
+                                <p className="my-auto mt-1">{user.professionalInfoHelper.jobType} | {user.professionalInfoHelper.currentWorkStatus}</p>
                             </div>
                             <div className="flex gap-2">
                                 <img src={location} alt="location" className="w-4" />
-                                <p className="my-auto mt-1">
-                                    Preferred Location: {user.jobPreferenceHelper.preferredJobLocation}
-                                </p>
+                                <p className="my-auto mt-1">Preferred Location: {user.jobPreferenceHelper.preferredJobLocation}</p>
                             </div>
-                            {/* <div className='flex gap-2'>
-                                <img src={salary} alt="location" className='w-4' />
-                                <p className='my-auto'>Salary: SAR {userDetails.salary}</p>
-                            </div>
-                            <div className='flex gap-2'>
-                                <img src={accomodation} alt="accomodation" className='w-4' />
-                                <p className='my-auto'>Accomodation: {userDetails.accomodation}</p>
-                            </div> */}
                         </div>
-                        <div className="col-span-12 md:col-span-6 w-full space-y-2">
+                        <div className="space-y-2">
                             <div className="flex gap-2">
                                 <img src={date} alt="date" className="w-4" />
                                 <p className="my-auto mt-1">Start from {formatedDate}</p>
                             </div>
-                            {/* <div className='flex gap-2'>
-                                <img src={contract} alt="contract" className='w-4' />
-                                <p className='my-auto'>Contract Status: {userDetails.contract}</p>
-                            </div> */}
                             <div className="flex gap-2">
                                 <img src={experience} alt="experience" className="w-4" />
                                 <p className="my-auto mt-1">Required Experience: {user.professionalInfoHelper.yearsOfExperience} years</p>
                             </div>
-                            {/* <div className='flex gap-2'>
-                                <img src={holiday} alt="holiday" className='w-4' />
-                                <p className='my-auto'>Days Off Given: {userDetails.holiday}</p>
-                            </div> */}
                         </div>
                     </div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">About Me</p>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">About Me</p>
                     </div>
-                    <div className="p-6 pl-16">{user.aboutHelper.Text}</div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">Skills / Duties</p>
+                    <div className="p-6 pl-4 sm:pl-16">{user.aboutHelper.Text}</div>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">Skills / Duties</p>
                     </div>
-                    <div className="p-6 pl-16 space-y-4">
-                        <div className="flex gap-2">
-                            <img src={language} alt="language" className="w-10 h-10 my-auto" />
+                    <div className="p-6 pl-4 sm:pl-16 space-y-4">
+                        <div className="flex flex-col sm:flex-row gap-2">
+                            <img src={language} alt="language" className="w-10 h-10" />
                             <div className="flex flex-col gap-2">
-                                <p className="text-[#054A84] font-[600]">Language</p>
-                                <div className="flex gap-2">
-                                    {user.skillsSelectedByHelper?.languages?.map((item, index) => {
-                                        return (
-                                            <p key={index} className="border-2 p-1.5 rounded-[5px]">
-                                                {item}
-                                            </p>
-                                        );
-                                    })}
+                                <p className="text-blue-900 font-semibold">Language</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {user.skillsSelectedByHelper?.languages?.map((item, index) => (
+                                        <p key={index} className="border-2 p-1.5 rounded">{item}</p>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-2">
-                            <img src={skills} alt="skills" className="w-10 h-10 my-auto" />
+                        <div className="flex flex-col sm:flex-row gap-2">
+                            <img src={skills} alt="skills" className="w-10 h-10" />
                             <div className="flex flex-col gap-2">
-                                <p className="text-[#054A84] font-[600]">Main skills</p>
-                                <div className="flex gap-2">
-                                    {user.skillsSelectedByHelper?.mainSkills?.map((item, index) => {
-                                        return (
-                                            <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
-                                                {item}
-                                            </p>
-                                        );
-                                    })}
+                                <p className="text-blue-900 font-semibold">Main skills</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {user.skillsSelectedByHelper?.mainSkills?.map((item, index) => (
+                                        <p key={index} className="border-2 border-gray-600 p-1.5 rounded bg-gray-600 text-white">{item}</p>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-2">
-                            <img src={cookingSkills} alt="cookingSkills" className="w-10 h-10 my-auto" />
+                        <div className="flex flex-col sm:flex-row gap-2">
+                            <img src={cookingSkills} alt="cookingSkills" className="w-10 h-10" />
                             <div className="flex flex-col gap-2">
-                                <p className="text-[#054A84] font-[600]">Cooking skills</p>
-                                <div className="flex gap-2">
-                                    {user.skillsSelectedByHelper?.cookingSkills?.map((item, index) => {
-                                        return (
-                                            <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
-                                                {item}
-                                            </p>
-                                        );
-                                    })}
+                                <p className="text-blue-900 font-semibold">Cooking skills</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {user.skillsSelectedByHelper?.cookingSkills?.map((item, index) => (
+                                        <p key={index} className="border-2 border-gray-600 p-1.5 rounded bg-gray-600 text-white">{item}</p>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                        <div className="flex gap-2">
-                            <img src={otherSkills} alt="otherSkills" className="w-10 h-10 my-auto" />
+                        <div className="flex flex-col sm:flex-row gap-2">
+                            <img src={otherSkills} alt="otherSkills" className="w-10 h-10" />
                             <div className="flex flex-col gap-2">
-                                <p className="text-[#054A84] font-[600]">Other skills</p>
-                                <div className="flex gap-2">
-                                    {user.skillsSelectedByHelper?.otherSkills?.map((item, index) => {
-                                        return (
-                                            <p key={index} className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white">
-                                                {item}
-                                            </p>
-                                        );
-                                    })}
+                                <p className="text-blue-900 font-semibold">Other skills</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {user.skillsSelectedByHelper?.otherSkills?.map((item, index) => (
+                                        <p key={index} className="border-2 border-gray-600 p-1.5 rounded bg-gray-600 text-white">{item}</p>
+                                    ))}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">Work Experience</p>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">Work Experience</p>
                     </div>
-                    <div className="flex p-6 py-4 pl-16 space-y-4 gap-3">
+                    <div className="p-6 py-4 pl-4 sm:pl-16 space-y-4 gap-3">
                         <div className="bg-white p-4 space-y-2 flex gap-2">
                             <div className="flex items-center space-x-2">
-                                <img src={experienceHelper} alt="Company Logo" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+                                <img src={experienceHelper} alt="Company Logo" className="w-10 h-10 mb-auto mt-2" />
                             </div>
                             <div className="flex flex-col space-y-1">
                                 <p>
-                                    {/* <span className="text-gray-500">From: </span> */}
                                     {formatDateWithOrdinalAndShorthandMonth(user.workExperienceHelper?.StartDate)} | {user.workExperienceHelper?.Experience} years
                                 </p>
                                 <p>
-                                    {/* <span className="text-gray-500">In: </span> */}
                                     {user.workExperienceHelper?.Country}
                                 </p>
                                 <div>
-                                    {/* <span className="text-gray-500">As: </span> */}
                                     <ul className="flex flex-wrap gap-2">
-                                        {/* {user.workExperienceHelper?.Skills?.map((item, index) => (
-                                            <li key={index} className="border border-[#7A7A7A] p-1 rounded-[5px] bg-[#7A7A7A] text-white">
-                                                {item}
-                                            </li>
-                                        ))} */}
                                         {user.workExperienceHelper?.Skills}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">Education</p>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">Education</p>
                     </div>
-                    <div className="flex p-6 py-4 pl-16 space-y-4 gap-3">
+                    <div className="p-6 py-4 pl-4 sm:pl-16 space-y-4 gap-3">
                         <div className="bg-white p-4 space-y-2 flex gap-2">
                             <div className="flex items-center space-x-2">
-                                <img src={education} alt="education" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+                                <img src={education} alt="education" className="w-10 h-10 mb-auto mt-2" />
                             </div>
                             <div className="flex flex-col space-y-1">
-                                <p>
-                                    {user.educationHelper?.Duration} years
-                                </p>
-                                <p>
-                                    {/* <span className="text-gray-500">In: </span> */}
-                                    {user.educationHelper?.Country}
-                                </p>
-                                <div>
-                                    Education {user.educationHelper?.LevelofEducation}
-                                </div>
+                                <p>{user.educationHelper?.Duration} years</p>
+                                <p>{user.educationHelper?.Country}</p>
+                                <div>Education {user.educationHelper?.LevelofEducation}</div>
                             </div>
                         </div>
                     </div>
-                    <div className="pl-6 bg-[rgba(5,74,132,0.20)]">
-                        <p className="text-[#053c84] font-[800] py-2 text-[18px]">My Expectations</p>
+                    <div className="pl-6 bg-blue-200">
+                        <p className="text-blue-900 font-extrabold py-2 text-lg sm:text-xl">My Expectations</p>
                     </div>
-                    <div className="flex flex-col p-6 py-4 pl-16 space-y-1 gap-3">
+                    <div className="flex flex-col p-6 py-4 pl-4 sm:pl-16 space-y-1 gap-3">
                         <div className="bg-white p-2 space-y-2 flex gap-4">
                             <div className="flex items-center space-x-2">
-                                <img src={salary} alt="salary" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+                                <img src={salary} alt="salary" className="w-10 h-10 mb-auto mt-2" />
                             </div>
                             <div className="flex flex-col space-y-1">
-                                <p>
-                                    Salary: 
-                                </p>
-                                <p>
-                                    {user.jobPreferenceHelper?.expectedSalary} SAR
-                                </p>
+                                <p>Salary:</p>
+                                <p>{user.jobPreferenceHelper?.expectedSalary} SAR</p>
                             </div>
                         </div>
                         <div className="bg-white p-2 space-y-2 flex gap-2">
                             <div className="flex items-center space-x-2">
-                                <img src={accomodation} alt="accomodation" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+                                <img src={accomodation} alt="accomodation" className="w-10 h-10 mb-auto mt-2" />
                             </div>
                             <div className="flex flex-col space-y-1">
-                                <p>
-                                    Accomodation:
-                                </p>
-                                <p>
-                                    {user.jobPreferenceHelper?.accomodationPreference}
-                                </p>
+                                <p>Accomodation:</p>
+                                <p>{user.jobPreferenceHelper?.accomodationPreference}</p>
                             </div>
                         </div>
                         <div className="bg-white p-2 space-y-2 flex gap-2">
                             <div className="flex items-center space-x-2">
-                                <img src={daysOff} alt="daysOff" className="w-10 h-10 mb-auto mt-2" /> {/* Assuming you have companyLogo */}
+                                <img src={daysOff} alt="daysOff" className="w-10 h-10 mb-auto mt-2" />
                             </div>
                             <div className="flex flex-col space-y-1">
-                                <p>
-                                    Days Off:
-                                </p>
-                                <p>
-                                    {user.jobPreferenceHelper?.dayOffPreference}
-                                </p>
+                                <p>Days Off:</p>
+                                <p>{user.jobPreferenceHelper?.dayOffPreference}</p>
                             </div>
                         </div>
                     </div>

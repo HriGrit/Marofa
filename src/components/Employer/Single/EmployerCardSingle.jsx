@@ -16,7 +16,6 @@ import holiday from "../../../assets/Employer/Single/holiday.svg"
 
 import language from "../../../assets/Employer/Single/language.svg"
 import skills from "../../../assets/Employer/Single/mainSkills.svg"
-import { update } from 'firebase/database';
 
 const SkeletonEmployerCardSingle = lazy(() => import('./SkeletonEmployerCardSingle'));
 
@@ -159,18 +158,18 @@ const EmployerCardSingle = ({ employerId }) => {
                     <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
                 </div>
             ) : (<div className='border-2 shadow-md'>
-                <div className='flex gap-5 p-6 pl-12'>
-                    <div className=''>
+                <div className='flex flex-col sm:flex-row gap-5 p-2 pl-4'>
+                    <div className='flex justify-center sm:justify-start'>
                         <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${userDetails.icon})` }}></div>
                     </div >
-                    <div className='w-full space-y-1'>
+                    <div className='w-full space-y- text-center sm:text-left'>
                         <div>
                             <h2 className='text-theme font-[600] line-clamp-1 tracking-wide text-[24px]'>{userDetails.heading}</h2>
                         </div>
                         <div>
                             <p>{userDetails.nationality} | {userDetails.size} | with {userDetails.members}</p>
                         </div>
-                        <div className='flex justify-between'>
+                        <div className='flex justify-between mx-auto w-fit sm:mx-0'>
                             {/* <p className='my-auto'>Posted {userDetails.time} hours ago</p> */}
                             <button className={`px-6 py-2 bg-[#123750] ${!allow ? "cursor-not-allowed bg-slate-400 hover:bg-slate-500" : ""} text-white rounded-[4px] hover:bg-blue-600 transition duration-300 my-auto`} onClick={handleClick}>
                                 Apply

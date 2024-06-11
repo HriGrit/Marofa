@@ -12,7 +12,7 @@ const HelperBody = () => {
     const [ispopUpOpen, setisPopUpOpen] = useState(false);
 
     return (
-        <div className='mt-4 mr-16'>
+        <div className='mt-4 app:mr-16'>
             <div className='flex justify-between app:justify-end space-x-4 app:space-x-0'>
                 <div className='block app:hidden'>
                     <FilterHelpers setisPopUpOpen={setisPopUpOpen} ispopUpOpen={ispopUpOpen} />

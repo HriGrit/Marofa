@@ -21,18 +21,18 @@ const EmployerCard = ({ user }) => {
     }
 
     return (
-        <div className={`flex p-2 border-2 shadow-sm rounded-md mr-16 gap-4`} onClick={handleClick}>
+        <div className="flex flex-col app:flex-row p-2 border-2 shadow-sm rounded-md gap-4" onClick={handleClick}>
             <div className='max-w-1/4 flex items-center'>
-                <div className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-2 border-theme my-auto" style={{ backgroundImage: `url(${user.image})` }}></div>
+                <div className="w-40 h-40 rounded-full bg-cover bg-center app:mx-4 border-2 border-theme my-auto mx-auto" style={{ backgroundImage: `url(${user.image})` }}></div>
             </div>
-            <div className='flex flex-col justify-between w-full'>
+            <div className='flex flex-col justify-between w-full text-center app:text-left'>
                 <div className='space-y-1.5'>
                     <div>
                         <p className='text-theme font-bold line-clamp-1'>{user.aboutJobEmployer?.jobTitle}</p>
                     </div>
-                    <div className='flex gap-12'>
+                    <div className='flex flex-col app:flex-row gap-2 app:gap-12 w-fit mx-auto app:mx-0'>
                         <p className='font-bold text-[#666666]'>Family | {user.aboutEmployer?.Nationality}</p>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 mx-auto'>
                             <img src={location} alt="location" className='w-3' />
                             <p className='text-theme font-semibold text-md mb-auto '>{user.aboutEmployer?.Nationality}</p>
                         </div>
