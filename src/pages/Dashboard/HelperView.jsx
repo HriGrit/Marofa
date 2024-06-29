@@ -57,14 +57,17 @@ const HelperView = ({ name, applications }) => {
                 </div>
                 <h3 className="text-lg mb-2">Employers Who Contacted You</h3>
                 <ul>
-                    {applications.length > 0 ? (
-                        applications.map(id => (
-                            <li key={id} className="mb-2">
-                                <Link to={`/employer-details/${id}`} className="text-blue-400 hover:text-blue-200">
-                                    Employer ID: {id}
-                                </Link>
-                            </li>
-                        ))
+                {applications.length > 0 ? (
+                        applications.map(id => {
+                            console.log('Employer ID:', id); // Log the employer ID
+                            return (
+                                <li key={id} className="mb-2">
+                                    <Link to={`/employer-details/${id}`} className="text-blue-400 hover:text-blue-200">
+                                        Employer ID: {id}
+                                    </Link>
+                                </li>
+                            );
+                        })
                     ) : (
                         <p className='text-lg'>No employers have contacted you yet.</p>
                     )}
