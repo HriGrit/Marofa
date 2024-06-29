@@ -60,7 +60,7 @@ const EmployerView = ({ name, applications }) => {
                     {applications.length > 0 ? (
                         applications.map(id => (
                             <li key={id} className="mb-2">
-                                <Link to={`/helpers/${id}`} className="text-blue-400 hover:text-blue-200">
+                                <Link to={`/helper-details/${id}`} className="text-blue-400 hover:text-blue-200">
                                     Helper's ID: {id}
                                 </Link>
                             </li>

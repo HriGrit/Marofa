@@ -60,7 +60,7 @@ const HelperView = ({ name, applications }) => {
                     {applications.length > 0 ? (
                         applications.map(id => (
                             <li key={id} className="mb-2">
-                                <Link to={`/employers/${id}`} className="text-blue-400 hover:text-blue-200">
+                                <Link to={`/employer-details/${id}`} className="text-blue-400 hover:text-blue-200">
                                     Employer ID: {id}
                                 </Link>
                             </li>

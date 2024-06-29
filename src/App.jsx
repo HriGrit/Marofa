@@ -14,6 +14,8 @@ const AllEmployers = lazy(() => import('./pages/Employer/AllEmployers'));
 const SingleEmployer = lazy(() => import('./pages/Employer/SingleEmployer'));
 const AllHelpers = lazy(() => import('./pages/Helper/AllHelpers'));
 const SingleHelper = lazy(() => import('./pages/Helper/SingleHelper'));
+const EmployerDetail= lazy(() => import('./pages/Employer/EmployerDetail'));
+const HelperDetail= lazy(() => import('./pages/Helper/HelperDetail'));
 const ComingSoon = lazy(() => import('./pages/ComingSoon'));
 
 import './App.css';
@@ -31,6 +33,8 @@ function App() {
             <Route path="/employers/:employerId" element={<SingleEmployer />} />
             <Route path="/employers" element={<AllEmployers />} />
             <Route path="/helpers/:helperId" element={<SingleHelper />} />
+            <Route path="/employer-details/:id" element={<EmployerDetail />} />
+            <Route path="/helper-details/:id" element={<HelperDetail />} />
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path='/register' element={<MultiStepForm />} />
             <Route path="/pricing" element={<ComingSoon />} />
