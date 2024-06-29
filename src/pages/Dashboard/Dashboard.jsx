@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { toast, Toaster } from 'react-hot-toast';
-
 import { auth, firestore } from '../../utils/firebase';
-import { getDoc } from 'firebase/firestore';
 import HelperView from './HelperView';
 import EmployerView from './EmployerView';
-import Loader from '../Loader';
 
 const Dashboard = () => {
     const [name, setName] = useState('');
@@ -18,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setName(user.displayName || ''); // Adjust based on what user property you want to set
+                setName(user.displayName || '');
                 setIsAuthenticated(true);
 
                 const fetchUserRole = async () => {
@@ -33,11 +30,26 @@ const Dashboard = () => {
                             const userData = querySnapshot.docs[0].data();
                             setRole(userData.role);
 
-                            // Fetch applications
-                            const docRef = querySnapshot.docs[0].ref;
-                            const docSnap = await getDoc(docRef);
-                            if (docSnap.exists()) {
-                                setApplications(docSnap.data().applications?.Id || []);
+                            if (userData.role === 'employer') {
+                                const applicationsRef = collection(firestore, 'applications');
+                                const applicationsQuery = query(applicationsRef, where('employerId', '==', uid));
+                                const applicationsSnapshot = await getDocs(applicationsQuery);
+
+                                const applicationsData = applicationsSnapshot.docs.map(doc => doc.data().applications.Id).flat();
+                                setApplications(applicationsData);
+                            } else if (userData.role === 'helper') {
+                                const applicationsRef = collection(firestore, 'applications');
+                                const applicationsQuery = query(applicationsRef, where('helperId', '==', uid));
+                                const applicationsSnapshot = await getDocs(applicationsQuery);
+
+                                const employerIds = [];
+                                applicationsSnapshot.forEach(doc => {
+                                    const appData = doc.data();
+                                    if (appData.employerId) {
+                                        employerIds.push(appData.employerId);
+                                    }
+                                });
+                                setApplications(employerIds);
                             }
                         } else {
                             setRole('');
@@ -69,10 +81,8 @@ const Dashboard = () => {
                 <div className='my-16'>
                     {role === 'employer' ? (
                         <EmployerView name={name} applications={applications} />
-                    ) : role === 'helper' ? (
-                        <HelperView name={name} applications={applications} />
                     ) : (
-                        <Loader />
+                        <HelperView name={name} applications={applications} />
                     )}
                 </div>
             ) : (
