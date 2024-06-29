@@ -55,9 +55,9 @@ const HelperView = ({ name, applications }) => {
                 <div className="flex justify-center mb-6">
                     <CircleProgress applicationsCount={applications.length} />
                 </div>
-                <h3 className="text-lg mb-2">Employers Who Contacted You</h3>
+                <h3 className="text-lg mb-2">Your Applications</h3>
                 <ul>
-                {applications.length > 0 ? (
+                    {applications.length > 0 ? (
                         applications.map(id => {
                             console.log('Employer ID:', id); // Log the employer ID
                             return (
@@ -69,12 +69,12 @@ const HelperView = ({ name, applications }) => {
                             );
                         })
                     ) : (
-                        <p className='text-lg'>No employers have contacted you yet.</p>
+                        <p className='text-lg'>You have not applied to any jobs yet.</p>
                     )}
                 </ul>
             </div>
             <div className='p-6 text-center md:text-left'>
-                <h2 className="text-2xl mb-4">Apply to More Employers</h2>
+                <h2 className="text-2xl mb-4">Apply to more Employers</h2>
                 <a href="/employers" className="block mb-4">
                     <button className="px-4 py-2 bg-[#123750] text-white rounded-xl hover:bg-blue-600 transition duration-300 app:w-[150px]"> 
                         More Employers
