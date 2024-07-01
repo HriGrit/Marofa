@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { toast, Toaster } from 'react-hot-toast';
 import { auth, firestore } from '../../utils/firebase';
@@ -11,6 +11,7 @@ const Dashboard = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [role, setRole] = useState('');
     const [applications, setApplications] = useState([]);
+    const [applied, setApplied] = useState([]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,30 +31,12 @@ const Dashboard = () => {
                             const userData = querySnapshot.docs[0].data();
                             setRole(userData.role);
 
-                            if (userData.role === 'employer') {
-                                const applicationsRef = collection(firestore, 'applications');
-                                const applicationsQuery = query(applicationsRef, where('employerId', '==', uid));
-                                const applicationsSnapshot = await getDocs(applicationsQuery);
-
-                                const applicationsData = applicationsSnapshot.docs.map(doc => doc.data().applications.Id).flat();
-                                setApplications(applicationsData);
-                            } else if (userData.role === 'helper') {
-                                const applicationsRef = collection(firestore, 'applications');
-                                const applicationsQuery = query(applicationsRef, where('helperId', '==', uid));
-                                const applicationsSnapshot = await getDocs(applicationsQuery);
-
-                                const employerIds = [];
-                                applicationsSnapshot.forEach(doc => {
-                                    const appData = doc.data();
-                                    if (appData.employerId) {
-                                        employerIds.push(appData.employerId);
-                                    }
-                                });
-                                setApplications(employerIds);
+                            const docRef = querySnapshot.docs[0].ref;
+                            const docSnap = await getDoc(docRef);
+                            if (docSnap.exists()) {
+                                setApplications(docSnap.data().applied?.Id || []);
+                                setApplied(docSnap.data().applications?.Id || []);
                             }
-                        } else {
-                            setRole('');
-                            setApplications([]);
                         }
                     } catch (error) {
                         console.error('Error fetching documents:', error);
@@ -77,11 +60,11 @@ const Dashboard = () => {
         <div>
             <Toaster position="top-center" />
             {isAuthenticated ? (
-                <div className='my-16'>
+                <div className='my-16 mb-4'>
                     {role === 'employer' ? (
-                        <EmployerView name={name} applications={applications} />
+                        <EmployerView name={name} applications={applications} applied={applied} />
                     ) : (
-                        <HelperView name={name} applications={applications} />
+                        <HelperView name={name} applications={applications} applied={applied} />
                     )}
                 </div>
             ) : (

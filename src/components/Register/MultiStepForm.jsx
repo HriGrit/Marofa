@@ -149,6 +149,9 @@ const MultiStepForm = () => {
         },
         Applications: {
             Id: [],
+        },
+        Applied: {
+            Id: [],
         }
     });
 
@@ -235,6 +238,7 @@ const MultiStepForm = () => {
             role: formData.role,
             userId: currentUser?.uid,
             applications: formData?.Applications,
+            applied: formData?.Applied,
             });
 
             toast.success('Data saved successfully!', {
@@ -245,10 +249,6 @@ const MultiStepForm = () => {
             window.location.href = '/';
         } catch (error) {
             console.error('Error writing document: ', error);
-            toast.error('Error writing document: ', {
-                duration: 4000,
-                position: 'top-right',
-            });
         }
     };
 

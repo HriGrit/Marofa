@@ -1,6 +1,6 @@
 import React, { useEffect, useState, lazy, useRef } from 'react'
 
-import { doc, getDoc, collection, getDocs, query, where, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, query, where, updateDoc, arrayUnion, setDoc } from 'firebase/firestore';
 import { firestore, auth } from '../../../utils/firebase';
 
 import toast, {Toaster} from 'react-hot-toast';
@@ -92,6 +92,23 @@ const EmployerCardSingle = ({ employerId }) => {
         contract: user.candidatePreferenceEmployer?.Contract
     };
 
+    const setApplication = async() => {
+        const docRef = doc(firestore, `documents/${employerId}`);
+        const docSnap = await getDoc(docRef);
+        const uid = auth.currentUser.uid;
+        // const id = uid + '_helper';
+        if (docSnap.exists()){
+            const updatedData = {
+                ...docSnap.data(),
+                applied: {
+                    ...docSnap.data().applied,
+                    Id: [...docSnap.data().applied.Id, uid].filter((id, index, self) => self.indexOf(id) === index)
+                }
+            };
+            await setDoc(docRef, updatedData);
+        }
+    }
+
     const handleClick = () => {
         if (!allow) {
             toast.error('Employers Can Not Apply to Employers', {
@@ -111,11 +128,11 @@ const EmployerCardSingle = ({ employerId }) => {
                         const data = docSnap.data();
                         const applications = data.applications?.Id || [];
                         
-                        // Check if the ID already exists in the array
                         if (!applications.includes(userId.split('_')[0])) {
                             await updateDoc(docRef, {
                                 'applications.Id': arrayUnion(userId.split('_')[0])
                             });
+                            setApplication();
                             toast.success('Application Submitted', {
                                 duration: 4000,
                                 className: 'bg-green-200',
@@ -124,10 +141,7 @@ const EmployerCardSingle = ({ employerId }) => {
                                     secondary: '#ECFDF5',
                                 }
                             });
-        
-                            // Check if the array has more than 2 users
                             if (applications.length + 1 > 1) {
-                                // Handle the case where there are more than 2 users
                                 toast.error('More than 2 applications', {
                                     duration: 4000,
                                     className: 'bg-yellow-200',
