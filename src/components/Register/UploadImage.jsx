@@ -58,7 +58,10 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
                     setFormData({ ...formData, image: imageUrl });
                     return 'Image uploaded successfully';
                 },
-                error: 'Error uploading image',
+                error: (error) => {
+                    console.log(error);
+                    return 'Error uploading image';
+                },
             }
         );
     };

@@ -60,7 +60,6 @@ const Dashboard = () => {
                         toast.error('Error fetching documents');
                     }
                 };
-
                 fetchUserRole();
             } else {
                 setIsAuthenticated(false);
