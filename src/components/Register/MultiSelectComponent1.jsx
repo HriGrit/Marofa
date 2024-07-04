@@ -4,20 +4,43 @@ import Select from "react-select";
 const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
     const LanguageOptions = [
         { value: "English", label: "English", color: "#14415A" },
-        { value: "French", label: "French", color: "#14415A" },
-        { value: "Spanish", label: "Spanish", color: "#14415A" },
+        { value: "Cantonese", label: "Cantonese", color: "#14415A" },
+        { value: "Mandarin", label: "Mandarin", color: "#14415A" },
+        { value: "Arabic", label: "Arabic", color: "#14415A" },
+        { value: "Japanese", label: "Japanese", color: "#14415A" },
+        { value: "Filipino(Tagalog)", label: "Filipino(Tagalog)", color: "#14415A" },
+        { value: "Hindi", label: "Hindi", color: "#14415A" },
+        { value: "Urdu", label: "Urdu", color: "#14415A" },
+        { value: "Indonesian(Bahasa)", label: "Indonesian(Bahasa)", color: "#14415A" },
+        { value: "Others", label: "Others", color: "#14415A" },
     ];
 
     const CookingSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" },
+        { value: "Middle Eastern", label: "Middle Eastern", color: "#14415A" },
+        { value: "Asian", label: "Asian", color: "#14415A" },
+        { value: "Chinese", label: "Chinese", color: "#14415A" },
+        { value: "French", label: "French", color: "#14415A" },
+        { value: "Indian", label: "Indian", color: "#14415A" },
+        { value: "Italian", label: "Italian", color: "#14415A" },
+        { value: "Japanese", label: "Japanese", color: "#14415A" },
+        { value: "Thai", label: "Thai", color: "#14415A" },
+        { value: "Singaporean", label: "Singaporean", color: "#14415A" },
+        { value: "Vegetarian", label: "Vegetarian", color: "#14415A" },
+        { value: "Western", label: "Western", color: "#14415A" },
     ];
 
     const MainSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" }
+        { value: "Baby Care", label: "Baby Care", color: "#14415A" },
+        { value: "Child Care", label: "Child Care", color: "#14415A" },
+        { value: "Teen Care", label: "Teen Care", color: "#14415A" },
+        { value: "Elderly Care", label: "Elderly Care", color: "#14415A" },
+        { value: "Pet Care", label: "Pet Care", color: "#14415A" },
+        { value: "Tutoring", label: "Tutoring", color: "#14415A" },
+        { value: "Housekeeping", label: "Housekeeping", color: "#14415A" },
+        { value: "Cooking", label: "Cooking", color: "#14415A" },
+        { value: "Driving", label: "Driving", color: "#14415A" },
+        { value: "Marketing", label: "Marketing", color: "#14415A" },
+        { value: "Grocery", label: "Grocery", color: "#14415A" },
     ];
 
     const PersonalitySkills = [
@@ -27,9 +50,17 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
     ];
 
     const OtherSkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" }
+        { value: "Baking", label: "Baking", color: "#14415A" },
+        { value: "Car Wash", label: "Car Wash", color: "#14415A" },
+        { value: "Caregiver", label: "Caregiver", color: "#14415A" },
+        { value: "Driving license", label: "Driving license", color: "#14415A" },
+        { value: "Computer", label: "Computer", color: "#14415A" },
+        { value: "Gardening", label: "Gardening", color: "#14415A" },
+        { value: "First aid", label: "First aid", color: "#14415A" },
+        { value: "Housework", label: "Housework", color: "#14415A" },
+        { value: "Handyman", label: "Handyman", color: "#14415A" },
+        { value: "Swimming", label: "Swimming", color: "#14415A" },
+        { value: "Sewing", label: "Sewing", color: "#14415A" },
     ];
 
     let options;

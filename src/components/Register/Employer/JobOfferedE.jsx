@@ -108,25 +108,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="state-select"
-                                className="block mb-2 text-m font-normal text-[#14415a]">
-                                Job Location State
-                            </label>
-                            <select
-                                id="state-select"
-                                onChange={handleChange('jobOfferedEmployer', 'jobLocationCity')}
-                                value={values?.jobOfferedEmployer?.jobLocationCity}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
-                            >
-                                <option value="select-state">Select State</option>
-                                {stateList && stateList.map((state) => (
-                                    <option key={state.id} value={state.name}>
-                                        {state.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
                             <label htmlFor="jobstartdate"
                                 className="block mb-2 text-m font-normal text-[#14415a]">
                                 Start Date
@@ -183,23 +164,6 @@ const JobOffered = ({ prevStep, nextStep, values, handleChange }) => {
                                 <option value="full-time">Full Time</option>
                                 <option value="part-time">Part Time</option>
                                 <option value="contract">Contract</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="Job-Type-Select"
-                                className="block mb-2 text-m font-normal text-[#14415a]">
-                                Type of Job Offered
-                            </label>
-                            <select
-                                id="position-type-select"
-                                value={values?.jobPosition}
-                                onChange={handleChange('jobOfferedEmployer', 'jobPosition')}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
-                            >
-                                <option value="select">Select Position</option>
-                                <option value="domestic-helper">Domestic Helper</option>
-                                <option value="cook">Cook</option>
-                                <option value="nanny">Nanny</option>
                             </select>
                         </div>
                     </div>

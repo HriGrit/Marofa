@@ -19,39 +19,53 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
         label: country.nationality,
         color: "#14415A"
     }));
+    
+    NationalityOptions.unshift({
+        label: 'Any',
+        value: 'Any',
+        color: "#14415A"
+    });
+    
 
     const LocationOptions = [
         { label: 'Saudi Arabia', value: 'Saudi Arabia', color: "#14415A" },
-        { label: 'UAE', value: 'UAE', color: "#14415A" },
-        { label: 'Qatar', value: 'Qatar', color: "#14415A" },
-        { label: 'Kuwait', value: 'Kuwait', color: "#14415A" },
-        { label: 'Bahrain', value: 'Bahrain', color: "#14415A" },
-        { label: 'Oman', value: 'Oman', color: "#14415A" },
-        { label: 'Jordan', value: 'Jordan', color: "#14415A" },
-        { label: 'Lebanon', value: 'Lebanon', color: "#14415A" },
-        { label: 'Egypt', value: 'Egypt', color: "#14415A" },
+        { label: 'Any ', value: 'Any', color: "#14415A" },
+        { label: 'Only Overseas', value: 'Only Overseas', color: "#14415A" },
     ]
 
     const ContractOptions = [
-        { label: 'Permanent', value: 'Permanent', color: "#14415A" },
-        { label: 'Contract', value: 'Contract', color: "#14415A" },
-        { label: 'Internship', value: 'Internship', color: "#14415A" },
+        { label: 'Any Situation', value: 'Any Situation', color: "#14415A" },
+        { label: 'Finished Contract', value: 'Finished Contract', color: "#14415A" },
+        { label: 'Terminated (Relocation/Financial)', value: 'Terminated (Relocation/Financial)', color: "#14415A" },
+        { label: 'Terminated (Other)', value: 'Terminated (Other)', color: "#14415A" },
+        { label: 'Break Contract', value: 'Break Contract', color: "#14415A" },
+        { label: 'Transfer', value: 'Transfer', color: "#14415A" },
+        { label: 'Overseas', value: 'Overseas', color: "#14415A" },
+
     ]
 
     const ReligionOptions = [
-        { label: 'Muslim', value: 'Muslim', color: "#14415A" },
-        { label: 'Christian', value: 'Christian', color: "#14415A" },
-        { label: 'Jewish', value: 'Jewish', color: "#14415A" },
-        { label: 'Sikh', value: 'Sikh', color: "#14415A" },
-        { label: 'Hindu', value: 'Hindu', color: "#14415A" },
+        { label: 'Any', value: 'Any', color: "#14415A" },
+        { label: 'Christianity', value: 'Christianity', color: "#14415A" },
+        { label: 'Islam', value: 'Islam', color: "#14415A" },
+        { label: 'Buddhism', value: 'Buddhism', color: "#14415A" },
+        { label: 'Hinduism', value: 'Hinduism', color: "#14415A" },
+        { label: 'Judaism', value: 'Judaism', color: "#14415A" },
+        { label: 'Sikhism', value: 'Sikhism', color: "#14415A" },
+        { label: 'Jainism', value: 'Jainism', color: "#14415A" },
+        { label: 'Baháʼí Faith', value: 'Baháʼí Faith', color: "#14415A" },
+        { label: 'Atheist', value: 'Atheist', color: "#14415A" },
+        { label: 'Other', value: 'Other', color: "#14415A" },
     ]
 
     const EducationOptions = [
+        { label: 'Any', value: 'Any', color: "#14415A" },
+        { label: 'Secondary School', value: 'Secondary School', color: "#14415A" },
         { label: 'High School', value: 'High School', color: "#14415A" },
         { label: 'Diploma', value: 'Diploma', color: "#14415A" },
         { label: 'Bachelor', value: 'Bachelor', color: "#14415A" },
         { label: 'Master', value: 'Master', color: "#14415A" },
-        { label: 'PhD', value: 'PhD', color: "#14415A" },
+        { label: 'Doctorate', value: 'Doctorate', color: "#14415A" },
     ]
 
     const ExperienceOptions = [

@@ -38,6 +38,9 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                                 <option value="Family">Family</option>
                                 <option value="Single">Single</option>
                                 <option value="Couple">Couple</option>
+                                <option value="Company">Company</option>
+                                <option value="Other">Other</option>
+
                             </select>
                         </div>
                         <div>
@@ -62,29 +65,42 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                             </select>
                         </div>
                         <div>
-                            <label className="block mb-2 text-m font-normal text-[#14415a]">Receive Notifications via Email</label>
+                            <label className="block mb-2 text-m font-normal text-[#14415a]">Gender</label>
                             <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.AlertViaEmail} onChange={handleChange("aboutEmployer", "AlertViaEmail")} >
                                 <option value="select-gender">Select Your Gender</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
                         <div>
-                            <label className="block mb-2 text-m font-normal text-[#14415a]">Days Off Offered</label>
+                            <label className="block mb-2 text-m font-normal text-[#14415a]">Day Off</label>
                             <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Holidays} onChange={handleChange("aboutEmployer", "Holidays")} >
-                                <option value="Select-holidays">Select Holidays offerred</option>
-                                <option value="0 Days">0 Days</option>
-                                <option value="1 Day">1 Day</option>
-                                <option value="2 Days">2 Days</option>
+                                <option value="Select-holidays">Select day off offerred</option>
+                                <option value="Flexible">Flexible</option>
+                                <option value="To be discussed">To be discussed</option>
                                 <option value="Negotiable">Negotiable</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Saturday-Sunday">Saturday-Sunday</option>
+                                <option value="Friday-Saturday">Friday-Saturday</option>
                             </select>
                         </div>
                         <div>
                             <label className="block mb-2 text-m font-normal text-[#14415a]">Accommodation</label>
                             <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Accomodation} onChange={handleChange("aboutEmployer", "Accomodation")} >
                                 <option value="select-accomodation">Select Accomodation Type</option>
+                                <option value="To be discussed">To be discussed</option>
                                 <option value="Live In">Live In</option>
                                 <option value="Live Out">Live Out</option>
+                                <option value="Flexible">Flexible</option>
+                                <option value="Live In - Share with kid">Live In - Share with kid</option>
+                                <option value="Live In - Share with coworker">Live In - Share with coworker</option>
+                                <option value="Live In - Separate room">Live In - Separate room</option>
                             </select>
                         </div>
                         <div>
@@ -92,9 +108,12 @@ const AboutEmployer = ({ prevStep, nextStep, values, handleChange }) => {
                             <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select" value={values?.Salary} onChange={handleChange("aboutEmployer", "Salary")} >
                                 <option value="select-monthly-salary">Select Montly Salary</option>
                                 <option value="Negotiable">Negotiable</option>
+                                <option value="100-1000">100-1000</option>
+                                <option value="1000-2000">1000-2000</option>
                                 <option value="2000-3000">2000-3000</option>
                                 <option value="3000-4000">3000-4000</option>
-                                <option value="4000+">4000+</option>
+                                <option value="4000-5000">4000-5000</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                     </form>
