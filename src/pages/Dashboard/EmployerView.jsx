@@ -95,15 +95,17 @@ const CircleProgress = ({ applicationsCount }) => {
 const EmployerView = ({ name, applications, applied }) => {
   return (
     <div className='mx-8'>
-        <div className='flex flex-col gap-4 mdnav:gap-0 w-full mx-auto text-center mdnav:flex-row justify-evenly'>
-            <div className="bg-[#376B8E] text-white p-6 rounded-lg">
-                <h2 className="text-2xl mb-4">Welcome, {name} (Employer)</h2>
-                <h3 className="text-lg mb-2">People who applied to you</h3>
-                <ul className='mx-auto flex mdnav:flex-col  justify-center mdnav:justify-normal'>
-                {applications.length > 0 ? (
-                    applications.map(id => (
-                    <li key={id} className="mb-2 flex items-center">
-                        <Link to={`/helper-details/${id}_helper`} className="hover:text-blue-200 flex items-center">
+        <div>
+            <h2 className="text-2xl mb-4 font-bold">Welcome, {name} </h2>
+        </div>
+        <div className='flex flex-col gap-4 mdnav:gap-32 w-full mx-auto text-center mdnav:flex-row'>
+            <div className="bg-[#376B8E] text-white p-6 rounded-lg mdnav:w-1/2 h-fit">
+                <h3 className="text-2xl mb-2 font-bold">Applicants</h3>
+                <ul className=' flex flex-col'>
+                    {applied.length > 0 ? (
+                        applied.map(id => (
+                      <li key={id} className="mb-2 flex items-center justify-center">
+                        <Link to={`/helpers/${id}_helper`} className="hover:text-blue-200 flex items-center">
                         <FirebaseImage id={id} />    
                         <p className="ml-4 text-white font-bold">View Profile</p>            
                         </Link>
