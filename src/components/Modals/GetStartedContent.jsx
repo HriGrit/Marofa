@@ -12,7 +12,7 @@ function GetStartedContent({ setOpen }) {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center px-4 py-6 z-50" onClick={handleBackgroundClick}>
             <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl relative" onClick={(e) => e.stopPropagation()}>
-                <div className="bg-red-200 w-fit">
+                <div className=" w-fit">
                     <img src={cancel} alt="cancel" className="absolute w-fit h-7 cursor-pointer right-6" onClick={handleBackgroundClick} />
                 </div>
                 <div className="flex items-center justify-center space-x-2 pb-0">

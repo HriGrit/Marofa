@@ -105,7 +105,7 @@ const EmployerView = ({ name, applications, applied }) => {
                     <li key={id} className="mb-2 flex items-center">
                         <Link to={`/helper-details/${id}_helper`} className="hover:text-blue-200 flex items-center">
                         <FirebaseImage id={id} />    
-                        <p className="ml-4 text-white font-bold">{name}</p>            
+                        <p className="ml-4 text-white font-bold">View Profile</p>            
                         </Link>
                     </li>
                     ))
@@ -114,19 +114,15 @@ const EmployerView = ({ name, applications, applied }) => {
                 )}
                 </ul>
             </div>
-            <div className="bg-[#376B8E] text-white p-6 rounded-lg">
-                <h2 className="text-2xl mb-4">Welcome, {name} (Employer)</h2>
-                {/* <div className="flex justify-center mb-6">
-                    <CircleProgress applicationsCount={applications.length} />
-                </div> */}
-                <h3 className="text-lg mb-2">Your Applications</h3>
-                <ul>
-                    {applied.length > 0 ? (
-                        applied.map(id => (
-                            <li key={id} className="mb-2 flex items-center">
+            <div className="bg-[#376B8E] text-white p-6 rounded-lg mdnav:w-1/2 h-fit">
+                <h3 className="text-2xl mb-2 font-bold">Applications</h3>
+                <ul className=' flex flex-col'>
+                    {applications.length > 0 ? (
+                        applications.map(id => (
+                      <li key={id} className="mb-2 flex items-center justify-center">
                         <Link to={`/helpers/${id}_helper`} className="hover:text-blue-200 flex items-center">
                         <FirebaseImage id={id} />    
-                        <p className="ml-4 text-white font-bold">{name}</p>            
+                        <p className="ml-4 text-white font-bold">View Profile</p>            
                         </Link>
                     </li>
                         ))

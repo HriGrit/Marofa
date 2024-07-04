@@ -72,7 +72,7 @@ const HelperCardSingle = () => {
                         setAllow(false);
                         toast.error('Helper Can Not Apply to Helper', {
                             duration: 4000,
-                            className: 'bg-red-200',
+                            className: '',
                             iconTheme: {
                                 primary: '#ff0000',
                                 secondary: '#FFFAEE',
@@ -186,7 +186,7 @@ const HelperCardSingle = () => {
         }else {
             toast.error('Contacting Helper is not available at the moment', {
                 duration: 4000,
-                className: 'bg-red-200',
+                className: '',
                 iconTheme: {
                     primary: '#ff0000',
                     secondary: '#FFFAEE',

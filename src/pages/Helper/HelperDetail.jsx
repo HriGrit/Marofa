@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import { useParams } from 'react-router-dom';
 
 const HelperDetail = () => {
-    const { helperId } = useParams();
+    const { id } = useParams();
     
     return (
         <div className='flex flex-col h-screen justify-between'>

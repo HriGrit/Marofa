@@ -52,7 +52,7 @@ const EmployerCardSingle = ({ employerId }) => {
                         setAllow(false);
                         toast.error('Employers Can Not Apply to Employers', {
                             duration: 4000,
-                            className: 'bg-red-200',
+                            className: '',
                             iconTheme: {
                                 primary: '#ff0000',
                                 secondary: '#FFFAEE',
@@ -113,7 +113,7 @@ const EmployerCardSingle = ({ employerId }) => {
         if (!allow) {
             toast.error('Employers Can Not Apply to Employers', {
                 duration: 4000,
-                className: 'bg-red-200',
+                className: '',
                 iconTheme: {
                     primary: '#ff0000',
                     secondary: '#FFFAEE',
