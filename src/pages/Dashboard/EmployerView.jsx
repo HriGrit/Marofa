@@ -105,7 +105,7 @@ const EmployerView = ({ name, applications, applied }) => {
                     {applied.length > 0 ? (
                         applied.map(id => (
                       <li key={id} className="mb-2 flex items-center justify-center">
-                        <Link to={`/helpers/${id}_helper`} className="hover:text-blue-200 flex items-center">
+                        <Link to={`/helper-details/${id}_helper`} className="hover:text-blue-200 flex items-center">
                         <FirebaseImage id={id} />    
                         <p className="ml-4 text-white font-bold">View Profile</p>            
                         </Link>
