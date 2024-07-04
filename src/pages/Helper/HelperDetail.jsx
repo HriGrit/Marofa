@@ -10,7 +10,7 @@ const HelperDetail = () => {
     return (
         <div className='flex flex-col h-screen justify-between'>
             <Navbar />
-            <HelperSingleBody employerId={helperId} />
+            <HelperSingleBody employerId={Id} />
             <Footer />
         </div>
     )
