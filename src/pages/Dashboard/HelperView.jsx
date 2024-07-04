@@ -106,7 +106,7 @@ const HelperView = ({ name, applications, applied}) => {
                 {applications.length > 0 ? (
                     applications.map(id => (
                     <li key={id} className="mb-2 flex items-center">
-                        <Link to={`/helpers/${id}_employer`} className="hover:text-blue-200 flex items-center">
+                        <Link to={`/employer-details/${id}_employer`} className="hover:text-blue-200 flex items-center">
                         <FirebaseImage id={id} />    
                         <p className="ml-4 text-white font-bold">View Profile</p>            
                         </Link>
