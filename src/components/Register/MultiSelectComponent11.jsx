@@ -43,11 +43,11 @@ const MultiSelectComponent = ({ placeholdertext, handleChange, toggle }) => {
         { value: "Grocery", label: "Grocery", color: "#14415A" },
     ];
 
-    const PersonalitySkills = [
-        { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
-        { value: "Cook", label: "Cook", color: "#14415A" },
-        { value: "Nanny", label: "Nanny", color: "#14415A" }
-    ];
+    // const PersonalitySkills = [
+    //     { value: "Domestic Helper", label: "Domestic Helper", color: "#14415A" },
+    //     { value: "Cook", label: "Cook", color: "#14415A" },
+    //     { value: "Nanny", label: "Nanny", color: "#14415A" }
+    // ];
 
     const OtherSkills = [
         { value: "Baking", label: "Baking", color: "#14415A" },
