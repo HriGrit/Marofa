@@ -21,10 +21,6 @@ function Navbar() {
     setIsNavOpen(!isNavOpen);
   };
 
-  const goToRegister = () => {
-    navigate("/register");
-  };
-
   const signOut = async () => {
     try {
       await firebaseSignOut(auth);
@@ -63,12 +59,6 @@ function Navbar() {
         <div className="flex mdnav:order-2 space-x-3 mdnav:space-x-0 rtl:space-x-reverse">
           {currentUser ? (
             <div className="cursor-pointer outline-none flex flex-row gap-4">
-              <div
-                className="text-white bg-[#14415a] font-thin tracking-widest text-l px-4 py-2 text-center whitespace-nowrap hover:ring-2 hover:ring-white rounded-full focus:outline-none focus:ring-2 focus:ring-white hover:animate-none"
-                onClick={goToRegister}
-              >
-                {userRole ? "Update Profile" : "Get Started"}
-              </div>
               <AuthenticatedUserView
                 user={currentUser}
                 profileDropdownOpen={profileDropdownOpen}
@@ -138,7 +128,7 @@ function Navbar() {
                   to="/applyToEmployer"
                   className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
                 >
-                  Apply to Employer
+                  View Employers
                 </Link>
               </li>
             )}
@@ -148,7 +138,17 @@ function Navbar() {
                   to="/applyToHelper"
                   className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
                 >
-                  Apply to Helper
+                  View Helpers
+                </Link>
+              </li>
+            )}
+            {currentUser && userRole && (
+              <li>
+                <Link
+                  to="/updateProfile"
+                  className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
+                >
+                  Update Profile
                 </Link>
               </li>
             )}
@@ -194,20 +194,10 @@ const AuthenticatedUserView = ({
         ></path>
       </svg>
       {profileDropdownOpen && (
-        <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-40">
+        <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-[100px]">
           <a
             href="#"
-            className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-t-2xl"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/dashboard");
-            }}
-          >
-            See profile
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-b-2xl"
+            className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl "
             onClick={(e) => {
               e.preventDefault();
               signOut();

@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <div className="flex flex-col h-screen justify-between">
+        <div className="flex flex-col justify-between">
           <Navbar />
           <Dashboard />
         </div>

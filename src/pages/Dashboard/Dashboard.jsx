@@ -58,6 +58,16 @@ const Dashboard = () => {
 
   return (
     <div>
+      <div className="flex space-x-2 pb-0 pl-4 ">
+        {/* <img src={logo} className="h-10 sm:h-16" alt="MAROFA Logo" /> */}
+        <span className="pt-8 pl-4 text-xl font-semibold text-theme sm:text-3xl">
+          Dashboard
+        </span>
+      </div>
+      <div className="w-80 mx-0">
+        <hr className="my-2 border-theme border-[2px]   rounded sm:mx-auto sm:border-[3px] lg:my-2 " />
+      </div>
+
       <Toaster position="top-center" />
       {isAuthenticated ? (
         <div className="my-16 mb-4">
