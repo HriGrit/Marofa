@@ -92,7 +92,7 @@ const WorkExperienceH = ({ prevStep, nextStep, values, handleChange, handleChang
                         </div>
                         <div>
                             <MultiSelectComponent
-                                placeholdertext={'Main Skills'}
+                                placeholdertext={'Duties'}
                                 handleChange={handleChanges}
                                 toggle={5} />
                         </div>

@@ -46,6 +46,7 @@ const EducationH = ({ values, handleChange, nextStep, prevStep }) => {
                             onChange={handleChange('educationHelper', 'Country')}
                             className="text-wrap bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
                         >
+                             <option value="Other">Not applicable</option>
                             <option value="" disabled>Select your University</option>
                             {countriesList.map((country) => (
                                 <option key={country.id} value={country.name}>
@@ -81,7 +82,7 @@ const EducationH = ({ values, handleChange, nextStep, prevStep }) => {
 
                         <label for="Duration"
                             className="block mb-2 text-m font-normal text-[#14415a]">
-                            Duration of Course
+                            Duration of Course (in years)
                         </label>
 
                         <select

@@ -111,6 +111,8 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                             <option value="Thursday">Thursday</option>
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
+                            <option value="Saturday-Sunday">Saturday-Sunday</option>
+                            <option value="Friday-Saturday">Friday-Saturday</option>
                             <option value="Flexible">Flexible</option>
                             <option value="To be discussed">To be discussed</option>
                         </select>
@@ -129,7 +131,7 @@ const JobPreferencesH = ({ values, handleChange, nextStep, prevStep }) => {
                             placeholder="Enter salary amount"
                             value={values.expectedSalary}
                             onChange={handleChange('jobPreferenceHelper', 'expectedSalary')}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 custom-select"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         >
 
                         </input>
