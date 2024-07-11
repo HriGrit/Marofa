@@ -41,25 +41,28 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         if (!imageFile) {
-            toast.error('Please upload an image');
+            setFormData({ ...formData, image: "https://firebasestorage.googleapis.com/v0/b/marofa-2279c.appspot.com/o/logo%2Fmarofa.svg?alt=media&token=5c7fe58a-fae8-48ae-8008-94aebf9d978f" });
+            toast.success('Will continue with a default image');
             return;
         }
-
+        
         const storageRef = ref(storage, `images/${formData.role}/${uid}`);
-
+    
         toast.promise(
-            uploadBytes(storageRef, imageFile).then(() => {
-                return getDownloadURL(storageRef);
-            }),
+            uploadBytes(storageRef, imageFile)
+                .then(() => {
+                    return getDownloadURL(storageRef);
+                })
+                .then((imageUrl) => {
+                    setFormData({ ...formData, image: imageUrl});
+                }),
             {
                 loading: 'Uploading image...',
-                success: (imageUrl) => {
-                    setFormData({ ...formData, image: imageUrl });
-                    return 'Image uploaded successfully';
-                },
+                success: 'Image uploaded successfully',
                 error: (error) => {
-                    console.log(error);
+                    console.error('Error uploading image:', error);
                     return 'Error uploading image';
                 },
             }
@@ -68,10 +71,8 @@ const UploadImage = ({ setFormData, formData, nextStep, prevStep }) => {
 
 
     const handleNext = async () => {
-        if (imageURL) {
+        if (getDownloadURL(ref(storage, `images/${formData.role}/${uid}`))) {
             nextStep();
-        } else {
-            toast.error('Please upload an image');
         }
     };
 
