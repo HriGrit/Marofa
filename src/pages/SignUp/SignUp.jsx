@@ -26,7 +26,7 @@ const SignUp = () => {
         try {
             await createUserWithEmailAndPassword(auth, formFields.email, formFields.password);
             toast.success("Successfully signed up!");
-            navigate('/dashboard'); // Redirect after successful sign up
+            navigate('/'); // Redirect after successful sign up
         } catch (error) {
             toast.error(`Error: ${error.message}`);
         } finally {
