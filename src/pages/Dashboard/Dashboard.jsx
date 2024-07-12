@@ -80,30 +80,28 @@ const Dashboard = () => {
       </div>
 
       <Toaster position="top-center" />
-      {loading ? <Loader /> : (
-        show ? (
-          <UnRegistered />
-        ) : (
-          isAuthenticated ? (
-            <div className="my-16 mb-4">
-                {role === "employer" ? (
-                  <EmployerView
-                    name={name}
-                    applications={applications}
-                    applied={applied}
-                  />
-                ) : (
-                  <HelperView
-                    name={name}
-                    applications={applications}
-                    applied={applied}
-                  />
-                )}
-            </div>
+      {loading ? (
+        <Loader />
+      ) : show ? (
+        <UnRegistered />
+      ) : isAuthenticated ? (
+        <div className="my-6 mt-12 mb-4">
+          {role === "employer" ? (
+            <EmployerView
+              name={name}
+              applications={applications}
+              applied={applied}
+            />
           ) : (
-            <Loader />
-          )
-        )
+            <HelperView
+              name={name}
+              applications={applications}
+              applied={applied}
+            />
+          )}
+        </div>
+      ) : (
+        <Loader />
       )}
     </div>
   );
