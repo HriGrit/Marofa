@@ -125,7 +125,7 @@ function Navbar() {
             {currentUser && userRole === "helper" && (
               <li>
                 <Link
-                  to="/applyToEmployer"
+                  to="/employers"
                   className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
                 >
                   View Employers
@@ -135,7 +135,7 @@ function Navbar() {
             {currentUser && userRole === "employer" && (
               <li>
                 <Link
-                  to="/applyToHelper"
+                  to="/helpers"
                   className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
                 >
                   View Helpers

@@ -42,7 +42,7 @@ const FirebaseImage = ({ id, showDetails }) => {
 
     fetchData();
   }, [id]);
-
+  
   return (
     <div className="flex items-center space-x-4 min-w-[600px]">
       {loading ? (
@@ -58,7 +58,7 @@ const FirebaseImage = ({ id, showDetails }) => {
           <img
             src={imageUrl}
             alt={`Image for ID: ${id}`}
-            className="w-16 h-16 rounded-full"
+            className="w-24 h-24 border-black border-4 rounded-full"
           />
           {showDetails && details && (
             <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
@@ -139,7 +139,7 @@ const FirebaseImageNoDetails = ({ id }) => {
           <img
             src={imageUrl}
             alt={`Image for ID: ${id}`}
-            className="w-16 h-16 rounded-full"
+            className="w-24 h-24 border-black border-4 rounded-full"
           />
           {details && (
             <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
@@ -175,8 +175,8 @@ const HelperView = ({ name, applications, applied }) => {
           Welcome, {name}
         </h2>
       </div>
-      <div className="flex flex-col gap-8 md:gap-32 w-full mx-2 text-center md:flex-row md:justify-items-center">
-        <div className="p-3 max-w-3xl bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
+      <div className="flex flex-col gap-8 md:gap-24 w-full text-center md:flex-row md:justify-items-center">
+        <div className="p-3 w-1/2 bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold leading-none text-white">
               Your Applicants
@@ -198,7 +198,7 @@ const HelperView = ({ name, applications, applied }) => {
             </ul>
           </div>
         </div>
-        <div className="p-3 max-w-3xl bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
+        <div className="p-3 w-1/2 bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold leading-none text-white">
               Your Applications
