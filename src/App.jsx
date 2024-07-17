@@ -40,6 +40,7 @@ function App() {
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path="/register" element={<MultiStepForm />} />
             <Route path="/pricing" element={<ComingSoon />} />
+            <Route path="/updateProfile" element={<ComingSoon />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
