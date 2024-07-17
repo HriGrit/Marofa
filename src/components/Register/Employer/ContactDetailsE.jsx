@@ -125,7 +125,7 @@ const ContactDetailsE = ({
               placeholder="John"
               pattern="[A-Za-z]"
               required
-              value={values.lastName}
+              value={values.firstName}
               onChange={handleChange("contactDetailsEmployer", "firstName")}
             />
           </div>
