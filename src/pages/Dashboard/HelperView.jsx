@@ -31,7 +31,6 @@ const FirebaseImage = ({ id, showDetails }) => {
         if (docSnap.exists()) {
           setDetails(docSnap.data().contactDetailsEmployer);
         } else {
-          console.log("No such document!");
           setError((prevError) => ({ ...prevError, details: true }));
         }
       } catch (error) {
@@ -155,7 +154,6 @@ const FirebaseImageNoDetails = ({ id }) => {
         if (docSnap.exists()) {
           setDetails(docSnap.data().contactDetailsEmployer);
         } else {
-          console.log("No such document!");
           setError((prevError) => ({ ...prevError, details: true }));
         }
       } catch (error) {

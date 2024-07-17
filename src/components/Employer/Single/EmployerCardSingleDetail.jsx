@@ -15,9 +15,9 @@ import { firestore, auth } from "../../../utils/firebase";
 
 import toast, { Toaster } from "react-hot-toast";
 import helper from "../../../assets/Employer/Single/helper.svg";
-import call from "../../../assets/Employer/Single/call.svg";
+import phone from "../../../assets/Employer/Single/call.svg";
 import whatsapp from "../../../assets/Employer/Single/whatsapp.svg";
-import mail from "../../../assets/Employer/Single/mail.svg";
+import email from "../../../assets/Employer/Single/mail.svg";
 import location from "../../../assets/Employer/Single/location.svg";
 import cooking from "../../../assets/Employer/Single/cooking.svg";
 import otherskills from "../../../assets/Employer/Single/otherskills.svg";
@@ -55,7 +55,6 @@ const EmployerCardSingleDetail = ({ employerId }) => {
           if (docSnap.exists()) {
             setUser(docSnap.data());
           } else {
-            console.log("No such document!");
             setError(true);
           }
 
@@ -106,7 +105,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
 
     need: user.aboutJobEmployer?.jobDescription,
     nationality: user.aboutEmployer?.Nationality,
-    size: "Family",
+    size: user.aboutEmployer?.EmployerType,
     members: user.aboutEmployer?.FamilySize,
     language: user.skillsRequiredEmployer?.languages,
     experience: user.candidatePreferenceEmployer?.Experience,
@@ -124,24 +123,29 @@ const EmployerCardSingleDetail = ({ employerId }) => {
     contract: user.candidatePreferenceEmployer?.Contract,
   };
 
-  const setApplication = async () => {
-    const docRef = doc(firestore, `documents/${employerId}`);
-    const docSnap = await getDoc(docRef);
-    const uid = auth.currentUser.uid;
-    // const id = uid + '_helper';
-    if (docSnap.exists()) {
-      const updatedData = {
-        ...docSnap.data(),
-        applied: {
-          ...docSnap.data().applied,
-          Id: [...docSnap.data().applied.Id, uid].filter(
-            (id, index, self) => self.indexOf(id) === index
-          ),
-        },
-      };
-      await setDoc(docRef, updatedData);
-    }
-  };
+  // const setApplication = async () => {
+  //   const docRef = doc(firestore, `documents/${employerId}`);
+  //   const docSnap = await getDoc(docRef);
+  //   const uid = auth.currentUser.uid;
+  //   if (docSnap.exists()) {
+  //     const updatedData = {
+  //       ...docSnap.data(),
+  //       applied: {
+  //         ...docSnap.data().applied,
+  //         Id: [...docSnap.data().applied.Id, uid].filter(
+  //           (id, index, self) => self.indexOf(id) === index
+  //         ),
+  //       },
+  //     };
+  //     await setDoc(docRef, updatedData);
+  //   }
+  // };
+  const contactDetails = [
+    { icon: phone, value: user?.contactDetailsEmployer?.altMobileNo, label: "Alternate Mobile" },
+    { icon: whatsapp, value: user?.contactDetailsEmployer?.waMobileNo, label: "WhatsApp Mobile" },
+    { icon: phone, value: user?.contactDetailsEmployer?.mobileNo, label: "Mobile" },
+    { icon: email, value: user?.contactDetailsEmployer?.email, label: "Email" },
+  ].filter(detail => detail.value);
 
   return (
     <>
@@ -156,25 +160,25 @@ const EmployerCardSingleDetail = ({ employerId }) => {
         </div>
       ) : (
         <div className="border-2 shadow-md">
-          <div className="flex flex-col sm:flex-row gap-5 p-8 pl-4">
-            <div className="flex justify-center sm:justify-start">
+          <div className="flex flex-col md:flex-row gap-5 p-8 pl-4">
+            <div className="flex justify-center md:justify-start">
               <div
                 className="w-40 h-40 rounded-full bg-cover bg-center mx-4 border-4 border-theme my-auto"
                 style={{ backgroundImage: `url(${userDetails.icon})` }}
               ></div>
             </div>
-            <div className="w-full space-y-4 text-center sm:text-left">
+            <div className="w-full space-y-4 text-center md:text-left">
               <div>
-                <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[24px] p-2 py-2">
+                <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[20px] mdnav:text-[24px] p-2 py-2">
                   Hey! I'm {userDetails.fName} {userDetails.lName}
                 </h2>
               </div>
               <div>
-                <h2 className="text-theme font-[400] line-clamp-1 tracking-wide text-[24px] p-2 py-2">
+                <h2 className="text-theme font-[400] line-clamp-1 tracking-wide text-[18px] mdnav:text-[22px] p-2 py-2">
                   {userDetails.heading}
                 </h2>
               </div>
-              <div className="text-theme font-[400] line-clamp-1 tracking-wide text-[24px] p-2 py-2 	text-wrap: wrap">
+              <div className="text-theme font-[400] line-clamp-1 tracking-wide text-[18px] mdnav:text-[22px] p-2 py-2 	text-wrap: wrap">
                 <p>
                   We're {userDetails.nationality} | {userDetails.size} | with{" "}
                   {userDetails.members}
@@ -190,26 +194,12 @@ const EmployerCardSingleDetail = ({ employerId }) => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-16 my-8 py-2">
-            <div className="space-y-4">
-              <div className="flex gap-2">
-                <img src={call} alt="call" className="w-6" />
-                <p className="my-auto">{userDetails.PrimaryMobileNo}</p>
+            {contactDetails.map((detail, index) => (
+              <div key={index} className="flex gap-4 space-y-4">
+                <img src={detail.icon} alt={detail.label} className="w-6 md:w-8" />
+                <p className="my-auto pb-3">{detail.value}</p>
               </div>
-              <div className="flex gap-2">
-                <img src={whatsapp} alt="=waNo" className="w-6" />
-                <p className="my-auto">{userDetails.WappMobileNo}</p>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="flex gap-2">
-                <img src={call} alt="altNo" className="w-8" />
-                <p className="my-auto">{userDetails.secondaryMobileNo}</p>
-              </div>
-              <div className="flex gap-2">
-                <img src={mail} alt="accomodation" className="w-8" />
-                <p className="my-auto">{userDetails.EmailId}</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           {/* Employment offer Section */}
@@ -285,7 +275,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                 <div className="flex gap-2">
                   {userDetails.language?.map((item, index) => {
                     return (
-                      <p key={index} className="border-2 p-1.5 rounded-[5px]">
+                      <p key={index} className="border-2 p-1 md:p-1.5 rounded-[5px]">
                         {item}
                       </p>
                     );
@@ -302,7 +292,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                     return (
                       <p
                         key={index}
-                        className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white"
+                        className="border-2 border-[#7A7A7A] p-1 md:p-1.5 rounded-[5px] bg-[#7A7A7A] text-white"
                       >
                         {item}
                       </p>
@@ -318,7 +308,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                 <div className="flex gap-2">
                   {userDetails.cookingSkills?.map((item, index) => {
                     return (
-                      <p key={index} className="border-2 p-1.5 rounded-[5px]">
+                      <p key={index} className="border-2 p-1 md:p-1.5 rounded-[5px]">
                         {item}
                       </p>
                     );
@@ -327,7 +317,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
               </div>
             </div>
             <div className="flex gap-2">
-              <img src={otherskills} alt="skills" />
+              <img src={otherskills} alt="skills" className="w-16 h-16" />
               <div className="flex flex-col gap-2">
                 <p className="text-[#054A84] font-[600]">Other skills</p>
                 <div className="flex gap-2">
@@ -335,7 +325,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                     return (
                       <p
                         key={index}
-                        className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white"
+                        className="border-2 border-[#7A7A7A] p-1 md:p-1.5 rounded-[5px] bg-[#7A7A7A] text-white"
                       >
                         {item}
                       </p>

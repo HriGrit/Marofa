@@ -18,9 +18,9 @@ import salary from "../../../assets/Helper/salary.png";
 import accomodation from "../../../assets/Helper/accomodation.png";
 import daysOff from "../../../assets/Helper/daysOff.png";
 
-import email from "../../../assets/Employer/Single/email.svg";
-import phone from "../../../assets/Employer/Single/phone.svg";
-import whatsapp from "../../../assets/Employer/Single/wa.svg";
+import email from "../../../assets/Employer/Single/mail.svg";
+import phone from "../../../assets/Employer/Single/call.svg";
+import whatsapp from  "../../../assets/Employer/Single/whatsapp.svg";
 
 import language from "../../../assets/Employer/Single/language.svg";
 import skills from "../../../assets/Employer/Single/mainSkills.svg";
@@ -47,7 +47,6 @@ const HelperCardSingleDetail = ({helperId}) => {
                     if (docSnap.exists()) {
                         setUser(docSnap.data());
                     } else {
-                        console.log("No such document!");
                         setError(true);
                     }
 

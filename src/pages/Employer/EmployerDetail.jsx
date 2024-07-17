@@ -6,7 +6,7 @@ import EmployerSingleBodyDetail from "../../components/Employer/Single/EmployerS
 
 const EmployerDetail = () => {
     const { id } = useParams();
-    // console.log(id);
+    
     return (
         <div className='flex flex-col h-screen justify-between'>
             <Navbar />

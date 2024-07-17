@@ -23,22 +23,6 @@ async function isLoggedInUserDocExists(firestore, currentUser) {
   } else {
       setUser([]);
   }
-  // try {
-  //   // Check for document in helpers collection
-  //   const helperDocRef = doc(collection(firestore, "users/helper", userId));
-  //   const helperDocSnapshot = await getDoc(helperDocRef);
-  //   console.log("helperDocSnapshot.exists():", helperDocSnapshot);
-  //   return helperDocSnapshot.exists();
-
-  //   // Check for document in employers collection
-  //   const employerDocRef = doc(collection(firestore, "users/employers", userId));
-  //   const employerDocSnapshot = await getDoc(employerDocRef);
-    
-  //   return employerDocSnapshot.exists();
-  // } catch (error) {
-  //   console.error("Error checking for user document:", error);
-  //   return false;
-  // }
 }
 
 export default isLoggedInUserDocExists;

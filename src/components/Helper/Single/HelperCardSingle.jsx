@@ -60,7 +60,6 @@ const HelperCardSingle = () => {
                     if (docSnap.exists()) {
                         setUser(docSnap.data());
                     } else {
-                        console.log("No such document!");
                         setError(true);
                     }
 
@@ -194,7 +193,7 @@ const HelperCardSingle = () => {
             });
         }
     }
-    console.log(user);
+    
     return (
         <>
             <Toaster />
