@@ -1,46 +1,51 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
-import { firestore, storage } from "../../utils/firebase";
+import { firestore } from "../../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { storage } from "../../utils/firebase";
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
-
-// Custom hook for fetching image URL with caching
-const useImageUrl = (id) => {
-  return useQuery(
-    ["imageUrl", id],
-    async () => {
-      const imagePath = `images/helper/${id}`;
-      const imageRef = ref(storage, imagePath);
-      return await getDownloadURL(imageRef);
-    },
-    { staleTime: 5 * 60 * 1000 } // Cache for 5 minutes
-  );
-};
-
-// Custom hook for fetching name with caching
-const useName = (id) => {
-  return useQuery(
-    ["name", id],
-    async () => {
-      const docRef = doc(firestore, "documents", `${id}_helper`);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        return `${data.personalInfoHelper.firstName} ${data.personalInfoHelper.lastName}`;
-      } else {
-        throw new Error("Document not found");
-      }
-    },
-    { staleTime: 5 * 60 * 1000 } // Cache for 5 minutes
-  );
-};
 
 const FirebaseImage = ({ id }) => {
-  const { data: imageUrl, error: imageError } = useImageUrl(id);
-  const { data: name, error: nameError } = useName(id);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [error, setError] = useState(null);
+  const [name, setName] = useState(null);
 
-  if (imageError || nameError) {
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      try {
+        const imagePath = `images/helper/${id}`;
+        const imageRef = ref(storage, imagePath);
+        const url = await getDownloadURL(imageRef);
+        setImageUrl(url);
+      } catch (error) {
+        console.error("Error fetching image URL:", error);
+        setError(error);
+      }
+    };
+
+    const fetchName = async () => {
+      try {
+        const docRef = doc(firestore, "documents", `${id}_helper`);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const combinedName =
+            data.personalInfoHelper.firstName +
+            " " +
+            data.personalInfoHelper.lastName;
+          setName(combinedName);
+        }
+      } catch (error) {
+        console.error("Error fetching document:", error);
+        setError(error);
+      }
+    };
+
+    fetchImageUrl();
+    fetchName();
+  }, [id]);
+
+  if (error) {
     return <div>Error loading image</div>;
   }
 
@@ -56,15 +61,11 @@ const FirebaseImage = ({ id }) => {
         ) : (
           <p>Loading...</p>
         )}
-        {name ? (
-          <p className="text-white">{name}</p>
-        ) : (
-          <p className="text-white">Helper</p>
-        )}
+        {name ? <p className="text-white">{name}</p> : <p className="text-white">Helper</p>}
       </div>
       <div className="flex ml-auto items-center">
         <button className="ml-auto px-4 py-2 h-fit bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-          View Profile
+            View Profile
         </button>
       </div>
     </div>
@@ -81,6 +82,12 @@ const EmployerView = ({ name, applications, applied }) => {
         <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
           You are an employer. Here you can view the applications
         </h4>
+        {/* <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
+          Applicants are people who want to connect with you
+        </h4>
+        <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
+          Applications are people you have applied to
+        </h4> */}
       </div>
       <div className="flex flex-col gap-8 md:gap-32 w-full mx-2 text-center md:flex-row md:justify-items-center">
         <div className="p-3 w-1/2 bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
@@ -121,9 +128,6 @@ const EmployerView = ({ name, applications, applied }) => {
                     <Link to={`/helpers/${id}_helper`}>
                       <FirebaseImage id={id} />
                     </Link>
-                    <div className="mt-2">
-                      <Link to={`/helpers/${id}_helper`}></Link>
-                    </div>
                   </li>
                 ))
               ) : (
