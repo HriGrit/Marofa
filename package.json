@@ -18,6 +18,8 @@
 		"react-dom": "^18.2.0",
 		"react-hot-toast": "^2.4.1",
 		"react-image-crop": "^11.0.1",
+		"react-lazy-load-image-component": "^1.6.2",
+		"react-loading-skeleton": "^3.4.0",
 		"react-multi-select-component": "^4.3.4",
 		"react-phone-number-input": "^3.3.7",
 		"react-router-dom": "^6.20.1",

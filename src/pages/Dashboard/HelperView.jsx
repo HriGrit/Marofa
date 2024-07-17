@@ -3,6 +3,8 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { firestore, storage } from "../../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const FirebaseImage = ({ id, showDetails }) => {
   const [imageUrl, setImageUrl] = useState(null);
@@ -42,13 +44,39 @@ const FirebaseImage = ({ id, showDetails }) => {
 
     fetchData();
   }, [id]);
-  
+
   return (
     <div className="flex items-center space-x-4 min-w-[600px]">
       {loading ? (
-        <div className="w-16 h-16 flex items-center justify-center">
-          <p>Loading...</p>
-        </div>
+        <>
+          <Skeleton
+            circle={true}
+            height={96}
+            width={96}
+            baseColor="#202020"
+            highlightColor="#444"
+          />
+          {showDetails && (
+            <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
+              <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+                <Skeleton
+                  width={120}
+                  height={28}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                />
+              </div>
+            </div>
+          )}
+          <div className="inline-flex items-center">
+            <Skeleton
+              width={100}
+              height={40}
+              baseColor="#202020"
+              highlightColor="#444"
+            />
+          </div>
+        </>
       ) : error.image || (showDetails && error.details) ? (
         <div className="w-16 h-16 flex items-center justify-center">
           <p>Error loading content</p>
@@ -129,9 +157,33 @@ const FirebaseImageNoDetails = ({ id }) => {
   return (
     <div className="flex items-center space-x-4 min-w-[600px]">
       {loading ? (
-        <div className="w-16 h-16 flex items-center justify-center">
-          <p>Loading...</p>
-        </div>
+        <>
+          <Skeleton
+            circle={true}
+            height={96}
+            width={96}
+            baseColor="#202020"
+            highlightColor="#444"
+          />
+          <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
+            <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+              <Skeleton
+                width={120}
+                height={28}
+                baseColor="#202020"
+                highlightColor="#444"
+              />
+            </div>
+          </div>
+          <div className="inline-flex items-center">
+            <Skeleton
+              width={100}
+              height={40}
+              baseColor="#202020"
+              highlightColor="#444"
+            />
+          </div>
+        </>
       ) : error.image || error.details ? (
         <div className="w-16 h-16 flex items-center justify-center">
           <p>Error loading content</p>
