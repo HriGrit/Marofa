@@ -1,145 +1,85 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
-import { firestore } from "../../utils/firebase";
+import { firestore, storage } from "../../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { storage } from "../../utils/firebase";
 import { Link } from "react-router-dom";
+import { useQuery } from 'react-query';
+
+// Custom hook for fetching image URL with caching
+const useImageUrl = (id) => {
+  return useQuery(
+    ['imageUrl', id],
+    async () => {
+      const imagePath = `images/helper/${id}`;
+      const imageRef = ref(storage, imagePath);
+      return await getDownloadURL(imageRef);
+    },
+    { staleTime: 5 * 60 * 1000 } // Cache for 5 minutes
+  );
+};
+
+// Custom hook for fetching name with caching
+const useName = (id) => {
+  return useQuery(
+    ['name', id],
+    async () => {
+      const docRef = doc(firestore, "documents", `${id}_helper`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        return `${data.personalInfoHelper.firstName} ${data.personalInfoHelper.lastName}`;
+      } else {
+        throw new Error("Document not found");
+      }
+    },
+    { staleTime: 5 * 60 * 1000 } // Cache for 5 minutes
+  );
+};
 
 const FirebaseImage = ({ id }) => {
-  const [imageUrl, setImageUrl] = useState(null);
-  const [error, setError] = useState(null);
-  const [name, setName] = useState(null);
+  const { data: imageUrl, error: imageError } = useImageUrl(id);
+  const { data: name, error: nameError } = useName(id);
 
-  useEffect(() => {
-    const fetchImageUrl = async () => {
-      try {
-        const imagePath = `images/helper/${id}`;
-        const imageRef = ref(storage, imagePath);
-        const url = await getDownloadURL(imageRef);
-        setImageUrl(url);
-      } catch (error) {
-        console.error("Error fetching image URL:", error);
-        setError(error);
-      }
-    };
-
-    const fetchName = async () => {
-      try {
-        const docRef = doc(firestore, "documents", `${id}_helper`);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          console.log("Document data:", data); // Logging the entire document data to check its structure
-          const combinedName =
-            data.professionalInfoHelper.first_name +
-            " " +
-            data.professionalInfoHelper.last_name;
-          setName(combinedName);
-        } else {
-          console.log("No such document!");
-        }
-      } catch (error) {
-        console.error("Error fetching document:", error);
-        setError(error);
-      }
-<<<<<<< HEAD
-    };
-
-    fetchImageUrl();
-    fetchName();
-  }, [id]);
-
-  if (error) {
+  if (imageError || nameError) {
     return <div>Error loading image</div>;
   }
 
   return (
-    <div className="flex items-center space-x-4">
-      {imageUrl ? (
-        <img
-          src={imageUrl}
-          alt={`Image for ID: ${id}`}
-          className="w-16 h-16 rounded-full"
-        />
-      ) : (
-        <p>Loading...</p>
-      )}
-      {name && <p className="text-white">{name}</p>}
+    <div className="flex">
+      <div className="flex items-center space-x-4">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={`Image for ID: ${id}`}
+            className="w-24 h-24 rounded-full border-4 border-black"
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
+        {name ? <p className="text-white">{name}</p> : <p className="text-white">Helper</p>}
+      </div>
+      <div className="flex ml-auto items-center">
+        <button className="ml-auto px-4 py-2 h-fit bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+            View Profile
+        </button>
+      </div>
     </div>
   );
 };
-=======
-  
-      fetchImageUrl();
-      fetchName();
-    }, [id]);
-  
-    if (error) {
-      return <div>Error loading image</div>;
-    }
-  
-    return (
-      <div>
-        {imageUrl ? <img src={imageUrl} alt={`Image for ID: ${id}`} className="w-32 h-32 object-cover border-black border-4 rounded-full" /> : <p>Loading...</p>}
-      </div>
-    );
-  };
-const maxApplications = 10;
-// const CircleProgress = ({ applicationsCount }) => {
-//     const fillPercentage = (applicationsCount / maxApplications) * 100;
-//     const strokeDasharray = 283; // Approximate circumference of the circle (2 * Math.PI * 45)
-//     const strokeDashoffset = strokeDasharray - (fillPercentage * strokeDasharray) / 100;
-
-//     return (
-//         <svg className="transform -rotate-90" width="100" height="100">
-//                     <circle
-//                         className="text-gray-300"
-//                         strokeWidth="10"
-//                         stroke="currentColor"
-//                         fill="transparent"
-//                         r="45"
-//                         cx="50"
-//                         cy="50"
-//                     />
-//                     <circle
-//                         className="text-blue-500"
-//                         strokeWidth="10"
-//                         strokeDasharray={strokeDasharray}
-//                         strokeDashoffset={strokeDashoffset}
-//                         strokeLinecap="round"
-//                         stroke="currentColor"
-//                         fill="transparent"
-//                         r="45"
-//                         cx="50"
-//                         cy="50"
-//                     />
-//                     <text
-//                         x="50%"
-//                         y="50%"
-//                         dominantBaseline="middle"
-//                         textAnchor="middle"
-//                         fontSize="20"
-//                         stroke="white"
-//                         fill='white'
-//                         transform='rotate(90, 50, 50)'
-//                     >
-//                         {applicationsCount}/{maxApplications}
-//                     </text>
-//                 </svg>
-//     );
-// };
->>>>>>> a59cd54db13a7b11d294ee505f74ca042050e382
 
 const EmployerView = ({ name, applications, applied }) => {
   return (
     <div className="p-4 md:mt-2 py-0">
       <div>
         <h2 className="text-2xl mb-4 px-4 font-bold text-[#14415a]">
-          Welcome, {name}
+          Welcome to Marofa
         </h2>
+        <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
+          You are an employer. Here you can view the applications
+        </h4>
       </div>
       <div className="flex flex-col gap-8 md:gap-32 w-full mx-2 text-center md:flex-row md:justify-items-center">
-        <div className="p-3 max-w-3xl bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
+        <div className="p-3 w-1/2 bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold leading-none text-white">
               Applicants
@@ -153,13 +93,6 @@ const EmployerView = ({ name, applications, applied }) => {
                     <Link to={`/helper-details/${id}_helper`}>
                       <FirebaseImage id={id} />
                     </Link>
-                    <div className="mt-2">
-                      <Link to={`/helper-details/${id}_helper`}>
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-                          View Profile
-                        </button>
-                      </Link>
-                    </div>
                   </li>
                 ))
               ) : (
@@ -170,7 +103,7 @@ const EmployerView = ({ name, applications, applied }) => {
             </ul>
           </div>
         </div>
-        <div className="p-3 max-w-3xl bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
+        <div className="p-3 w-1/2 bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-bold leading-none text-white">
               Your Applications
@@ -186,9 +119,6 @@ const EmployerView = ({ name, applications, applied }) => {
                     </Link>
                     <div className="mt-2">
                       <Link to={`/helpers/${id}_helper`}>
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-                          View Profile
-                        </button>
                       </Link>
                     </div>
                   </li>
