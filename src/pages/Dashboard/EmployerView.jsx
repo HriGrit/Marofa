@@ -3,12 +3,12 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { firestore, storage } from "../../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query";
 
 // Custom hook for fetching image URL with caching
 const useImageUrl = (id) => {
   return useQuery(
-    ['imageUrl', id],
+    ["imageUrl", id],
     async () => {
       const imagePath = `images/helper/${id}`;
       const imageRef = ref(storage, imagePath);
@@ -21,7 +21,7 @@ const useImageUrl = (id) => {
 // Custom hook for fetching name with caching
 const useName = (id) => {
   return useQuery(
-    ['name', id],
+    ["name", id],
     async () => {
       const docRef = doc(firestore, "documents", `${id}_helper`);
       const docSnap = await getDoc(docRef);
@@ -56,11 +56,15 @@ const FirebaseImage = ({ id }) => {
         ) : (
           <p>Loading...</p>
         )}
-        {name ? <p className="text-white">{name}</p> : <p className="text-white">Helper</p>}
+        {name ? (
+          <p className="text-white">{name}</p>
+        ) : (
+          <p className="text-white">Helper</p>
+        )}
       </div>
       <div className="flex ml-auto items-center">
         <button className="ml-auto px-4 py-2 h-fit bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-            View Profile
+          View Profile
         </button>
       </div>
     </div>
@@ -118,8 +122,7 @@ const EmployerView = ({ name, applications, applied }) => {
                       <FirebaseImage id={id} />
                     </Link>
                     <div className="mt-2">
-                      <Link to={`/helpers/${id}_helper`}>
-                      </Link>
+                      <Link to={`/helpers/${id}_helper`}></Link>
                     </div>
                   </li>
                 ))

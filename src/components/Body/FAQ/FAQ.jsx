@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import "./FAQ.css";
 import dropdown from "../../../assets/dropdown.svg";
 const FAQ = () => {
-    return (
-        <div id="faq">
-            <div className='dimmed-bg space-y-12 pb-20'>
+  return (
+    <div id="faq">
+      {/* <div className='dimmed-bg space-y-12 pb-20'>
                 <div className='text-center pt-20 space-y-3 '>
                     <h2 className=' text-md'>Need Help?</h2>
                     <h4 className=' text-4xl'>FAQs</h4>
@@ -48,9 +48,9 @@ const FAQ = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    );
+            </div> */}
+    </div>
+  );
 };
 
 export default FAQ;
