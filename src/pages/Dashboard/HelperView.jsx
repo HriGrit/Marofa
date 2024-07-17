@@ -63,6 +63,9 @@ const FirebaseImage = ({ id, showDetails }) => {
           {showDetails && details && (
             <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
               <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+                <p className="text-2xl font-thin text-white truncate">
+                  {details.firstName} {details.lastName}
+                </p>
                 <p className="text-sm text-white truncate">{details.email}</p>
                 <p className="text-sm text-white truncate">
                   {details.mobileNo}
@@ -87,7 +90,6 @@ const FirebaseImage = ({ id, showDetails }) => {
 const FirebaseImageNoDetails = ({ id }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [details, setDetails] = useState(null);
-  const [addDetails, setAddDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({ image: false, details: false });
 
@@ -108,7 +110,7 @@ const FirebaseImageNoDetails = ({ id }) => {
         const docRef = doc(firestore, "documents", `${id}_employer`);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setDetails(docSnap.data().aboutJobEmployer);
+          setDetails(docSnap.data().contactDetailsEmployer);
         } else {
           console.log("No such document!");
           setError((prevError) => ({ ...prevError, details: true }));
@@ -144,11 +146,8 @@ const FirebaseImageNoDetails = ({ id }) => {
           {details && (
             <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
               <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
-                <p className="text-sm font-medium text-white truncate">
-                  {details.jobTitle}
-                </p>
-                <p className="text-sm font-medium text-white truncate">
-                  {details.salary}
+                <p className="text-2xl font-thin text-white truncate">
+                  {details.firstName} {details.lastName}
                 </p>
               </div>
             </div>
@@ -200,7 +199,7 @@ const HelperView = ({ name, applications, applied }) => {
         </div>
         <div className="p-3 max-w-3xl bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold leading-none text-white">
+            <h3 className="text-m md:text-xl font-bold leading-none text-white">
               Your Applications
             </h3>
           </div>

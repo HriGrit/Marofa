@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { HashLink as Link } from "react-router-hash-link";
 import { signOut as firebaseSignOut } from "firebase/auth";
 import { auth, firestore } from "../../utils/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-
 import { useAuth } from "../../Context/AuthContext";
 import GetStartedContent from "../Register/GetStartedContent";
 import logo from "../../assets/marofa.svg";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { currentUser } = useAuth();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [userRole, setUserRole] = useState("");
 
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
-  };
+  const toggleNav = useCallback(() => {
+    setIsNavOpen((prev) => !prev);
+  }, []);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     try {
       await firebaseSignOut(auth);
       navigate("/");
     } catch (error) {
       console.error("Error signing out:", error);
     }
-  };
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -46,6 +46,12 @@ function Navbar() {
 
     fetchUserRole();
   }, [currentUser]);
+
+  const getLinkClassName = (path) => {
+    return location.pathname === path
+      ? "text-blue-700 font-semibold"
+      : "text-white font-normal";
+  };
 
   return (
     <nav className="position-sticky border-gray-200 bg-[#14415a] p-2">
@@ -112,43 +118,39 @@ function Navbar() {
         >
           <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
             <li>
-              <Link to="/">
-                <a
-                  href="#"
-                  className="block py-2 px-3 mdnav:p-0 text-white bg-blue-700 rounded mdnav:bg-transparent mdnav:text-[#2E72D9]"
-                  aria-current="page"
-                >
+              <Link to="/" className={getLinkClassName("/")}>
+                <span className="block py-2 px-3 mdnav:p-0 rounded mdnav:bg-transparent">
                   Home
-                </a>
+                </span>
               </Link>
             </li>
             {currentUser && userRole === "helper" && (
               <li>
                 <Link
-                  to="/applyToEmployer"
-                  className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
+                  to="/employers"
+                  className={getLinkClassName("/employers")}
                 >
-                  View Employers
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    View Employers
+                  </span>
                 </Link>
               </li>
             )}
             {currentUser && userRole === "employer" && (
               <li>
-                <Link
-                  to="/applyToHelper"
-                  className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
-                >
-                  View Helpers
+                <Link to="/helpers" className={getLinkClassName("/helpers")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    View Helpers
+                  </span>
                 </Link>
               </li>
             )}
             {currentUser && userRole && (
               <li>
-                <Link
-                  to="/updateProfile"
-                  className="block py-2 px-3 mdnav:p-0 text-white font-thin rounded hover:bg-[#14415a] mdnav:hover:bg-transparent mdnav:hover:text-[#2E72D9]"
-                >
-                  Update Profile
+                <Link to="/register" className={getLinkClassName("/register")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    Update Profile
+                  </span>
                 </Link>
               </li>
             )}
@@ -160,55 +162,57 @@ function Navbar() {
   );
 }
 
-const AuthenticatedUserView = ({
-  user,
-  profileDropdownOpen,
-  setProfileDropdownOpen,
-  signOut,
-  navigate,
-  userRole,
-}) => {
-  const userProfileImage = user.photoURL || "../../assets/uploadpic.svg";
+const AuthenticatedUserView = React.memo(
+  ({
+    user,
+    profileDropdownOpen,
+    setProfileDropdownOpen,
+    signOut,
+    navigate,
+    userRole,
+  }) => {
+    const userProfileImage = user.photoURL || "../../assets/uploadpic.svg";
 
-  return (
-    <div className="relative flex items-center space-x-2 cursor-pointer">
-      <div
-        onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-        className="w-12 h-12 rounded-full overflow-hidden"
-      >
-        <img src={userProfileImage} alt="Profile" />
-      </div>
-      <svg
-        onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-        className="w-6 h-6 text-white"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M19 9l-7 7-7-7"
-        ></path>
-      </svg>
-      {profileDropdownOpen && (
-        <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-[100px]">
-          <a
-            href="#"
-            className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl "
-            onClick={(e) => {
-              e.preventDefault();
-              signOut();
-            }}
-          >
-            Sign out
-          </a>
+    return (
+      <div className="relative flex items-center space-x-2 cursor-pointer">
+        <div
+          onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+          className="w-12 h-12 rounded-full overflow-hidden"
+        >
+          <img src={userProfileImage} alt="Profile" />
         </div>
-      )}
-    </div>
-  );
-};
+        <svg
+          onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+        {profileDropdownOpen && (
+          <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-[100px]">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl "
+              onClick={(e) => {
+                e.preventDefault();
+                signOut();
+              }}
+            >
+              Sign out
+            </a>
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 export default Navbar;
