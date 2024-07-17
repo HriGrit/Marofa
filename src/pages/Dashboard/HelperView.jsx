@@ -65,6 +65,18 @@ const FirebaseImage = ({ id, showDetails }) => {
                   baseColor="#202020"
                   highlightColor="#444"
                 />
+                <Skeleton
+                  width={120}
+                  height={28}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                />
+                <Skeleton
+                  width={120}
+                  height={28}
+                  baseColor="#202020"
+                  highlightColor="#444"
+                />
               </div>
             </div>
           )}
@@ -91,11 +103,13 @@ const FirebaseImage = ({ id, showDetails }) => {
           {showDetails && details && (
             <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
               <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
-                <p className="text-2xl font-thin text-white truncate">
+                <p className="text-2xl font-thin text-white truncate px-2">
                   {details.firstName} {details.lastName}
                 </p>
-                <p className="text-sm text-white truncate">{details.email}</p>
-                <p className="text-sm text-white truncate">
+                <p className="text-sm text-white truncate px-2">
+                  {details.email}
+                </p>
+                <p className="text-sm text-white truncate px-2">
                   {details.mobileNo}
                 </p>
               </div>
