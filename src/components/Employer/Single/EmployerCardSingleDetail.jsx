@@ -15,7 +15,7 @@ import { firestore, auth } from "../../../utils/firebase";
 
 import toast, { Toaster } from "react-hot-toast";
 import helper from "../../../assets/Employer/Single/helper.svg";
-
+import call from "../../../assets/call.svg";
 import location from "../../../assets/Employer/Single/location.svg";
 import salary from "../../../assets/Employer/Single/salary.svg";
 import accomodation from "../../../assets/Employer/Single/accomodation.svg";
@@ -178,7 +178,7 @@ const EmployerCardSingleDetail = ({ employerId }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-16 my-8 py-2">
             <div className="space-y-4">
               <div className="flex gap-2">
-                <img src={helper} alt="helper" className="w-6" />
+                <img src={call} alt="call" className="w-6" />
                 <p className="my-auto">{userDetails.PrimaryMobileNo}</p>
               </div>
               <div className="flex gap-2">

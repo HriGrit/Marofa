@@ -255,6 +255,7 @@ const HelperView = ({ name, applications, applied }) => {
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-m md:text-2xl font-bold leading-none text-white">
               Employers You’ve Reached Out To
+              <hr />
             </h3>
           </div>
           <div className="flow-root">
