@@ -206,9 +206,9 @@ const HelperCardSingleDetail = ({helperId}) => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-16 my-8 py-2">
                       {contactDetails.map((detail, index) => (
-                        <div key={index} className="flex gap-2 space-y-4">
+                        <div key={index} className="flex gap-4 space-y-4">
                           <img src={detail.icon} alt={detail.label} className="w-6 md:w-8" />
-                          <p className="my-auto">{detail.value}</p>
+                          <p className="my-auto pb-3">{detail.value}</p>
                         </div>
                       ))}
                     </div>

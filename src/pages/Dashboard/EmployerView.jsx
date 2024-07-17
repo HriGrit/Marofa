@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
-import { firestore } from "../../utils/firebase";
+import { firestore, storage } from "../../utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { storage } from "../../utils/firebase";
 import { Link } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const FirebaseImage = ({ id }) => {
   const [imageUrl, setImageUrl] = useState(null);
-  const [error, setError] = useState(null);
   const [name, setName] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({ image: false, details: false });
 
   useEffect(() => {
-    const fetchImageUrl = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
         const imagePath = `images/helper/${id}`;
         const imageRef = ref(storage, imagePath);
@@ -19,11 +22,9 @@ const FirebaseImage = ({ id }) => {
         setImageUrl(url);
       } catch (error) {
         console.error("Error fetching image URL:", error);
-        setError(error);
+        setError((prevError) => ({ ...prevError, image: true }));
       }
-    };
 
-    const fetchName = async () => {
       try {
         const docRef = doc(firestore, "documents", `${id}_helper`);
         const docSnap = await getDoc(docRef);
@@ -34,40 +35,79 @@ const FirebaseImage = ({ id }) => {
             " " +
             data.personalInfoHelper.lastName;
           setName(combinedName);
+        } else {
+          console.log("No such document!");
+          setError((prevError) => ({ ...prevError, details: true }));
         }
       } catch (error) {
-        console.error("Error fetching document:", error);
-        setError(error);
+        console.error("Error fetching details:", error);
+        setError((prevError) => ({ ...prevError, details: true }));
       }
+
+      setLoading(false);
     };
 
-    fetchImageUrl();
-    fetchName();
+    fetchData();
   }, [id]);
 
-  if (error) {
-    return <div>Error loading image</div>;
-  }
-
   return (
-    <div className="flex">
-      <div className="flex items-center space-x-4">
-        {imageUrl ? (
+    <div className="flex items-center space-x-4 min-w-[600px]">
+      {loading ? (
+        <>
+          <Skeleton
+            circle={true}
+            height={96}
+            width={96}
+            baseColor="#202020"
+            highlightColor="#444"
+          />
+          <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
+            <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+              <Skeleton
+                width={120}
+                height={28}
+                baseColor="#202020"
+                highlightColor="#444"
+              />
+            </div>
+          </div>
+          <div className="inline-flex items-center mr-4">
+            <Skeleton
+              width={100}
+              height={40}
+              baseColor="#202020"
+              highlightColor="#444"
+            />
+          </div>
+        </>
+      ) : error.image || error.details ? (
+        <div className="w-16 h-16 flex items-center justify-center">
+          <p>Error loading content</p>
+        </div>
+      ) : (
+        <>
           <img
             src={imageUrl}
             alt={`Image for ID: ${id}`}
-            className="w-24 h-24 rounded-full border-4 border-black"
+            className="w-24 h-24 border-black border-4 rounded-full"
           />
-        ) : (
-          <p>Loading...</p>
-        )}
-        {name ? <p className="text-white">{name}</p> : <p className="text-white">Helper</p>}
-      </div>
-      <div className="flex ml-auto items-center">
-        <button className="ml-auto px-4 py-2 h-fit bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-            View Profile
-        </button>
-      </div>
+          {name && (
+            <div className="flex-1 lg:min-w-[200px] flex flex-col justify-items-center">
+              <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+                <p className="text-2xl font-thin text-white truncate">{name}</p>
+              </div>
+            </div>
+          )}
+          <div className="inline-flex items-center">
+            <Link
+              to={`/helper-details/${id}_helper`}
+              className="px-3 py-1 mr-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300"
+            >
+              View Profile
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -82,12 +122,6 @@ const EmployerView = ({ name, applications, applied }) => {
         <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
           You are an employer. Here you can view the applications
         </h4>
-        {/* <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
-          Applicants are people who want to connect with you
-        </h4>
-        <h4 className="text-lg mb-4 px-4 font-medium text-[#14415a]">
-          Applications are people you have applied to
-        </h4> */}
       </div>
       <div className="flex flex-col gap-8 md:gap-32 w-full mx-2 text-center md:flex-row md:justify-items-center">
         <div className="p-3 w-1/2 bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
