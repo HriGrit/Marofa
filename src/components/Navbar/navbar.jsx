@@ -7,6 +7,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "../../Context/AuthContext";
 import GetStartedContent from "../Register/GetStartedContent";
 import logo from "../../assets/marofa.svg";
+import User from "../../assets/Employer/Single/User.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -171,7 +172,7 @@ const AuthenticatedUserView = React.memo(
     navigate,
     userRole,
   }) => {
-    const userProfileImage = user.photoURL || "../../assets/uploadpic.svg";
+    const userProfileImage = user.photoURL || User;
 
     return (
       <div className="relative flex items-center space-x-2 cursor-pointer">
