@@ -27,7 +27,7 @@ const Pricing = () => {
                         <p>Directly contact helper</p>
                     </div>
                     <div>
-                        <a href="/pricing">
+                        <a href="/signIn">
                             <button className='mt-auto p-3 px-6 bg-[#fffff] text-black rounded-[24px] text-sm border-solid border-2 border-[#123750] hover:bg-[#2E72D9] hover:text-white'>Get Started</button>
                         </a>
                     </div>
