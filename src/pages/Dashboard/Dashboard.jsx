@@ -8,6 +8,7 @@ const HelperView = lazy(() => import("./HelperView"));
 const EmployerView = lazy(() => import("./EmployerView"));
 import Loader from "../Loader";
 import UnRegistered from "./UnRegistered";
+import Footer from "../../components/Footer/Footer";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -85,7 +86,7 @@ const Dashboard = () => {
       ) : show ? (
         <UnRegistered />
       ) : isAuthenticated ? (
-        <div className="my-6 mt-12 mb-4">
+        <div className="my-6 mt-12 mb-40">
           {role === "employer" ? (
             <EmployerView
               name={name}
@@ -103,6 +104,7 @@ const Dashboard = () => {
       ) : (
         <Loader />
       )}
+      <Footer />
     </div>
   );
 };
