@@ -15,8 +15,12 @@ import { firestore, auth } from "../../../utils/firebase";
 
 import toast, { Toaster } from "react-hot-toast";
 import helper from "../../../assets/Employer/Single/helper.svg";
-import call from "../../../assets/call.svg";
+import call from "../../../assets/Employer/Single/call.svg";
+import whatsapp from "../../../assets/Employer/Single/whatsapp.svg";
+import mail from "../../../assets/Employer/Single/mail.svg";
 import location from "../../../assets/Employer/Single/location.svg";
+import cooking from "../../../assets/Employer/Single/cooking.svg";
+import otherskills from "../../../assets/Employer/Single/otherskills.svg";
 import salary from "../../../assets/Employer/Single/salary.svg";
 import accomodation from "../../../assets/Employer/Single/accomodation.svg";
 import date from "../../../assets/Employer/Single/date.svg";
@@ -92,6 +96,9 @@ const EmployerCardSingleDetail = ({ employerId }) => {
     icon: user.image,
     heading: user.aboutJobEmployer?.jobTitle,
 
+    fName: user.contactDetailsEmployer?.firstName,
+    lName: user.contactDetailsEmployer?.lastName,
+
     PrimaryMobileNo: user.contactDetailsEmployer?.mobileNo,
     secondaryMobileNo: user.contactDetailsEmployer?.altMobileNo,
     WappMobileNo: user.contactDetailsEmployer?.WaMobileNo,
@@ -104,6 +111,8 @@ const EmployerCardSingleDetail = ({ employerId }) => {
     language: user.skillsRequiredEmployer?.languages,
     experience: user.candidatePreferenceEmployer?.Experience,
     mainSkills: user.skillsRequiredEmployer?.mainSkills,
+    cookingSkills: user.skillsRequiredEmployer?.cookingSkills,
+    otherSkills: user.skillsRequiredEmployer?.otherSkills,
     salary: user.aboutEmployer?.Salary,
     accomodation: user.aboutEmployer?.Accomodation,
     country: user.jobOfferedEmployer?.jobLocationCountry,
@@ -156,7 +165,12 @@ const EmployerCardSingleDetail = ({ employerId }) => {
             </div>
             <div className="w-full space-y-4 text-center sm:text-left">
               <div>
-                <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[24px] p-2 py-6">
+                <h2 className="text-theme font-[600] line-clamp-1 tracking-wide text-[24px] p-2 py-2">
+                  Hey! I'm {userDetails.fName} {userDetails.lName}
+                </h2>
+              </div>
+              <div>
+                <h2 className="text-theme font-[400] line-clamp-1 tracking-wide text-[24px] p-2 py-2">
                   {userDetails.heading}
                 </h2>
               </div>
@@ -182,17 +196,17 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                 <p className="my-auto">{userDetails.PrimaryMobileNo}</p>
               </div>
               <div className="flex gap-2">
-                <img src={location} alt="location" className="w-6" />
+                <img src={whatsapp} alt="=waNo" className="w-6" />
                 <p className="my-auto">{userDetails.WappMobileNo}</p>
               </div>
             </div>
             <div className="space-y-4">
               <div className="flex gap-2">
-                <img src={salary} alt="location" className="w-8" />
+                <img src={call} alt="altNo" className="w-8" />
                 <p className="my-auto">{userDetails.secondaryMobileNo}</p>
               </div>
               <div className="flex gap-2">
-                <img src={accomodation} alt="accomodation" className="w-8" />
+                <img src={mail} alt="accomodation" className="w-8" />
                 <p className="my-auto">{userDetails.EmailId}</p>
               </div>
             </div>
@@ -208,15 +222,11 @@ const EmployerCardSingleDetail = ({ employerId }) => {
             <div className="space-y-4">
               <div className="flex gap-2">
                 <img src={helper} alt="helper" className="w-6" />
-                <p className="my-auto">
-                  {userDetails.jobPosition} | {userDetails.jobType}
-                </p>
+                <p className="my-auto">{userDetails.jobType}</p>
               </div>
               <div className="flex gap-2">
                 <img src={location} alt="location" className="w-6" />
-                <p className="my-auto">
-                  {userDetails.city}, {userDetails.country}
-                </p>
+                <p className="my-auto">{userDetails.country}</p>
               </div>
               <div className="flex gap-2">
                 <img src={salary} alt="location" className="w-6" />
@@ -289,6 +299,39 @@ const EmployerCardSingleDetail = ({ employerId }) => {
                 <p className="text-[#054A84] font-[600]">Main skills</p>
                 <div className="flex gap-2">
                   {userDetails.mainSkills?.map((item, index) => {
+                    return (
+                      <p
+                        key={index}
+                        className="border-2 border-[#7A7A7A] p-1.5 rounded-[5px] bg-[#7A7A7A] text-white"
+                      >
+                        {item}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <img src={cooking} alt="language" />
+              <div className="flex flex-col gap-2">
+                <p className="text-[#054A84] font-[600]">Cooking skills</p>
+                <div className="flex gap-2">
+                  {userDetails.cookingSkills?.map((item, index) => {
+                    return (
+                      <p key={index} className="border-2 p-1.5 rounded-[5px]">
+                        {item}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <img src={otherskills} alt="skills" />
+              <div className="flex flex-col gap-2">
+                <p className="text-[#054A84] font-[600]">Other skills</p>
+                <div className="flex gap-2">
+                  {userDetails.otherSkills?.map((item, index) => {
                     return (
                       <p
                         key={index}
