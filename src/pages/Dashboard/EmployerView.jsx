@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+import tick from "../../assets/Tick.svg";
+import cross from "../../assets/Cross.svg";
+
 const FirebaseImage = ({ id }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [name, setName] = useState(null);
@@ -98,12 +101,14 @@ const FirebaseImage = ({ id }) => {
             </div>
           )}
           <div className="inline-flex items-center">
-            <Link
+            <img src={tick} alt="tick" className="w-6 h-6 mr-2" />
+            <img src={cross} alt="cross" className="w-6 h-6 mr-2" />
+            {/* <Link
               to={`/helper-details/${id}_helper`}
               className="px-3 py-1 mr-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300"
             >
               View Profile
-            </Link>
+            </Link> */}
           </div>
         </>
       )}
