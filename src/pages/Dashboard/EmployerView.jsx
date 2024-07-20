@@ -282,3 +282,5 @@ const EmployerView = ({ name, applications, applied }) => {
                   </div>
   );
 }
+
+export default EmployerView;
