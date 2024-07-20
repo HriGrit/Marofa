@@ -1,0 +1,7 @@
+.relative {
+    position: relative;
+}
+
+.object-cover {
+    object-fit: cover;
+}
