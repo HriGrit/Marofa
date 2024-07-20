@@ -2,46 +2,45 @@ import React, { useEffect, useState, lazy, useRef } from "react";
 
 import {
   doc,
-  getDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-  updateDoc,
-  arrayUnion,
-  setDoc,
+  getDoc
 } from "firebase/firestore";
-import { firestore, auth } from "../../../utils/firebase";
+import { firestore, auth } from "../../utils/firebase";
 
 import toast, { Toaster } from "react-hot-toast";
-import helper from "../../../assets/Employer/Single/helper.svg";
-import phone from "../../../assets/Employer/Single/call.svg";
-import whatsapp from "../../../assets/Employer/Single/whatsapp.svg";
-import email from "../../../assets/Employer/Single/mail.svg";
-import location from "../../../assets/Employer/Single/location.svg";
-import cooking from "../../../assets/Employer/Single/cooking.svg";
-import otherskills from "../../../assets/Employer/Single/otherskills.svg";
-import salary from "../../../assets/Employer/Single/salary.svg";
-import accomodation from "../../../assets/Employer/Single/accomodation.svg";
-import date from "../../../assets/Employer/Single/date.svg";
-import contract from "../../../assets/Employer/Single/contract.svg";
-import experience from "../../../assets/Employer/Single/experience.svg";
-import holiday from "../../../assets/Employer/Single/holiday.svg";
-import language from "../../../assets/Employer/Single/language.svg";
-import skills from "../../../assets/Employer/Single/mainSkills.svg";
+import helper from "../../assets/Employer/Single/helper.svg";
+import phone from "../../assets/Employer/Single/call.svg";
+import whatsapp from "../../assets/Employer/Single/whatsapp.svg";
+import email from "../../assets/Employer/Single/mail.svg";
+import location from "../../assets/Employer/Single/location.svg";
+import cooking from "../../assets/Employer/Single/cooking.svg";
+import otherskills from "../../assets/Employer/Single/otherskills.svg";
+import salary from "../../assets/Employer/Single/salary.svg";
+import accomodation from "../../assets/Employer/Single/accomodation.svg";
+import date from "../../assets/Employer/Single/date.svg";
+import contract from "../../assets/Employer/Single/contract.svg";
+import experience from "../../assets/Employer/Single/experience.svg";
+import holiday from "../../assets/Employer/Single/holiday.svg";
+import language from "../../assets/Employer/Single/language.svg";
+import skills from "../../assets/Employer/Single/mainSkills.svg";
+import { useParams } from "react-router-dom";
+
+import Navbar from "../../components/Navbar/navbar";
+import Footer from "../../components/Footer/Footer";
 
 const SkeletonEmployerCardSingle = lazy(() =>
-  import("./SkeletonEmployerCardSingle")
+  import("../../components/Employer/Single/SkeletonEmployerCardSingle")
 );
 
-const EmployerCardSingleDetail = ({ employerId }) => {
+const ViewProfileEmployer = () => {
+
+  const {id} = useParams();
+
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [allow, setAllow] = useState(true);
   const fetchCalled = useRef(false);
 
-  const userId = employerId;
+  const userId = id;
 
   useEffect(() => {
     if (!fetchCalled.current) {
@@ -49,35 +48,14 @@ const EmployerCardSingleDetail = ({ employerId }) => {
       const fetchDetails = async () => {
         setLoading(true);
         try {
-          const docRef = doc(firestore, `documents/${userId}`);
+          const docRef = doc(firestore, `documents/${userId}_employer`);
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
             setUser(docSnap.data());
-          } else {
+          }else{
             setError(true);
-          }
-
-          const documentsRef = collection(firestore, "documents");
-          const q = query(
-            documentsRef,
-            where("userId", "==", auth.currentUser.uid)
-          );
-          const querySnapshot = await getDocs(q);
-
-          if (
-            !querySnapshot.empty &&
-            querySnapshot.docs[0].data().role === "employer"
-          ) {
-            setAllow(false);
-            toast.error("Employers Can Not Apply to Employers", {
-              duration: 4000,
-              className: "",
-              iconTheme: {
-                primary: "#ff0000",
-                secondary: "#FFFAEE",
-              },
-            });
+            toast.error("Error fetching document: ");
           }
         } catch (error) {
           setError(true);
@@ -129,10 +107,11 @@ const EmployerCardSingleDetail = ({ employerId }) => {
     { icon: phone, value: user?.contactDetailsEmployer?.mobileNo, label: "Mobile" },
     { icon: email, value: user?.contactDetailsEmployer?.email, label: "Email" },
   ].filter(detail => detail.value);
-
+  
   return (
     <>
       <Toaster />
+      <Navbar />
       {loading ? (
         <SkeletonEmployerCardSingle />
       ) : error ? (
@@ -320,8 +299,9 @@ const EmployerCardSingleDetail = ({ employerId }) => {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 };
 
-export default EmployerCardSingleDetail;
+export default ViewProfileEmployer;

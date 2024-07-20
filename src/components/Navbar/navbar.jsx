@@ -17,6 +17,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [userRole, setUserRole] = useState("");
+  const [userImage, setImg] = useState("");
 
   const toggleNav = useCallback(() => {
     setIsNavOpen((prev) => !prev);
@@ -41,6 +42,7 @@ function Navbar() {
         if (!querySnapshot.empty) {
           const userData = querySnapshot.docs[0].data();
           setUserRole(userData.role);
+          setImg(userData.image);
         }
       }
     };
@@ -53,7 +55,7 @@ function Navbar() {
       ? "text-blue-700 font-semibold"
       : "text-white font-normal";
   };
-
+  
   return (
     <nav className="position-sticky border-gray-200 bg-[#14415a] p-2">
       <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-0 pb-0 mdnav:text-xl">
@@ -148,10 +150,18 @@ function Navbar() {
                 </Link>
               </li>
             )}
-            {currentUser && userRole && (
+            {currentUser && userRole === "helper" ? (
               <li>
-                <Link to="/register" className={getLinkClassName("/register")}>
-                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                <Link to={`/viewProfile-helper/${currentUser?.uid}`}>
+                  <span className="block py-2 px-3 mdnav:p-0  text-white rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    See Profile
+                  </span>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to={`/viewProfile-employer/${currentUser?.uid}`}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded text-white hover:bg-[#14415a] mdnav:hover:bg-transparent">
                     See Profile
                   </span>
                 </Link>
@@ -164,7 +174,6 @@ function Navbar() {
     </nav>
   );
 }
-
 const AuthenticatedUserView = React.memo(
   ({
     user,
@@ -172,8 +181,8 @@ const AuthenticatedUserView = React.memo(
     setProfileDropdownOpen,
     signOut,
     navigate,
-    userRole,
   }) => {
+    
     const userProfileImage = user.photoURL || User;
 
     return (
@@ -182,7 +191,7 @@ const AuthenticatedUserView = React.memo(
           onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
           className="w-12 h-12 rounded-full overflow-hidden"
         >
-          <img src={userProfileImage} alt="Profile" />
+          <img src={userImage} alt="Profile" />
         </div>
         <svg
           onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}

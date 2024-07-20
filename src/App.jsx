@@ -23,6 +23,8 @@ const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard.jsx"));
 
 import "./App.css";
 import NotFound from "./pages/NotFound/NotFound.jsx";
+import ViewProfileEmployer from "./pages/ViewProfile/ViewProfileEmployer.jsx";
+import ViewProfileHelper from "./pages/ViewProfile/ViewProfileHelper.jsx";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
             <Route path="/helper-details/:id" element={<HelperDetail />} />
             <Route path="/helpers" element={<AllHelpers />} />
             <Route path="/register" element={<MultiStepForm />} />
+            <Route path="/viewProfile-employer/:id" element={<ViewProfileEmployer />} />
+            <Route path="/viewProfile-helper/:id" element={<ViewProfileHelper />} />
             <Route path="/pricing" element={<ComingSoon />} />
             <Route path="/updateProfile" element={<ComingSoon />} />
             <Route path="*" element={<NotFound />} />
