@@ -19,6 +19,7 @@ const SingleHelper = lazy(() => import("./pages/Helper/SingleHelper"));
 const EmployerDetail = lazy(() => import("./pages/Employer/EmployerDetail"));
 const HelperDetail = lazy(() => import("./pages/Helper/HelperDetail"));
 const ComingSoon = lazy(() => import("./pages/ComingSoon"));
+const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard.jsx"));
 
 import "./App.css";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/employers/:employerId" element={<SingleEmployer />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/employers" element={<AllEmployers />} />
             <Route path="/helpers/:helperId" element={<SingleHelper />} />
             <Route path="/employer-details/:id" element={<EmployerDetail />} />

@@ -27,12 +27,7 @@ const Home = () => {
 
   return (
     <div>
-      {isAuthenticated ? (
-        <div className="flex flex-col justify-between">
-          <Navbar />
-          <Dashboard />
-        </div>
-      ) : (
+        
         <div>
           <Navbar />
           <Hero />
@@ -42,7 +37,6 @@ const Home = () => {
           <FAQ />
           <Footer />
         </div>
-      )}
     </div>
   );
 };

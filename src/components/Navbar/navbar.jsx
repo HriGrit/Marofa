@@ -118,13 +118,15 @@ function Navbar() {
           id="navbar-cta"
         >
           <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
-            <li>
-              <Link to="/" className={getLinkClassName("/")}>
-                <span className="block py-2 px-3 mdnav:p-0 rounded mdnav:bg-transparent">
-                  Home
-                </span>
-              </Link>
-            </li>
+            {currentUser && (
+              <li>
+                <Link to="/dashboard" className={getLinkClassName("/dashboard")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded mdnav:bg-transparent">
+                    Dashboard
+                  </span>
+                </Link>
+              </li>
+            )}
             {currentUser && userRole === "helper" && (
               <li>
                 <Link
@@ -150,7 +152,7 @@ function Navbar() {
               <li>
                 <Link to="/register" className={getLinkClassName("/register")}>
                   <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
-                    Update Profile
+                    See Profile
                   </span>
                 </Link>
               </li>
@@ -198,10 +200,21 @@ const AuthenticatedUserView = React.memo(
           ></path>
         </svg>
         {profileDropdownOpen && (
-          <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-[100px]">
+          <div className="absolute right-0 w-48 bg-theme text-white rounded-2xl shadow-xl z-20 border-4 border-black mt-[150px]">
+            <Link
+              to="/register"
+              className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/register");
+                setProfileDropdownOpen(false); // Close the dropdown on click
+              }}
+            >
+              Update Profile
+            </Link>
             <a
               href="#"
-              className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl "
+              className="block px-4 py-2 text-sm capitalize hover:bg-blue-700 rounded-2xl"
               onClick={(e) => {
                 e.preventDefault();
                 signOut();

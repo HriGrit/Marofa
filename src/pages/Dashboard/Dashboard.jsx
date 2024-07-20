@@ -3,6 +3,7 @@ import { collection, query, where, getDocs, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
 import { auth, firestore } from "../../utils/firebase";
+import Navbar from "../../components/Navbar/navbar";
 
 const HelperView = lazy(() => import("./HelperView"));
 const EmployerView = lazy(() => import("./EmployerView"));
@@ -70,7 +71,11 @@ const Dashboard = () => {
   }, []);
 
   return (
+    
+      
+
     <div>
+      <Navbar />
       <div className="flex space-x-2 pb-0 pl-4">
         <span className="pt-8 pl-4 text-xl font-semibold text-theme sm:text-3xl">
           Dashboard
