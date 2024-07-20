@@ -201,7 +201,9 @@ const HelperCardSingle = () => {
                 <SkeletonHelper />
             ) : error ? (
                 <div className="text-center py-4">
-                    <p className="text-red-600 font-bold text-2xl">Error fetching user data. Please try again later.</p>
+                    <p className="text-red-600 font-bold text-2xl">
+                        You must be logged in to view this content.
+                    </p>
                 </div>
             ) : (
                 <div className="border-2 shadow-md w-full">

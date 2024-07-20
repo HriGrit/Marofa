@@ -47,6 +47,12 @@ const EmployerCardSingle = ({ employerId }) => {
       const fetchDetails = async () => {
         setLoading(true);
         try {
+          if (!auth.currentUser) {
+            setError(true);
+            setLoading(false);
+            return;
+          }
+
           const docRef = doc(firestore, `documents/${userId}`);
           const docSnap = await getDoc(docRef);
 
@@ -87,7 +93,7 @@ const EmployerCardSingle = ({ employerId }) => {
 
       fetchDetails();
     }
-  }, [userId, auth.currentUser.uid, firestore]);
+  }, [userId]);
 
   const userDetails = {
     id: user.id,
@@ -198,7 +204,7 @@ const EmployerCardSingle = ({ employerId }) => {
       ) : error ? (
         <div className="text-center py-4">
           <p className="text-red-600 font-bold text-2xl">
-            Error fetching user data. Please try again later.
+            You must be logged in to view this content.
           </p>
         </div>
       ) : (

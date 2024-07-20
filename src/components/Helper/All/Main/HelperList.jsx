@@ -18,11 +18,11 @@ const HelperList = () => {
             try {
               const user = auth.currentUser;
 
-              if (!user) {
-                  setAuthUser(true);
-                  setLoading(false);
-                  return;
-              }
+            //   if (!user) {
+            //       setAuthUser(true);
+            //       setLoading(false);
+            //       return;
+            //   }
 
               const documentsRef = collection(firestore, 'documents');
               const q = query(documentsRef, where('role', '==', 'helper'));
@@ -49,36 +49,22 @@ const HelperList = () => {
         fetchUsers();
     }, []);
 
-    // const users = helpers.map((helper) => ({
-    //     id: helper.id,
-    //     icon: helper.image,
-    //     name: `${helper.personalInfoHelper?.firstName} ${helper.personalInfoHelper?.lastName}`,
-    //     age: helper.personalInfoHelper?.dob,
-    //     jobType: "Domestic Helper",
-    //     status: helper.professionalInfoHelper?.currentWorkStatus,
-    //     location: helper.jobPreferenceHelper?.preferredJobLocation,
-    //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate provident repellat aspernatur possimus natus officiis commodi id animi magni. Velit assumenda perferendis tempora quibusdam voluptate nostrum omnis provident molestias! Eius!",
-    //     experience: helper.professionalInfoHelper?.yearsOfExperience,
-    //     startDate: helper.professionalInfoHelper?.jobStartDate,
-    //     jobDuration: "Full Time",
-    //     active: "Active"
-    // }));
-
+    const helpersToShow = authUser ? helpers : helpers.slice(0, 5);
+    
     return (
         <div className='w-full flex flex-col gap-12'>
-            {authUser ? (
-                <div className='text-red-400 font-bold text-2xl m-auto'>
-                    Sign in to view the Helpers List
-                </div>
-            ) : null}
             {loading ? (
-                <>
-                    <SkeletonHelperCard />
-                </>
+                <SkeletonHelperCard />
             ) : (
-                helpers.map((item) => (
-                    <HelperCard key={item.id} user={item} />
-                ))
+                authUser ? (
+                    helpersToShow.map((item) => (
+                        <HelperCard key={item.id} user={item} />
+                    ))
+                ) : (
+                    helpers.map((item) => (
+                        <HelperCard key={item.id} user={item} />
+                    ))
+                )
             )}
             {error && (
                 <div className='text-red-400 font-bold text-2xl m-auto'>

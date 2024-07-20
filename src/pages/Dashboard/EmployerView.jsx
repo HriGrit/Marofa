@@ -50,7 +50,7 @@ const FirebaseImage = ({ id }) => {
   }, [id]);
 
   return (
-    <div className="flex items-center space-x-4 min-w-[600px]">
+    <div className="flex items-center space-x-4 min-w-[300px] sm:min-w-[400px] md:min-w-[600px]">
       {loading ? (
         <>
           <Skeleton
@@ -155,7 +155,7 @@ const FirebaseImage2 = ({ id }) => {
   }, [id]);
 
   return (
-    <div className="flex items-center space-x-4 min-w-[600px]">
+    <div className="flex items-center space-x-4 min-w-[300px] sm:min-w-[400px] md:min-w-[600px]">
       {loading ? (
         <>
           <Skeleton
@@ -218,7 +218,7 @@ const FirebaseImage2 = ({ id }) => {
 
 const EmployerView = ({ name, applications, applied }) => {
   return (
-    <div className="p-4 md:mt-2 py-0">
+    <div className="p-4 py-0">
       <div>
         <h2 className="text-2xl mb-4 px-4 font-bold text-[#14415a]">
           Welcome to Marofa
@@ -227,8 +227,8 @@ const EmployerView = ({ name, applications, applied }) => {
           You are an employer. Here you can view the applications
         </h4>
       </div>
-      <div className="flex flex-col gap-8 md:gap-32 w-full mx-2 text-center md:flex-row md:justify-items-center">
-        <div className="p-3 w-1/2 bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
+      <div className="flex flex-col gap-8 w-full mx-2 text-center md:flex-row md:justify-items-center md:gap-32">
+        <div className="p-3 w-full bg-[#14415a] items-center text-white rounded-lg border shadow-md sm:p-8 md:w-1/2 min-h-[300px]">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-m md:text-2xl font-bold leading-none text-white">
               Helpers Who've Contacted You
@@ -249,38 +249,36 @@ const EmployerView = ({ name, applications, applied }) => {
                 <p className="text-lg text-white">
                   You have not applied for any applications yet.
                 </p>
-              )}
-            </ul>
-          </div>
-        </div>
-        <div className="p-3 w-1/2 bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 sm:min-w-[300px] min-h-[300px]">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-m md:text-2xl font-bold leading-none text-white">
-              Helpers You've Reached Out To
-              <hr />
-            </h3>
-          </div>
-          <div className="flow-root">
-            <ul role="list" className="divide-y divide-gray-200">
-              {applied.length > 0 ? (
-                applied.map((id) => (
-                  <li key={id} className="py-3 sm:py-4">
-                    <Link to={`/helpers/${id}_helper`}>
-                      <FirebaseImage2 id={id} />
-                    </Link>
-                  </li>
-                ))
-              ) : (
-                <p className="text-lg text-white">
-                  You have not applied for any applications yet.
-                </p>
-              )}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+                          )}
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="p-3 w-full bg-[#14415a] text-white rounded-lg border shadow-md sm:p-8 md:w-1/2 min-h-[300px]">
+                        <div className="flex justify-between items-center mb-4">
+                          <h3 className="text-m md:text-2xl font-bold leading-none text-white">
+                            Helpers You've Reached Out To
+                            <hr />
+                          </h3>
+                        </div>
+                        <div className="flow-root">
+                          <ul role="list" className="divide-y divide-gray-200">
+                            {applied.length > 0 ? (
+                              applied.map((id) => (
+                                <li key={id} className="py-3 sm:py-4">
+                                  <Link to={`/helpers/${id}_helper`}>
+                                    <FirebaseImage2 id={id} />
+                                  </Link>
+                                </li>
+                              ))
+                            ) : (
+                              <p className="text-lg text-white">
+                                You have not applied for any applications yet.
+                              </p>
+                            )}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
   );
-};
-
-export default EmployerView;
+}

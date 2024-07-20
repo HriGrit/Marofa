@@ -19,11 +19,11 @@ const EmployerList = () => {
             try {
               const user = auth.currentUser;
 
-              if (!user) {
-                  setAuthUser(true);
-                  setLoading(false);
-                  return;
-              }
+            //   if (!user) {
+            //       setAuthUser(true);
+            //       setLoading(false);
+            //       return;
+            //   }
 
               const documentsRef = collection(firestore, 'documents');
               const q = query(documentsRef, where('role', '==', 'employer'));
@@ -50,6 +50,8 @@ const EmployerList = () => {
         fetchUsers();
     }, []);
     
+    const employersToShow = authUser ? employers : employers.slice(0, 5);
+
     return (
         <div className='w-full flex flex-col gap-12'>
             {authUser ?  <div className='text-red-400 font-bold text-2xl m-auto'>
@@ -59,12 +61,17 @@ const EmployerList = () => {
                 <>
                     <SkeletonEmployerCard />
                     <SkeletonEmployerCard />
-                    {/* <SkeletonEmployerCard /> */}
                 </>
             ) : (
-                employers.map((item) => (
-                    <EmployerCard key={item.id} user={item} />
-                ))
+                authUser ? (
+                    employersToShow.map((item) => (
+                        <EmployerCard key={item.id} user={item} />
+                    ))
+                ) : (
+                    employers.map((item) => (
+                        <EmployerCard key={item.id} user={item} />
+                    ))
+                )
             )}
         </div>
     );
