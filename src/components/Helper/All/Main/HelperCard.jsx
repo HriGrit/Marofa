@@ -77,7 +77,7 @@ const HelperCard = ({ user }) => {
             </div>
             <div className='space-y-2 w-full'>
                 <div>
-                    <p className='font-bold text-[#054A84] text-center'>{user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName} - {age} yr</p>
+                    <p className='font-bold text-[#054A84]'>{user.personalInfoHelper.firstName} {user.personalInfoHelper.lastName} - {age} yr</p>
                 </div>
                 <div className='flex flex-row gap-6'>
                     <p className='font-bold text-[#666666]'>{user.professionalInfoHelper.jobType} - {user.professionalInfoHelper.currentWorkStatus}</p>

@@ -16,8 +16,7 @@ function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const [userRole, setUserRole] = useState("");
-  const [userImage, setImg] = useState("");
+  const [user, setUser] = useState(null);
 
   const toggleNav = useCallback(() => {
     setIsNavOpen((prev) => !prev);
@@ -41,8 +40,7 @@ function Navbar() {
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
           const userData = querySnapshot.docs[0].data();
-          setUserRole(userData.role);
-          setImg(userData.image);
+          setUser(userData);
         }
       }
     };
@@ -50,6 +48,19 @@ function Navbar() {
     fetchUserRole();
   }, [currentUser]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (!(event.target).closest('.popup-content')) {
+          setProfileDropdownOpen(false);
+        }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+        document.removeEventListener('click', handleClickOutside);
+    };
+}, []);
+  
   const getLinkClassName = (path) => {
     return location.pathname === path
       ? "text-blue-700 font-semibold"
@@ -69,12 +80,12 @@ function Navbar() {
           {currentUser ? (
             <div className="cursor-pointer outline-none flex flex-row gap-4">
               <AuthenticatedUserView
-                user={currentUser}
+                user={user}
                 profileDropdownOpen={profileDropdownOpen}
                 setProfileDropdownOpen={setProfileDropdownOpen}
                 signOut={signOut}
                 navigate={navigate}
-                userRole={userRole}
+                userRole={user?.role}
               />
             </div>
           ) : (
@@ -119,7 +130,7 @@ function Navbar() {
           }`}
           id="navbar-cta"
         >
-          <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
+          {/* <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
             {currentUser && (
               <li>
                 <Link to="/dashboard" className={getLinkClassName("/dashboard")}>
@@ -129,19 +140,15 @@ function Navbar() {
                 </Link>
               </li>
             )}
-            {currentUser && userRole === "helper" && (
+            {currentUser && user?.role === "helper" ? (
               <li>
-                <Link
-                  to="/employers"
-                  className={getLinkClassName("/employers")}
-                >
+                <Link to="/employers" className={getLinkClassName("/employers")}>
                   <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
                     View Employers
                   </span>
                 </Link>
               </li>
-            )}
-            {currentUser && userRole === "employer" && (
+            ) : (
               <li>
                 <Link to="/helpers" className={getLinkClassName("/helpers")}>
                   <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
@@ -150,7 +157,7 @@ function Navbar() {
                 </Link>
               </li>
             )}
-            {currentUser && userRole === "helper" ? (
+            {currentUser && user?.role === "helper" ? (
               <li>
                 <Link to={`/viewProfile-helper/${currentUser?.uid}`}>
                   <span className="block py-2 px-3 mdnav:p-0  text-white rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
@@ -162,6 +169,64 @@ function Navbar() {
               <li>
                 <Link to={`/viewProfile-employer/${currentUser?.uid}`}>
                   <span className="block py-2 px-3 mdnav:p-0 rounded text-white hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    See Profile
+                  </span>
+                </Link>
+              </li>
+            )}
+          </ul> */}
+          <ul className="flex flex-col font-medium p-4 mdnav:p-0 mt-4 rounded-lg bg-[#14415a] mdnav:space-x-[50px] rtl:space-x-reverse mdnav:flex-row mdnav:mt-0 mdnav:border-0 mdnav:bg-[#14415a]">
+            {currentUser ? (
+              <li>
+                <Link to="/dashboard" className={getLinkClassName("/dashboard")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded mdnav:bg-transparent">
+                    Dashboard
+                  </span>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/" className={getLinkClassName("/signIn")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded mdnav:bg-transparent">
+                    Home
+                  </span>
+                </Link>
+              </li>
+            )}
+            {currentUser && user?.role === "helper" && (
+              <li>
+                <Link
+                  to="/employers"
+                  className={getLinkClassName("/employers")}
+                >
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    View Employers
+                  </span>
+                </Link>
+              </li>
+            )}
+            {currentUser && user?.role === "employer" && (
+              <li>
+                <Link to="/helpers" className={getLinkClassName("/helpers")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    View Helpers
+                  </span>
+                </Link>
+              </li>
+            )}
+            {currentUser && user?.role === "helper" && (
+              <li>
+                <Link to={`/viewProfile-helper/${currentUser.uid}`} className={getLinkClassName("/register")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
+                    See Profile
+                  </span>
+                </Link>
+              </li>
+            )}
+            {currentUser && user?.role === "employer" && (
+              <li>
+                <Link to={`/viewProfile-employer/${currentUser.uid}`} className={getLinkClassName("/register")}>
+                  <span className="block py-2 px-3 mdnav:p-0 rounded hover:bg-[#14415a] mdnav:hover:bg-transparent">
                     See Profile
                   </span>
                 </Link>
@@ -182,8 +247,7 @@ const AuthenticatedUserView = React.memo(
     signOut,
     navigate,
   }) => {
-    
-    const userProfileImage = user.photoURL || User;
+    const userProfileImage = user?.image || User;
 
     return (
       <div className="relative flex items-center space-x-2 cursor-pointer">
@@ -191,11 +255,11 @@ const AuthenticatedUserView = React.memo(
           onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
           className="w-12 h-12 rounded-full overflow-hidden"
         >
-          <img src={userImage} alt="Profile" />
+          <img src={userProfileImage} alt="Profile" />
         </div>
         <svg
           onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-          className="w-6 h-6 text-white"
+          className="w-6 h-6 text-white popup-content"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
