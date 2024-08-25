@@ -33,18 +33,18 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="/employers/:employerId" element={<SingleEmployer />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/employers" element={<AllEmployers />} />
-            <Route path="/helpers/:helperId" element={<SingleHelper />} />
-            <Route path="/employer-details/:id" element={<EmployerDetail />} />
-            <Route path="/helper-details/:id" element={<HelperDetail />} />
-            <Route path="/helpers" element={<AllHelpers />} />
-            <Route path="/register" element={<MultiStepForm />} />
-            <Route path="/viewProfile-employer/:id" element={<ViewProfileEmployer />} />
-            <Route path="/viewProfile-helper/:id" element={<ViewProfileHelper />} />
+            <Route path="/signIn" element={<NotFound />} />
+            <Route path="/signUp" element={<NotFound />} />
+            <Route path="/employers/:employerId" element={<NotFound />} />
+            <Route path="/dashboard" element={<NotFound />} />
+            <Route path="/employers" element={<NotFound />} />
+            <Route path="/helpers/:helperId" element={<NotFound />} />
+            <Route path="/employer-details/:id" element={<NotFound />} />
+            <Route path="/helper-details/:id" element={<NotFound />} />
+            <Route path="/helpers" element={<NotFound />} />
+            <Route path="/register" element={<NotFound />} />
+            <Route path="/viewProfile-employer/:id" element={<NotFound />} />
+            <Route path="/viewProfile-helper/:id" element={<NotFound />} />
             <Route path="/pricing" element={<ComingSoon />} />
             <Route path="/updateProfile" element={<ComingSoon />} />
             <Route path="*" element={<NotFound />} />

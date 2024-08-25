@@ -205,6 +205,11 @@ const MultiStepForm = () => {
     });
   };
 
+  const updateCounter = async (incrementValue, role) => {
+    const counterRef = doc(firestore, 'counters', `${role}Counter`);
+    await setDoc(counterRef, { count: increment(incrementValue) }, { merge: true });
+};
+
   const handleSubmit = async () => {
     if (!currentUser) {
       toast.error("No user is signed in.", {
@@ -212,6 +217,10 @@ const MultiStepForm = () => {
         position: "top-right",
       });
       return;
+    }
+
+    if (!accountExist && currentUser?.uid){
+      updateCounter(1, roleExist);
     }
 
     const roleSpecificData =

@@ -8,14 +8,14 @@ import reload from '../../../../assets/reload.svg';
 import { HelperNameFilter, HelperAgeFilter, HelperExperienceFilter, HelperGenderFilter, HelperWorkTypeFilter, HelperLanguageFilter, HelperLocationFilter, HelperNationalityFilter, HelperSkillsFilter } from './Filters/HelperFilter';
 
 const HelperFilter = () => {
-    const { resetFilters } = useContext(FiltersContext);
-
+    const { resetFilters, filters } = useContext(FiltersContext);
+    console.log(filters);
     const handleOnReset = () => {
         resetFilters();
     }
 
     return (
-        <div className='hidden app:block w-[30%] p-4 ml-16 border border-theme shadow-lg bg-[#f6f6f6] rounded-md'>
+        <div className='hidden app:block w-[30%] p-4 ml-16 border border-theme h-fit shadow-lg bg-[#f6f6f6] rounded-md'>
             <div className='space-y-2'>
                 <p className='text-2xl my-4'>I'm looking for</p>
                 <div className='flex flex-row justify-between'>
